@@ -1,0 +1,143 @@
+extends Node
+
+const Routes = preload("res://scripts/domain/world/route_generator.gd")
+const Coordinator = preload("res://scripts/app/expedition_controller.gd")
+const Chart = preload("res://scripts/presentation/screens/expedition_panel.gd")
+const Rewards = preload("res://scripts/domain/world/room_rewards.gd")
+const Catalog = preload("res://scripts/domain/world/world_catalog.gd")
+
+class PreviewGame extends Node:
+	var run := RunSession.new()
+	var state: Dictionary = {}
+	func expedition_snapshot() -> Dictionary:
+		return state.duplicate(true)
+
+var checks := 0
+var failures := 0
+var longest_reward_lines := 0
+var tallest_card := 0.0
+var laid_out_rooms: Dictionary = {}
+var viewport: SubViewport
+var host: Control
+
+func _ready() -> void:
+	call_deferred("run_checks")
+
+func check(condition: bool, description: String) -> void:
+	checks += 1
+	if not condition:
+		failures += 1
+		push_error(description)
+
+func frames(count: int = 2) -> void:
+	for frame in count:
+		await get_tree().process_frame
+
+func run_checks() -> void:
+	if not Game.profile_path.contains("test_reward_route_preview"):
+		get_tree().quit(2)
+		return
+	var original_locale: String = Words.locale
+	viewport = SubViewport.new()
+	viewport.size = Vector2i(1280,720)
+	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	add_child(viewport)
+	host = Control.new()
+	host.size = Vector2(1280,720)
+	host.theme = GameStyle.make_theme()
+	viewport.add_child(host)
+	var game := PreviewGame.new()
+	add_child(game)
+	var controller := Coordinator.new(game)
+	for locale: String in ["zh_CN","en"]:
+		Words.locale = locale
+		for hero: String in ["CH01","CH02","CH03"]:
+			game.run.hero_id = hero
+			for policy: int in [0, Rewards.CURRENT_POLICY_VERSION]:
+				# Missing version is an existing saved expedition, not the separate
+				# non-expedition helper mode (whose difficulty defaults to -1).
+				game.state = {"difficulty":4}
+				if policy > 0: game.state["reward_policy_version"] = policy
+				for id: String in Catalog.room_ids():
+					var preview: Dictionary = controller.preview(id)
+					check(preview.reward == Rewards.preview(id,hero,locale == "en",4,policy), "controller uses saved reward policy for %s %s %s v%d" % [locale,hero,id,policy])
+					check(not str(preview.reward).contains("Coins, hero XP, mastery and carried equipment") and not str(preview.reward).contains("金币、角色经验、历练与待带回装备"), "uniform placeholder removed for "+id)
+					if policy == Rewards.CURRENT_POLICY_VERSION:
+						var reward := Rewards.build(id,"full",hero,41827,"preview-check",[],[],[],4,policy)
+						check(Rewards.qualities(id,policy) == ["full"], id + " exposes only the reachable FirstFour outcome")
+						check(str(preview.reward).contains(str(reward.gold) + (" gold" if locale == "en" else "金币")), id + " current preview states actual scaled cash")
+						check(str(preview.reward).contains("clear enemies" if locale == "en" else "清场"), id + " current preview retains the real combat completion gate")
+				for boss_id: String in Catalog.bosses():
+					check(controller.preview(boss_id).reward == Rewards.preview(boss_id,hero,locale == "en",4,policy), "boss route preview uses saved difficulty and policy")
+			game.state = {"difficulty":4}
+			var missing_version: String = controller.preview("L02").reward
+			game.state["reward_policy_version"] = 0
+			check(controller.preview("L02").reward == missing_version, "missing and explicit legacy policy remain identical")
+			check(Rewards.qualities("L02",0) == ["full","reduced"] and Rewards.preview("L02",hero,locale == "en").contains("34 gold" if locale == "en" else "34金币"), "historical non-expedition bargain remains available separately")
+		game.run.hero_id = "CH03"
+		for policy: int in [0, Rewards.CURRENT_POLICY_VERSION]:
+			for level: int in [1,15]:
+				for biome: String in ["B01","B02","B03","B04"]:
+					var route: Dictionary = Routes.generate_single_biome(biome,41827,[],level) if policy > 0 else Routes.generate(biome,41827,[],level)
+					check(bool(route.get("valid",false)), "real route builds "+biome+" "+str(level))
+					# Inspect both branch choices and the denser objective alternatives.
+					for current: int in ([0,1] if level == 1 else [0,2]):
+						game.state = {"route":route,"node_index":current,"phase":"cleared","completed_nodes":range(current+1),"difficulty":4}
+						if policy > 0: game.state["reward_policy_version"] = policy
+						var chart := Chart.new()
+						chart.position = Vector2(132,148)
+						chart.size = Vector2(1016,480)
+						host.add_child(chart)
+						chart.configure(controller,true)
+						await frames()
+						var timeline: Control = chart.find_child("JourneyMap",true,false)
+						check(is_instance_valid(timeline) and timeline.nodes.size() == (6 if level == 1 else 12) and timeline.nodes == route.nodes, "full illustrated timeline preserves saved route "+str(level))
+						check(timeline.current == current and timeline.completed == game.state.completed_nodes, "timeline uses the saved position and completed nodes")
+						var scroll: ScrollContainer = chart.find_child("RouteOptions",true,false)
+						var heading: Label = chart.find_child("RouteOptionsHeading",true,false)
+						var close: Button = chart.find_child("CloseRoute",true,false)
+						check(scroll.clip_contents, "route alternatives clip only at scroll viewport")
+						check(heading.get_global_rect().end.y <= scroll.get_global_rect().position.y, "heading stays above choices")
+						check(scroll.get_global_rect().end.y < close.get_global_rect().position.y, "choices stay above close button")
+						check(Rect2(Vector2.ZERO,Vector2(1280,720)).encloses(chart.get_global_rect()), "route chart remains inside the game viewport")
+						var cards: Array[Node] = chart.find_children("Choose_*","Button",true,false)
+						check(cards.size() == controller.next_options().size(), "every real route option is shown")
+						for card: Button in cards:
+							tallest_card = maxf(tallest_card,card.size.y)
+							var previous_bottom := 0.0
+							for label: Label in card.get_children():
+								check(not label.clip_text and label.max_lines_visible == -1, "no text hidden in "+card.name+"/"+label.name)
+								check(label.position.y >= previous_bottom, "label order avoids overlap in "+card.name+"/"+label.name)
+								check(Rect2(Vector2.ZERO,card.size).encloses(label.get_rect()), "label geometry fits real button in "+card.name+"/"+label.name)
+								var required_height := label.get_line_count()*label.get_line_height()+maxi(0,label.get_line_count()-1)*label.get_theme_constant("line_spacing")
+								check(label.size.y+1.0 >= required_height, "all shaped lines fit label height in "+card.name+"/"+label.name+" lines="+str(label.get_line_count()))
+								previous_bottom = label.get_rect().end.y
+								if label.name == "RouteReward":
+									longest_reward_lines = maxi(longest_reward_lines,label.get_line_count())
+									var room_id := String(card.name).trim_prefix("Choose_")
+									laid_out_rooms[str(policy)+":"+locale+":"+room_id] = true
+									check(label.text == Rewards.preview(room_id,"CH03",locale == "en",int(game.state.difficulty),int(game.state.get("reward_policy_version",0))), "full visible reward equals policy")
+						# Scrolling must expose the last reward and risk, even in long English.
+						scroll.scroll_vertical = int(scroll.get_v_scroll_bar().max_value)
+						await frames()
+						if not cards.is_empty():
+							var last: Button = cards[-1]
+							var reward: Label = last.find_child("RouteReward",true,false)
+							check(scroll.get_global_rect().encloses(reward.get_global_rect()), "last option reward reachable in scroll viewport")
+						if locale == "en" and level == 15 and biome == "B01" and current == 0 and DisplayServer.get_name() != "headless":
+							await RenderingServer.frame_post_draw
+							DirAccess.make_dir_recursive_absolute("res://artifacts")
+							viewport.get_texture().get_image().save_png("res://artifacts/reward_route_12_en_v%d.png" % policy)
+						chart.free()
+						await frames(1)
+	for policy: int in [0, Rewards.CURRENT_POLICY_VERSION]:
+		for locale: String in ["zh_CN","en"]:
+			for room_id: String in Catalog.room_ids():
+				check(laid_out_rooms.has(str(policy)+":"+locale+":"+room_id), "all template rewards receive actual shaped layout checks v%d %s %s" % [policy,locale,room_id])
+	game.free()
+	Words.locale = original_locale
+	host.free()
+	viewport.free()
+	await frames()
+	print("REWARD ROUTE PREVIEW: %d checks, %d failures; longest reward %d lines; tallest card %.0fpx" % [checks,failures,longest_reward_lines,tallest_card])
+	get_tree().quit(1 if failures else 0)

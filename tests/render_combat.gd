@@ -57,7 +57,7 @@ func run_checks() -> void:
 		get_tree().quit(2)
 		return
 	Game.new_profile()
-	app = load("res://scenes/main.tscn").instantiate()
+	app = load(AssetCatalog.resolve("res://scenes/app/main.tscn")).instantiate()
 	get_tree().root.add_child(app)
 	# These combat frames target the original single-room relic stations.
 	check(Game.start_run(),"start legacy room for combat rendering fixture")

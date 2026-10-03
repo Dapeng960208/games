@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Retain versioned numeric QA evidence, excluding images, saves and disposable logs."""
 import hashlib,json,pathlib,re,collections
-ROOT=pathlib.Path(__file__).resolve().parents[2]
-DEST=ROOT/'docs/balance/evidence/b05_runs'
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
+DEST=ROOT/'docs/levels/b05/balance/evidence/b05_runs'
 KEEP=['configuration','outcome','probe','rendering','display_server','pause_seconds','process_frames','simulation_seconds','host_wall_seconds','timing_mode','physics_steps','physics_delta_min','physics_delta_max','hp_fraction','hp_loss','shield_absorbed','effective_player_healing','effective_boss_healing','boss_initial_shield','outgoing','weakpoint_seconds','attackable_seconds','resource_empty_seconds','resource_rejections','casts','cast_failures','phases','phase_skip_details','input_diagnostics','incoming_packets','outgoing_packets','ability_timeline_audit','directed_result','negative_control']
 def main():
  DEST.mkdir(exist_ok=True);index=[]

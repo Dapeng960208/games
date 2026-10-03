@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Aggregate clean, exact-seed Boss batches; never turn partial coverage into a pass."""
 import argparse, collections, json, pathlib, statistics
-ROOT=pathlib.Path(__file__).resolve().parents[2]
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 def main():
  p=argparse.ArgumentParser();p.add_argument('--mage-candidate',type=int,default=0);p.add_argument('--candidate',type=int,required=True);p.add_argument('--output',type=pathlib.Path);a=p.parse_args()
  found={};sources={};excluded=[]

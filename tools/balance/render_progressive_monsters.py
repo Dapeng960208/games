@@ -10,7 +10,7 @@ import json
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 
 
 def cell(value):
@@ -23,7 +23,7 @@ def table(headers, rows):
 
 
 def warning_document(doc):
-    source = (ROOT / 'scripts/combat/enemy_warning_timing.gd').read_text()
+    source = (ROOT / 'scripts/domain/combat/enemy_warning_timing.gd').read_text()
     constants = {key: json.loads(re.search(r'const ' + key + r'[^=]*= (\[[^\]]+\])', source).group(1))
                  for key in ['TELL_FACTORS','LOCK_FACTORS','ORDINARY_SHORT_FLOORS','ORDINARY_AREA_FLOORS','ORDINARY_BOMBER_FLOORS']}
     text = ['# 普通怪与首领预警缩短：实际时序表',
@@ -71,9 +71,9 @@ def warning_document(doc):
 
 
 def render(doc):
-    roster = json.loads((ROOT / 'data/enemies.json').read_text())['enemies']
-    progression = json.loads((ROOT / 'data/enemy_progression.json').read_text())['profiles']
-    rules = json.loads((ROOT / 'data/numerical_v2.json').read_text())
+    roster = json.loads((ROOT / 'data/monsters/enemies.json').read_text())['enemies']
+    progression = json.loads((ROOT / 'data/monsters/enemy_progression.json').read_text())['profiles']
+    rules = json.loads((ROOT / 'data/rules/numerical.json').read_text())
     ordinary = doc['ordinary']
     main = [
         '# 前四关普通怪扩充与难度技能登记',
@@ -104,7 +104,7 @@ def render(doc):
     main += ['## 数值与美术入口',
              '- [实际数值册](balance/ORDINARY_MONSTER_NUMBERS.md)：基础值、公式、54种×五难度采样\n- [V2短预警完整时序](balance/ENEMY_WARNING_TIMING.md)：普通怪与首领的逐难度旧值/新值和家族下限\n- [外观与资源索引](ENEMY_VARIANTS.md)：身体、脚点、技能UI与高清图鉴素材映射\n- [开发进度](DEVELOPMENT_PROGRESS.md)与[四关路线图](LEVEL_ROADMAP.md)：已实现和待验证范围\n- [本轮验收记录](audits/PROGRESSIVE_MONSTERS_2026-10-02.md)：只登记实际执行的检查；完整S11自然平衡仍暂停',
              '## 再生成',
-             '使用独立XDG目录与 --test-profile 隔离档运行 tools/godot/godot --headless --path . --script tools/balance/export_progressive_monsters.gd -- --output=/tmp/progressive-monsters.json；首领时序由 tests/test_boss_warning_timing.gd 用 --output=/tmp/boss-warning-timings.json 生成。随后 python tools/balance/render_progressive_monsters.py --input /tmp/progressive-monsters.json --boss-timing-input /tmp/boss-warning-timings.json。加 --check 只比较文本。导出只读解析器，不创建战斗、不写玩家档。',
+             '使用独立XDG目录与 --test-profile 隔离档运行 tools/godot/godot --headless --path . --script tools/balance/export_progressive_monsters.gd -- --output=/tmp/progressive-monsters.json；首领时序由 tests/combat/test_boss_warning_timing.gd 用 --output=/tmp/boss-warning-timings.json 生成。随后 python tools/balance/render_progressive_monsters.py --input /tmp/progressive-monsters.json --boss-timing-input /tmp/boss-warning-timings.json。加 --check 只比较文本。导出只读解析器，不创建战斗、不写玩家档。',
              '完整原始命令与各档已缩放的伤害、端点HP和状态强度见[机器可读快照](balance/progressive_monster_commands.json)。command字段为缩放前招式输入，runtime_values_by_difficulty为所选难度缩放后值；null表示尚未解锁或M36该档不使用此准备招。',
              '### 来源SHA-256', table(['源文件','SHA-256'], sorted(doc['sources'].items()))]
     numbers = ['# 普通怪扩充：当前数值与难度采样',
@@ -127,11 +127,11 @@ def render(doc):
                    [e['id'],s['level'],s['difficulty'],s['max_hp'],s['damage'],s['armor'],s['magic_resist'],f"{s['move_speed']:.3f}",f"{s['recovery_seconds']:.3f}",f"{s['skill_factor']:.5f}"] for e in ordinary for s in e['samples']]),
                '## 实施与验证边界',
                '属性值来自生产解析，不代表实战击杀时长。技能状态持续伤害、回返弹体唯一命中、打断/取消、自然生成和技能UI实效须以[验收记录](../audits/PROGRESSIVE_MONSTERS_2026-10-02.md)为准；S11自然战斗、获取时长和完整群战平衡继续暂缓。']
-    outputs = {'docs/ORDINARY_MONSTER_EXPANSION.md':'\n\n'.join(main)+'\n',
-            'docs/balance/ORDINARY_MONSTER_NUMBERS.md':'\n\n'.join(numbers)+'\n',
-            'docs/balance/progressive_monster_commands.json':json.dumps(doc,ensure_ascii=False,indent=2)+'\n'}
+    outputs = {'docs/system/combat/ordinary_monster_expansion.md':'\n\n'.join(main)+'\n',
+            'docs/system/balance/ordinary_monster_numbers.md':'\n\n'.join(numbers)+'\n',
+            'docs/system/balance/progressive_monster_commands.json':json.dumps(doc,ensure_ascii=False,indent=2)+'\n'}
     if 'boss_warning_samples' in doc:
-        outputs['docs/balance/ENEMY_WARNING_TIMING.md']=warning_document(doc)
+        outputs['docs/system/balance/enemy_warning_timing.md']=warning_document(doc)
     return outputs
 
 

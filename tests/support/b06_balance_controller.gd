@@ -3,7 +3,7 @@ extends RefCounted
 ## current character resources. Executes the same requests as production input.
 const VERSION := "b06-zero-basic-controller-v1"
 const PRIORITY := ["f", "ultimate", "secondary", "q"] # E, R, W, Q
-var room: MineRoom
+var room: RoomController
 var next_decision := 0.0
 var decisions: Array[Dictionary] = []
 var rejected: Dictionary = {}
@@ -11,7 +11,7 @@ var last_mode := ""
 var aim_target: WeakRef
 var primary_target: WeakRef
 
-func configure(value: MineRoom) -> void:
+func configure(value: RoomController) -> void:
 	room = value
 	assert(DisplayServer.get_name() != "headless" or room.get_viewport() is SubViewport,"Headless input must use an isolated SubViewport with handle_input_locally=true; root Window may overwrite the virtual pointer")
 	next_decision = 0.0
@@ -66,7 +66,7 @@ func step(time: float) -> void:
 	var target := boss
 	if not is_instance_valid(target):
 		for enemy in room.enemies.get_children():
-			if enemy is MineEnemy and enemy.is_alive() and not enemy.is_queued_for_deletion() and enemy.actor_kind != "objective":
+			if enemy is EnemyActor and enemy.is_alive() and not enemy.is_queued_for_deletion() and enemy.actor_kind != "objective":
 				if not is_instance_valid(target) or player.position.distance_squared_to(enemy.position) < player.position.distance_squared_to(target.position): target = enemy
 	if is_instance_valid(target): attack_target(time,target,threats,false)
 
@@ -239,10 +239,10 @@ func safe_cast_window(threats: Array[Dictionary], duration: float) -> bool:
 func visible_threats() -> Array[Dictionary]:
 	var warnings: Array[Dictionary] = []
 	for actor in room.enemies.get_children():
-		if not actor is MineEnemy or actor.brain == null or not actor.brain.has_method("current_telegraph"): continue
+		if not actor is EnemyActor or actor.brain == null or not actor.brain.has_method("current_telegraph"): continue
 		var warning: Dictionary = actor.brain.current_telegraph()
 		if warning.is_empty(): continue
-		warning["release_in"] = float(actor.brain.state_time) if actor is MineBoss else float(warning.get("duration",1))*(1.0-float(warning.get("progress",0)))
+		warning["release_in"] = float(actor.brain.state_time) if actor is BossActor else float(warning.get("duration",1))*(1.0-float(warning.get("progress",0)))
 		warnings.append(warning)
 	for hazard: Dictionary in room.enemy_skills.hazards:
 		var warning := hazard.duplicate()

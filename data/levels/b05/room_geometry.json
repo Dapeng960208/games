@@ -1,0 +1,2142 @@
+{
+  "version": 1,
+  "biome_id": "B05",
+  "runtime_enabled": false,
+  "blueprint_size": [
+    2800,
+    1800
+  ],
+  "world_scale": 0.58,
+  "image_mapping": "image_xy = (placement.xy + blueprint_xy/[2800,1800]*placement.size) * image_size; world_xy = blueprint_xy*0.58",
+  "reference": {
+    "url": "https://github.com/user-attachments/assets/319066d8-9906-426f-9fea-35ba81cf5768",
+    "sha256": "e19feb1a77f78a7ec17403b300dc2680af6ac1bde651bce3964001ad7b73bf93",
+    "size": [
+      1122,
+      1402
+    ],
+    "review_source": "parent task pixel review, 2026-10-02; concept board, not room geometry",
+    "visual_contract": [
+      "bright living giant tree",
+      "pale golden root terraces",
+      "emerald canopy",
+      "peach-pink blossoms",
+      "leaf arches",
+      "cyan spring core",
+      "peripheral waterfalls"
+    ],
+    "exclude": [
+      "metal palace",
+      "gothic towers",
+      "baked text or UI",
+      "narrow floating islands in the main arena"
+    ]
+  },
+  "rooms": {
+    "L25": {
+      "id": "L25",
+      "name": "花径入口",
+      "name_en": "Blossom Path Entrance",
+      "geometry_status": "frozen_for_art_v1",
+      "biome_id": "B05",
+      "enemy_level": 21,
+      "entry": [
+        320,
+        900
+      ],
+      "exit": [
+        2480,
+        900
+      ],
+      "door_opening_width_world": 200,
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2440,
+          200
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2680,
+          1540
+        ],
+        [
+          2480,
+          1660
+        ],
+        [
+          320,
+          1660
+        ],
+        [
+          120,
+          1440
+        ],
+        [
+          120,
+          400
+        ]
+      ],
+      "main_route": [
+        [
+          320,
+          900
+        ],
+        [
+          1344,
+          900
+        ],
+        [
+          2480,
+          900
+        ]
+      ],
+      "main_route_width_world": 180,
+      "safe_route": [
+        [
+          320,
+          900
+        ],
+        [
+          1344,
+          900
+        ],
+        [
+          2480,
+          900
+        ]
+      ],
+      "safe_route_width_world": 140,
+      "maximum_active_hazard_area_ratio": 0.3,
+      "hazard_exclusion_route": "safe_route",
+      "central_dry_ground": [
+        1344,
+        900
+      ],
+      "root_wells": [
+        {
+          "id": "L25-root-01",
+          "position": [
+            1904,
+            540
+          ],
+          "foot_radius_world": 28,
+          "network_id": "L25-north-root",
+          "frontline_hp_ratio": 0.6
+        }
+      ],
+      "root_approach": [
+        1904,
+        720
+      ],
+      "root_approach_route": [
+        [
+          1344,
+          900
+        ],
+        [
+          1904,
+          900
+        ],
+        [
+          1904,
+          720
+        ]
+      ],
+      "gates": [],
+      "bridges": [],
+      "low_cover": [
+        {
+          "id": "L25-seed-cart",
+          "position": [
+            780,
+            1200
+          ],
+          "footprint_blueprint": [
+            160,
+            90
+          ],
+          "kind": "seed_cart",
+          "maximum_visual_height_world": 90
+        },
+        {
+          "id": "L25-root-bench",
+          "position": [
+            2250,
+            600
+          ],
+          "footprint_blueprint": [
+            170,
+            100
+          ],
+          "kind": "living_root_bench",
+          "maximum_visual_height_world": 90
+        }
+      ],
+      "reward_anchor": [
+        2380,
+        1180
+      ],
+      "reward_approach_route": [
+        [
+          2180,
+          900
+        ],
+        [
+          2380,
+          900
+        ],
+        [
+          2380,
+          1180
+        ]
+      ],
+      "beacon_anchor": [
+        510,
+        1170
+      ],
+      "beacon_approach_route": [
+        [
+          510,
+          900
+        ],
+        [
+          510,
+          1170
+        ]
+      ],
+      "encounter_anchors": [
+        [
+          820,
+          800
+        ],
+        [
+          1400,
+          1000
+        ],
+        [
+          2170,
+          1080
+        ]
+      ],
+      "north_flower_beds": [
+        {
+          "position": [
+            650,
+            285
+          ],
+          "size": [
+            340,
+            100
+          ]
+        },
+        {
+          "position": [
+            1300,
+            285
+          ],
+          "size": [
+            480,
+            100
+          ]
+        },
+        {
+          "position": [
+            2130,
+            285
+          ],
+          "size": [
+            340,
+            100
+          ]
+        }
+      ],
+      "foreground_canopy_fades_on_actor_overlap": true,
+      "art": {
+        "background_path": "asset://world/rooms/L25_environment_v1.png",
+        "metadata_path": "asset://world/rooms/L25_environment_v1.json",
+        "ready": false,
+        "temporary_visuals_are_placeholders": true,
+        "no_baked_characters_rewards_ui_or_text": true,
+        "root_well_is_separate_state_sprite": true,
+        "camera_extent_blueprint": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "native_detail_manifest_path": "asset://world/rooms_2k/L25/manifest.json",
+        "placement_normalized_rect": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ],
+        "walkable_normalized_polygon": [
+          [
+            0.160142857,
+            0.212222222
+          ],
+          [
+            0.789714286,
+            0.212222222
+          ],
+          [
+            0.851,
+            0.294444444
+          ],
+          [
+            0.856571429,
+            0.763111111
+          ],
+          [
+            0.800857143,
+            0.812444444
+          ],
+          [
+            0.199142857,
+            0.812444444
+          ],
+          [
+            0.143428571,
+            0.722
+          ],
+          [
+            0.143428571,
+            0.294444444
+          ]
+        ],
+        "layout_source_size": [
+          1536,
+          1024
+        ],
+        "minimum_native_tile_density": 2.35,
+        "feather_source_pixels": [
+          16,
+          24
+        ],
+        "tile_source_rects": {
+          "top_left": [
+            0,
+            0,
+            520,
+            528
+          ],
+          "top_middle": [
+            504,
+            0,
+            528,
+            528
+          ],
+          "top_right": [
+            1016,
+            0,
+            520,
+            528
+          ],
+          "bottom_left": [
+            0,
+            504,
+            520,
+            520
+          ],
+          "bottom_middle": [
+            504,
+            504,
+            528,
+            520
+          ],
+          "bottom_right": [
+            1016,
+            504,
+            520,
+            520
+          ]
+        },
+        "minimum_tile_pixels": {
+          "top_left": [
+            1222,
+            1241
+          ],
+          "top_middle": [
+            1241,
+            1241
+          ],
+          "top_right": [
+            1222,
+            1241
+          ],
+          "bottom_left": [
+            1222,
+            1222
+          ],
+          "bottom_middle": [
+            1241,
+            1222
+          ],
+          "bottom_right": [
+            1222,
+            1222
+          ]
+        },
+        "layout_source_is_not_native_2k_evidence": true
+      }
+    },
+    "L26": {
+      "id": "L26",
+      "name": "藤门苗圃",
+      "name_en": "Vinegate Nursery",
+      "geometry_status": "frozen_for_art_v1",
+      "biome_id": "B05",
+      "enemy_level": 21,
+      "entry": [
+        1400,
+        1450
+      ],
+      "exit": [
+        1400,
+        365
+      ],
+      "door_opening_width_world": 200,
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2440,
+          200
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2680,
+          1540
+        ],
+        [
+          2480,
+          1660
+        ],
+        [
+          320,
+          1660
+        ],
+        [
+          120,
+          1440
+        ],
+        [
+          120,
+          400
+        ]
+      ],
+      "main_route": [
+        [
+          1400,
+          1450
+        ],
+        [
+          500,
+          1450
+        ],
+        [
+          500,
+          365
+        ],
+        [
+          1400,
+          365
+        ]
+      ],
+      "main_route_width_world": 180,
+      "safe_route": [
+        [
+          1400,
+          1450
+        ],
+        [
+          500,
+          1450
+        ],
+        [
+          500,
+          365
+        ],
+        [
+          1400,
+          365
+        ]
+      ],
+      "safe_route_width_world": 140,
+      "maximum_active_hazard_area_ratio": 0.3,
+      "hazard_exclusion_route": "safe_route",
+      "central_dry_ground": [
+        1400,
+        900
+      ],
+      "root_wells": [
+        {
+          "id": "L26-root-01",
+          "position": [
+            1700,
+            700
+          ],
+          "foot_radius_world": 28,
+          "network_id": "L26-network-1",
+          "frontline_hp_ratio": 0.6
+        }
+      ],
+      "gates": [
+        {
+          "id": "L26-watergate",
+          "position": [
+            784,
+            990
+          ],
+          "well_ids": [
+            "L26-root-01"
+          ],
+          "bridge_id": "L26-vine-door"
+        }
+      ],
+      "bridges": [
+        {
+          "id": "L26-vine-door",
+          "blocked_rect_blueprint": [
+            1210,
+            525,
+            380,
+            30
+          ],
+          "open": false
+        }
+      ],
+      "low_cover": [],
+      "reward_anchor": [
+        2350,
+        1150
+      ],
+      "beacon_anchor": [
+        550,
+        1150
+      ],
+      "encounter_anchors": [
+        [
+          800,
+          950
+        ],
+        [
+          1400,
+          650
+        ],
+        [
+          2150,
+          1000
+        ]
+      ],
+      "north_flower_beds": [],
+      "foreground_canopy_fades_on_actor_overlap": true,
+      "art": {
+        "background_path": "asset://world/rooms/L26_environment_v1.png",
+        "metadata_path": "asset://world/rooms/L26_environment_v1.json",
+        "ready": false,
+        "temporary_visuals_are_placeholders": true,
+        "no_baked_characters_rewards_ui_or_text": true,
+        "root_well_is_separate_state_sprite": true,
+        "camera_extent_blueprint": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "native_detail_manifest_path": "asset://world/rooms_2k/L26/manifest.json",
+        "placement_normalized_rect": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ],
+        "walkable_normalized_polygon": [
+          [
+            0.160142857,
+            0.212222222
+          ],
+          [
+            0.789714286,
+            0.212222222
+          ],
+          [
+            0.851,
+            0.294444444
+          ],
+          [
+            0.856571429,
+            0.763111111
+          ],
+          [
+            0.800857143,
+            0.812444444
+          ],
+          [
+            0.199142857,
+            0.812444444
+          ],
+          [
+            0.143428571,
+            0.722
+          ],
+          [
+            0.143428571,
+            0.294444444
+          ]
+        ],
+        "layout_source_size": [
+          1536,
+          1024
+        ],
+        "minimum_native_tile_density": 2.35,
+        "feather_source_pixels": [
+          16,
+          24
+        ],
+        "tile_source_rects": {
+          "top_left": [
+            0,
+            0,
+            520,
+            528
+          ],
+          "top_middle": [
+            504,
+            0,
+            528,
+            528
+          ],
+          "top_right": [
+            1016,
+            0,
+            520,
+            528
+          ],
+          "bottom_left": [
+            0,
+            504,
+            520,
+            520
+          ],
+          "bottom_middle": [
+            504,
+            504,
+            528,
+            520
+          ],
+          "bottom_right": [
+            1016,
+            504,
+            520,
+            520
+          ]
+        },
+        "minimum_tile_pixels": {
+          "top_left": [
+            1222,
+            1241
+          ],
+          "top_middle": [
+            1241,
+            1241
+          ],
+          "top_right": [
+            1222,
+            1241
+          ],
+          "bottom_left": [
+            1222,
+            1222
+          ],
+          "bottom_middle": [
+            1241,
+            1222
+          ],
+          "bottom_right": [
+            1222,
+            1222
+          ]
+        },
+        "layout_source_is_not_native_2k_evidence": true
+      },
+      "implementation_note": "Explicit implementation coordinates supplement prose-only layout; authored percent anchors unchanged. No art acceptance implied.",
+      "route_validation": "Godot4.7.2 full-width main180/safe140, closed bridge and void/low-cover/root footprints; 38 total suite checks passed. Art and live bridge admission pending."
+    },
+    "L27": {
+      "id": "L27",
+      "name": "露台花桥",
+      "name_en": "Terrace Flowerbridges",
+      "geometry_status": "frozen_for_art_v1",
+      "biome_id": "B05",
+      "enemy_level": 23,
+      "entry": [
+        320,
+        900
+      ],
+      "exit": [
+        2380,
+        380
+      ],
+      "door_opening_width_world": 200,
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2440,
+          200
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2680,
+          1540
+        ],
+        [
+          2480,
+          1660
+        ],
+        [
+          320,
+          1660
+        ],
+        [
+          120,
+          1440
+        ],
+        [
+          120,
+          400
+        ]
+      ],
+      "main_route": [
+        [
+          320,
+          900
+        ],
+        [
+          700,
+          600
+        ],
+        [
+          2100,
+          600
+        ],
+        [
+          2380,
+          380
+        ]
+      ],
+      "main_route_width_world": 180,
+      "safe_route": [
+        [
+          320,
+          900
+        ],
+        [
+          700,
+          1200
+        ],
+        [
+          2200,
+          1200
+        ],
+        [
+          2450,
+          800
+        ],
+        [
+          2380,
+          380
+        ]
+      ],
+      "safe_route_width_world": 140,
+      "maximum_active_hazard_area_ratio": 0.3,
+      "hazard_exclusion_route": "safe_route",
+      "central_dry_ground": [
+        1400,
+        900
+      ],
+      "root_wells": [
+        {
+          "id": "L27-root-01",
+          "position": [
+            900,
+            300
+          ],
+          "foot_radius_world": 28,
+          "network_id": "L27-network-1",
+          "frontline_hp_ratio": 0.6
+        },
+        {
+          "id": "L27-root-02",
+          "position": [
+            1900,
+            1460
+          ],
+          "foot_radius_world": 28,
+          "network_id": "L27-network-2",
+          "frontline_hp_ratio": 0.6
+        }
+      ],
+      "gates": [],
+      "bridges": [],
+      "low_cover": [],
+      "reward_anchor": [
+        2350,
+        1150
+      ],
+      "beacon_anchor": [
+        550,
+        1150
+      ],
+      "encounter_anchors": [
+        [
+          800,
+          950
+        ],
+        [
+          1400,
+          650
+        ],
+        [
+          2150,
+          1000
+        ]
+      ],
+      "north_flower_beds": [],
+      "foreground_canopy_fades_on_actor_overlap": true,
+      "art": {
+        "background_path": "asset://world/rooms/L27_environment_v1.png",
+        "metadata_path": "asset://world/rooms/L27_environment_v1.json",
+        "ready": false,
+        "temporary_visuals_are_placeholders": true,
+        "no_baked_characters_rewards_ui_or_text": true,
+        "root_well_is_separate_state_sprite": true,
+        "camera_extent_blueprint": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "native_detail_manifest_path": "asset://world/rooms_2k/L27/manifest.json",
+        "placement_normalized_rect": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ],
+        "walkable_normalized_polygon": [
+          [
+            0.160142857,
+            0.212222222
+          ],
+          [
+            0.789714286,
+            0.212222222
+          ],
+          [
+            0.851,
+            0.294444444
+          ],
+          [
+            0.856571429,
+            0.763111111
+          ],
+          [
+            0.800857143,
+            0.812444444
+          ],
+          [
+            0.199142857,
+            0.812444444
+          ],
+          [
+            0.143428571,
+            0.722
+          ],
+          [
+            0.143428571,
+            0.294444444
+          ]
+        ],
+        "layout_source_size": [
+          1536,
+          1024
+        ],
+        "minimum_native_tile_density": 2.35,
+        "feather_source_pixels": [
+          16,
+          24
+        ],
+        "tile_source_rects": {
+          "top_left": [
+            0,
+            0,
+            520,
+            528
+          ],
+          "top_middle": [
+            504,
+            0,
+            528,
+            528
+          ],
+          "top_right": [
+            1016,
+            0,
+            520,
+            528
+          ],
+          "bottom_left": [
+            0,
+            504,
+            520,
+            520
+          ],
+          "bottom_middle": [
+            504,
+            504,
+            528,
+            520
+          ],
+          "bottom_right": [
+            1016,
+            504,
+            520,
+            520
+          ]
+        },
+        "minimum_tile_pixels": {
+          "top_left": [
+            1222,
+            1241
+          ],
+          "top_middle": [
+            1241,
+            1241
+          ],
+          "top_right": [
+            1222,
+            1241
+          ],
+          "bottom_left": [
+            1222,
+            1222
+          ],
+          "bottom_middle": [
+            1241,
+            1222
+          ],
+          "bottom_right": [
+            1222,
+            1222
+          ]
+        },
+        "layout_source_is_not_native_2k_evidence": true
+      },
+      "voids": [
+        [
+          1100,
+          790,
+          750,
+          210
+        ]
+      ],
+      "implementation_note": "Explicit implementation coordinates supplement prose-only layout; authored percent anchors unchanged. No art acceptance implied.",
+      "route_validation": "Godot4.7.2 full-width main180/safe140, closed bridge and void/low-cover/root footprints; 38 total suite checks passed. Art and live bridge admission pending."
+    },
+    "L28": {
+      "id": "L28",
+      "name": "树脂工坊",
+      "name_en": "Resin Workshop",
+      "geometry_status": "frozen_for_art_v1",
+      "biome_id": "B05",
+      "enemy_level": 23,
+      "entry": [
+        350,
+        1450
+      ],
+      "exit": [
+        2350,
+        420
+      ],
+      "door_opening_width_world": 200,
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2440,
+          200
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2680,
+          1540
+        ],
+        [
+          2480,
+          1660
+        ],
+        [
+          320,
+          1660
+        ],
+        [
+          120,
+          1440
+        ],
+        [
+          120,
+          400
+        ]
+      ],
+      "main_route": [
+        [
+          350,
+          1450
+        ],
+        [
+          2350,
+          1450
+        ],
+        [
+          2350,
+          420
+        ]
+      ],
+      "main_route_width_world": 180,
+      "safe_route": [
+        [
+          350,
+          1450
+        ],
+        [
+          2350,
+          1450
+        ],
+        [
+          2350,
+          420
+        ]
+      ],
+      "safe_route_width_world": 140,
+      "maximum_active_hazard_area_ratio": 0.3,
+      "hazard_exclusion_route": "safe_route",
+      "central_dry_ground": [
+        1400,
+        900
+      ],
+      "root_wells": [
+        {
+          "id": "L28-root-01",
+          "position": [
+            900,
+            400
+          ],
+          "foot_radius_world": 28,
+          "network_id": "L28-network-1",
+          "frontline_hp_ratio": 0.6
+        }
+      ],
+      "gates": [],
+      "bridges": [],
+      "low_cover": [
+        {
+          "id": "L28-table-1",
+          "position": [
+            900,
+            780
+          ],
+          "footprint_blueprint": [
+            180,
+            120
+          ],
+          "kind": "low_workbench",
+          "maximum_visual_height_world": 90
+        },
+        {
+          "id": "L28-table-2",
+          "position": [
+            1700,
+            620
+          ],
+          "footprint_blueprint": [
+            180,
+            120
+          ],
+          "kind": "low_workbench",
+          "maximum_visual_height_world": 90
+        },
+        {
+          "id": "L28-table-3",
+          "position": [
+            1900,
+            1180
+          ],
+          "footprint_blueprint": [
+            180,
+            120
+          ],
+          "kind": "low_workbench",
+          "maximum_visual_height_world": 90
+        }
+      ],
+      "reward_anchor": [
+        2350,
+        1150
+      ],
+      "beacon_anchor": [
+        550,
+        1150
+      ],
+      "encounter_anchors": [
+        [
+          800,
+          950
+        ],
+        [
+          1400,
+          650
+        ],
+        [
+          2150,
+          1000
+        ]
+      ],
+      "north_flower_beds": [],
+      "foreground_canopy_fades_on_actor_overlap": true,
+      "art": {
+        "background_path": "asset://world/rooms/L28_environment_v1.png",
+        "metadata_path": "asset://world/rooms/L28_environment_v1.json",
+        "ready": false,
+        "temporary_visuals_are_placeholders": true,
+        "no_baked_characters_rewards_ui_or_text": true,
+        "root_well_is_separate_state_sprite": true,
+        "camera_extent_blueprint": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "native_detail_manifest_path": "asset://world/rooms_2k/L28/manifest.json",
+        "placement_normalized_rect": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ],
+        "walkable_normalized_polygon": [
+          [
+            0.160142857,
+            0.212222222
+          ],
+          [
+            0.789714286,
+            0.212222222
+          ],
+          [
+            0.851,
+            0.294444444
+          ],
+          [
+            0.856571429,
+            0.763111111
+          ],
+          [
+            0.800857143,
+            0.812444444
+          ],
+          [
+            0.199142857,
+            0.812444444
+          ],
+          [
+            0.143428571,
+            0.722
+          ],
+          [
+            0.143428571,
+            0.294444444
+          ]
+        ],
+        "layout_source_size": [
+          1536,
+          1024
+        ],
+        "minimum_native_tile_density": 2.35,
+        "feather_source_pixels": [
+          16,
+          24
+        ],
+        "tile_source_rects": {
+          "top_left": [
+            0,
+            0,
+            520,
+            528
+          ],
+          "top_middle": [
+            504,
+            0,
+            528,
+            528
+          ],
+          "top_right": [
+            1016,
+            0,
+            520,
+            528
+          ],
+          "bottom_left": [
+            0,
+            504,
+            520,
+            520
+          ],
+          "bottom_middle": [
+            504,
+            504,
+            528,
+            520
+          ],
+          "bottom_right": [
+            1016,
+            504,
+            520,
+            520
+          ]
+        },
+        "minimum_tile_pixels": {
+          "top_left": [
+            1222,
+            1241
+          ],
+          "top_middle": [
+            1241,
+            1241
+          ],
+          "top_right": [
+            1222,
+            1241
+          ],
+          "bottom_left": [
+            1222,
+            1222
+          ],
+          "bottom_middle": [
+            1241,
+            1222
+          ],
+          "bottom_right": [
+            1222,
+            1222
+          ]
+        },
+        "layout_source_is_not_native_2k_evidence": true
+      },
+      "implementation_note": "Explicit implementation coordinates supplement prose-only layout; authored percent anchors unchanged. No art acceptance implied.",
+      "route_validation": "Godot4.7.2 full-width main180/safe140, closed bridge and void/low-cover/root footprints; 38 total suite checks passed. Art and live bridge admission pending."
+    },
+    "L29": {
+      "id": "L29",
+      "name": "日照高台",
+      "name_en": "Sunlit Terrace",
+      "geometry_status": "frozen_for_art_v1",
+      "biome_id": "B05",
+      "enemy_level": 25,
+      "entry": [
+        1400,
+        1450
+      ],
+      "exit": [
+        1400,
+        380
+      ],
+      "door_opening_width_world": 200,
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2440,
+          200
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2680,
+          1540
+        ],
+        [
+          2480,
+          1660
+        ],
+        [
+          320,
+          1660
+        ],
+        [
+          120,
+          1440
+        ],
+        [
+          120,
+          400
+        ]
+      ],
+      "main_route": [
+        [
+          1400,
+          1450
+        ],
+        [
+          1400,
+          380
+        ]
+      ],
+      "main_route_width_world": 180,
+      "safe_route": [
+        [
+          1400,
+          1450
+        ],
+        [
+          500,
+          1450
+        ],
+        [
+          500,
+          380
+        ],
+        [
+          1400,
+          380
+        ]
+      ],
+      "safe_route_width_world": 140,
+      "maximum_active_hazard_area_ratio": 0.3,
+      "hazard_exclusion_route": "safe_route",
+      "central_dry_ground": [
+        1400,
+        900
+      ],
+      "root_wells": [
+        {
+          "id": "L29-root-01",
+          "position": [
+            2200,
+            1100
+          ],
+          "foot_radius_world": 28,
+          "network_id": "L29-network-1",
+          "frontline_hp_ratio": 0.6
+        }
+      ],
+      "gates": [],
+      "bridges": [],
+      "low_cover": [],
+      "reward_anchor": [
+        2350,
+        1150
+      ],
+      "beacon_anchor": [
+        550,
+        1150
+      ],
+      "encounter_anchors": [
+        [
+          800,
+          950
+        ],
+        [
+          1400,
+          650
+        ],
+        [
+          2150,
+          1000
+        ]
+      ],
+      "north_flower_beds": [],
+      "foreground_canopy_fades_on_actor_overlap": true,
+      "art": {
+        "background_path": "asset://world/rooms/L29_environment_v1.png",
+        "metadata_path": "asset://world/rooms/L29_environment_v1.json",
+        "ready": false,
+        "temporary_visuals_are_placeholders": true,
+        "no_baked_characters_rewards_ui_or_text": true,
+        "root_well_is_separate_state_sprite": true,
+        "camera_extent_blueprint": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "native_detail_manifest_path": "asset://world/rooms_2k/L29/manifest.json",
+        "placement_normalized_rect": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ],
+        "walkable_normalized_polygon": [
+          [
+            0.160142857,
+            0.212222222
+          ],
+          [
+            0.789714286,
+            0.212222222
+          ],
+          [
+            0.851,
+            0.294444444
+          ],
+          [
+            0.856571429,
+            0.763111111
+          ],
+          [
+            0.800857143,
+            0.812444444
+          ],
+          [
+            0.199142857,
+            0.812444444
+          ],
+          [
+            0.143428571,
+            0.722
+          ],
+          [
+            0.143428571,
+            0.294444444
+          ]
+        ],
+        "layout_source_size": [
+          1536,
+          1024
+        ],
+        "minimum_native_tile_density": 2.35,
+        "feather_source_pixels": [
+          16,
+          24
+        ],
+        "tile_source_rects": {
+          "top_left": [
+            0,
+            0,
+            520,
+            528
+          ],
+          "top_middle": [
+            504,
+            0,
+            528,
+            528
+          ],
+          "top_right": [
+            1016,
+            0,
+            520,
+            528
+          ],
+          "bottom_left": [
+            0,
+            504,
+            520,
+            520
+          ],
+          "bottom_middle": [
+            504,
+            504,
+            528,
+            520
+          ],
+          "bottom_right": [
+            1016,
+            504,
+            520,
+            520
+          ]
+        },
+        "minimum_tile_pixels": {
+          "top_left": [
+            1222,
+            1241
+          ],
+          "top_middle": [
+            1241,
+            1241
+          ],
+          "top_right": [
+            1222,
+            1241
+          ],
+          "bottom_left": [
+            1222,
+            1222
+          ],
+          "bottom_middle": [
+            1241,
+            1222
+          ],
+          "bottom_right": [
+            1222,
+            1222
+          ]
+        },
+        "layout_source_is_not_native_2k_evidence": true
+      },
+      "spotlights": [
+        {
+          "id": "L29-sunleaf-west",
+          "position": [
+            980,
+            720
+          ]
+        },
+        {
+          "id": "L29-sunleaf-east",
+          "position": [
+            1820,
+            720
+          ]
+        }
+      ],
+      "implementation_note": "Explicit implementation coordinates supplement prose-only layout; authored percent anchors unchanged. No art acceptance implied.",
+      "route_validation": "Godot4.7.2 full-width main180/safe140, closed bridge and void/low-cover/root footprints; 38 total suite checks passed. Art and live bridge admission pending."
+    },
+    "L30": {
+      "id": "L30",
+      "name": "四季温室",
+      "name_en": "Four Seasons Conservatory",
+      "geometry_status": "frozen_for_art_v1",
+      "biome_id": "B05",
+      "enemy_level": 25,
+      "entry": [
+        320,
+        900
+      ],
+      "exit": [
+        2480,
+        900
+      ],
+      "door_opening_width_world": 200,
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2440,
+          200
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2680,
+          1540
+        ],
+        [
+          2480,
+          1660
+        ],
+        [
+          320,
+          1660
+        ],
+        [
+          120,
+          1440
+        ],
+        [
+          120,
+          400
+        ]
+      ],
+      "main_route": [
+        [
+          320,
+          900
+        ],
+        [
+          700,
+          500
+        ],
+        [
+          2100,
+          500
+        ],
+        [
+          2480,
+          900
+        ]
+      ],
+      "main_route_width_world": 180,
+      "safe_route": [
+        [
+          320,
+          900
+        ],
+        [
+          700,
+          1300
+        ],
+        [
+          2100,
+          1300
+        ],
+        [
+          2480,
+          900
+        ]
+      ],
+      "safe_route_width_world": 140,
+      "maximum_active_hazard_area_ratio": 0.3,
+      "hazard_exclusion_route": "safe_route",
+      "central_dry_ground": [
+        1400,
+        900
+      ],
+      "root_wells": [
+        {
+          "id": "L30-root-01",
+          "position": [
+            1400,
+            900
+          ],
+          "foot_radius_world": 28,
+          "network_id": "L30-network-1",
+          "frontline_hp_ratio": 0.6
+        }
+      ],
+      "gates": [],
+      "bridges": [],
+      "low_cover": [],
+      "reward_anchor": [
+        2350,
+        1150
+      ],
+      "beacon_anchor": [
+        550,
+        1150
+      ],
+      "encounter_anchors": [
+        [
+          800,
+          950
+        ],
+        [
+          1400,
+          650
+        ],
+        [
+          2150,
+          1000
+        ]
+      ],
+      "north_flower_beds": [],
+      "foreground_canopy_fades_on_actor_overlap": true,
+      "art": {
+        "background_path": "asset://world/rooms/L30_environment_v1.png",
+        "metadata_path": "asset://world/rooms/L30_environment_v1.json",
+        "ready": false,
+        "temporary_visuals_are_placeholders": true,
+        "no_baked_characters_rewards_ui_or_text": true,
+        "root_well_is_separate_state_sprite": true,
+        "camera_extent_blueprint": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "native_detail_manifest_path": "asset://world/rooms_2k/L30/manifest.json",
+        "placement_normalized_rect": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ],
+        "walkable_normalized_polygon": [
+          [
+            0.160142857,
+            0.212222222
+          ],
+          [
+            0.789714286,
+            0.212222222
+          ],
+          [
+            0.851,
+            0.294444444
+          ],
+          [
+            0.856571429,
+            0.763111111
+          ],
+          [
+            0.800857143,
+            0.812444444
+          ],
+          [
+            0.199142857,
+            0.812444444
+          ],
+          [
+            0.143428571,
+            0.722
+          ],
+          [
+            0.143428571,
+            0.294444444
+          ]
+        ],
+        "layout_source_size": [
+          1536,
+          1024
+        ],
+        "minimum_native_tile_density": 2.35,
+        "feather_source_pixels": [
+          16,
+          24
+        ],
+        "tile_source_rects": {
+          "top_left": [
+            0,
+            0,
+            520,
+            528
+          ],
+          "top_middle": [
+            504,
+            0,
+            528,
+            528
+          ],
+          "top_right": [
+            1016,
+            0,
+            520,
+            528
+          ],
+          "bottom_left": [
+            0,
+            504,
+            520,
+            520
+          ],
+          "bottom_middle": [
+            504,
+            504,
+            528,
+            520
+          ],
+          "bottom_right": [
+            1016,
+            504,
+            520,
+            520
+          ]
+        },
+        "minimum_tile_pixels": {
+          "top_left": [
+            1222,
+            1241
+          ],
+          "top_middle": [
+            1241,
+            1241
+          ],
+          "top_right": [
+            1222,
+            1241
+          ],
+          "bottom_left": [
+            1222,
+            1222
+          ],
+          "bottom_middle": [
+            1241,
+            1222
+          ],
+          "bottom_right": [
+            1222,
+            1222
+          ]
+        },
+        "layout_source_is_not_native_2k_evidence": true
+      },
+      "arc_routes": [
+        [
+          [
+            320,
+            900
+          ],
+          [
+            700,
+            500
+          ],
+          [
+            2100,
+            500
+          ],
+          [
+            2480,
+            900
+          ]
+        ],
+        [
+          [
+            320,
+            900
+          ],
+          [
+            700,
+            1300
+          ],
+          [
+            2100,
+            1300
+          ],
+          [
+            2480,
+            900
+          ]
+        ],
+        [
+          [
+            320,
+            900
+          ],
+          [
+            500,
+            350
+          ],
+          [
+            2300,
+            350
+          ],
+          [
+            2480,
+            900
+          ]
+        ]
+      ],
+      "implementation_note": "Explicit implementation coordinates supplement prose-only layout; authored percent anchors unchanged. No art acceptance implied.",
+      "route_validation": "Godot4.7.2 full-width main180/safe140, closed bridge and void/low-cover/root footprints; 38 total suite checks passed. Art and live bridge admission pending."
+    },
+    "BO05": {
+      "id": "BO05",
+      "name": "花冠王座",
+      "name_en": "Flowercrown Throne",
+      "geometry_status": "frozen_for_art_v1",
+      "biome_id": "B05",
+      "enemy_level": 25,
+      "entry": [
+        1400,
+        1500
+      ],
+      "exit": [
+        1400,
+        380
+      ],
+      "door_opening_width_world": 200,
+      "walkable_polygon": [
+        [
+          180,
+          200
+        ],
+        [
+          2440,
+          200
+        ],
+        [
+          2660,
+          400
+        ],
+        [
+          2680,
+          1540
+        ],
+        [
+          2480,
+          1660
+        ],
+        [
+          320,
+          1660
+        ],
+        [
+          120,
+          1440
+        ],
+        [
+          120,
+          400
+        ]
+      ],
+      "main_route": [
+        [
+          1400,
+          1500
+        ],
+        [
+          1050,
+          1500
+        ],
+        [
+          450,
+          1300
+        ],
+        [
+          450,
+          380
+        ],
+        [
+          1400,
+          380
+        ]
+      ],
+      "main_route_width_world": 180,
+      "safe_route": [
+        [
+          1400,
+          1500
+        ],
+        [
+          1050,
+          1500
+        ],
+        [
+          450,
+          1300
+        ],
+        [
+          450,
+          380
+        ],
+        [
+          1400,
+          380
+        ]
+      ],
+      "safe_route_width_world": 140,
+      "maximum_active_hazard_area_ratio": 0.3,
+      "hazard_exclusion_route": "safe_route",
+      "central_dry_ground": [
+        1400,
+        900
+      ],
+      "root_wells": [
+        {
+          "id": "BO05-root-01",
+          "position": [
+            700,
+            684
+          ],
+          "foot_radius_world": 28,
+          "network_id": "BO05-network-1",
+          "frontline_hp_ratio": 0.6
+        },
+        {
+          "id": "BO05-root-02",
+          "position": [
+            2100,
+            684
+          ],
+          "foot_radius_world": 28,
+          "network_id": "BO05-network-2",
+          "frontline_hp_ratio": 0.6
+        },
+        {
+          "id": "BO05-root-03",
+          "position": [
+            1400,
+            1296
+          ],
+          "foot_radius_world": 28,
+          "network_id": "BO05-network-3",
+          "frontline_hp_ratio": 0.6
+        }
+      ],
+      "gates": [],
+      "bridges": [],
+      "low_cover": [],
+      "reward_anchor": [
+        2350,
+        1150
+      ],
+      "beacon_anchor": [
+        550,
+        1150
+      ],
+      "encounter_anchors": [],
+      "north_flower_beds": [],
+      "foreground_canopy_fades_on_actor_overlap": true,
+      "art": {
+        "background_path": "asset://world/rooms/BO05_environment_v1.png",
+        "metadata_path": "asset://world/rooms/BO05_environment_v1.json",
+        "ready": false,
+        "temporary_visuals_are_placeholders": true,
+        "no_baked_characters_rewards_ui_or_text": true,
+        "root_well_is_separate_state_sprite": true,
+        "camera_extent_blueprint": [
+          0,
+          0,
+          2800,
+          1800
+        ],
+        "native_detail_manifest_path": "asset://world/rooms_2k/BO05/manifest.json",
+        "placement_normalized_rect": [
+          0.11,
+          0.13,
+          0.78,
+          0.74
+        ],
+        "walkable_normalized_polygon": [
+          [
+            0.160142857,
+            0.212222222
+          ],
+          [
+            0.789714286,
+            0.212222222
+          ],
+          [
+            0.851,
+            0.294444444
+          ],
+          [
+            0.856571429,
+            0.763111111
+          ],
+          [
+            0.800857143,
+            0.812444444
+          ],
+          [
+            0.199142857,
+            0.812444444
+          ],
+          [
+            0.143428571,
+            0.722
+          ],
+          [
+            0.143428571,
+            0.294444444
+          ]
+        ],
+        "layout_source_size": [
+          1536,
+          1024
+        ],
+        "minimum_native_tile_density": 2.35,
+        "feather_source_pixels": [
+          16,
+          24
+        ],
+        "tile_source_rects": {
+          "top_left": [
+            0,
+            0,
+            520,
+            528
+          ],
+          "top_middle": [
+            504,
+            0,
+            528,
+            528
+          ],
+          "top_right": [
+            1016,
+            0,
+            520,
+            528
+          ],
+          "bottom_left": [
+            0,
+            504,
+            520,
+            520
+          ],
+          "bottom_middle": [
+            504,
+            504,
+            528,
+            520
+          ],
+          "bottom_right": [
+            1016,
+            504,
+            520,
+            520
+          ]
+        },
+        "minimum_tile_pixels": {
+          "top_left": [
+            1222,
+            1241
+          ],
+          "top_middle": [
+            1241,
+            1241
+          ],
+          "top_right": [
+            1222,
+            1241
+          ],
+          "bottom_left": [
+            1222,
+            1222
+          ],
+          "bottom_middle": [
+            1241,
+            1222
+          ],
+          "bottom_right": [
+            1222,
+            1222
+          ]
+        },
+        "layout_source_is_not_native_2k_evidence": true
+      },
+      "boss_spawn": [
+        1400,
+        760
+      ],
+      "implementation_note": "Explicit implementation coordinates supplement prose-only layout; authored percent anchors unchanged. No art acceptance implied.",
+      "route_validation": "Godot4.7.2 full-width main180/safe140, closed bridge and void/low-cover/root footprints; 38 total suite checks passed. Art and live bridge admission pending."
+    }
+  }
+}

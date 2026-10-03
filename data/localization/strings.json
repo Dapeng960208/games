@@ -1,0 +1,1170 @@
+{
+  "TITLE": {
+    "zh_CN": "深渊拾荒者",
+    "en": "ABYSS SALVAGER"
+  },
+  "SUBTITLE": {
+    "zh_CN": "ABYSS SALVAGER  /  裂灯矿井",
+    "en": "THE FRACTURED LANTERN MINE"
+  },
+  "TAGLINE": {
+    "zh_CN": "提灯尚亮，就还有归途。",
+    "en": "While the lantern burns, there is a way home."
+  },
+  "PROTOTYPE": {
+    "zh_CN": "N1 · 三职业开发原型 / 原创工坊界面 / 键盘与鼠标",
+    "en": "N1 · THREE-HERO PROTOTYPE / ORIGINAL WORKSHOP UI / KEYBOARD + MOUSE"
+  },
+  "CONTINUE": {
+    "zh_CN": "继续 · 返回营地",
+    "en": "CONTINUE TO CAMP"
+  },
+  "NEW_GAME": {
+    "zh_CN": "建立拾荒者档案",
+    "en": "NEW SALVAGER"
+  },
+  "SETTINGS": {
+    "zh_CN": "设置与操作",
+    "en": "SETTINGS & CONTROLS"
+  },
+  "QUIT": {
+    "zh_CN": "退出游戏",
+    "en": "QUIT GAME"
+  },
+  "NO_PROFILE": {
+    "zh_CN": "尚无永久档案，请先建立拾荒者档案。",
+    "en": "No profile yet. Create a salvager to begin."
+  },
+  "CAMP": {
+    "zh_CN": "提灯工坊",
+    "en": "LANTERN WORKSHOP"
+  },
+  "CAMP_SUB": {
+    "zh_CN": "修整装备，选择自己的下井方式。",
+    "en": "Fit your equipment. Choose how you descend."
+  },
+  "WAREHOUSE": {
+    "zh_CN": "仓库金币",
+    "en": "BANKED GOLD"
+  },
+  "BANK_VALUE": {
+    "zh_CN": "{gold}",
+    "en": "{gold}"
+  },
+  "PROFILE_STATS": {
+    "zh_CN": "已完成远征 {runs} 次",
+    "en": "{runs} expeditions settled"
+  },
+  "LOADOUT": {
+    "zh_CN": "拾荒者 · 火花发射器",
+    "en": "SALVAGER · SPARK CASTER"
+  },
+  "LOADOUT_NOTE": {
+    "zh_CN": "生命 100  /  角色与起始武器永久保留",
+    "en": "100 health / Your salvager and starter weapon are permanent"
+  },
+  "DISCOVERIES": {
+    "zh_CN": "永久发现记录",
+    "en": "PERMANENT DISCOVERIES"
+  },
+  "UNDISCOVERED": {
+    "zh_CN": "未发现",
+    "en": "Undiscovered"
+  },
+  "DISCOVERED": {
+    "zh_CN": "已归档",
+    "en": "Archived"
+  },
+  "START": {
+    "zh_CN": "乘升降机 · 开始远征",
+    "en": "TAKE THE LIFT · DEPART"
+  },
+  "MAIN_MENU": {
+    "zh_CN": "返回主菜单",
+    "en": "MAIN MENU"
+  },
+  "RULES": {
+    "zh_CN": "撤离带回全部金币和装备；死亡保留50%金币，放弃保留50%（向下取整）。\n战败时本房击杀每只积累2经验，最多18；遗物随本局结束清空。",
+    "en": "Extract with all gold and equipment. Death keeps 50% gold; abandoning keeps 50%, rounded down.\nDefeat saves 2 XP per unfinished-room kill, up to 18. Run relics expire."
+  },
+  "FIELD_NOTE": {
+    "zh_CN": "矿井记录  /  01\n\n三座遗物装置仍有余光。靠近后按 E 拾取，改变火花弹的攻击。\n\n击倒守卫，回收金币，再回到西侧升降机撤离。",
+    "en": "FIELD NOTE / 01\n\nThree relic stations still glow. Approach and press E to alter your spark caster.\n\nDefeat the wardens, collect their gold, and return to the western lift."
+  },
+  "REGION": {
+    "zh_CN": "裂灯矿井 / 测试井室 01",
+    "en": "FRACTURED LANTERN / CHAMBER 01"
+  },
+  "HEALTH": {
+    "zh_CN": "生命  {hp} / {max}",
+    "en": "HEALTH  {hp} / {max}"
+  },
+  "CARRIED": {
+    "zh_CN": "携带金币  {gold}",
+    "en": "CARRIED GOLD  {gold}"
+  },
+  "RETAINED": {
+    "zh_CN": "死亡保留  {gold}",
+    "en": "KEPT ON DEATH  {gold}"
+  },
+  "ACTIONS": {
+    "zh_CN": "WASD 移动  ·  鼠标瞄准 / 左键连射  ·  空格冲刺  ·  E 交互",
+    "en": "WASD MOVE · MOUSE AIM / LEFT CLICK FIRE · Space DASH · E INTERACT"
+  },
+  "HUD_HINT": {
+    "zh_CN": "Tab 作战详情 / Esc 暂停",
+    "en": "TAB COMBAT DETAILS / ESC PAUSE"
+  },
+  "DASH_READY": {
+    "zh_CN": "空格 · 冲刺就绪",
+    "en": "Space · DASH READY"
+  },
+  "DASH_COOLDOWN": {
+    "zh_CN": "冲刺 {time}s",
+    "en": "DASH {time}s"
+  },
+  "NO_RELICS": {
+    "zh_CN": "尚未携带遗物 · 靠近发光装置按 {key} 拾取",
+    "en": "No relics · Approach a glowing station and press {key}"
+  },
+  "RELIC_SPLIT_NAME": {
+    "zh_CN": "分裂镜片",
+    "en": "SPLIT LENS"
+  },
+  "RELIC_EMBER_NAME": {
+    "zh_CN": "余烬灯芯",
+    "en": "EMBER WICK"
+  },
+  "RELIC_ARC_NAME": {
+    "zh_CN": "弧电线圈",
+    "en": "ARC COIL"
+  },
+  "RELIC_SPLIT_DESC": {
+    "zh_CN": "主弹首次命中产生 2 枚侧向子弹，各造成基础伤害的 40%。子弹不能继续分裂。",
+    "en": "The first main-shot hit creates 2 side projectiles, each dealing 40% base damage. Child projectiles cannot split again."
+  },
+  "RELIC_EMBER_DESC": {
+    "zh_CN": "武器弹命中附加燃烧，每秒 3 点伤害，持续 3 秒。再次命中只刷新时长，不叠层。",
+    "en": "Weapon hits apply a 3-second burn for 3 damage per second. Further hits refresh its duration without stacking."
+  },
+  "RELIC_ARC_DESC": {
+    "zh_CN": "每第 3 次普攻主弹首次命中触发电弧，连接最多 2 个其他目标，各造成基础伤害的 35%。",
+    "en": "Every third main shot arcs on its first hit to up to 2 other nearby targets, each for 35% base damage."
+  },
+  "INTERACT_EXTRACT": {
+    "zh_CN": "[E] 升降机 · 撤离",
+    "en": "[E] LIFT · EXTRACT"
+  },
+  "INTERACT_RELIC": {
+    "zh_CN": "[E] 拾取 {name}",
+    "en": "[E] TAKE {name}"
+  },
+  "PAUSED": {
+    "zh_CN": "提灯暂歇",
+    "en": "LANTERN AT REST"
+  },
+  "PAUSED_NOTE": {
+    "zh_CN": "战斗已暂停。返回后松开操作键，再继续行动。",
+    "en": "Combat is paused. Release action keys after resuming to continue."
+  },
+  "RESUME": {
+    "zh_CN": "继续远征",
+    "en": "RESUME"
+  },
+  "RELICS": {
+    "zh_CN": "本局遗物",
+    "en": "RUN RELICS"
+  },
+  "BACK": {
+    "zh_CN": "返回",
+    "en": "BACK"
+  },
+  "ABANDON": {
+    "zh_CN": "放弃远征",
+    "en": "ABANDON EXPEDITION"
+  },
+  "ABANDON_TITLE": {
+    "zh_CN": "放弃并结算？",
+    "en": "ABANDON AND SETTLE?"
+  },
+  "ABANDON_NOTE": {
+    "zh_CN": "主动放弃保留50%金币（向下取整）：携带 {gold}，保留 {kept}，损失 {lost}。\n本房不结算战斗积累经验；待带回装备丢失，本局遗物清空。",
+    "en": "Abandoning keeps 50% of gold, rounded down: {gold} carried, {kept} kept, {lost} lost.\nNo field practice XP from this room. Unbanked equipment and run relics are lost."
+  },
+  "CONFIRM_ABANDON": {
+    "zh_CN": "确认放弃 · 保留20%金币",
+    "en": "CONFIRM · KEEP 50% GOLD"
+  },
+  "CANCEL": {
+    "zh_CN": "取消并返回",
+    "en": "CANCEL"
+  },
+  "EXTRACT_TITLE": {
+    "zh_CN": "带着发现回家",
+    "en": "BRING IT HOME"
+  },
+  "EXTRACT_NOTE": {
+    "zh_CN": "现在撤离可带回 {gold} 金币。\n若倒在井下，只能保留 {kept}。本局遗物结束后清空，发现记录永久保留。",
+    "en": "Extract now to bank {gold} gold.\nIf you fall, only {kept} survives. Run relics are cleared; their discovery records are permanent."
+  },
+  "CONFIRM_EXTRACT": {
+    "zh_CN": "启动升降机 · 撤离",
+    "en": "ACTIVATE LIFT · EXTRACT"
+  },
+  "EXTRACTED": {
+    "zh_CN": "平安归来",
+    "en": "SAFELY EXTRACTED"
+  },
+  "DEATH": {
+    "zh_CN": "提灯熄灭",
+    "en": "LANTERN EXTINGUISHED"
+  },
+  "ABANDONED": {
+    "zh_CN": "远征已放弃",
+    "en": "EXPEDITION ABANDONED"
+  },
+  "SETTLED": {
+    "zh_CN": "结算已保存 · 奖励已入账",
+    "en": "SETTLEMENT SAVED · REWARDS BANKED"
+  },
+  "COLLECTED": {
+    "zh_CN": "本局收集",
+    "en": "GOLD COLLECTED"
+  },
+  "KEPT": {
+    "zh_CN": "实际入库",
+    "en": "GOLD BANKED"
+  },
+  "LOST": {
+    "zh_CN": "井下遗失",
+    "en": "GOLD LOST"
+  },
+  "RESULT_STATS": {
+    "zh_CN": "击败守卫 {kills}  /  新发现 {discoveries}\n起始角色与武器保留，本局遗物已清空。",
+    "en": "Wardens defeated: {kills} / New discoveries: {discoveries}\nStarter gear retained. Run relics have been cleared."
+  },
+  "RETURN_CAMP": {
+    "zh_CN": "返回营地",
+    "en": "RETURN TO CAMP"
+  },
+  "NEW_CONFIRM_TITLE": {
+    "zh_CN": "重新建立档案？",
+    "en": "REPLACE THIS PROFILE?"
+  },
+  "NEW_CONFIRM_NOTE": {
+    "zh_CN": "当前完整存档会移入回收站，保留7天，期间可在「存档与英雄档案 → 存档回收站」恢复。\n7天后，在下次启动或存档管理操作时永久清理。游戏关闭时不会后台清理。",
+    "en": "Your complete current save moves to the Recycle Bin for 7 days. Restore it from Save & Hero Profile → Recycle Bin.\nAfter 7 days it is permanently removed on the next launch or save-management action. No cleanup runs while the game is closed."
+  },
+  "CONFIRM_NEW": {
+    "zh_CN": "确认覆盖并建立档案",
+    "en": "REPLACE PROFILE"
+  },
+  "LANGUAGE": {
+    "zh_CN": "语言 · 简体中文 → English",
+    "en": "LANGUAGE · English → 简体中文"
+  },
+  "FULLSCREEN_ON": {
+    "zh_CN": "显示 · 全屏（点击切换）",
+    "en": "DISPLAY · FULLSCREEN (TOGGLE)"
+  },
+  "FULLSCREEN_OFF": {
+    "zh_CN": "显示 · 窗口（点击切换）",
+    "en": "DISPLAY · WINDOWED (TOGGLE)"
+  },
+  "FX_ON": {
+    "zh_CN": "效果 · 低闪烁（已开启）",
+    "en": "EFFECTS · REDUCED FLASH (ON)"
+  },
+  "FX_OFF": {
+    "zh_CN": "效果 · 低闪烁（已关闭）",
+    "en": "EFFECTS · REDUCED FLASH (OFF)"
+  },
+  "CONTROLS": {
+    "zh_CN": "WASD / 方向键 移动 · 鼠标瞄准 · 鼠标左键连续普攻 · 空格闪避\nQ / 鼠标右键 / F / R 技能（角色等级 1 / 2 / 3 / 4 解锁）\nC 放置引雷桩 · V 释放回路 · E 交互 · Tab 作战详情 · Esc 暂停。",
+    "en": "WASD / arrows move · Mouse aim · Hold left click to attack · Space dodge\nQ / Right click / F / R skills (hero levels 1 / 2 / 3 / 4)\nC place anchors · V discharge · E interact · Tab details · Esc pause."
+  },
+  "ERROR_TITLE": {
+    "zh_CN": "存档尚未完成",
+    "en": "SAVE NOT COMPLETED"
+  },
+  "RETRY": {
+    "zh_CN": "重试保存结算",
+    "en": "RETRY SETTLEMENT"
+  },
+  "SAVE_ERROR": {
+    "zh_CN": "无法写入存档。请检查磁盘空间与目录权限，再重试。\n{error}",
+    "en": "Could not write the save. Check disk space and folder permissions, then retry.\n{error}"
+  },
+  "LAST_RUN": {
+    "zh_CN": "最近一次远征：入库 {gold} 金币",
+    "en": "LAST EXPEDITION: {gold} GOLD BANKED"
+  },
+  "SAVED_WARNING": {
+    "zh_CN": "存档提示：{message}",
+    "en": "SAVE NOTICE: {message}"
+  },
+  "BANK_TOTAL": {
+    "zh_CN": "营地余额  {gold}",
+    "en": "CAMP BALANCE  {gold}"
+  },
+  "STORAGE_ABANDONED_RECOVERED": {
+    "zh_CN": "上次远征异常结束，已按放弃规则结算一次。",
+    "en": "The interrupted expedition was settled once using abandonment rules."
+  },
+  "STORAGE_READ_FAILED": {
+    "zh_CN": "无法读取存档文件。",
+    "en": "Cannot read the save file."
+  },
+  "STORAGE_PRESERVE_FAILED": {
+    "zh_CN": "无法保留损坏的存档文件，已停止写入。",
+    "en": "Could not preserve the damaged save. Writes are stopped."
+  },
+  "STORAGE_CORRUPT_PRESERVED": {
+    "zh_CN": "损坏文件已保留供检查。",
+    "en": "The damaged file has been preserved for inspection."
+  },
+  "STORAGE_NO_VALID_PROFILE": {
+    "zh_CN": "没有可恢复的有效档案。损坏文件已保留，请检查存档目录。",
+    "en": "No valid profile could be recovered. Damaged files are preserved; inspect the save directory."
+  },
+  "STORAGE_RECOVERED": {
+    "zh_CN": "已从完整的备份事务恢复档案。",
+    "en": "The profile was recovered from a complete backup transaction."
+  },
+  "STORAGE_INVALID_DATA": {
+    "zh_CN": "存档数据未通过校验，未修改已保存档案。",
+    "en": "Save validation failed. The saved profile was not changed."
+  },
+  "STORAGE_CAPACITY_EXCEEDED": {
+    "zh_CN": "存档超过安全容量，本次操作未保存；原存档与备份保持不变。请保留现有档案并更新游戏。",
+    "en": "Save capacity exceeded. This change was not saved; your prior save and backup are intact. Keep the existing files and update the game."
+  },
+  "STORAGE_TRANSACTION_CAPACITY": {
+    "zh_CN": "交易收据已达到4096条上限，本次交易未执行；请保留存档并更新游戏，不能删除收据绕过保护。",
+    "en": "The 4,096-receipt limit is reached. This transaction was not applied. Keep your save and update the game; do not delete receipts."
+  },
+  "STORAGE_WRITE_FAILED": {
+    "zh_CN": "写入失败，请检查磁盘空间与目录权限。",
+    "en": "Write failed. Check disk space and folder permissions."
+  },
+  "STORAGE_REPLACE_FAILED": {
+    "zh_CN": "存档替换未完成，可以重试。",
+    "en": "Save replacement did not finish. Please retry."
+  },
+  "STORAGE_DUPLICATE_RUN": {
+    "zh_CN": "此远征已经结算，不能再次发放奖励。",
+    "en": "This expedition was already settled. Rewards cannot be issued again."
+  },
+  "RELIC_ACQUIRED": {
+    "zh_CN": "已获得 · {name}  /  Tab 查看机制",
+    "en": "ACQUIRED · {name} / TAB TO INSPECT"
+  },
+  "WORKSHOP_KICKER": {
+    "zh_CN": "裂灯矿务局 / 地表工坊 · 永久档案",
+    "en": "FRACTURED LANTERN / SURFACE WORKSHOP · PERMANENT RECORD"
+  },
+  "ACTIVE_DOSSIER": {
+    "zh_CN": "当前出勤档案",
+    "en": "ACTIVE FIELD DOSSIER"
+  },
+  "EXPEDITION_LOOP": {
+    "zh_CN": "远征收集 → 安全撤离 → 打磨配装 → 深入矿井\n三位英雄独立成长，共享永久装备与营地金币。",
+    "en": "Explore → Extract → Refine your build → Descend further\nHeroes grow separately; camp gold and equipment are shared."
+  },
+  "DOSSIER_STATS": {
+    "zh_CN": "生命 {hp}  /  护甲 {armor}\n普攻基础伤害 {damage}",
+    "en": "Health {hp} / Armor {armor}\nBasic attack damage {damage}"
+  },
+  "HERO_DOSSIERS": {
+    "zh_CN": "出勤档案 · 选择英雄",
+    "en": "FIELD DOSSIERS · HEROES"
+  },
+  "SKILL_LEDGER": {
+    "zh_CN": "技能与成长记录",
+    "en": "SKILLS & GROWTH RECORD"
+  },
+  "EQUIPMENT_BENCH": {
+    "zh_CN": "装备台 · 仓库与配装",
+    "en": "EQUIPMENT BENCH · LOADOUT"
+  },
+  "SUPPLY_CATALOG": {
+    "zh_CN": "采购目录 · 营地商店",
+    "en": "SUPPLY CATALOG · CAMP SHOP"
+  },
+  "UPGRADE_BENCH": {
+    "zh_CN": "精工台 · 装备强化",
+    "en": "REFINING BENCH · UPGRADES"
+  },
+  "NEXT_SKILL": {
+    "zh_CN": "下一成长节点 / 角色等级 {level}",
+    "en": "NEXT GROWTH MILESTONE / HERO LEVEL {level}"
+  },
+  "LEVEL_MAX": {
+    "zh_CN": "已满级",
+    "en": "MAX"
+  },
+  "RESOURCE_RAGE_RULE": {
+    "zh_CN": "怒气 · 无蓝条\n普攻命中积攒怒气；脱离战斗后逐渐衰减。零怒气仍可普攻与冲刺。",
+    "en": "RAGE · NO MANA\nBasic hits build rage; it decays out of combat. Attacks and dash remain free."
+  },
+  "RESOURCE_ENERGY_RULE": {
+    "zh_CN": "能量 · 无蓝条\n技能消耗后短暂停顿，再快速恢复。交替射击与换位，保留脱身余量。",
+    "en": "ENERGY · NO MANA\nRegenerates quickly after a short delay. Alternate firing and repositioning."
+  },
+  "RESOURCE_MANA_RULE": {
+    "zh_CN": "法力 · 蓝条\n法力缓慢回复。部署节点、控制敌群，再用共振收束；避免连续空放。",
+    "en": "MANA\nRegenerates steadily. Deploy a node, control the enemy, then trigger resonance."
+  },
+  "TAB_HEROES": {
+    "zh_CN": "英雄档案",
+    "en": "HEROES"
+  },
+  "TAB_SKILLS": {
+    "zh_CN": "技能成长",
+    "en": "SKILLS"
+  },
+  "TAB_GEAR": {
+    "zh_CN": "仓库配装",
+    "en": "LOADOUT"
+  },
+  "TAB_SHOP": {
+    "zh_CN": "采购装备",
+    "en": "SHOP"
+  },
+  "TAB_UPGRADE": {
+    "zh_CN": "精工强化",
+    "en": "UPGRADE"
+  },
+  "INSPECT": {
+    "zh_CN": "查看档案",
+    "en": "INSPECT"
+  },
+  "HERO_LEVEL": {
+    "zh_CN": "角色等级 {level}",
+    "en": "HERO LEVEL {level}"
+  },
+  "HERO_XP": {
+    "zh_CN": "经验 {xp} / 下级 {next}",
+    "en": "XP {xp} / NEXT {next}"
+  },
+  "DOSSIER_NOTE": {
+    "zh_CN": "出勤候选 / 预览不更换英雄",
+    "en": "CANDIDATE / PREVIEW ONLY"
+  },
+  "HERO_CH01_PLAY": {
+    "zh_CN": "罗砧「开路工」\n近战破阵 · 怒气驱动\n战斧横扫、突进与反推。越靠近敌群越有力量，也需要选择承压时机。",
+    "en": "Melee / Rage\nAxe sweeps, a charge and a counter.\nClose in and time your guard."
+  },
+  "HERO_CH02_PLAY": {
+    "zh_CN": "岑线「引路针」\n精准游猎 · 能量驱动\n贯穿长射、滑步换位与陷阱。保持距离，用走位创造下一次开火窗口。",
+    "en": "Ranged / Energy\nPiercing shots, a slide and traps.\nKeep moving between bursts."
+  },
+  "HERO_CH03_PLAY": {
+    "zh_CN": "谷频「拾频者」\n区域共鸣 · 法力驱动\n节点部署、寒冷控制与共振爆发。规划阵地，把敌群引入能量交汇处。",
+    "en": "Area control / Mana\nNodes, cold control and resonance.\nShape a field; lure enemies into it."
+  },
+  "HERO_SWITCH_NOTE": {
+    "zh_CN": "免费切换。各英雄的经验独立保存，仓库装备共享。",
+    "en": "Switch freely. Each hero retains their own XP; equipment is shared."
+  },
+  "HERO_SELECTED": {
+    "zh_CN": "已选为出勤英雄",
+    "en": "ACTIVE HERO"
+  },
+  "SELECT_HERO": {
+    "zh_CN": "确认出勤英雄",
+    "en": "SELECT HERO"
+  },
+  "SKILL_READY": {
+    "zh_CN": "已解锁 · 消耗 {cost} · 冷却 {cooldown}s",
+    "en": "UNLOCKED · COST {cost} · CD {cooldown}s"
+  },
+  "SKILL_LOCKED": {
+    "zh_CN": "等级 {level} 解锁 · 消耗 {cost} · 冷却 {cooldown}s",
+    "en": "LEVEL {level} · COST {cost} · CD {cooldown}s"
+  },
+  "SKILL_PROGRESS_NOTE": {
+    "zh_CN": "角色经验在远征中积累。1 级可用普攻、冲刺与 Q；2 / 3 / 4 级依次解锁右键 / F / R。",
+    "en": "Gain hero XP in expeditions. Basic attack, dash and Q are available at level 1; right click, F and R unlock at levels 2, 3 and 4."
+  },
+  "UNLOCK_TRACK": {
+    "zh_CN": "角色成长刻度 / 已达到的节点以浅绿标记",
+    "en": "HERO GROWTH / REACHED MILESTONES IN GREEN"
+  },
+  "UNLOCK_LEGEND": {
+    "zh_CN": "1—4 主动技能 / 10—16 技能强化 / 18—20 改型分支",
+    "en": "1–4 active skills / 10–16 skill upgrades / 18–20 branch choices"
+  },
+  "FITTED_LOADOUT": {
+    "zh_CN": "当前挂载 · 六槽位",
+    "en": "FITTED · SIX SLOTS"
+  },
+  "EMPTY_SLOT": {
+    "zh_CN": "空槽",
+    "en": "Empty"
+  },
+  "SHARED_GEAR": {
+    "zh_CN": "三位英雄共享仓库",
+    "en": "SHARED HERO INVENTORY"
+  },
+  "CATALOG_LABEL": {
+    "zh_CN": "按槽位与套装查找",
+    "en": "BROWSE BY SLOT & SET"
+  },
+  "FILTER_SLOT": {
+    "zh_CN": "槽位",
+    "en": "Slot"
+  },
+  "FILTER_SET": {
+    "zh_CN": "套装",
+    "en": "Set"
+  },
+  "ALL": {
+    "zh_CN": "全部",
+    "en": "All"
+  },
+  "SLOT_WEAPON": {
+    "zh_CN": "武器",
+    "en": "Weapon"
+  },
+  "SLOT_HEAD": {
+    "zh_CN": "头部",
+    "en": "Head"
+  },
+  "SLOT_CHEST": {
+    "zh_CN": "胸甲",
+    "en": "Chest"
+  },
+  "SLOT_HANDS": {
+    "zh_CN": "手部",
+    "en": "Hands"
+  },
+  "SLOT_FEET": {
+    "zh_CN": "足部",
+    "en": "Feet"
+  },
+  "SLOT_LEGS": {
+    "zh_CN": "裤子",
+    "en": "Legs"
+  },
+  "SLOT_RING": {
+    "zh_CN": "戒指",
+    "en": "Ring"
+  },
+  "SLOT_CHARM": {
+    "zh_CN": "饰品",
+    "en": "Charm"
+  },
+  "OWNED": {
+    "zh_CN": "已拥有",
+    "en": "Owned"
+  },
+  "PRICE_GOLD": {
+    "zh_CN": "{gold} 金币",
+    "en": "{gold} gold"
+  },
+  "NO_EQUIPMENT": {
+    "zh_CN": "当前筛选没有装备。\n可前往采购目录或切换筛选。",
+    "en": "No equipment matches.\nVisit the shop or change your filters."
+  },
+  "BASE_STATS": {
+    "zh_CN": "基础属性 / +0 数值",
+    "en": "BASE STATS / +0 VALUES"
+  },
+  "CURRENT_ITEM": {
+    "zh_CN": "当前装备",
+    "en": "CURRENT EQUIPMENT"
+  },
+  "EQUIPMENT_AFFIX": {
+    "zh_CN": "特殊词条",
+    "en": "SPECIAL AFFIX"
+  },
+  "EQUIP_ITEM": {
+    "zh_CN": "挂载此装备",
+    "en": "EQUIP ITEM"
+  },
+  "EQUIP_NOTE": {
+    "zh_CN": "挂载免费。下次远征使用当前配装。",
+    "en": "Free to equip. Your next expedition uses this loadout."
+  },
+  "BUY_ITEM": {
+    "zh_CN": "购买装备",
+    "en": "BUY EQUIPMENT"
+  },
+  "PURCHASE_NOTE": {
+    "zh_CN": "消耗 {cost} 营地金币，永久加入共享仓库。",
+    "en": "Spend {cost} camp gold. Keep this item in the shared inventory."
+  },
+  "BOSS_LOCKED": {
+    "zh_CN": "击败 {boss} 后开放采购。",
+    "en": "Defeat {boss} to unlock this item."
+  },
+  "INSUFFICIENT_GOLD": {
+    "zh_CN": "需要 {cost} 金币。余额不足，先完成远征带回金币。",
+    "en": "Requires {cost} gold. Extract from expeditions to earn more."
+  },
+  "UPGRADE_ITEM": {
+    "zh_CN": "精工强化",
+    "en": "REFINE ITEM"
+  },
+  "UPGRADE_NOTE": {
+    "zh_CN": "消耗 {cost} 金币，强化一级，最高 +5。",
+    "en": "Spend {cost} gold to refine one level, up to +5."
+  },
+  "UPGRADE_MAX": {
+    "zh_CN": "已达到 +5 精工上限。",
+    "en": "Maximum refinement reached: +5."
+  },
+  "ITEM_EQUIPPED": {
+    "zh_CN": "已挂载",
+    "en": "EQUIPPED"
+  },
+  "NO_BASE_STATS": {
+    "zh_CN": "无基础属性加成",
+    "en": "No base-stat bonus"
+  },
+  "SET_COUNT": {
+    "zh_CN": "{set} / 当前已挂载 {count} 件",
+    "en": "{set} / {count} PIECES FITTED"
+  },
+  "SET_THRESHOLDS": {
+    "zh_CN": "套装在 2 / 4 / 6 件时解锁对应加成。",
+    "en": "Set bonuses unlock at 2 / 4 / 6 fitted pieces."
+  },
+  "SHIELD_VALUE": {
+    "zh_CN": "盾 {shield}",
+    "en": "SHIELD {shield}"
+  },
+  "HUD_RELICS_EMPTY": {
+    "zh_CN": "遗物 · 尚未拾取",
+    "en": "RELICS · NONE"
+  },
+  "HUD_SKILL_LOCK": {
+    "zh_CN": "等级 {level} 解锁",
+    "en": "LEVEL {level} REQUIRED"
+  },
+  "HUD_RESOURCE_LOW": {
+    "zh_CN": "资源不足",
+    "en": "LOW RESOURCE"
+  },
+  "HUD_SKILL_READY": {
+    "zh_CN": "就绪 · 消耗 {cost}",
+    "en": "READY · COST {cost}"
+  },
+  "PREVIEW_CHANGES": {
+    "zh_CN": "替换后的属性变化",
+    "en": "CHANGES AFTER EQUIPPING"
+  },
+  "PREVIEW_UPGRADE": {
+    "zh_CN": "下一级强化变化",
+    "en": "NEXT REFINEMENT"
+  },
+  "STAT_MAX_HP": {
+    "zh_CN": "生命上限",
+    "en": "Max health"
+  },
+  "STAT_ARMOR": {
+    "zh_CN": "护甲",
+    "en": "Armor"
+  },
+  "STAT_DAMAGE": {
+    "zh_CN": "攻击伤害",
+    "en": "Attack damage"
+  },
+  "STAT_ATTACK": {
+    "zh_CN": "攻击伤害",
+    "en": "Attack damage"
+  },
+  "STAT_ATTACK_BONUS": {
+    "zh_CN": "攻击加成",
+    "en": "Attack bonus"
+  },
+  "STAT_DAMAGE_BONUS": {
+    "zh_CN": "伤害加成",
+    "en": "Damage bonus"
+  },
+  "STAT_ATTACK_SPEED": {
+    "zh_CN": "攻击速度",
+    "en": "Attack speed"
+  },
+  "STAT_ATTACK_SPEED_BONUS": {
+    "zh_CN": "攻速加成",
+    "en": "Attack speed"
+  },
+  "STAT_MOVE_SPEED": {
+    "zh_CN": "移动速度",
+    "en": "Move speed"
+  },
+  "STAT_MOVE_SPEED_BONUS": {
+    "zh_CN": "移速加成",
+    "en": "Move speed"
+  },
+  "STAT_CRIT_CHANCE": {
+    "zh_CN": "暴击率",
+    "en": "Crit chance"
+  },
+  "STAT_CRIT_DAMAGE": {
+    "zh_CN": "暴击倍率",
+    "en": "Crit multiplier"
+  },
+  "STAT_CRIT_BONUS": {
+    "zh_CN": "暴击加成",
+    "en": "Crit chance"
+  },
+  "STAT_SKILL_DAMAGE": {
+    "zh_CN": "技能伤害",
+    "en": "Skill damage"
+  },
+  "STAT_SKILL_DAMAGE_BONUS": {
+    "zh_CN": "技能伤害",
+    "en": "Skill damage"
+  },
+  "STAT_COOLDOWN_REDUCTION": {
+    "zh_CN": "冷却缩减",
+    "en": "Cooldown reduction"
+  },
+  "STAT_RESOURCE_REGEN": {
+    "zh_CN": "资源回复",
+    "en": "Resource regen"
+  },
+  "STAT_MAX_RESOURCE": {
+    "zh_CN": "资源上限",
+    "en": "Max resource"
+  },
+  "STAT_HEALING_BONUS": {
+    "zh_CN": "治疗加成",
+    "en": "Healing bonus"
+  },
+  "STAT_SHIELD_BONUS": {
+    "zh_CN": "护盾加成",
+    "en": "Shield bonus"
+  },
+  "STAT_STATUS_CHANCE": {
+    "zh_CN": "状态概率",
+    "en": "Status chance"
+  },
+  "STAT_STATUS_DAMAGE": {
+    "zh_CN": "状态伤害",
+    "en": "Status damage"
+  },
+  "STAT_BURN_BONUS": {
+    "zh_CN": "灼烧伤害",
+    "en": "Burn damage"
+  },
+  "STAT_SLOW_BONUS": {
+    "zh_CN": "寒冷效果",
+    "en": "Cold effect"
+  },
+  "STAT_GOLD_BONUS": {
+    "zh_CN": "金币收益",
+    "en": "Gold bonus"
+  },
+  "AFFIX_UNAVAILABLE": {
+    "zh_CN": "词条尚未开放，暂不销售此装备。",
+    "en": "Affix unavailable in this build. This item is not yet for sale."
+  },
+  "STAT_RESOURCE_MAX": {
+    "zh_CN": "资源上限",
+    "en": "Max resource"
+  },
+  "STAT_DAMAGE_REDUCTION": {
+    "zh_CN": "伤害减免",
+    "en": "Damage reduction"
+  },
+  "STAT_BURN_DAMAGE": {
+    "zh_CN": "灼烧伤害",
+    "en": "Burn damage"
+  },
+  "STAT_CORROSION_DAMAGE_BONUS": {
+    "zh_CN": "腐蚀伤害",
+    "en": "Corrosion damage"
+  },
+  "STAT_STATUS_DURATION": {
+    "zh_CN": "状态持续",
+    "en": "Status duration"
+  },
+  "RESULT_HERO_XP": {
+    "zh_CN": "本次角色经验 +{xp}\n当前角色等级 {level}",
+    "en": "Hero XP earned +{xp}\nCurrent hero level {level}"
+  },
+  "UPGRADE_CAPPED": {
+    "zh_CN": "当前配装已达到相关属性上限。更换配装后可再强化。",
+    "en": "This build has reached the relevant stat cap. Change your loadout before refining."
+  },
+  "HERO_LEVEL_UP": {
+    "zh_CN": "角色升至 {level} 级 · {skill}",
+    "en": "HERO LEVEL {level} · {skill}"
+  },
+  "UPGRADE_ROUNDING": {
+    "zh_CN": "本级可能因取整暂不增加显示值；后续等级继续累积。",
+    "en": "Rounding may leave the displayed value unchanged this level; later levels keep scaling."
+  },
+  "SET_LOSE": {
+    "zh_CN": "替换将失去：{set} {count} 件效果",
+    "en": "REPLACING LOSES: {set} ({count} pieces)"
+  },
+  "PASSIVE_DASH": {
+    "zh_CN": "被动与闪避",
+    "en": "PASSIVE & DASH"
+  },
+  "CORE_ACTIONS_UNLOCK": {
+    "zh_CN": "普攻、被动、冲刺：1 级可用",
+    "en": "Attack, passive, dash: level 1"
+  },
+  "DASH_LABEL": {
+    "zh_CN": "空格 · 闪避",
+    "en": "Space · DASH"
+  },
+  "DASH_DETAILS": {
+    "zh_CN": "最远 {distance} 距离 / 冷却 {cooldown}s / 无资源消耗\n地形会阻挡移动。零资源仍可使用。",
+    "en": "Up to {distance} range / {cooldown}s cooldown / no resource cost\nTerrain blocks movement. Available at zero resource."
+  },
+  "SKILL_BRANCHES": {
+    "zh_CN": "技能改型 · 18 / 20",
+    "en": "BRANCHES · 18 / 20"
+  },
+  "BRANCH_GATE": {
+    "zh_CN": "角色等级 {level} 解锁",
+    "en": "HERO LEVEL {level}"
+  },
+  "BRANCH_ORIGINAL": {
+    "zh_CN": "保留原版技能",
+    "en": "KEEP ORIGINAL SKILL"
+  },
+  "BRANCH_RULE": {
+    "zh_CN": "同组只能选择一种改型，也可保留原版。营地免费重选；本次远征开始后固定。每名英雄独立保存。",
+    "en": "Choose one option per group, or keep the original. Change freely at camp; choices lock when you depart. Saved separately for each hero."
+  },
+  "NAV_EXIT": {
+    "zh_CN": "升降机 · 安全撤离",
+    "en": "LIFT · EXTRACTION"
+  },
+  "NAV_DISTANCE": {
+    "zh_CN": "距离 {distance}",
+    "en": "DISTANCE {distance}"
+  },
+  "NAV_OBJECTIVE": {
+    "zh_CN": "当前目标",
+    "en": "CURRENT OBJECTIVE"
+  },
+  "BRANCH_ACTIVE": {
+    "zh_CN": "已选改型 {choice}",
+    "en": "ACTIVE BRANCH {choice}"
+  },
+  "BASE_SKILL": {
+    "zh_CN": "基础技能",
+    "en": "BASE SKILL"
+  },
+  "SKILL_UPGRADE_ACTIVE": {
+    "zh_CN": "已获得等级 {level} 强化",
+    "en": "LEVEL {level} UPGRADE ACTIVE"
+  },
+  "KEY_SECONDARY": {
+    "zh_CN": "鼠标右键",
+    "en": "Right click"
+  },
+  "STAT_ATTACK_INTERVAL": {
+    "zh_CN": "普攻间隔",
+    "en": "Attack interval"
+  },
+  "HERO_XP_MAX": {
+    "zh_CN": "经验 {xp} / 已满级",
+    "en": "XP {xp} / MAX LEVEL"
+  },
+  "ROOM_L01": {
+    "zh_CN": "晴辉门庭",
+    "en": "Sunlit Gatecourt"
+  },
+  "ROOM_L02": {
+    "zh_CN": "浮晶拱桥",
+    "en": "Crystal Archbridge"
+  },
+  "ROOM_L03": {
+    "zh_CN": "符文回廊",
+    "en": "Rune Gallery"
+  },
+  "ROOM_L04": {
+    "zh_CN": "琉光仪场",
+    "en": "Prism Array"
+  },
+  "ROOM_L05": {
+    "zh_CN": "悬曜升台",
+    "en": "Radiant Lift"
+  },
+  "ROOM_L06": {
+    "zh_CN": "辉核祭庭",
+    "en": "Radiant Core Court"
+  },
+  "ROOM_L07": {
+    "zh_CN": "蜜晶渡口",
+    "en": "Honeyglass Crossing"
+  },
+  "ROOM_L08": {
+    "zh_CN": "蜂翼浮台",
+    "en": "Winged Hive Raft"
+  },
+  "ROOM_L09": {
+    "zh_CN": "育虫迷园",
+    "en": "Brood Maze"
+  },
+  "ROOM_L10": {
+    "zh_CN": "树脂风井",
+    "en": "Resin Vent"
+  },
+  "ROOM_L11": {
+    "zh_CN": "啮岩虫窟",
+    "en": "Stonegnaw Nest"
+  },
+  "ROOM_L12": {
+    "zh_CN": "琥珀分洪池",
+    "en": "Amber Spill Basin"
+  },
+  "ROOM_L13": {
+    "zh_CN": "南瓜门街",
+    "en": "Pumpkin Gate Street"
+  },
+  "ROOM_L14": {
+    "zh_CN": "无灯糖仓",
+    "en": "Unlit Candy Store"
+  },
+  "ROOM_L15": {
+    "zh_CN": "墓铃广场",
+    "en": "Gravebell Square"
+  },
+  "ROOM_L16": {
+    "zh_CN": "烛炉长街",
+    "en": "Candlekiln Street"
+  },
+  "ROOM_L17": {
+    "zh_CN": "缝补作坊",
+    "en": "Patchwork Workshop"
+  },
+  "ROOM_L18": {
+    "zh_CN": "幽灯码头",
+    "en": "Ghostlamp Dock"
+  },
+  "ROOM_L19": {
+    "zh_CN": "战鼓螺台",
+    "en": "War-Drum Spiral"
+  },
+  "ROOM_L20": {
+    "zh_CN": "赤岩石街",
+    "en": "Redrock Stone Street"
+  },
+  "ROOM_L21": {
+    "zh_CN": "獠牙角斗庭",
+    "en": "Fang Arena"
+  },
+  "ROOM_L22": {
+    "zh_CN": "铁砧战厅",
+    "en": "Anvil War Hall"
+  },
+  "ROOM_L23": {
+    "zh_CN": "烽灯裂谷",
+    "en": "Beacon Rift"
+  },
+  "ROOM_L24": {
+    "zh_CN": "酋长校武庭",
+    "en": "Chieftain Drill Court"
+  },
+  "BIOME_B01": {
+    "zh_CN": "晴辉遗庭",
+    "en": "Sunlit Ruin Court"
+  },
+  "BIOME_B02": {
+    "zh_CN": "琥珀虫巢",
+    "en": "Amber Hive"
+  },
+  "BIOME_B03": {
+    "zh_CN": "南瓜墓镇",
+    "en": "Pumpkin Grave Town"
+  },
+  "ROOM_LOAD_FAILED_TITLE": {
+    "zh_CN": "暂时无法出发",
+    "en": "Unable to depart"
+  },
+  "ROOM_LOAD_FAILED_NOTE": {
+    "zh_CN": "房间未能加载，请返回营地后重试。",
+    "en": "The room could not be loaded. Return to camp and try again."
+  },
+  "DEPARTURE_DIFFICULTY": {
+    "zh_CN": "出发难度",
+    "en": "Expedition difficulty"
+  },
+  "DIFFICULTY_NORMAL": {
+    "zh_CN": "普通",
+    "en": "Normal"
+  },
+  "DIFFICULTY_CHALLENGING": {
+    "zh_CN": "进阶",
+    "en": "Challenging"
+  },
+  "DIFFICULTY_HARD": {
+    "zh_CN": "困难",
+    "en": "Hard"
+  },
+  "DIFFICULTY_SEVERE": {
+    "zh_CN": "险境",
+    "en": "Severe"
+  },
+  "DIFFICULTY_EXTREME": {
+    "zh_CN": "极限",
+    "en": "Extreme"
+  },
+  "DEPARTURE_ENEMY_COUNT": {
+    "zh_CN": "首个房间 · 共 {count} 名敌人",
+    "en": "First room · {count} enemies total"
+  },
+  "COMBAT_LEDGER": {
+    "zh_CN": "作战仪表 · 技能与携行",
+    "en": "COMBAT INSTRUMENTS"
+  },
+  "HUD_DASH_KEY": {
+    "zh_CN": "空格",
+    "en": "Space"
+  },
+  "HUD_NAV_DISTANCE": {
+    "zh_CN": "距 {distance}",
+    "en": "{distance} units"
+  },
+  "HUD_HP_COMPACT": {
+    "zh_CN": "生命 {hp} / {max}",
+    "en": "HP {hp} / {max}"
+  },
+  "HUD_GOLD_COMPACT": {
+    "zh_CN": "金币  {gold}",
+    "en": "GOLD  {gold}"
+  },
+  "HUD_FINAL_COST": {
+    "zh_CN": "当前消耗 {cost} {resource} · 冷却 {cooldown} 秒",
+    "en": "Cost {cost} {resource} · Cooldown {cooldown} s"
+  },
+  "HUD_REMAINING": {
+    "zh_CN": "冷却中 · 剩余 {time} 秒",
+    "en": "Cooling down · {time} s remaining"
+  },
+  "HUD_RESOURCE_MISSING": {
+    "zh_CN": "无法施放 · 还需 {amount} {resource}",
+    "en": "Cannot cast · Need {amount} more {resource}"
+  },
+  "HUD_READY": {
+    "zh_CN": "可以施放",
+    "en": "Ready to cast"
+  },
+  "HUD_DETAIL_HINT": {
+    "zh_CN": "按键施放 · 点击或 Enter 查看完整详情\nTab 暂停并展开作战仪表",
+    "en": "Use the hotkey to cast. Click or Enter for details.\nTab pauses and opens combat instruments."
+  },
+  "HUD_BASE_DESCRIPTION": {
+    "zh_CN": "基础技能档案（等级、装备及分支后的实际消耗与冷却见上方）",
+    "en": "Base skill dossier. Current cost and cooldown above include level, equipment and branch changes."
+  },
+  "HUD_DASH_DESCRIPTION": {
+    "zh_CN": "沿移动方向冲刺；未移动时朝准星方向冲刺。每位角色的距离与冷却不同。",
+    "en": "Dash in the movement direction, or toward the reticle when stationary. Distance and cooldown depend on the hero."
+  },
+  "HUD_WALLET_NOTE": {
+    "zh_CN": "撤离保留全部携带金币；死亡保留50%，主动放弃保留50%（向下取整）。\n点击或 Tab 查看携行详情。",
+    "en": "Extraction keeps all carried gold. Death keeps 50%; abandoning keeps 50%, rounded down.\nClick or Tab to inspect your loadout."
+  },
+  "HUD_WALLET_TOTAL": {
+    "zh_CN": "金币 {gold} · 死亡保留 {kept}（50%）· 放弃保留50% · 撤离全额",
+    "en": "Gold {gold} · Death: {kept} (50%) · Abandon: 50% · Extract: 100%"
+  },
+  "STAT_ABILITY_POWER": {
+    "zh_CN": "法术强度",
+    "en": "Ability power"
+  },
+  "STAT_MAGIC_RESIST": {
+    "zh_CN": "魔法抗性",
+    "en": "Magic resistance"
+  },
+  "STAT_ARMOR_PENETRATION": {
+    "zh_CN": "物理穿透",
+    "en": "Armor penetration"
+  },
+  "STAT_MAGIC_PENETRATION": {
+    "zh_CN": "法术穿透",
+    "en": "Magic penetration"
+  },
+  "STAT_MAX_MANA": {
+    "zh_CN": "最大法力",
+    "en": "Max mana"
+  },
+  "STAT_CRIT_MULTIPLIER": {
+    "zh_CN": "暴击伤害",
+    "en": "Critical damage"
+  },
+  "STAT_TRUE_DAMAGE_BONUS": {
+    "zh_CN": "真伤附加",
+    "en": "Bonus true damage"
+  },
+  "STAT_EQUIPMENT_DAMAGE_REDUCTION": {
+    "zh_CN": "伤害减免",
+    "en": "Damage reduction"
+  },
+  "BIOME_B04": {
+    "zh_CN": "赤岩战寨",
+    "en": "Redrock Warcamp"
+  },
+  "STORAGE_CLASS_EQUIPMENT_UPDATED": {
+    "zh_CN": "职业装备规则已更新：不符职业的旧装备已保留在仓库，请重新配装；词条、强化和价值不变。",
+    "en": "Class equipment updated: incompatible old gear is retained in Inventory. Re-equip empty slots; rolls, upgrades and value are unchanged."
+  },
+  "STORAGE_CLASS_MIGRATION_BLOCKED": {
+    "zh_CN": "职业装备迁移未能安全完成，原存档完整保留；请勿覆盖或新建档案。",
+    "en": "Class equipment migration could not finish safely. The original save is preserved; do not overwrite it or start a new profile."
+  },
+  "STORAGE_RECYCLE_INVALID": {
+    "zh_CN": "回收站数据无法安全校验，已保留文件。请检查存储状态后重试。",
+    "en": "Recycle Bin data could not be safely validated. Files were preserved. Check your storage and retry."
+  },
+  "STORAGE_RECYCLE_CHANGED": {
+    "zh_CN": "存档已被另一个操作更改，请重新启动游戏后重试。",
+    "en": "Another operation changed this save. Restart the game before trying again."
+  },
+  "STORAGE_RECYCLE_CLOCK": {
+    "zh_CN": "系统时间回退，已暂停回收站清理。请校准时间后重试。",
+    "en": "The system clock moved back. Recycle Bin cleanup is paused. Correct the clock and retry."
+  },
+  "STORAGE_RECYCLE_UNAVAILABLE": {
+    "zh_CN": "此存档当前无法恢复或移入回收站。",
+    "en": "This save is not available for restore or deletion."
+  },
+  "STORAGE_RECYCLE_EXPIRED": {
+    "zh_CN": "此存档已超过7天保留期。",
+    "en": "This save has passed its 7-day retention period."
+  },
+  "STORAGE_RECYCLE_WRITE_FAILED": {
+    "zh_CN": "回收站写入失败，原存档未被替换。请检查可用空间与写入权限。",
+    "en": "Could not write the Recycle Bin; the current save was not replaced. Check free space and write permissions."
+  },
+  "STORAGE_RECYCLE_COLLISION": {
+    "zh_CN": "回收站标识冲突，原存档保持不变。请重试。",
+    "en": "Recycle Bin identifier collision. The original save is unchanged. Please retry."
+  },
+  "STORAGE_RECYCLE_CONFLICT": {
+    "zh_CN": "当前已有有效存档。请先将其移入回收站，再恢复旧档；不会覆盖或合并进度。",
+    "en": "A valid save is already active. Move it to the Recycle Bin before restoring this save. Progress will not be overwritten or merged."
+  },
+  "STORAGE_RECYCLE_BUSY": {
+    "zh_CN": "请先结束远征或试玩并返回营地，再管理存档。",
+    "en": "Finish the expedition or trial and return to camp before managing saves."
+  },
+  "STORAGE_RECYCLE_CLEANUP_FAILED": {
+    "zh_CN": "已到期的回收文件暂时无法清理，文件仍保留。请检查写入权限。",
+    "en": "Some expired recycle files could not be removed and were preserved. Check write permissions."
+  },
+  "STORAGE_IN_USE": {
+    "zh_CN": "此存档正在被另一个游戏实例使用，或写入锁无法安全确认。请关闭其他实例后重试；原文件已保留。",
+    "en": "Another game instance is using this save, or its write lock cannot be safely verified. Close other instances and retry. Original files were preserved."
+  },
+  "RESTORE_CONFLICT_TITLE": {
+    "zh_CN": "无法恢复：当前已有存档",
+    "en": "CANNOT RESTORE: A SAVE IS ACTIVE"
+  },
+  "STORAGE_LEGACY_RESET": {
+    "zh_CN": "旧格式存档已保留原始备份，当前版本已从新进度开始。",
+    "en": "The old save was preserved as a backup. This version starts with fresh progress."
+  }
+}

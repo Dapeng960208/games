@@ -1,0 +1,744 @@
+{
+  "schema_version": 1,
+  "chapter_id": "B06",
+  "enabled": false,
+  "candidate_only": true,
+  "runtime_quality_gate_passed": false,
+  "items": {
+    "B06-SW-head": {
+      "texture": "asset://equipment/b06_v1/B06-SW-head-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "3b0c2fafd6d13d8224ba123bb3657387f33831aa376a6978267ac4fb964b607a",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "head",
+      "native_foreground_pixels": [
+        1196,
+        1106
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SW-head.json"
+    },
+    "B06-SW-chest": {
+      "texture": "asset://equipment/b06_v1/B06-SW-chest-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "c52131ea0c53150b189cd6cb38f9f8f282c3f99c5b8bc5c052f5638f74982463",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "chest",
+      "native_foreground_pixels": [
+        1227,
+        1220
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SW-chest.json"
+    },
+    "B06-SW-hands": {
+      "texture": "asset://equipment/b06_v1/B06-SW-hands-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "39a766d459cd2aa465de0de1d93b557548fbabe37b89c47b56c275cf0f7ac87a",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "hands",
+      "native_foreground_pixels": [
+        1224,
+        1160
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SW-hands.json"
+    },
+    "B06-SW-legs": {
+      "texture": "asset://equipment/b06_v1/B06-SW-legs-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "3810d85b257a11a7af407fcfddb2b60a4eef9c2c1bfb63bf8ea9568524e781c3",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "legs",
+      "native_foreground_pixels": [
+        921,
+        1194
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SW-legs.json"
+    },
+    "B06-SW-feet": {
+      "texture": "asset://equipment/b06_v1/B06-SW-feet-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "9de82bbd17ad47e158ccdd0743a42b9634aa486ed3fad0eb1018a436e6d4e080",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "native_foreground_pixels": [
+        1183,
+        1182
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SW-feet.json"
+    },
+    "B06-SW-ring": {
+      "texture": "asset://equipment/b06_v1/B06-SW-ring-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "60aa1aa29d14b6cf390e250add552aa5022ca4d601ec65994fb3112621300465",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "native_foreground_pixels": [
+        1086,
+        1150
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SW-ring.json"
+    },
+    "B06-SW-accessory": {
+      "texture": "asset://equipment/b06_v1/B06-SW-accessory-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "adf6d4d6351a2ba16a4d6714adc8088feda5414dc9583e78434b22bd24121216",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "native_foreground_pixels": [
+        1212,
+        1201
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SW-accessory.json"
+    },
+    "B06-SW-weapon": {
+      "texture": "asset://equipment/b06_v1/B06-SW-weapon-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "b8985af8012f1a9495a000e48e468fb9b18b3611b0de6b5ba91662fc5d940da8",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "weapon",
+      "native_foreground_pixels": [
+        1217,
+        1198
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SW-weapon.json"
+    },
+    "B06-SG-head": {
+      "texture": "asset://equipment/b06_v1/B06-SG-head-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "073c7e087b706aa2d214109d3b1a384de6fe76636a8b360a07e5c01242053409",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "head",
+      "native_foreground_pixels": [
+        1238,
+        798
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SG-head.json"
+    },
+    "B06-SG-chest": {
+      "texture": "asset://equipment/b06_v1/B06-SG-chest-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "dfeecdf315d760f99dcbcd44c495fd2df0b884fa54983a317aee94818e3fb70b",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "chest",
+      "native_foreground_pixels": [
+        1167,
+        1139
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SG-chest.json"
+    },
+    "B06-SG-hands": {
+      "texture": "asset://equipment/b06_v1/B06-SG-hands-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "bba28fe3686ec8f066d1e876747d942b4a505d79ea7807c7db6254661b9b4033",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "hands",
+      "native_foreground_pixels": [
+        1143,
+        1140
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SG-hands.json"
+    },
+    "B06-SG-legs": {
+      "texture": "asset://equipment/b06_v1/B06-SG-legs-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "3d734ccb63684de5f08dd46d44b12f39958d5557f4a0f63807817d187d354c52",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "legs",
+      "native_foreground_pixels": [
+        1060,
+        1212
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SG-legs.json"
+    },
+    "B06-SG-feet": {
+      "texture": "asset://equipment/b06_v1/B06-SG-feet-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "920835fef24f63ff9a030c4553650086ca7210eb918038a55d84815e1b95bef5",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "native_foreground_pixels": [
+        1205,
+        1142
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SG-feet.json"
+    },
+    "B06-SG-ring": {
+      "texture": "asset://equipment/b06_v1/B06-SG-ring-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "92005051ab5c0c759230802b691526907cb35bd806d83cacb37810c6bdf1a8c2",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "native_foreground_pixels": [
+        1034,
+        1122
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SG-ring.json"
+    },
+    "B06-SG-accessory": {
+      "texture": "asset://equipment/b06_v1/B06-SG-accessory-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "f6438522f9b8bad64f65cef8984e66554ac47b0b365b02967c51253f1c391381",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "native_foreground_pixels": [
+        1206,
+        1196
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SG-accessory.json"
+    },
+    "B06-SG-weapon": {
+      "texture": "asset://equipment/b06_v1/B06-SG-weapon-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "c78a2eddb27d95585427891a26807a226708181598587270ae49c0b9081e7d43",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "weapon",
+      "native_foreground_pixels": [
+        1227,
+        1143
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SG-weapon.json"
+    },
+    "B06-SM-head": {
+      "texture": "asset://equipment/b06_v1/B06-SM-head-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "cde2af4ee8c405d7e8d3123bc2c05b6166342d245070480d8b998ab231d2aaf0",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "head",
+      "native_foreground_pixels": [
+        1219,
+        1082
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SM-head.json"
+    },
+    "B06-SM-chest": {
+      "texture": "asset://equipment/b06_v1/B06-SM-chest-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "a946abf1feae87d53efe04e534321e5872a639660e93d5ee2db2ee72d0c30eae",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "chest",
+      "native_foreground_pixels": [
+        1178,
+        1191
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SM-chest.json"
+    },
+    "B06-SM-hands": {
+      "texture": "asset://equipment/b06_v1/B06-SM-hands-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "20a681e62de20bf63bdd46601771143ff6b25ac040100e5a56bdf606c3008b07",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "hands",
+      "native_foreground_pixels": [
+        1204,
+        1222
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SM-hands.json"
+    },
+    "B06-SM-legs": {
+      "texture": "asset://equipment/b06_v1/B06-SM-legs-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "6e94f9daf21757ce6ef64638ad0a2557b5f6794a6da2b6631f592f1ca3d69e3f",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "legs",
+      "native_foreground_pixels": [
+        1173,
+        1203
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SM-legs.json"
+    },
+    "B06-SM-feet": {
+      "texture": "asset://equipment/b06_v1/B06-SM-feet-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "4e2b07088fe1cfc9d0213841a4821d04f83c250f1a108017bead0d6d83e0eb2d",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "native_foreground_pixels": [
+        1228,
+        1188
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SM-feet.json"
+    },
+    "B06-SM-ring": {
+      "texture": "asset://equipment/b06_v1/B06-SM-ring-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "cdc150684f1377df8c60eba902115a067e116762434be7765787ef2f22f4e57e",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "native_foreground_pixels": [
+        1150,
+        1100
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SM-ring.json"
+    },
+    "B06-SM-accessory": {
+      "texture": "asset://equipment/b06_v1/B06-SM-accessory-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "219161f6183792fc8d6293c6fb6a05d8a61151d6ca7aba34e51fece09ca0d937",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "native_foreground_pixels": [
+        877,
+        1207
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SM-accessory.json"
+    },
+    "B06-SM-weapon": {
+      "texture": "asset://equipment/b06_v1/B06-SM-weapon-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "fd3d1d7ba9de094e7b18d4954f663ca2244bed6772803a688f0769af98200ebb",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "weapon",
+      "native_foreground_pixels": [
+        1169,
+        1227
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SM-weapon.json"
+    },
+    "B06-SU-head": {
+      "texture": "asset://equipment/b06_v1/B06-SU-head-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "fb6b4dfe0cd89b95151913329391443944574cae2121c539f179ddee16f71cac",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "head",
+      "native_foreground_pixels": [
+        1217,
+        1023
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SU-head.json"
+    },
+    "B06-SU-chest": {
+      "texture": "asset://equipment/b06_v1/B06-SU-chest-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "d9480044673a18e66b2c093fd4a5153b456c52536de1a550f0d2c24c02de30da",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "chest",
+      "native_foreground_pixels": [
+        1237,
+        1120
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SU-chest.json"
+    },
+    "B06-SU-hands": {
+      "texture": "asset://equipment/b06_v1/B06-SU-hands-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "b92ec5a7cd076b62c17f6c3f0f40602fc997b555cda6eef9551992ecab9e9269",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "hands",
+      "native_foreground_pixels": [
+        1218,
+        1181
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SU-hands.json"
+    },
+    "B06-SU-legs": {
+      "texture": "asset://equipment/b06_v1/B06-SU-legs-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "40788afa83838ce2f12f09fafefa146faf8df2c911dde2cde3e4583cd435e0b1",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "legs",
+      "native_foreground_pixels": [
+        960,
+        1186
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SU-legs.json"
+    },
+    "B06-SU-feet": {
+      "texture": "asset://equipment/b06_v1/B06-SU-feet-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "221a95a26850d5d53647c485455c573947418138808219566f80f43c16c8108f",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "native_foreground_pixels": [
+        1180,
+        1204
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SU-feet.json"
+    },
+    "B06-SU-ring": {
+      "texture": "asset://equipment/b06_v1/B06-SU-ring-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "34a625500b4c13dee461f371b4bd110f5b2e50d483315590e643b3be3e02b88b",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "native_foreground_pixels": [
+        1129,
+        1148
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SU-ring.json"
+    },
+    "B06-SU-accessory": {
+      "texture": "asset://equipment/b06_v1/B06-SU-accessory-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "37d55df402e605a6c2dfad9cf5215ab1ec024000f6d091fe7b48817305b3f84c",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "native_foreground_pixels": [
+        1113,
+        1162
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SU-accessory.json"
+    },
+    "B06-SU-weapon": {
+      "texture": "asset://equipment/b06_v1/B06-SU-weapon-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "e02e5e4dd5d15b3ba720ed8c96736bc6c918ff85f0dec7b321595d5dbdde959c",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "weapon",
+      "native_foreground_pixels": [
+        1215,
+        1102
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-SU-weapon.json"
+    },
+    "B06-U01": {
+      "texture": "asset://equipment/b06_v1/B06-U01-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "676dfbd4aa003e24bb362977bc568efb6f93b75dbafc267ee7ab1774cebd4141",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "native_foreground_pixels": [
+        1243,
+        1089
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-U01.json"
+    },
+    "B06-U02": {
+      "texture": "asset://equipment/b06_v1/B06-U02-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "c5510b6e42547732fcaf2f15dd2492c6a1b063ad68ad20620bdc576ed43c209c",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "native_foreground_pixels": [
+        1123,
+        1131
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-U02.json"
+    },
+    "B06-U03": {
+      "texture": "asset://equipment/b06_v1/B06-U03-native-v1.png",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "sha256": "3d9ea2570fcd6a3b1f77d3f3c6298a1d56fdb9db1a4958d6ed565818fb66591b",
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "native_foreground_pixels": [
+        1185,
+        1155
+      ],
+      "provenance": "assets/generated/equipment/b06_v1/provenance/B06-U03.json"
+    }
+  }
+}

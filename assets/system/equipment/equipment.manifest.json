@@ -1,0 +1,3594 @@
+{
+  "version": 2,
+  "enabled": true,
+  "created_date": "2026-09-30",
+  "style": "明亮手绘卡通奇幻风，古典遗迹融合魔法蒸汽机械，高机位三分之四斜俯视、近等距构图，2.5D立体质感，暖阳光照与清新鲜明配色",
+  "items": {
+    "EQ01": {
+      "texture": "asset://equipment/storybook_weapon_v2.png",
+      "region": [
+        92,
+        106,
+        217,
+        225
+      ],
+      "slot": "weapon",
+      "name": "晴辉构装旅者核心",
+      "name_en": "Sunlit Constructs Traveler Core",
+      "visual": "方黄铜盒与单枚白定位针",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_weapon_v2.json",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "旧井定位芯",
+      "original_catalog_name_en": "Old-Shaft Locator Core",
+      "source_visual": "方黄铜盒与单枚白定位针",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；晴辉构装旅者核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ02": {
+      "texture": "asset://equipment/storybook_weapon_v2.png",
+      "region": [
+        481,
+        123,
+        239,
+        198
+      ],
+      "slot": "weapon",
+      "name": "琥珀虫族旅者核心",
+      "name_en": "Amber Brood Traveler Core",
+      "visual": "外露双弹簧与赤铜圆轴",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_weapon_v2.json",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "回环弹簧匣",
+      "original_catalog_name_en": "Loop-Spring Magazine",
+      "source_visual": "外露双弹簧与赤铜圆轴",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；琥珀虫族旅者核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ03": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "region": [
+        139,
+        152,
+        186,
+        190
+      ],
+      "slot": "weapon",
+      "name": "日曜炉心核心",
+      "name_en": "Solar Hearth Core",
+      "visual": "Gold/ivory solar-construct focus: amber core with three pale engraved metal petal clamps and visible clockwork side faces",
+      "source_size": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "引炉红芯",
+      "original_catalog_name_en": "Furnace Ember Core",
+      "source_visual": "琥珀炉芯包覆三片黑铁叶",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；日曜炉心核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "canonical_first4_race_art",
+      "previous_dimensional_art": {
+        "texture": "asset://equipment/storybook_weapon_v2.png",
+        "region": [
+          898,
+          117,
+          192,
+          215
+        ],
+        "source_size": [
+          1983,
+          793
+        ],
+        "sheet_metadata": "asset://equipment/storybook_weapon_v2.json"
+      },
+      "set_family": "S01"
+    },
+    "EQ04": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "region": [
+        567,
+        153,
+        212,
+        194
+      ],
+      "slot": "weapon",
+      "name": "鸣钟机关核心",
+      "name_en": "Chiming Clockwork Core",
+      "visual": "Ivory/gold magic-construct rail with three blue conductor prongs, floating brass contacts and contained sun-crystal energy arches",
+      "source_size": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "三叉鸣轨",
+      "original_catalog_name_en": "Three-Prong Singing Rail",
+      "source_visual": "三叉蓝轨与悬空铜触点",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；鸣钟机关核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "canonical_first4_race_art",
+      "previous_dimensional_art": {
+        "texture": "asset://equipment/storybook_weapon_v2.png",
+        "region": [
+          1274,
+          103,
+          231,
+          228
+        ],
+        "source_size": [
+          1983,
+          793
+        ],
+        "sheet_metadata": "asset://equipment/storybook_weapon_v2.json"
+      },
+      "set_family": "S02"
+    },
+    "EQ05": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "region": [
+        1003,
+        160,
+        204,
+        187
+      ],
+      "slot": "weapon",
+      "name": "凝露虫翼核心",
+      "name_en": "Dewwing Carapace Core",
+      "visual": "Notched white-chitin insect wing ringblade with ice-blue crystal-veined wing panels and curved mandible structure",
+      "source_size": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "潮冻环刃",
+      "original_catalog_name_en": "Frost-Tide Ring Blade",
+      "source_visual": "缺口白环嵌冰蓝波纹片",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；凝露虫翼核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "canonical_first4_race_art",
+      "previous_dimensional_art": {
+        "texture": "asset://equipment/storybook_weapon_v2.png",
+        "region": [
+          1661,
+          122,
+          231,
+          208
+        ],
+        "source_size": [
+          1983,
+          793
+        ],
+        "sheet_metadata": "asset://equipment/storybook_weapon_v2.json"
+      },
+      "set_family": "S03"
+    },
+    "EQ06": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "region": [
+        1436,
+        140,
+        186,
+        212
+      ],
+      "slot": "weapon",
+      "name": "蚁酸甲壳核心",
+      "name_en": "Formic Shell Core",
+      "visual": "Curved chitin stinger injector with acid-green crystal-fluid ampoule within brass capillary routing and insect shell braces",
+      "source_size": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "铜蚀滴注器",
+      "original_catalog_name_en": "Copper-Corrosion Injector",
+      "source_visual": "斜置绿液小瓶与铜色毛细管",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；蚁酸甲壳核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "canonical_first4_race_art",
+      "previous_dimensional_art": {
+        "texture": "asset://equipment/storybook_weapon_v2.png",
+        "region": [
+          78,
+          460,
+          230,
+          227
+        ],
+        "source_size": [
+          1983,
+          793
+        ],
+        "sheet_metadata": "asset://equipment/storybook_weapon_v2.json"
+      },
+      "set_family": "S04"
+    },
+    "EQ07": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "region": [
+        142,
+        549,
+        189,
+        198
+      ],
+      "slot": "weapon",
+      "name": "南瓜守夜核心",
+      "name_en": "Pumpkin Watch Core",
+      "visual": "Square coffin-ward lock with ivory bone frame, pumpkin-lantern glass, white shield-shaped central aperture and deep-plum inset",
+      "source_size": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "誓卫方锁",
+      "original_catalog_name_en": "Oathguard Square Lock",
+      "source_visual": "方锁中心亮白盾孔",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "canonical_first4_race_art",
+      "previous_dimensional_art": {
+        "texture": "asset://equipment/storybook_weapon_v2.png",
+        "region": [
+          490,
+          465,
+          224,
+          222
+        ],
+        "source_size": [
+          1983,
+          793
+        ],
+        "sheet_metadata": "asset://equipment/storybook_weapon_v2.json"
+      },
+      "set_family": "S05"
+    },
+    "EQ08": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "region": [
+        563,
+        532,
+        227,
+        220
+      ],
+      "slot": "weapon",
+      "name": "缝补回声核心",
+      "name_en": "Patchwork Echo Core",
+      "visual": "Yellow-seamed black gravestone counterweight between two bronze bell-pendulum hammer weights, with a tiny cheerful pumpkin-lantern spirit accent",
+      "source_size": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "断层配重芯",
+      "original_catalog_name_en": "Faultline Counterweight Core",
+      "source_visual": "黄裂黑石夹在对称悬锤中",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；缝补回声核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "canonical_first4_race_art",
+      "previous_dimensional_art": {
+        "texture": "asset://equipment/storybook_weapon_v2.png",
+        "region": [
+          860,
+          471,
+          265,
+          206
+        ],
+        "source_size": [
+          1983,
+          793
+        ],
+        "sheet_metadata": "asset://equipment/storybook_weapon_v2.json"
+      },
+      "set_family": "S06"
+    },
+    "EQ09": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "region": [
+        1005,
+        542,
+        220,
+        204
+      ],
+      "slot": "weapon",
+      "name": "战鼓猎牙核心",
+      "name_en": "Wardrum Fang Core",
+      "visual": "Orc tribal bone/brass calibrating sight: violet/indigo core with three carved bone measuring arms and redstone-capped studs",
+      "source_size": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "偏轴校准镜",
+      "original_catalog_name_en": "Off-Axis Calibration Lens",
+      "source_visual": "偏心紫镜与三枚刻度臂",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；战鼓猎牙核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "canonical_first4_race_art",
+      "previous_dimensional_art": {
+        "texture": "asset://equipment/storybook_weapon_v2.png",
+        "region": [
+          1270,
+          451,
+          250,
+          236
+        ],
+        "source_size": [
+          1983,
+          793
+        ],
+        "sheet_metadata": "asset://equipment/storybook_weapon_v2.json"
+      },
+      "set_family": "S07"
+    },
+    "EQ10": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "region": [
+        1434,
+        541,
+        200,
+        203
+      ],
+      "slot": "weapon",
+      "name": "风嚎图腾核心",
+      "name_en": "Windhowl Totem Core",
+      "visual": "Orc shaman wind-totem module: thin sky-blue fin between two sand-white feather tails, bone/brass hub and redstone studs",
+      "source_size": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "双尾风标",
+      "original_catalog_name_en": "Twin-Tail Wind Marker",
+      "source_visual": "两条沙白尾带夹天青薄鳍",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；风嚎图腾核心",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "canonical_first4_race_art",
+      "previous_dimensional_art": {
+        "texture": "asset://equipment/storybook_weapon_v2.png",
+        "region": [
+          1691,
+          452,
+          208,
+          242
+        ],
+        "source_size": [
+          1983,
+          793
+        ],
+        "sheet_metadata": "asset://equipment/storybook_weapon_v2.json"
+      },
+      "set_family": "S08"
+    },
+    "EQ11": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        125,
+        185,
+        207,
+        148
+      ],
+      "slot": "head",
+      "name": "南瓜守夜旅者冠盔",
+      "name_en": "Pumpkin Watch Traveler Helm",
+      "visual": "旧铜单目罩、米白布带",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "浅井护目罩",
+      "original_catalog_name_en": "Shallow-Shaft Eye Guard",
+      "source_visual": "旧铜单目罩、米白布带",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜旅者冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ12": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        498,
+        174,
+        221,
+        161
+      ],
+      "slot": "head",
+      "name": "赤岩战寨旅者冠盔",
+      "name_en": "Redrock Warband Traveler Helm",
+      "visual": "短檐灰帽与折叠白刻尺",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "远距测绘帽",
+      "original_catalog_name_en": "Long-Range Survey Cap",
+      "source_visual": "短檐灰帽与折叠白刻尺",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；赤岩战寨旅者冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ13": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        892,
+        129,
+        201,
+        211
+      ],
+      "slot": "head",
+      "name": "日曜炉心冠盔",
+      "name_en": "Solar Hearth Helm",
+      "visual": "后倾烟囱、小型琥珀视窗",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "司炉烟囱盔",
+      "original_catalog_name_en": "Stoker Chimney Helm",
+      "source_visual": "后倾烟囱、小型琥珀视窗",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；日曜炉心冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ14": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        1274,
+        172,
+        218,
+        164
+      ],
+      "slot": "head",
+      "name": "鸣钟机关冠盔",
+      "name_en": "Chiming Clockwork Helm",
+      "visual": "断开的铜环冠、蓝色侧耳",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "断音导电冠",
+      "original_catalog_name_en": "Broken-Tone Conductor Crown",
+      "source_visual": "断开的铜环冠、蓝色侧耳",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；鸣钟机关冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ15": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        1677,
+        145,
+        189,
+        213
+      ],
+      "slot": "head",
+      "name": "凝露虫翼冠盔",
+      "name_en": "Dewwing Carapace Helm",
+      "visual": "贝壳叠片遮面与水滴眼缝",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "霜潮贝壳面",
+      "original_catalog_name_en": "Frost-Tide Shell Mask",
+      "source_visual": "贝壳叠片遮面与水滴眼缝",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；凝露虫翼冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ16": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        95,
+        510,
+        236,
+        177
+      ],
+      "slot": "head",
+      "name": "蚁酸甲壳冠盔",
+      "name_en": "Formic Shell Helm",
+      "visual": "双绿滤筒与铜网呼吸口",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "铜蚀滤气罩",
+      "original_catalog_name_en": "Verdigris Filter Mask",
+      "source_visual": "双绿滤筒与铜网呼吸口",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；蚁酸甲壳冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ17": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        501,
+        488,
+        226,
+        207
+      ],
+      "slot": "head",
+      "name": "南瓜守夜冠盔",
+      "name_en": "Pumpkin Watch Helm",
+      "visual": "黑铁方额与暖白中央楔纹",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "誓卫垛口盔",
+      "original_catalog_name_en": "Oathguard Battlement Helm",
+      "source_visual": "黑铁方额与暖白中央楔纹",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ18": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        887,
+        508,
+        213,
+        212
+      ],
+      "slot": "head",
+      "name": "缝补回声冠盔",
+      "name_en": "Patchwork Echo Helm",
+      "visual": "左右不等大的岩片护耳",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "断层听岩罩",
+      "original_catalog_name_en": "Faultline Listening Hood",
+      "source_visual": "左右不等大的岩片护耳",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；缝补回声冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ19": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        1272,
+        525,
+        242,
+        160
+      ],
+      "slot": "head",
+      "name": "战鼓猎牙冠盔",
+      "name_en": "Wardrum Fang Helm",
+      "visual": "三片不等大紫色复眼镜",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "棱镜复眼罩",
+      "original_catalog_name_en": "Prism Compound Visor",
+      "source_visual": "三片不等大紫色复眼镜",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；战鼓猎牙冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ20": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "region": [
+        1662,
+        491,
+        233,
+        220
+      ],
+      "slot": "head",
+      "name": "风嚎图腾冠盔",
+      "name_en": "Windhowl Totem Helm",
+      "visual": "天青折页侧巾与白色箭形额结",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_head_v2.json",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "逐风折页巾",
+      "original_catalog_name_en": "Windcourier Folded Scarf",
+      "source_visual": "天青折页侧巾与白色箭形额结",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；风嚎图腾冠盔",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ21": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        103,
+        129,
+        229,
+        199
+      ],
+      "slot": "chest",
+      "name": "晴辉构装旅者胸甲",
+      "name_en": "Sunlit Constructs Traveler Armor",
+      "visual": "土灰短衣、三块不同铜补片",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "补片勘探衣",
+      "original_catalog_name_en": "Patched Survey Coat",
+      "source_visual": "土灰短衣、三块不同铜补片",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；晴辉构装旅者胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ22": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        495,
+        125,
+        212,
+        202
+      ],
+      "slot": "chest",
+      "name": "琥珀虫族旅者胸甲",
+      "name_en": "Amber Brood Traveler Armor",
+      "visual": "十字背带与左右等大配重袋",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "平衡负载背心",
+      "original_catalog_name_en": "Balanced-Load Vest",
+      "source_visual": "十字背带与左右等大配重袋",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；琥珀虫族旅者胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ23": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        878,
+        122,
+        219,
+        208
+      ],
+      "slot": "chest",
+      "name": "日曜炉心胸甲",
+      "name_en": "Solar Hearth Armor",
+      "visual": "短厚煤灰袍、下摆橙色炉格",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "司炉耐焰袍",
+      "original_catalog_name_en": "Stoker Flameproof Mantle",
+      "source_visual": "短厚煤灰袍、下摆橙色炉格",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；日曜炉心胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ24": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        1271,
+        122,
+        232,
+        211
+      ],
+      "slot": "chest",
+      "name": "鸣钟机关胸甲",
+      "name_en": "Chiming Clockwork Armor",
+      "visual": "靛蓝绝缘肩板与不闭合铜线",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "鸣轨绝缘衣",
+      "original_catalog_name_en": "Singing-Rail Insulator Coat",
+      "source_visual": "靛蓝绝缘肩板与不闭合铜线",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；鸣钟机关胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ25": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        1647,
+        127,
+        229,
+        206
+      ],
+      "slot": "chest",
+      "name": "凝露虫翼胸甲",
+      "name_en": "Dewwing Carapace Armor",
+      "visual": "白贝胸甲、蓝色半透明边缘",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "霜潮层壳甲",
+      "original_catalog_name_en": "Frost-Tide Layered Shell",
+      "source_visual": "白贝胸甲、蓝色半透明边缘",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；凝露虫翼胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ26": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        117,
+        475,
+        205,
+        209
+      ],
+      "slot": "chest",
+      "name": "蚁酸甲壳胸甲",
+      "name_en": "Formic Shell Armor",
+      "visual": "青铜围衣、单侧绿液分流管",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "铜蚀分流围衣",
+      "original_catalog_name_en": "Verdigris Diversion Apron",
+      "source_visual": "青铜围衣、单侧绿液分流管",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；蚁酸甲壳胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ27": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        482,
+        474,
+        239,
+        209
+      ],
+      "slot": "chest",
+      "name": "南瓜守夜胸甲",
+      "name_en": "Pumpkin Watch Armor",
+      "visual": "两重矩形甲、中央白色城门纹",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "誓卫壁垒胸甲",
+      "original_catalog_name_en": "Oathguard Bulwark Plate",
+      "source_visual": "两重矩形甲、中央白色城门纹",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ28": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        884,
+        472,
+        222,
+        211
+      ],
+      "slot": "chest",
+      "name": "缝补回声胸甲",
+      "name_en": "Patchwork Echo Armor",
+      "visual": "胸前单块悬岩、黄线铆钉框",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "断层悬锤甲",
+      "original_catalog_name_en": "Faultline Hanging-Hammer Plate",
+      "source_visual": "胸前单块悬岩、黄线铆钉框",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；缝补回声胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ29": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        1273,
+        466,
+        229,
+        233
+      ],
+      "slot": "chest",
+      "name": "战鼓猎牙胸甲",
+      "name_en": "Wardrum Fang Armor",
+      "visual": "左长右短紫黑披衣、白刻度边",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "棱镜折光披衣",
+      "original_catalog_name_en": "Prism Refraction Mantle",
+      "source_visual": "左长右短紫黑披衣、白刻度边",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；战鼓猎牙胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ30": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "region": [
+        1644,
+        471,
+        246,
+        228
+      ],
+      "slot": "chest",
+      "name": "风嚎图腾胸甲",
+      "name_en": "Windhowl Totem Armor",
+      "visual": "鳍状腋片与双短尾白衣",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_chest_v2.json",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "逐风滑翔短衣",
+      "original_catalog_name_en": "Windcourier Gliding Jacket",
+      "source_visual": "鳍状腋片与双短尾白衣",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；风嚎图腾胸甲",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ31": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        102,
+        112,
+        229,
+        224
+      ],
+      "slot": "hands",
+      "name": "南瓜守夜旅者护手",
+      "name_en": "Pumpkin Watch Traveler Gauntlets",
+      "visual": "粗灰手套配方铜扣",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "铜扣工手套",
+      "original_catalog_name_en": "Copper-Buckle Work Gloves",
+      "source_visual": "粗灰手套配方铜扣",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜旅者护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ32": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        471,
+        94,
+        237,
+        251
+      ],
+      "slot": "hands",
+      "name": "赤岩战寨旅者护手",
+      "name_en": "Redrock Warband Traveler Gauntlets",
+      "visual": "手背单枚红铜齿轮与指节刻线",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "节拍拨轮腕",
+      "original_catalog_name_en": "Rhythm-Dial Bracers",
+      "source_visual": "手背单枚红铜齿轮与指节刻线",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；赤岩战寨旅者护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ33": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        871,
+        103,
+        232,
+        239
+      ],
+      "slot": "hands",
+      "name": "日曜炉心护手",
+      "name_en": "Solar Hearth Gauntlets",
+      "visual": "黑铁夹指、橙色隔热指缝",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "司炉炭夹手",
+      "original_catalog_name_en": "Stoker Coal-Tongs",
+      "source_visual": "黑铁夹指、橙色隔热指缝",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；日曜炉心护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ34": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        1251,
+        98,
+        227,
+        253
+      ],
+      "slot": "hands",
+      "name": "鸣钟机关护手",
+      "name_en": "Chiming Clockwork Gauntlets",
+      "visual": "双铜触指连接蓝色腕盒",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "鸣轨触点手",
+      "original_catalog_name_en": "Singing-Rail Contact Gloves",
+      "source_visual": "双铜触指连接蓝色腕盒",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；鸣钟机关护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ35": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        1622,
+        102,
+        245,
+        249
+      ],
+      "slot": "hands",
+      "name": "凝露虫翼护手",
+      "name_en": "Dewwing Carapace Gauntlets",
+      "visual": "三角冰片指背与白皮腕缘",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "霜潮采冰手",
+      "original_catalog_name_en": "Frost-Tide Ice-Harvesting Gloves",
+      "source_visual": "三角冰片指背与白皮腕缘",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；凝露虫翼护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ36": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        97,
+        455,
+        230,
+        259
+      ],
+      "slot": "hands",
+      "name": "蚁酸甲壳护手",
+      "name_en": "Formic Shell Gauntlets",
+      "visual": "铜质细指环连接绿滴腕管",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "铜蚀滴定手",
+      "original_catalog_name_en": "Verdigris Titration Gloves",
+      "source_visual": "铜质细指环连接绿滴腕管",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；蚁酸甲壳护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ37": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        471,
+        458,
+        233,
+        252
+      ],
+      "slot": "hands",
+      "name": "南瓜守夜护手",
+      "name_en": "Pumpkin Watch Gauntlets",
+      "visual": "方形铆钉拳面与暖白腕环",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "誓卫铆钉手",
+      "original_catalog_name_en": "Oathguard Rivet Gauntlets",
+      "source_visual": "方形铆钉拳面与暖白腕环",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ38": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        862,
+        461,
+        233,
+        250
+      ],
+      "slot": "hands",
+      "name": "缝补回声护手",
+      "name_en": "Patchwork Echo Gauntlets",
+      "visual": "黑石指锤与外露黄色减震簧",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "断层震钉手",
+      "original_catalog_name_en": "Faultline Tremor Spikes",
+      "source_visual": "黑石指锤与外露黄色减震簧",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；缝补回声护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ39": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        1243,
+        462,
+        240,
+        252
+      ],
+      "slot": "hands",
+      "name": "战鼓猎牙护手",
+      "name_en": "Wardrum Fang Gauntlets",
+      "visual": "细白刻线绕紫玻璃指套",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "棱镜刻线手",
+      "original_catalog_name_en": "Prism Scribed Gloves",
+      "source_visual": "细白刻线绕紫玻璃指套",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；战鼓猎牙护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ40": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "region": [
+        1633,
+        453,
+        264,
+        261
+      ],
+      "slot": "hands",
+      "name": "风嚎图腾护手",
+      "name_en": "Windhowl Totem Gauntlets",
+      "visual": "蓝色卷索腕与双尾绳结",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_hands_v2.json",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "逐风牵索手",
+      "original_catalog_name_en": "Windcourier Cable Gloves",
+      "source_visual": "蓝色卷索腕与双尾绳结",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；风嚎图腾护手",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ41": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        76,
+        111,
+        237,
+        232
+      ],
+      "slot": "feet",
+      "name": "晴辉构装旅者战靴",
+      "name_en": "Sunlit Constructs Traveler Boots",
+      "visual": "宽灰靴头、外折铜边",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        0,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "折边矿靴",
+      "original_catalog_name_en": "Folded-Rim Mining Boots",
+      "source_visual": "宽灰靴头、外折铜边",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；晴辉构装旅者战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ42": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        462,
+        153,
+        261,
+        188
+      ],
+      "slot": "feet",
+      "name": "琥珀虫族旅者战靴",
+      "name_en": "Amber Brood Traveler Boots",
+      "visual": "窄红铜底轨与白色鞋扣",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        396,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "轻轨巡检鞋",
+      "original_catalog_name_en": "Light-Rail Inspection Shoes",
+      "source_visual": "窄红铜底轨与白色鞋扣",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；琥珀虫族旅者战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ43": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        851,
+        107,
+        251,
+        235
+      ],
+      "slot": "feet",
+      "name": "日曜炉心战靴",
+      "name_en": "Solar Hearth Boots",
+      "visual": "后跟炉渣盒与三道橙色排口",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        793,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "司炉排渣靴",
+      "original_catalog_name_en": "Stoker Slag-Vent Boots",
+      "source_visual": "后跟炉渣盒与三道橙色排口",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；日曜炉心战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ44": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        1269,
+        112,
+        218,
+        235
+      ],
+      "slot": "feet",
+      "name": "鸣钟机关战靴",
+      "name_en": "Chiming Clockwork Boots",
+      "visual": "分离蓝色底片、铜环脚踝",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        1189,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "鸣轨磁悬靴",
+      "original_catalog_name_en": "Singing-Rail Maglev Boots",
+      "source_visual": "分离蓝色底片、铜环脚踝",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；鸣钟机关战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ45": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        1654,
+        110,
+        215,
+        238
+      ],
+      "slot": "feet",
+      "name": "凝露虫翼战靴",
+      "name_en": "Dewwing Carapace Boots",
+      "visual": "贝片包踝、锯齿冰蓝鞋底",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "霜潮破冰靴",
+      "original_catalog_name_en": "Frost-Tide Icebreaker Boots",
+      "source_visual": "贝片包踝、锯齿冰蓝鞋底",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；凝露虫翼战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ46": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        77,
+        478,
+        254,
+        237
+      ],
+      "slot": "feet",
+      "name": "蚁酸甲壳战靴",
+      "name_en": "Formic Shell Boots",
+      "visual": "内侧绿液窗、铜色导流槽",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        0,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "铜蚀导流靴",
+      "original_catalog_name_en": "Verdigris Channel Boots",
+      "source_visual": "内侧绿液窗、铜色导流槽",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；蚁酸甲壳战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ47": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        467,
+        468,
+        240,
+        256
+      ],
+      "slot": "feet",
+      "name": "南瓜守夜战靴",
+      "name_en": "Pumpkin Watch Boots",
+      "visual": "高帮方形黑靴、白色基座纹",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        396,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "誓卫城根靴",
+      "original_catalog_name_en": "Oathguard Foundation Boots",
+      "source_visual": "高帮方形黑靴、白色基座纹",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ48": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        854,
+        473,
+        267,
+        243
+      ],
+      "slot": "feet",
+      "name": "缝补回声战靴",
+      "name_en": "Patchwork Echo Boots",
+      "visual": "两层黑岩厚底与黄色绑带",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        793,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "断层压岩靴",
+      "original_catalog_name_en": "Faultline Rock-Press Boots",
+      "source_visual": "两层黑岩厚底与黄色绑带",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；缝补回声战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ49": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        1269,
+        470,
+        225,
+        246
+      ],
+      "slot": "feet",
+      "name": "战鼓猎牙战靴",
+      "name_en": "Wardrum Fang Boots",
+      "visual": "刻度分段鞋面与紫色窄跟",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        1189,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "棱镜量步靴",
+      "original_catalog_name_en": "Prism Measuring-Step Boots",
+      "source_visual": "刻度分段鞋面与紫色窄跟",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；战鼓猎牙战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ50": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "region": [
+        1627,
+        478,
+        258,
+        232
+      ],
+      "slot": "feet",
+      "name": "风嚎图腾战靴",
+      "name_en": "Windhowl Totem Boots",
+      "visual": "外翻天青侧鳍与沙白薄鞋身",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_feet_v2.json",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "逐风侧鳍鞋",
+      "original_catalog_name_en": "Windcourier Side-Fin Shoes",
+      "source_visual": "外翻天青侧鳍与沙白薄鞋身",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；风嚎图腾战靴",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ51": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        144,
+        154,
+        170,
+        159
+      ],
+      "slot": "charm",
+      "name": "南瓜守夜旅者护符",
+      "name_en": "Pumpkin Watch Traveler Charm",
+      "visual": "缺一角黄铜罗盘与红线绳",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "营地旧罗盘",
+      "original_catalog_name_en": "Old Camp Compass",
+      "source_visual": "缺一角黄铜罗盘与红线绳",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜旅者护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ52": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        534,
+        147,
+        163,
+        165
+      ],
+      "slot": "charm",
+      "name": "赤岩战寨旅者护符",
+      "name_en": "Redrock Warband Traveler Charm",
+      "visual": "双层机械翻页数牌",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "余量计数牌",
+      "original_catalog_name_en": "Reserve Counter Tag",
+      "source_visual": "双层机械翻页数牌",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；赤岩战寨旅者护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ53": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        941,
+        144,
+        122,
+        160
+      ],
+      "slot": "charm",
+      "name": "日曜炉心护符",
+      "name_en": "Solar Hearth Charm",
+      "visual": "豆形小炉、单点琥珀内光",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "不灭小炉坠",
+      "original_catalog_name_en": "Undying Furnace Pendant",
+      "source_visual": "豆形小炉、单点琥珀内光",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；日曜炉心护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ54": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        1323,
+        139,
+        116,
+        172
+      ],
+      "slot": "charm",
+      "name": "鸣钟机关护符",
+      "name_en": "Chiming Clockwork Charm",
+      "visual": "半闭铜音叉悬一颗蓝珠",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ],
+      "original_catalog_name": "闭环音叉坠",
+      "original_catalog_name_en": "Closed-Loop Tuning Pendant",
+      "source_visual": "半闭铜音叉悬一颗蓝珠",
+      "race_id": "B01",
+      "race_name": "晴辉构装",
+      "race_name_en": "Sunlit Constructs",
+      "race_material": "白石、黄铜齿轮与青蓝魔晶",
+      "template_visual": "白石、黄铜齿轮与青蓝魔晶；鸣钟机关护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ55": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        1712,
+        137,
+        105,
+        179
+      ],
+      "slot": "charm",
+      "name": "凝露虫翼护符",
+      "name_en": "Dewwing Carapace Charm",
+      "visual": "倒挂冰滴里封存白色小贝",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ],
+      "original_catalog_name": "封潮滴晶",
+      "original_catalog_name_en": "Sealed-Tide Crystal Drop",
+      "source_visual": "倒挂冰滴里封存白色小贝",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；凝露虫翼护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ56": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        162,
+        497,
+        120,
+        173
+      ],
+      "slot": "charm",
+      "name": "蚁酸甲壳护符",
+      "name_en": "Formic Shell Charm",
+      "visual": "绿沙漏、铜蚀不对称支架",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "铜绿砂漏",
+      "original_catalog_name_en": "Verdigris Hourglass",
+      "source_visual": "绿沙漏、铜蚀不对称支架",
+      "race_id": "B02",
+      "race_name": "琥珀虫族",
+      "race_name_en": "Amber Brood",
+      "race_material": "彩色甲壳、虫翼、琥珀与蚁酸晶体",
+      "template_visual": "彩色甲壳、虫翼、琥珀与蚁酸晶体；蚁酸甲壳护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ57": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        529,
+        496,
+        145,
+        167
+      ],
+      "slot": "charm",
+      "name": "南瓜守夜护符",
+      "name_en": "Pumpkin Watch Charm",
+      "visual": "黑铁方牌贯穿白色竖线",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "未折誓牌",
+      "original_catalog_name_en": "Unbroken Oath Tag",
+      "source_visual": "黑铁方牌贯穿白色竖线",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；南瓜守夜护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ58": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        916,
+        504,
+        158,
+        164
+      ],
+      "slot": "charm",
+      "name": "缝补回声护符",
+      "name_en": "Patchwork Echo Charm",
+      "visual": "掌心黑石被赭黄音波纹切开",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "断层回声石",
+      "original_catalog_name_en": "Faultline Echo Stone",
+      "source_visual": "掌心黑石被赭黄音波纹切开",
+      "race_id": "B03",
+      "race_name": "南瓜守夜",
+      "race_name_en": "Pumpkin Watch",
+      "race_material": "南瓜灯、缝补布料、木桶与薄荷铜扣",
+      "template_visual": "南瓜灯、缝补布料、木桶与薄荷铜扣；缝补回声护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ59": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        1292,
+        514,
+        191,
+        144
+      ],
+      "slot": "charm",
+      "name": "战鼓猎牙护符",
+      "name_en": "Wardrum Fang Charm",
+      "visual": "七格白尺与悬浮紫色细针",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ],
+      "original_catalog_name": "第七刻度针",
+      "original_catalog_name_en": "Seventh-Graduation Needle",
+      "source_visual": "七格白尺与悬浮紫色细针",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；战鼓猎牙护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    },
+    "EQ60": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "region": [
+        1700,
+        496,
+        183,
+        178
+      ],
+      "slot": "charm",
+      "name": "风嚎图腾护符",
+      "name_en": "Windhowl Totem Charm",
+      "visual": "无撞锤白风铃、双天青尾带",
+      "source_size": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sheet_metadata": "asset://equipment/storybook_charm_v2.json",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ],
+      "original_catalog_name": "空邮风铃",
+      "original_catalog_name_en": "Empty-Post Wind Chime",
+      "source_visual": "无撞锤白风铃、双天青尾带",
+      "race_id": "B04",
+      "race_name": "赤岩战寨",
+      "race_name_en": "Redrock Warband",
+      "race_material": "赤陶、战鼓皮革、兽牙与靛蓝图腾",
+      "template_visual": "赤陶、战鼓皮革、兽牙与靛蓝图腾；风嚎图腾护符",
+      "canonical_plan": "12_levels_first4",
+      "race_art_status": "initial_dimensional_shapes"
+    }
+  },
+  "sheets": {
+    "weapon": {
+      "texture": "asset://equipment/storybook_weapon_v2.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sha256": "cd9bcb4b088ffa4a9fb2ec750305c0c3991a542a159d3514e4dab0281d5b6864",
+      "items": [
+        "EQ01",
+        "EQ02",
+        "EQ03",
+        "EQ04",
+        "EQ05",
+        "EQ06",
+        "EQ07",
+        "EQ08",
+        "EQ09",
+        "EQ10"
+      ],
+      "regions_manifest": "asset://equipment/storybook_weapon_v2.regions.json",
+      "provenance": "asset://equipment/storybook_weapon_v2.json",
+      "visible_uncovered_pixels": 0,
+      "visible_outer_edge_pixels": 0,
+      "measurement": [
+        {
+          "id": "EQ01",
+          "region": [
+            92,
+            106,
+            217,
+            225
+          ],
+          "visible_pixels": 28716
+        },
+        {
+          "id": "EQ02",
+          "region": [
+            481,
+            123,
+            239,
+            198
+          ],
+          "visible_pixels": 31584
+        },
+        {
+          "id": "EQ03",
+          "region": [
+            898,
+            117,
+            192,
+            215
+          ],
+          "visible_pixels": 28565
+        },
+        {
+          "id": "EQ04",
+          "region": [
+            1274,
+            103,
+            231,
+            228
+          ],
+          "visible_pixels": 23246
+        },
+        {
+          "id": "EQ05",
+          "region": [
+            1661,
+            122,
+            231,
+            208
+          ],
+          "visible_pixels": 31278
+        },
+        {
+          "id": "EQ06",
+          "region": [
+            78,
+            460,
+            230,
+            227
+          ],
+          "visible_pixels": 21230
+        },
+        {
+          "id": "EQ07",
+          "region": [
+            490,
+            465,
+            224,
+            222
+          ],
+          "visible_pixels": 40543
+        },
+        {
+          "id": "EQ08",
+          "region": [
+            860,
+            471,
+            265,
+            206
+          ],
+          "visible_pixels": 31016
+        },
+        {
+          "id": "EQ09",
+          "region": [
+            1270,
+            451,
+            250,
+            236
+          ],
+          "visible_pixels": 22866
+        },
+        {
+          "id": "EQ10",
+          "region": [
+            1691,
+            452,
+            208,
+            242
+          ],
+          "visible_pixels": 22057
+        }
+      ]
+    },
+    "head": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sha256": "669cf55684c8e3c9ad1a4ede960fdb6b936e36eb877c9cfead1b7e2320396b20",
+      "items": [
+        "EQ11",
+        "EQ12",
+        "EQ13",
+        "EQ14",
+        "EQ15",
+        "EQ16",
+        "EQ17",
+        "EQ18",
+        "EQ19",
+        "EQ20"
+      ],
+      "regions_manifest": "asset://equipment/storybook_head_v2.regions.json",
+      "provenance": "asset://equipment/storybook_head_v2.json",
+      "visible_uncovered_pixels": 0,
+      "visible_outer_edge_pixels": 0,
+      "measurement": [
+        {
+          "id": "EQ11",
+          "region": [
+            125,
+            185,
+            207,
+            148
+          ],
+          "visible_pixels": 21463
+        },
+        {
+          "id": "EQ12",
+          "region": [
+            498,
+            174,
+            221,
+            161
+          ],
+          "visible_pixels": 24658
+        },
+        {
+          "id": "EQ13",
+          "region": [
+            892,
+            129,
+            201,
+            211
+          ],
+          "visible_pixels": 26808
+        },
+        {
+          "id": "EQ14",
+          "region": [
+            1274,
+            172,
+            218,
+            164
+          ],
+          "visible_pixels": 17954
+        },
+        {
+          "id": "EQ15",
+          "region": [
+            1677,
+            145,
+            189,
+            213
+          ],
+          "visible_pixels": 25731
+        },
+        {
+          "id": "EQ16",
+          "region": [
+            95,
+            510,
+            236,
+            177
+          ],
+          "visible_pixels": 28313
+        },
+        {
+          "id": "EQ17",
+          "region": [
+            501,
+            488,
+            226,
+            207
+          ],
+          "visible_pixels": 30003
+        },
+        {
+          "id": "EQ18",
+          "region": [
+            887,
+            508,
+            213,
+            212
+          ],
+          "visible_pixels": 30837
+        },
+        {
+          "id": "EQ19",
+          "region": [
+            1272,
+            525,
+            242,
+            160
+          ],
+          "visible_pixels": 27678
+        },
+        {
+          "id": "EQ20",
+          "region": [
+            1662,
+            491,
+            233,
+            220
+          ],
+          "visible_pixels": 29231
+        }
+      ]
+    },
+    "chest": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sha256": "0cc6230777984fe9fcc64c97dc15ddc5401fb6ff221c92eced4bdb54b6c9b5b3",
+      "items": [
+        "EQ21",
+        "EQ22",
+        "EQ23",
+        "EQ24",
+        "EQ25",
+        "EQ26",
+        "EQ27",
+        "EQ28",
+        "EQ29",
+        "EQ30"
+      ],
+      "regions_manifest": "asset://equipment/storybook_chest_v2.regions.json",
+      "provenance": "asset://equipment/storybook_chest_v2.json",
+      "visible_uncovered_pixels": 0,
+      "visible_outer_edge_pixels": 0,
+      "measurement": [
+        {
+          "id": "EQ21",
+          "region": [
+            103,
+            129,
+            229,
+            199
+          ],
+          "visible_pixels": 30350
+        },
+        {
+          "id": "EQ22",
+          "region": [
+            495,
+            125,
+            212,
+            202
+          ],
+          "visible_pixels": 31840
+        },
+        {
+          "id": "EQ23",
+          "region": [
+            878,
+            122,
+            219,
+            208
+          ],
+          "visible_pixels": 31479
+        },
+        {
+          "id": "EQ24",
+          "region": [
+            1271,
+            122,
+            232,
+            211
+          ],
+          "visible_pixels": 33189
+        },
+        {
+          "id": "EQ25",
+          "region": [
+            1647,
+            127,
+            229,
+            206
+          ],
+          "visible_pixels": 33097
+        },
+        {
+          "id": "EQ26",
+          "region": [
+            117,
+            475,
+            205,
+            209
+          ],
+          "visible_pixels": 31296
+        },
+        {
+          "id": "EQ27",
+          "region": [
+            482,
+            474,
+            239,
+            209
+          ],
+          "visible_pixels": 35572
+        },
+        {
+          "id": "EQ28",
+          "region": [
+            884,
+            472,
+            222,
+            211
+          ],
+          "visible_pixels": 32890
+        },
+        {
+          "id": "EQ29",
+          "region": [
+            1273,
+            466,
+            229,
+            233
+          ],
+          "visible_pixels": 29933
+        },
+        {
+          "id": "EQ30",
+          "region": [
+            1644,
+            471,
+            246,
+            228
+          ],
+          "visible_pixels": 27979
+        }
+      ]
+    },
+    "hands": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sha256": "b574d5313a6d2f4ee57df843a54dfcfce48cc82fbb3cd58264625dc60be97157",
+      "items": [
+        "EQ31",
+        "EQ32",
+        "EQ33",
+        "EQ34",
+        "EQ35",
+        "EQ36",
+        "EQ37",
+        "EQ38",
+        "EQ39",
+        "EQ40"
+      ],
+      "regions_manifest": "asset://equipment/storybook_hands_v2.regions.json",
+      "provenance": "asset://equipment/storybook_hands_v2.json",
+      "visible_uncovered_pixels": 0,
+      "visible_outer_edge_pixels": 0,
+      "measurement": [
+        {
+          "id": "EQ31",
+          "region": [
+            102,
+            112,
+            229,
+            224
+          ],
+          "visible_pixels": 28948
+        },
+        {
+          "id": "EQ32",
+          "region": [
+            471,
+            94,
+            237,
+            251
+          ],
+          "visible_pixels": 32030
+        },
+        {
+          "id": "EQ33",
+          "region": [
+            871,
+            103,
+            232,
+            239
+          ],
+          "visible_pixels": 31406
+        },
+        {
+          "id": "EQ34",
+          "region": [
+            1251,
+            98,
+            227,
+            253
+          ],
+          "visible_pixels": 31611
+        },
+        {
+          "id": "EQ35",
+          "region": [
+            1622,
+            102,
+            245,
+            249
+          ],
+          "visible_pixels": 34448
+        },
+        {
+          "id": "EQ36",
+          "region": [
+            97,
+            455,
+            230,
+            259
+          ],
+          "visible_pixels": 34312
+        },
+        {
+          "id": "EQ37",
+          "region": [
+            471,
+            458,
+            233,
+            252
+          ],
+          "visible_pixels": 36574
+        },
+        {
+          "id": "EQ38",
+          "region": [
+            862,
+            461,
+            233,
+            250
+          ],
+          "visible_pixels": 38441
+        },
+        {
+          "id": "EQ39",
+          "region": [
+            1243,
+            462,
+            240,
+            252
+          ],
+          "visible_pixels": 33438
+        },
+        {
+          "id": "EQ40",
+          "region": [
+            1633,
+            453,
+            264,
+            261
+          ],
+          "visible_pixels": 40063
+        }
+      ]
+    },
+    "feet": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sha256": "b1b366758e66cfc9631f58f8966376d08e62dbc4a1c59967f942c72137636a0c",
+      "items": [
+        "EQ41",
+        "EQ42",
+        "EQ43",
+        "EQ44",
+        "EQ45",
+        "EQ46",
+        "EQ47",
+        "EQ48",
+        "EQ49",
+        "EQ50"
+      ],
+      "regions_manifest": "asset://equipment/storybook_feet_v2.regions.json",
+      "provenance": "asset://equipment/storybook_feet_v2.json",
+      "visible_uncovered_pixels": 0,
+      "visible_outer_edge_pixels": 0,
+      "measurement": [
+        {
+          "id": "EQ41",
+          "region": [
+            76,
+            111,
+            237,
+            232
+          ],
+          "visible_pixels": 35736
+        },
+        {
+          "id": "EQ42",
+          "region": [
+            462,
+            153,
+            261,
+            188
+          ],
+          "visible_pixels": 28251
+        },
+        {
+          "id": "EQ43",
+          "region": [
+            851,
+            107,
+            251,
+            235
+          ],
+          "visible_pixels": 36697
+        },
+        {
+          "id": "EQ44",
+          "region": [
+            1269,
+            112,
+            218,
+            235
+          ],
+          "visible_pixels": 34037
+        },
+        {
+          "id": "EQ45",
+          "region": [
+            1654,
+            110,
+            215,
+            238
+          ],
+          "visible_pixels": 31187
+        },
+        {
+          "id": "EQ46",
+          "region": [
+            77,
+            478,
+            254,
+            237
+          ],
+          "visible_pixels": 36540
+        },
+        {
+          "id": "EQ47",
+          "region": [
+            467,
+            468,
+            240,
+            256
+          ],
+          "visible_pixels": 35530
+        },
+        {
+          "id": "EQ48",
+          "region": [
+            854,
+            473,
+            267,
+            243
+          ],
+          "visible_pixels": 40751
+        },
+        {
+          "id": "EQ49",
+          "region": [
+            1269,
+            470,
+            225,
+            246
+          ],
+          "visible_pixels": 30112
+        },
+        {
+          "id": "EQ50",
+          "region": [
+            1627,
+            478,
+            258,
+            232
+          ],
+          "visible_pixels": 30659
+        }
+      ]
+    },
+    "charm": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "alpha_threshold": 16,
+      "sha256": "ec4d495cd38185b4e5049027b3c95709d9ae0bec0466dcd9b79af6aaf57d352e",
+      "items": [
+        "EQ51",
+        "EQ52",
+        "EQ53",
+        "EQ54",
+        "EQ55",
+        "EQ56",
+        "EQ57",
+        "EQ58",
+        "EQ59",
+        "EQ60"
+      ],
+      "regions_manifest": "asset://equipment/storybook_charm_v2.regions.json",
+      "provenance": "asset://equipment/storybook_charm_v2.json",
+      "visible_uncovered_pixels": 0,
+      "visible_outer_edge_pixels": 0,
+      "measurement": [
+        {
+          "id": "EQ51",
+          "region": [
+            144,
+            154,
+            170,
+            159
+          ],
+          "visible_pixels": 17612
+        },
+        {
+          "id": "EQ52",
+          "region": [
+            534,
+            147,
+            163,
+            165
+          ],
+          "visible_pixels": 17892
+        },
+        {
+          "id": "EQ53",
+          "region": [
+            941,
+            144,
+            122,
+            160
+          ],
+          "visible_pixels": 11792
+        },
+        {
+          "id": "EQ54",
+          "region": [
+            1323,
+            139,
+            116,
+            172
+          ],
+          "visible_pixels": 10852
+        },
+        {
+          "id": "EQ55",
+          "region": [
+            1712,
+            137,
+            105,
+            179
+          ],
+          "visible_pixels": 10451
+        },
+        {
+          "id": "EQ56",
+          "region": [
+            162,
+            497,
+            120,
+            173
+          ],
+          "visible_pixels": 14166
+        },
+        {
+          "id": "EQ57",
+          "region": [
+            529,
+            496,
+            145,
+            167
+          ],
+          "visible_pixels": 12841
+        },
+        {
+          "id": "EQ58",
+          "region": [
+            916,
+            504,
+            158,
+            164
+          ],
+          "visible_pixels": 17482
+        },
+        {
+          "id": "EQ59",
+          "region": [
+            1292,
+            514,
+            191,
+            144
+          ],
+          "visible_pixels": 9821
+        },
+        {
+          "id": "EQ60",
+          "region": [
+            1700,
+            496,
+            183,
+            178
+          ],
+          "visible_pixels": 14644
+        }
+      ]
+    }
+  },
+  "coverage": {
+    "expected": 60,
+    "actual": 60,
+    "unique_ids": 60,
+    "matches_equipment_json": true
+  },
+  "validation": {
+    "regions_within_source": true,
+    "regions_disjoint": true,
+    "visible_alpha_fully_captured": true,
+    "no_visible_source_edge_clipping": true,
+    "physical_identity_review_passed": true
+  },
+  "provenance_index": "asset://equipment/storybook_equipment_v2.provenance.json",
+  "slot_fallbacks": {
+    "legs": {
+      "texture": "asset://equipment/storybook_pants_v2.png",
+      "region": [113, 108, 183, 203],
+      "source_id": "PANTS01",
+      "provenance": "asset://equipment/storybook_pants_v2.json",
+      "note": "Shared neutral slot illustration for live templates without dedicated art; does not activate the preserved racial proposal."
+    },
+    "ring": {
+      "texture": "asset://equipment/storybook_ring_v2.png",
+      "region": [104, 122, 211, 192],
+      "source_id": "RING01",
+      "provenance": "asset://equipment/storybook_ring_v2.json",
+      "note": "Shared neutral slot illustration for live templates without dedicated art; does not activate the preserved racial proposal."
+    }
+  },
+  "future_assets": {
+    "status": "preserved_previous_race_plan",
+    "canonical_plan": "prior_4_race_plan_superseded_by_12_level_plan",
+    "live": false,
+    "planned_count": 20,
+    "validated_count": 20,
+    "categories": {
+      "pants": {
+        "texture": "asset://equipment/storybook_pants_v2.png",
+        "dimensions": [
+          1983,
+          793
+        ],
+        "regions_manifest": "asset://equipment/storybook_pants_v2.regions.json",
+        "provenance": "asset://equipment/storybook_pants_v2.json",
+        "sha256": "3c506afffc532f4d46cb216f18cd333096e2b3fedc07b9438dc1e0940e3dee01",
+        "status": "proposal_only",
+        "live": false,
+        "alpha_threshold": 16,
+        "visible_uncovered_pixels": 0,
+        "visible_outer_edge_pixels": 0,
+        "items": {
+          "PANTS01": {
+            "proposal_id": "PANTS01",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              113,
+              108,
+              183,
+              203
+            ],
+            "slot": "pants",
+            "name": "补片勘探裤",
+            "visual": "cream/taupe work trousers with three small brass repair patches",
+            "race_id": "universal",
+            "set_family": "",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS02": {
+            "proposal_id": "PANTS02",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              499,
+              107,
+              208,
+              202
+            ],
+            "slot": "pants",
+            "name": "平衡载重裤",
+            "visual": "crossed carrying belt and symmetric cargo thigh pouches",
+            "race_id": "universal",
+            "set_family": "",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS03": {
+            "proposal_id": "PANTS03",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              877,
+              104,
+              232,
+              210
+            ],
+            "slot": "pants",
+            "name": "辉砂壳瓣护腿",
+            "visual": "amber segmented insect carapace hollow wearable leg shells, cream wing plates and brass clasps",
+            "race_id": "B01",
+            "set_family": "S01",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS04": {
+            "proposal_id": "PANTS04",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              1272,
+              106,
+              217,
+              206
+            ],
+            "slot": "pants",
+            "name": "酸晶翅膜腿甲",
+            "visual": "folded insect wing membranes, acid-green crystal nodes and a chitin waist",
+            "race_id": "B01",
+            "set_family": "S02",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS05": {
+            "proposal_id": "PANTS05",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              1674,
+              107,
+              206,
+              207
+            ],
+            "slot": "pants",
+            "name": "苔冠菌丝裤",
+            "visual": "mushroom kneecaps and woven mycelium body with luminous mint spores",
+            "race_id": "B02",
+            "set_family": "S03",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS06": {
+            "proposal_id": "PANTS06",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              101,
+              479,
+              209,
+              219
+            ],
+            "slot": "pants",
+            "name": "荧孢藤织护腿",
+            "visual": "living vine-woven leg wards and attached luminous spore pods",
+            "race_id": "B02",
+            "set_family": "S04",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS07": {
+            "proposal_id": "PANTS07",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              502,
+              473,
+              207,
+              223
+            ],
+            "slot": "pants",
+            "name": "曜铜摆轮腿甲",
+            "visual": "antique copper/brass clockwork cuisses, visible gear joints and crystal steam capsules",
+            "race_id": "B03",
+            "set_family": "S05",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS08": {
+            "proposal_id": "PANTS08",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              890,
+              466,
+              205,
+              231
+            ],
+            "slot": "pants",
+            "name": "晶汽联节护腿",
+            "visual": "gyroscope waist, brass linked segmented leg armor and blue reservoirs",
+            "race_id": "B03",
+            "set_family": "S06",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS09": {
+            "proposal_id": "PANTS09",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              1268,
+              473,
+              226,
+              226
+            ],
+            "slot": "pants",
+            "name": "镜潮叠棱腿铠",
+            "visual": "mirrored overlapping crystal shards, floating star-wave seam and translucent deep blue/violet",
+            "race_id": "B04",
+            "set_family": "S07",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "PANTS10": {
+            "proposal_id": "PANTS10",
+            "texture": "asset://equipment/storybook_pants_v2.png",
+            "region": [
+              1668,
+              472,
+              220,
+              226
+            ],
+            "slot": "pants",
+            "name": "星浪浮璃护腿",
+            "visual": "transparent ocean-crystal origami fin folds and light-teal star-wave surfaces",
+            "race_id": "B04",
+            "set_family": "S08",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          }
+        }
+      },
+      "ring": {
+        "texture": "asset://equipment/storybook_ring_v2.png",
+        "dimensions": [
+          1983,
+          793
+        ],
+        "regions_manifest": "asset://equipment/storybook_ring_v2.regions.json",
+        "provenance": "asset://equipment/storybook_ring_v2.json",
+        "sha256": "90ae7bbe6f19507b021887fd51c310713c827c35021330fa3cd3918b9de5b5e8",
+        "status": "proposal_only",
+        "live": false,
+        "alpha_threshold": 16,
+        "visible_uncovered_pixels": 0,
+        "visible_outer_edge_pixels": 0,
+        "items": {
+          "RING01": {
+            "proposal_id": "RING01",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              104,
+              122,
+              211,
+              192
+            ],
+            "slot": "ring",
+            "name": "营地铜扣戒",
+            "visual": "厚黄铜实用戒圈配小型乳白铆钉扣件",
+            "race_id": "universal",
+            "set_family": "",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING02": {
+            "proposal_id": "RING02",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              502,
+              106,
+              220,
+              217
+            ],
+            "slot": "ring",
+            "name": "测距折尺戒",
+            "visual": "黄铜折叠卡尺戒圈与小型透明玻璃测量片",
+            "race_id": "universal",
+            "set_family": "",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING03": {
+            "proposal_id": "RING03",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              884,
+              109,
+              207,
+              209
+            ],
+            "slot": "ring",
+            "name": "辉砂翼瓣戒",
+            "visual": "琥珀虫甲分节戒圈与带浅色翼脉的折叠翼瓣托架",
+            "race_id": "B01",
+            "set_family": "S01",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING04": {
+            "proposal_id": "RING04",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              1269,
+              108,
+              221,
+              214
+            ],
+            "slot": "ring",
+            "name": "酸晶触须戒",
+            "visual": "弯曲几丁质触须环形戒圈与酸绿晶体毒液囊",
+            "race_id": "B01",
+            "set_family": "S02",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING05": {
+            "proposal_id": "RING05",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              1672,
+              97,
+              207,
+              231
+            ],
+            "slot": "ring",
+            "name": "苔光菌冠戒",
+            "visual": "苔绿菌冠伞盖、近距悬浮发光孢子与乳白菌丝根系戒圈",
+            "race_id": "B02",
+            "set_family": "S03",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING06": {
+            "proposal_id": "RING06",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              105,
+              469,
+              219,
+              230
+            ],
+            "slot": "ring",
+            "name": "荧孢藤环",
+            "visual": "活体缠绕藤蔓戒圈与玻璃质生物荧光孢子灯荚",
+            "race_id": "B02",
+            "set_family": "S04",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING07": {
+            "proposal_id": "RING07",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              488,
+              471,
+              226,
+              234
+            ],
+            "slot": "ring",
+            "name": "曜铜齿轮戒",
+            "visual": "古黄铜齿轮戒圈与微型透明晶汽舱",
+            "race_id": "B03",
+            "set_family": "S05",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING08": {
+            "proposal_id": "RING08",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              875,
+              481,
+              237,
+              216
+            ],
+            "slot": "ring",
+            "name": "晶汽陀环戒",
+            "visual": "相互咬合的机械陀螺环带与蓝晶蒸汽线圈",
+            "race_id": "B03",
+            "set_family": "S06",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING09": {
+            "proposal_id": "RING09",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              1268,
+              470,
+              219,
+              236
+            ],
+            "slot": "ring",
+            "name": "镜潮折棱戒",
+            "visual": "镜面透明紫蓝棱镜碎片组成星浪环抱戒圈",
+            "race_id": "B04",
+            "set_family": "S07",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          },
+          "RING10": {
+            "proposal_id": "RING10",
+            "texture": "asset://equipment/storybook_ring_v2.png",
+            "region": [
+              1674,
+              471,
+              205,
+              233
+            ],
+            "slot": "ring",
+            "name": "星浪浮晶戒",
+            "visual": "半透明海玻璃折纸鳍瓣组成戒圈与闪亮星浪冠",
+            "race_id": "B04",
+            "set_family": "S08",
+            "source_size": [
+              1983,
+              793
+            ],
+            "alpha_threshold": 16,
+            "live": false
+          }
+        }
+      }
+    },
+    "race_coverage": {
+      "universal": 4,
+      "B01": 4,
+      "B02": 4,
+      "B03": 4,
+      "B04": 4
+    },
+    "validation": {
+      "regions_disjoint": true,
+      "visible_alpha_fully_captured": true,
+      "no_visible_source_edge_clipping": true,
+      "physical_race_visual_review_passed": true
+    },
+    "note": "Completed proposal artwork preserved from the previous four-race plan. These racial labels belong to that superseded plan, not the latest first four areas. No racial proposal or template IDs are activated. Neutral PANTS01/RING01 are now sampled only by slot_fallbacks for live legs/ring templates without dedicated art; original template artwork remains unchanged."
+  },
+  "catalog_name_sync": {
+    "mapping": "artifacts/first_four_equipment_names.json",
+    "sha256": "df1f8d5c4a2dcebf97803463426277977825bc1d5986a15339e95665e29bc70d",
+    "canonical_plan": "12_levels_first4",
+    "entries": 60,
+    "race_coverage": {
+      "B01": 15,
+      "B02": 15,
+      "B03": 15,
+      "B04": 15
+    },
+    "source_stats_and_affix_untouched": true
+  },
+  "first4_race_gear": {
+    "enabled": true,
+    "live": true,
+    "status": "active_template_art",
+    "canonical_plan": "12_levels_first4",
+    "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "alpha_threshold": 16,
+    "sha256": "6c75966a5727b6473d46213b51d6cf80040c8d08ac79cda48ad15ac4c21dc877",
+    "regions_manifest": "asset://equipment/storybook_first4_race_gear_v1.regions.json",
+    "provenance": "asset://equipment/storybook_first4_race_gear_v1.json",
+    "items": [
+      "EQ03",
+      "EQ04",
+      "EQ05",
+      "EQ06",
+      "EQ07",
+      "EQ08",
+      "EQ09",
+      "EQ10"
+    ],
+    "visible_uncovered_pixels": 0,
+    "visible_outer_edge_pixels": 0,
+    "activated_ids": [
+      "EQ03",
+      "EQ04",
+      "EQ05",
+      "EQ06",
+      "EQ07",
+      "EQ08",
+      "EQ09",
+      "EQ10"
+    ],
+    "race_coverage": {
+      "B01": 2,
+      "B02": 2,
+      "B03": 2,
+      "B04": 2
+    },
+    "validation": {
+      "physical_race_visual_review_passed": true,
+      "regions_disjoint": true,
+      "visible_alpha_fully_captured": true,
+      "no_visible_source_edge_clipping": true,
+      "padding_px": 2
+    },
+    "notes": "EQ09's centered violet core uses the finalized Wardrum Fang identity. The prior off-axis lens motif is a preserved historical source descriptor."
+  },
+  "override_sheets": {
+    "first4_race_gear": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sha256": "6c75966a5727b6473d46213b51d6cf80040c8d08ac79cda48ad15ac4c21dc877",
+      "regions_manifest": "asset://equipment/storybook_first4_race_gear_v1.regions.json",
+      "provenance": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "items": [
+        "EQ03",
+        "EQ04",
+        "EQ05",
+        "EQ06",
+        "EQ07",
+        "EQ08",
+        "EQ09",
+        "EQ10"
+      ],
+      "visible_uncovered_pixels": 0,
+      "visible_outer_edge_pixels": 0
+    }
+  },
+  "race_art_coverage": {
+    "canonical_first4_overrides": 8,
+    "initial_dimensional_shapes": 52,
+    "remaining_full_race_sets": "future_art_scope",
+    "live_ids": 60
+  }
+}

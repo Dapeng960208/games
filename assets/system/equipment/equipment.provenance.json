@@ -1,0 +1,228 @@
+{
+  "version": 2,
+  "created_date": "2026-09-30",
+  "tool": "built-in image_gen.imagegen",
+  "reference": "C:\\Users\\13326\\.codex\\generated_images\\01a0f250-dc5c-7040-ab32-96177571dcae\\exec-43b24e14-8aac-4983-aba5-37855eb767a4.png",
+  "source_catalog": "data/equipment/equipment.json",
+  "item_count": 60,
+  "notes": "Six original generated PNG atlases; no raster postprocessing or destructive asset replacement. Full per-sheet prompts and source metadata are linked below.",
+  "sheets": {
+    "weapon": {
+      "texture": "asset://equipment/storybook_weapon_v2.png",
+      "provenance": "asset://equipment/storybook_weapon_v2.json",
+      "regions_manifest": "asset://equipment/storybook_weapon_v2.regions.json",
+      "sha256": "cd9bcb4b088ffa4a9fb2ec750305c0c3991a542a159d3514e4dab0281d5b6864",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "ids": [
+        "EQ01",
+        "EQ02",
+        "EQ03",
+        "EQ04",
+        "EQ05",
+        "EQ06",
+        "EQ07",
+        "EQ08",
+        "EQ09",
+        "EQ10"
+      ]
+    },
+    "head": {
+      "texture": "asset://equipment/storybook_head_v2.png",
+      "provenance": "asset://equipment/storybook_head_v2.json",
+      "regions_manifest": "asset://equipment/storybook_head_v2.regions.json",
+      "sha256": "669cf55684c8e3c9ad1a4ede960fdb6b936e36eb877c9cfead1b7e2320396b20",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "ids": [
+        "EQ11",
+        "EQ12",
+        "EQ13",
+        "EQ14",
+        "EQ15",
+        "EQ16",
+        "EQ17",
+        "EQ18",
+        "EQ19",
+        "EQ20"
+      ]
+    },
+    "chest": {
+      "texture": "asset://equipment/storybook_chest_v2.png",
+      "provenance": "asset://equipment/storybook_chest_v2.json",
+      "regions_manifest": "asset://equipment/storybook_chest_v2.regions.json",
+      "sha256": "0cc6230777984fe9fcc64c97dc15ddc5401fb6ff221c92eced4bdb54b6c9b5b3",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "ids": [
+        "EQ21",
+        "EQ22",
+        "EQ23",
+        "EQ24",
+        "EQ25",
+        "EQ26",
+        "EQ27",
+        "EQ28",
+        "EQ29",
+        "EQ30"
+      ]
+    },
+    "hands": {
+      "texture": "asset://equipment/storybook_hands_v2.png",
+      "provenance": "asset://equipment/storybook_hands_v2.json",
+      "regions_manifest": "asset://equipment/storybook_hands_v2.regions.json",
+      "sha256": "b574d5313a6d2f4ee57df843a54dfcfce48cc82fbb3cd58264625dc60be97157",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "ids": [
+        "EQ31",
+        "EQ32",
+        "EQ33",
+        "EQ34",
+        "EQ35",
+        "EQ36",
+        "EQ37",
+        "EQ38",
+        "EQ39",
+        "EQ40"
+      ]
+    },
+    "feet": {
+      "texture": "asset://equipment/storybook_feet_v2.png",
+      "provenance": "asset://equipment/storybook_feet_v2.json",
+      "regions_manifest": "asset://equipment/storybook_feet_v2.regions.json",
+      "sha256": "b1b366758e66cfc9631f58f8966376d08e62dbc4a1c59967f942c72137636a0c",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "ids": [
+        "EQ41",
+        "EQ42",
+        "EQ43",
+        "EQ44",
+        "EQ45",
+        "EQ46",
+        "EQ47",
+        "EQ48",
+        "EQ49",
+        "EQ50"
+      ]
+    },
+    "charm": {
+      "texture": "asset://equipment/storybook_charm_v2.png",
+      "provenance": "asset://equipment/storybook_charm_v2.json",
+      "regions_manifest": "asset://equipment/storybook_charm_v2.regions.json",
+      "sha256": "ec4d495cd38185b4e5049027b3c95709d9ae0bec0466dcd9b79af6aaf57d352e",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "ids": [
+        "EQ51",
+        "EQ52",
+        "EQ53",
+        "EQ54",
+        "EQ55",
+        "EQ56",
+        "EQ57",
+        "EQ58",
+        "EQ59",
+        "EQ60"
+      ]
+    }
+  },
+  "future_assets": {
+    "status": "preserved_previous_race_plan",
+    "canonical_plan": "prior_4_race_plan_superseded_by_12_level_plan",
+    "live": false,
+    "planned_item_count": 20,
+    "sheets": {
+      "pants": {
+        "texture": "asset://equipment/storybook_pants_v2.png",
+        "dimensions": [
+          1983,
+          793
+        ],
+        "regions_manifest": "asset://equipment/storybook_pants_v2.regions.json",
+        "provenance": "asset://equipment/storybook_pants_v2.json",
+        "sha256": "3c506afffc532f4d46cb216f18cd333096e2b3fedc07b9438dc1e0940e3dee01"
+      },
+      "ring": {
+        "texture": "asset://equipment/storybook_ring_v2.png",
+        "dimensions": [
+          1983,
+          793
+        ],
+        "regions_manifest": "asset://equipment/storybook_ring_v2.regions.json",
+        "provenance": "asset://equipment/storybook_ring_v2.json",
+        "sha256": "90ae7bbe6f19507b021887fd51c310713c827c35021330fa3cd3918b9de5b5e8"
+      }
+    }
+  },
+  "catalog_name_sync": {
+    "mapping": "artifacts/first_four_equipment_names.json",
+    "sha256": "df1f8d5c4a2dcebf97803463426277977825bc1d5986a15339e95665e29bc70d",
+    "canonical_plan": "12_levels_first4",
+    "entries": 60,
+    "race_coverage": {
+      "B01": 15,
+      "B02": 15,
+      "B03": 15,
+      "B04": 15
+    },
+    "source_stats_and_affix_untouched": true
+  },
+  "override_sheets": {
+    "first4_race_gear": {
+      "texture": "asset://equipment/storybook_first4_race_gear_v1.png",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "alpha_threshold": 16,
+      "sha256": "6c75966a5727b6473d46213b51d6cf80040c8d08ac79cda48ad15ac4c21dc877",
+      "regions_manifest": "asset://equipment/storybook_first4_race_gear_v1.regions.json",
+      "provenance": "asset://equipment/storybook_first4_race_gear_v1.json",
+      "items": [
+        "EQ03",
+        "EQ04",
+        "EQ05",
+        "EQ06",
+        "EQ07",
+        "EQ08",
+        "EQ09",
+        "EQ10"
+      ],
+      "visible_uncovered_pixels": 0,
+      "visible_outer_edge_pixels": 0
+    }
+  },
+  "active_first4_race_gear": {
+    "canonical_plan": "12_levels_first4",
+    "activated_ids": [
+      "EQ03",
+      "EQ04",
+      "EQ05",
+      "EQ06",
+      "EQ07",
+      "EQ08",
+      "EQ09",
+      "EQ10"
+    ],
+    "race_coverage": {
+      "B01": 2,
+      "B02": 2,
+      "B03": 2,
+      "B04": 2
+    }
+  }
+}

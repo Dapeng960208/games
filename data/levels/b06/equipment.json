@@ -1,0 +1,1327 @@
+{
+  "schema_version": 1,
+  "chapter_id": "B06",
+  "runtime_enabled": false,
+  "source_document": "docs/levels/b06/README.md#5-四套八槽装备",
+  "effect_contract": {
+    "runtime_implemented": false,
+    "power_basis": "instance_fixed_power_type_ad_or_ap",
+    "derived_damage_triggers_extra_damage": false,
+    "count_once_per_cast_id": true,
+    "cooldowns_min_seconds": 0.0,
+    "reset_ultimate": false,
+    "heal_can_crit": false,
+    "shield_can_crit": false,
+    "shield_stack_rule": "replace_with_higher",
+    "out_of_combat_clear_seconds": 10.0,
+    "clear_temporary_stacks_on_room_change": true,
+    "equipment_change_can_heal_refresh_shield_or_reset_cooldown": false
+  },
+  "sets": {
+    "B06-SW": {
+      "id": "B06-SW",
+      "name": "礁垒潮卫",
+      "name_en": "Reef Tideguard",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "runtime_implemented": false,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": false,
+          "trigger": "forced_movement",
+          "conditions": [
+            "warrior_e_shield_exists"
+          ],
+          "parameters": {
+            "distance_reduction": 0.25,
+            "combined_reduction_cap": 0.5
+          }
+        },
+        "4": {
+          "runtime_implemented": false,
+          "trigger": "warrior_w_hit",
+          "conditions": [
+            "actual_hit",
+            "after_warrior_e",
+            "actual_rage_spent_positive",
+            "first_w_in_window"
+          ],
+          "parameters": {
+            "window_seconds": 4,
+            "actual_w_cost_refund_ratio": 0.15,
+            "icd_seconds": 8
+          }
+        },
+        "6": {
+          "runtime_implemented": false,
+          "trigger": "warrior_q_or_w_hit",
+          "conditions": [
+            "actual_shield_absorption",
+            "direct_damage_only",
+            "consume_next_q_or_w"
+          ],
+          "parameters": {
+            "window_seconds": 6,
+            "power_coefficient": 0.4,
+            "range": 120,
+            "target_cap": 3,
+            "icd_seconds": 8
+          }
+        }
+      }
+    },
+    "B06-SG": {
+      "id": "B06-SG",
+      "name": "珊轨潮猎",
+      "name_en": "Coral Tidehunter",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "runtime_implemented": false,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": false,
+          "trigger": "gunner_w_hit",
+          "conditions": [
+            "actual_primary_target"
+          ],
+          "parameters": {
+            "damage_bonus": 0.08
+          }
+        },
+        "4": {
+          "runtime_implemented": false,
+          "trigger": "gunner_w_hit",
+          "conditions": [
+            "actual_q_displacement",
+            "marked_target",
+            "first_w_in_window"
+          ],
+          "parameters": {
+            "window_seconds": 4,
+            "e_cooldown_reduction_seconds": 1,
+            "icd_seconds": 7
+          }
+        },
+        "6": {
+          "runtime_implemented": false,
+          "trigger": "gunner_r_projectile_hit",
+          "conditions": [
+            "w_penetrates_two_actual_enemies",
+            "current_primary_target",
+            "actual_fired_projectile",
+            "one_proc_per_r_cast"
+          ],
+          "parameters": {
+            "mark_seconds": 6,
+            "projectile_count": 3,
+            "power_coefficient_per_projectile": 0.12,
+            "icd_seconds": 12,
+            "increases_projectile_cap": false,
+            "cancelled_shots_count": false
+          }
+        }
+      }
+    },
+    "B06-SM": {
+      "id": "B06-SM",
+      "name": "漩晶织潮",
+      "name_en": "Whorl Tideweaver",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "runtime_implemented": false,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": false,
+          "trigger": "mage_w_immediate_burst",
+          "conditions": [
+            "immediate_burst_only"
+          ],
+          "parameters": {
+            "radius_bonus": 0.1,
+            "expands_persistent_node": false
+          }
+        },
+        "4": {
+          "runtime_implemented": false,
+          "trigger": "mage_w_immediate_hit",
+          "conditions": [
+            "actual_e_hit",
+            "consume_next_w_immediate"
+          ],
+          "parameters": {
+            "damage_bonus": 0.12,
+            "window_seconds": 6,
+            "icd_seconds": 8
+          }
+        },
+        "6": {
+          "runtime_implemented": false,
+          "trigger": "mage_w_immediate_burst",
+          "conditions": [
+            "three_successful_paid_q_casts",
+            "q_once_per_cast_id",
+            "no_automatic_node_stacks",
+            "consume_next_w"
+          ],
+          "parameters": {
+            "paid_q_count": 3,
+            "delay_seconds": 0.8,
+            "radius": 110,
+            "power_coefficient": 0.45,
+            "target_cap": 4,
+            "icd_seconds": 10
+          }
+        }
+      }
+    },
+    "B06-SU": {
+      "id": "B06-SU",
+      "name": "螺音引航",
+      "name_en": "Conch Navigator",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "runtime_implemented": false,
+      "thresholds": {
+        "2": {
+          "runtime_implemented": false,
+          "trigger": "forced_movement",
+          "conditions": [
+            "actual_forced_displacement"
+          ],
+          "parameters": {
+            "distance_reduction": 0.2,
+            "combined_reduction_cap": 0.5
+          }
+        },
+        "4": {
+          "runtime_implemented": false,
+          "trigger": "combat_clock",
+          "conditions": [
+            "in_combat",
+            "room_entry_does_not_grant_shield",
+            "equipment_change_does_not_reset_clock"
+          ],
+          "parameters": {
+            "period_seconds": 12,
+            "shield_max_hp_ratio": 0.06,
+            "shield_seconds": 4
+          }
+        },
+        "6": {
+          "runtime_implemented": false,
+          "trigger": "direct_hit",
+          "conditions": [
+            "this_set_shield_naturally_expired_or_actually_broken",
+            "unequip_does_not_trigger",
+            "consume_next_direct_hit"
+          ],
+          "parameters": {
+            "power_coefficient": 0.25,
+            "target_cap": 1,
+            "move_speed_bonus": 0.08,
+            "buff_seconds": 3,
+            "window_seconds": 6,
+            "icd_seconds": 12
+          }
+        }
+      }
+    }
+  },
+  "equipment": {
+    "B06-SW-head": {
+      "id": "B06-SW-head",
+      "name": "礁垒钳冠",
+      "name_en": "Reefclaw Crown",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B06-SW",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SW-chest": {
+      "id": "B06-SW-chest",
+      "name": "潮卫重壳甲",
+      "name_en": "Tideguard Carapace",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B06-SW",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SW-hands": {
+      "id": "B06-SW-hands",
+      "name": "双钳护手",
+      "name_en": "Twinclaw Gauntlets",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B06-SW",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SW-legs": {
+      "id": "B06-SW-legs",
+      "name": "礁纹护膝裤",
+      "name_en": "Reefguard Trousers",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B06-SW",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SW-feet": {
+      "id": "B06-SW-feet",
+      "name": "沉礁战靴",
+      "name_en": "Sunken Reef Boots",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B06-SW",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SW-ring": {
+      "id": "B06-SW-ring",
+      "name": "守礁潮戒",
+      "name_en": "Reefwatch Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B06-SW",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "resource_gain_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SW-accessory": {
+      "id": "B06-SW-accessory",
+      "name": "潮卫护心贝",
+      "name_en": "Tideguard Heart Shell",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B06-SW",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "resource_gain_bonus",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SW-weapon": {
+      "id": "B06-SW-weapon",
+      "name": "礁垒破浪刃",
+      "name_en": "Reef Wavebreaker",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B06-SW",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SG-head": {
+      "id": "B06-SG-head",
+      "name": "珊轨瞄潮镜",
+      "name_en": "Tidesight Goggles",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B06-SG",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SG-chest": {
+      "id": "B06-SG-chest",
+      "name": "珊轨防浪衣",
+      "name_en": "Waveproof Hunter Coat",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B06-SG",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SG-hands": {
+      "id": "B06-SG-hands",
+      "name": "珊轨稳枪手",
+      "name_en": "Steadyshot Gloves",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B06-SG",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SG-legs": {
+      "id": "B06-SG-legs",
+      "name": "潮猎分水裤",
+      "name_en": "Watersplit Trousers",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B06-SG",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SG-feet": {
+      "id": "B06-SG-feet",
+      "name": "退潮转位靴",
+      "name_en": "Ebbshift Boots",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B06-SG",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SG-ring": {
+      "id": "B06-SG-ring",
+      "name": "猎潮珠戒",
+      "name_en": "Tidehunt Pearl Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B06-SG",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "crit_chance"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SG-accessory": {
+      "id": "B06-SG-accessory",
+      "name": "珊轨测流器",
+      "name_en": "Current Gauge",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B06-SG",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "damage_bonus",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SG-weapon": {
+      "id": "B06-SG-weapon",
+      "name": "珊轨长管枪",
+      "name_en": "Coral Longrifle",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B06-SG",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH02"
+      ],
+      "power_types": [
+        "physical"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SM-head": {
+      "id": "B06-SM-head",
+      "name": "漩晶贝冠",
+      "name_en": "Whorlcrystal Crown",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B06-SM",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_mana",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SM-chest": {
+      "id": "B06-SM-chest",
+      "name": "漩纹织潮袍",
+      "name_en": "Tideweaver Robe",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B06-SM",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_hp",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SM-hands": {
+      "id": "B06-SM-hands",
+      "name": "潮晶施法手",
+      "name_en": "Tidecrystal Gloves",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B06-SM",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SM-legs": {
+      "id": "B06-SM-legs",
+      "name": "漩流法裤",
+      "name_en": "Whorlweave Trousers",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B06-SM",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SM-feet": {
+      "id": "B06-SM-feet",
+      "name": "踏浪晶履",
+      "name_en": "Wavetread Shoes",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B06-SM",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "move_speed"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SM-ring": {
+      "id": "B06-SM-ring",
+      "name": "双涡晶戒",
+      "name_en": "Twinwhorl Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B06-SM",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "resource_gain_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SM-accessory": {
+      "id": "B06-SM-accessory",
+      "name": "漩晶蓄潮瓶",
+      "name_en": "Tidecrystal Flask",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B06-SM",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "max_mana",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SM-weapon": {
+      "id": "B06-SM-weapon",
+      "name": "漩晶螺杖",
+      "name_en": "Whorl Conchstaff",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B06-SM",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH03"
+      ],
+      "power_types": [
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "magic": [
+          "ability_power",
+          "damage_bonus"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SU-head": {
+      "id": "B06-SU-head",
+      "name": "螺纹航帽",
+      "name_en": "Spiral Navigator Hat",
+      "design_slot": "head",
+      "slot": "head",
+      "set_id": "B06-SU",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 140,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "magic_resist"
+        ],
+        "magic": [
+          "max_hp",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SU-chest": {
+      "id": "B06-SU-chest",
+      "name": "引航短衣",
+      "name_en": "Navigator Jacket",
+      "design_slot": "chest",
+      "slot": "chest",
+      "set_id": "B06-SU",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SU-hands": {
+      "id": "B06-SU-hands",
+      "name": "贝线护手",
+      "name_en": "Shellcord Gloves",
+      "design_slot": "hands",
+      "slot": "hands",
+      "set_id": "B06-SU",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "ability_power",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SU-legs": {
+      "id": "B06-SU-legs",
+      "name": "引航长裤",
+      "name_en": "Navigator Trousers",
+      "design_slot": "legs",
+      "slot": "legs",
+      "set_id": "B06-SU",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ],
+        "magic": [
+          "max_hp",
+          "armor",
+          "magic_resist"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SU-feet": {
+      "id": "B06-SU-feet",
+      "name": "贝桥软靴",
+      "name_en": "Shellbridge Shoes",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "B06-SU",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ],
+        "magic": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SU-ring": {
+      "id": "B06-SU-ring",
+      "name": "螺音共振戒",
+      "name_en": "Conch Resonance Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "B06-SU",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "max_hp"
+        ],
+        "magic": [
+          "ability_power",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SU-accessory": {
+      "id": "B06-SU-accessory",
+      "name": "小型航钟",
+      "name_en": "Small Shipbell",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "B06-SU",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-SU-weapon": {
+      "id": "B06-SU-weapon",
+      "name": "潮纹旅行器",
+      "name_en": "Tidemark Wayfarer",
+      "design_slot": "weapon",
+      "slot": "weapon",
+      "set_id": "B06-SU",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 180,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack"
+        ],
+        "magic": [
+          "ability_power"
+        ]
+      },
+      "unique_effect": {}
+    },
+    "B06-U01": {
+      "id": "B06-U01",
+      "name": "珊桥防滑鞋",
+      "name_en": "Shellbridge Grip Shoes",
+      "design_slot": "feet",
+      "slot": "feet",
+      "set_id": "",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 120,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "move_speed",
+          "damage_reduction"
+        ],
+        "magic": [
+          "move_speed",
+          "damage_reduction"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": false,
+        "trigger": "terrain_slow",
+        "conditions": [
+          "terrain_slow_only",
+          "does_not_remove_tidal_displacement"
+        ],
+        "parameters": {
+          "slow_magnitude_reduction": 0.2,
+          "combined_reduction_cap": 0.5
+        }
+      },
+      "source_preferences": [
+        "L32",
+        "B06-M04",
+        "B06-M06"
+      ]
+    },
+    "B06-U02": {
+      "id": "B06-U02",
+      "name": "回潮珍珠戒",
+      "name_en": "Returning Tide Pearl Ring",
+      "design_slot": "ring",
+      "slot": "ring",
+      "set_id": "",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "attack",
+          "max_hp"
+        ],
+        "magic": [
+          "ability_power",
+          "max_hp"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": false,
+        "trigger": "shield_absorbed",
+        "conditions": [
+          "actual_own_shield_absorption"
+        ],
+        "parameters": {
+          "healing_received_bonus": 0.08,
+          "buff_seconds": 4,
+          "icd_seconds": 12
+        }
+      },
+      "source_preferences": [
+        "L34",
+        "B06-M05",
+        "B06-M15"
+      ]
+    },
+    "B06-U03": {
+      "id": "B06-U03",
+      "name": "排水螺哨",
+      "name_en": "Drain Conch Whistle",
+      "design_slot": "accessory",
+      "slot": "charm",
+      "set_id": "",
+      "race_id": "B06",
+      "allowed_heroes": [
+        "CH01",
+        "CH02",
+        "CH03"
+      ],
+      "power_types": [
+        "physical",
+        "magic"
+      ],
+      "price": 160,
+      "base_stats": {},
+      "main_coefficient": 1.0,
+      "ruleset_version": 2,
+      "unlock_boss": "BO05",
+      "affix_tendencies_by_power": {
+        "physical": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ],
+        "magic": [
+          "max_hp",
+          "damage_reduction",
+          "cooldown_reduction"
+        ]
+      },
+      "unique_effect": {
+        "runtime_implemented": false,
+        "trigger": "combat_mechanism_completed",
+        "conditions": [
+          "completed_actual_interaction",
+          "in_combat"
+        ],
+        "parameters": {
+          "shield_max_hp_ratio": 0.04,
+          "shield_seconds": 3,
+          "icd_seconds": 15
+        }
+      },
+      "source_preferences": [
+        "L36",
+        "B06-M13",
+        "B06-M18"
+      ]
+    }
+  }
+}

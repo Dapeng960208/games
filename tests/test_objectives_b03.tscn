@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3]
-
-[ext_resource type="Script" path="res://tests/test_objectives_b03.gd" id="1"]
-
-[node name="B03ObjectiveAcceptance" type="Node"]
-script = ExtResource("1")

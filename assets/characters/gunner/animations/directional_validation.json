@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "hero_id": "CH02",
+  "status": "art_and_native_runtime_verified",
+  "frames": [
+    {
+      "direction": "S",
+      "phase": "windup",
+      "body_height": 402,
+      "axis_dot": 0.994351,
+      "region": [
+        111,
+        12,
+        308,
+        473
+      ]
+    },
+    {
+      "direction": "S",
+      "phase": "release",
+      "body_height": 405,
+      "axis_dot": 0.997344,
+      "region": [
+        624,
+        14,
+        305,
+        474
+      ]
+    },
+    {
+      "direction": "S",
+      "phase": "recovery",
+      "body_height": 405,
+      "axis_dot": 0.997344,
+      "region": [
+        1150,
+        19,
+        308,
+        465
+      ]
+    },
+    {
+      "direction": "SE",
+      "phase": "windup",
+      "body_height": 399,
+      "axis_dot": 0.996418,
+      "region": [
+        64,
+        518,
+        418,
+        462
+      ]
+    },
+    {
+      "direction": "SE",
+      "phase": "release",
+      "body_height": 401,
+      "axis_dot": 0.999651,
+      "region": [
+        594,
+        521,
+        401,
+        459
+      ]
+    },
+    {
+      "direction": "SE",
+      "phase": "recovery",
+      "body_height": 404,
+      "axis_dot": 0.999899,
+      "region": [
+        1111,
+        518,
+        390,
+        467
+      ]
+    },
+    {
+      "direction": "N",
+      "phase": "windup",
+      "body_height": 371,
+      "axis_dot": 0.999909,
+      "region": [
+        178,
+        13,
+        278,
+        513
+      ]
+    },
+    {
+      "direction": "N",
+      "phase": "release",
+      "body_height": 365,
+      "axis_dot": 0.999909,
+      "region": [
+        655,
+        17,
+        280,
+        509
+      ]
+    },
+    {
+      "direction": "N",
+      "phase": "recovery",
+      "body_height": 363,
+      "axis_dot": 0.999625,
+      "region": [
+        1160,
+        15,
+        280,
+        511
+      ]
+    },
+    {
+      "direction": "NE",
+      "phase": "windup",
+      "body_height": 384,
+      "axis_dot": 0.995275,
+      "region": [
+        118,
+        550,
+        345,
+        455
+      ]
+    },
+    {
+      "direction": "NE",
+      "phase": "release",
+      "body_height": 371,
+      "axis_dot": 0.994912,
+      "region": [
+        622,
+        555,
+        322,
+        437
+      ]
+    },
+    {
+      "direction": "NE",
+      "phase": "recovery",
+      "body_height": 381,
+      "axis_dot": 0.998653,
+      "region": [
+        1109,
+        551,
+        331,
+        452
+      ]
+    },
+    {
+      "direction": "E",
+      "phase": "windup",
+      "body_height": 423,
+      "axis_dot": 0.999675,
+      "region": [
+        70,
+        4,
+        490,
+        481
+      ]
+    },
+    {
+      "direction": "E",
+      "phase": "release",
+      "body_height": 403,
+      "axis_dot": 0.999986,
+      "region": [
+        578,
+        27,
+        460,
+        455
+      ]
+    },
+    {
+      "direction": "E",
+      "phase": "recovery",
+      "body_height": 426,
+      "axis_dot": 0.999219,
+      "region": [
+        1049,
+        4,
+        465,
+        483
+      ]
+    },
+    {
+      "direction": "SW",
+      "phase": "windup",
+      "body_height": 416,
+      "axis_dot": 0.999967,
+      "region": [
+        29,
+        497,
+        431,
+        493
+      ]
+    },
+    {
+      "direction": "SW",
+      "phase": "release",
+      "body_height": 415,
+      "axis_dot": 0.997143,
+      "region": [
+        535,
+        496,
+        448,
+        492
+      ]
+    },
+    {
+      "direction": "SW",
+      "phase": "recovery",
+      "body_height": 414,
+      "axis_dot": 0.998781,
+      "region": [
+        1042,
+        489,
+        471,
+        495
+      ]
+    },
+    {
+      "direction": "W",
+      "phase": "windup",
+      "body_height": 442,
+      "axis_dot": 0.997785,
+      "region": [
+        11,
+        14,
+        464,
+        490
+      ]
+    },
+    {
+      "direction": "W",
+      "phase": "release",
+      "body_height": 427,
+      "axis_dot": 0.997459,
+      "region": [
+        515,
+        25,
+        475,
+        474
+      ]
+    },
+    {
+      "direction": "W",
+      "phase": "recovery",
+      "body_height": 439,
+      "axis_dot": 0.997863,
+      "region": [
+        1069,
+        15,
+        449,
+        487
+      ]
+    },
+    {
+      "direction": "NW",
+      "phase": "windup",
+      "body_height": 429,
+      "axis_dot": 0.961137,
+      "region": [
+        53,
+        515,
+        442,
+        479
+      ]
+    },
+    {
+      "direction": "NW",
+      "phase": "release",
+      "body_height": 423,
+      "axis_dot": 0.970997,
+      "region": [
+        576,
+        519,
+        440,
+        489
+      ]
+    },
+    {
+      "direction": "NW",
+      "phase": "recovery",
+      "body_height": 427,
+      "axis_dot": 0.971605,
+      "region": [
+        1107,
+        516,
+        417,
+        474
+      ]
+    }
+  ],
+  "native_frame_count": 24,
+  "minimum_body_height": 363,
+  "minimum_axis_dot": 0.961137,
+  "alpha_note": "Raw RGB below alpha zero is brown; genuine transparent alpha preserved. Near-opaque body alpha max254; requires gameplay compositing review.",
+  "runtime_validation": {
+    "suite": "res://tests/captures/test_directional_combat_capture.tscn",
+    "resolution": [
+      2560,
+      1440
+    ],
+    "three_hero_checks": 433,
+    "failures": 0,
+    "samples": 96
+  }
+}

@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/equipment/test_numerical_forging_lifecycle.gd" id="1"]
+[node name="NumericalForgingLifecycle" type="Node"]
+script = ExtResource("1")

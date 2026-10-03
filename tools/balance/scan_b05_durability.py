@@ -3,11 +3,11 @@
 Do NOT wrap this orchestration script in test_workspace: children own the lease.
 """
 import hashlib,json,os,pathlib,subprocess,sys
-ROOT=pathlib.Path(__file__).resolve().parents[2]
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 POINTS=[(9,8.2),(6,8.3),(5,8.5),(7,8.7),(8,8.9),(4,9.0)]
 SENTINELS={'CH01':[1001,1004],'CH02':[1001,1008],'CH03':[1001]}
-PLAN=ROOT/'docs/balance/evidence/b05_durability_scan_v1_plan.json'
-RESULT=ROOT/'docs/balance/evidence/b05_durability_scan_v1_results.json'
+PLAN=ROOT/'docs/levels/b05/balance/evidence/b05_durability_scan_v1_plan.json'
+RESULT=ROOT/'docs/levels/b05/balance/evidence/b05_durability_scan_v1_results.json'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def collect():
  rows={}
@@ -19,7 +19,7 @@ def collect():
   candidate=summary.get('calibration_candidate'); points=dict(POINTS)
   if candidate not in points:continue
   data=json.loads((path.parent/'observations.json').read_text());protocol=data.get('measurement_protocol',{})
-  if protocol.get('frozen_manifest_sha256')!=sha(ROOT/'docs/balance/evidence/b05_frozen_builds_v1.json'):continue
+  if protocol.get('frozen_manifest_sha256')!=sha(ROOT/'docs/levels/b05/balance/evidence/b05_frozen_builds_v1.json'):continue
   if protocol.get('source_sha256',{}).get('tests/support/b05_balance_controller.gd')!=sha(ROOT/'tests/support/b05_balance_controller.gd'):continue
   for r in data['cases']:
    c=r['configuration'];hero=c['hero_id'];seed=c['seed'];fixture=r['fixture'];stats=fixture['resolved_stats'];boss=fixture['boss_profile']

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "room_id": "L29",
+  "asset": "spotlight_leaf",
+  "approved": false,
+  "native_size": [
+    1254,
+    1254
+  ],
+  "fixed_full_canvas_scale": true,
+  "do_not_independently_fit_alpha_bbox": true,
+  "suggested_full_canvas_world_size": [
+    140,
+    140
+  ],
+  "states": [
+    {
+      "id": "open",
+      "texture": "asset://world/b05_sunleaf/L29_sunleaf_open_v1.png",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "canvas_foot_px": [
+        634,
+        1088
+      ],
+      "foot_uv": [
+        0.5055821371610846,
+        0.8676236044657097
+      ],
+      "alpha_bbox_gt8": [
+        32,
+        236,
+        1225,
+        1090
+      ],
+      "sha256": "39e6698d3e7263a7b32e7d33970a92f1cb13fb1ea1c89ac23da7a29196d300ac",
+      "prompt": "Use case: stylized-concept.\nAsset type: B05 L29 Sunlit Terrace functional \"spotlight leaf\" environment prop, OPEN REFLECTIVE state, one isolated production sprite on a genuinely TRANSPARENT background. Square1536×1536 native resolution requested.\nInput image is ONLY the visual-world style reference: living pale golden wood, emerald foliage, warm natural fantasy, elegant organic curves, subtle peach-pink accents. Do not copy any figure, fountain, poster element or panel.\nSubject: one low living-wood botanical SUN-MIRROR DEVICE, stationary and non-anthropomorphic. Three short curled pale golden woody root feet form a sturdy compact base; one short branching bent stem supports a broad two-lobed emerald-green leaf reflector, unfolded left and right like a leaf book. Each leaf lobe has a polished pale yellow-green inner surface and fine golden leaf veins, with a slightly cupped organic reflective curvature and a crisp dark-emerald outer edge. It gathers ordinary sunlight but emits NO beam, no energy core, no sparkle shower. A small natural leaf hinge joins the two lobes. This must be immediately recognizable as a low interactable mirror leaf rather than a flower enemy, staff, tree, well, lantern or person. No eyes, limbs, face, flower disk, mouth, spikes or weapon.\nView: same high-angle near-isometric2.5D hand-painted fantasy game perspective as reference. See the top of the broad leaf reflector and the roots underneath. Warm soft upper-left diffuse light without cast ground shadow. Elegant premium painted woodgrain and real leaf veins, clean separated silhouette and readable medium-scale forms; not photorealistic, no CGI gloss.\nFIXED CANVAS DESIGN: single prop centered horizontally, subject entirely within x15%–85%,y13%–87%. Exactly one ground contact baseline at y87%; central root-foot anchor at(50%,87%) of FULL CANVAS. Root base occupies x37%–63%,y67%–87%, and must be retained identically in the later folded state. Leaf assembly may spread x15%–85%,y13%–65%, remaining attached to the short stem. Leave generous fully transparent margin. No separate decorative object.\nNo background, floor, tile, disc, circle, ground shadow, footprint marker, glow halo, sunbeam, projection cone, ray, hazard line, pedestal platform, UI, text, labels, watermark, border or extra state. The image is only one OPEN reflective leaf device sprite with real alpha transparency.",
+      "prompt_sha256": "cc2d1b4959c593b3f14783eefa0f759ed518b43c2709d4c1eac31fddbaa50095",
+      "model_metadata": {
+        "specific_model": "unknown",
+        "model_version": "unknown",
+        "model_reported_by_tool": false,
+        "model_parameter_submitted": false,
+        "reason": "Built-in image_gen returned image_url and output_hint only."
+      },
+      "input_references": [
+        {
+          "uri": "https://github.com/user-attachments/assets/319066d8-9906-426f-9fea-35ba81cf5768",
+          "sha256": "e19feb1a77f78a7ec17403b300dc2680af6ac1bde651bce3964001ad7b73bf93",
+          "role": "style"
+        }
+      ],
+      "processing_lineage": [
+        "Built-in image_gen true-alpha output",
+        "Raw bytes restored from surviving dataURL",
+        "No resizing, cropping, registration transform or alpha editing"
+      ],
+      "tool_output_file_name": "exec-335af7f3-0c55-444a-b7f1-03ab210d1052.png"
+    },
+    {
+      "id": "closed",
+      "texture": "asset://world/b05_sunleaf/L29_sunleaf_closed_v1.png",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "canvas_foot_px": [
+        634,
+        1098
+      ],
+      "foot_uv": [
+        0.5055821371610846,
+        0.8755980861244019
+      ],
+      "alpha_bbox_gt8": [
+        397,
+        119,
+        857,
+        1100
+      ],
+      "sha256": "396f377577d28a1b21db76cc126b39b5b38d5bffd879453e1fc8a951d9ff735e",
+      "prompt": "Use case: precise-object-edit.\nThis attached image is the OPEN reflective state of the production B05 L29 spotlight-leaf prop. Create ONLY its CLOSED SHADE-BLOCKING state, on genuine alpha-transparent background. Return exactly the same1254×1254 full canvas and camera, matching scale and foot position so the two state images swap without moving.\nPRESERVE UNCHANGED: the entire pale golden livingwood root base, each curled root foot, twisted central stem, small green and peach-pink leaves attached to the lower stem, central green-gold hinge jewel, every lower-structure silhouette and all positions below y66%. Central root foot remains around(50.5%,86%) on the full canvas. Preserve original paint style, soft upper-left light, material colors, transparency and generous blank lower margin. Do not resize, crop, reframe, turn the prop, move the base or add ground shadow.\nCHANGE ONLY THE TWO LARGE UPPER REFLECTOR LEAVES: fold them INWARD toward one another around their existing central hinge, like closing the two covers of a vertical leaf book. The formerly broad spread reflector is now a distinctly narrow upright paired-leaf silhouette; their dark matte emerald BACK surfaces face the viewer, displaying fine veins but no light-gathering pale mirror surface. Their inner bright reflective surfaces are hidden and shaded. Each leaf has a natural curled edge; the top stays roughly at the original y19% height. A clear closed posture, no other redesign. Keep the attachment exactly where it was. Do not make it a new flower, bud on a different stalk, tree, weapon or character.\nNo cast sunlight ray, light cone, beam, ground shadow, floor, pedestal, ring, glow, particles, floating leaf fragments, actor, text, number, UI, label, border, watermark or background. One CLOSED foldable botanical sun-mirror device only; true transparent background.",
+      "prompt_sha256": "bc8b7c65d193c7a45ab947558ae626fd55869dfce1177a25b116467b27de133f",
+      "model_metadata": {
+        "specific_model": "unknown",
+        "model_version": "unknown",
+        "model_reported_by_tool": false,
+        "model_parameter_submitted": false,
+        "reason": "Built-in image_gen returned image_url and output_hint only."
+      },
+      "input_references": [
+        {
+          "path": "L29_sunleaf_open_v1.png",
+          "sha256": "39e6698d3e7263a7b32e7d33970a92f1cb13fb1ea1c89ac23da7a29196d300ac",
+          "role": "edit target; preserve fixed root base"
+        }
+      ],
+      "processing_lineage": [
+        "Built-in image_gen true-alpha output",
+        "Raw bytes restored from surviving dataURL",
+        "No resizing, cropping, registration transform or alpha editing"
+      ],
+      "tool_output_file_name": "exec-e064bd65-d9e8-4ba8-abfe-22e0796e2da5.png"
+    }
+  ],
+  "runtime_contract": "Stationary interactable open reflector and folded shade blocker; no destructible/enemy implication. Functional area, beam, charge lines and ground shadow supplied at runtime.",
+  "qa": "Both have genuine alpha and no baked floor/shadow. Lower-root morphology nearly same; use measured foot anchors to absorb10nativepx vertical drift. Two full-canvas states remain same scale; live swap and 2K review pending. Tiny near-zero alpha noise exists outside main silhouette; original alpha preserved.",
+  "candidate_only": true,
+  "provenance_manifest": "b05-art/environment/L29/props/L29_sunleaf_manifest.json",
+  "provenance_sha256": "2de6832118811c196ded5b391d74b5b0553109891e6f4e066007a7142a3b8c65"
+}

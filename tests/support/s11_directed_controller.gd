@@ -11,7 +11,7 @@ var coverage_phase := 0
 var coverage_complete := false
 
 func step(time: float) -> void:
-	var boss: MineBoss = room._boss_actor
+	var boss: BossActor = room._boss_actor
 	if not is_instance_valid(boss): return
 	var phase := str(boss.boss_brain.phase)
 	if not phase_started.has(phase):
@@ -33,9 +33,9 @@ func counter_target(boss: Node2D) -> Dictionary:
 		# Observe finite summon/revival mechanics through actual add deaths.
 		# Only primary attacks are used on these live targets; no synthetic
 		# corpse registration, added spawn, phase write or direct damage.
-		var nearest: MineEnemy
+		var nearest: EnemyActor
 		for actor: Node in room.enemies.get_children():
-			if not actor is MineEnemy or actor is MineBoss or actor.actor_kind!="enemy" or not actor.is_alive() or actor.is_queued_for_deletion(): continue
+			if not actor is EnemyActor or actor is BossActor or actor.actor_kind!="enemy" or not actor.is_alive() or actor.is_queued_for_deletion(): continue
 			if not is_instance_valid(nearest) or room.player.position.distance_squared_to(actor.position)<room.player.position.distance_squared_to(nearest.position): nearest=actor
 		if is_instance_valid(nearest): return {"actor":nearest,"position":nearest.position,"directed_live_add":true}
 	# A separately initialized phase sample leaves finite counters available so
@@ -47,7 +47,7 @@ func attack_target(time: float, target: Node2D, threats: Array[Dictionary], coun
 	if counter and experiment!="p3_tolerance":
 		super.attack_target(time,target,threats,counter)
 		return
-	var boss: MineBoss = room._boss_actor
+	var boss: BossActor = room._boss_actor
 	var hold := experiment=="p3_tolerance" or coverage_phase>0
 	if not hold:
 		var phase := str(boss.boss_brain.phase)
@@ -68,14 +68,14 @@ func attack_target(time: float, target: Node2D, threats: Array[Dictionary], coun
 	else: room.player.clear_movement_target()
 	mode(time,"directed_hold_offense",target.position)
 
-func missing_actions(boss: MineBoss) -> Array[String]:
+func missing_actions(boss: BossActor) -> Array[String]:
 	var result: Array[String] = []
 	var seen: Dictionary = phase_releases.get(str(boss.boss_brain.phase),{})
 	for action: String in boss.boss_brain.available_actions():
 		if not seen.has(action): result.append(action)
 	return result
 
-func approach_intended_warning(time: float,boss: MineBoss) -> bool:
+func approach_intended_warning(time: float,boss: BossActor) -> bool:
 	var warning: Dictionary = boss.boss_brain.current_telegraph()
 	if warning.is_empty() or str(warning.get("action_id",""))!=DANGEROUS[boss.boss_id] or boss.boss_brain.phase!=3: return false
 	primary_target=null

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "room_id": "L06",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L06_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "76cbab89da2382944bca2571d71f9dea8599d682a7fe3418f49d48ca1c0d20be",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    16,
+    24
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L06/top_left.webp",
+      "source_rect": [
+        0,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "610acad3def98e54014eefc9c91ff4e41101529ad6cc23d59f5772ccdc1bb9d9",
+      "decoded_rgb_sha256": "2b80769474128b2dbc6644e2da7b7d19d38474911a28570757bcb34406476054",
+      "webp_sha256": "9ed50c7dcd3d62f999f3c00896292929cff9c05f49a2d3876be4ba0cace04dd0",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L06, ivory floral water garden. Exact source tile top_left attached as edit target. Repaint at largest native resolution (1536 square requested) with newly painted fine material detail for 2560x1440 gameplay. Preserve exact normalized composition, all stone joints, gold pavement curves, arches, glass roof, pavilion pillars, cascading water boundaries, walls, plants and shadows. Match every edge to its original neighboring image; no crop, zoom, rotation, extension, object addition/removal or shifting walking areas. Only refine surface details inside existing silhouettes: stone pores and bevels, gold engraving, small flower petals and leaf veins, glass fine reflections, water ripples. Retain soft creamy ivory, muted gold and turquoise painterly palette. No strong contrast, plastic gloss, text, characters or UI. Exact reference geometry is authoritative."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L06/top_middle.webp",
+      "source_rect": [
+        504,
+        0,
+        528,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "1ea31d8f867ff392a4ecfa1287ebe768a764a1c660a95b3c6bee619a37f6b50f",
+      "decoded_rgb_sha256": "27b0e4a3c6fae141554c513cbf024abec6b478ad701f06cab13c9382fc86f2bb",
+      "webp_sha256": "ba5dc34e5797bd8ad10b36f57713dc26400938d0ff87f1f767e4fbf8237fdb97",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L06, ivory floral water garden. Exact source tile top_middle attached as edit target. Repaint at largest native resolution (1536 square requested) with newly painted fine material detail for 2560x1440 gameplay. Preserve exact normalized composition, all stone joints, gold pavement curves, arches, glass roof, pavilion pillars, cascading water boundaries, walls, plants and shadows. Match every edge to its original neighboring image; no crop, zoom, rotation, extension, object addition/removal or shifting walking areas. Only refine surface details inside existing silhouettes: stone pores and bevels, gold engraving, small flower petals and leaf veins, glass fine reflections, water ripples. Retain soft creamy ivory, muted gold and turquoise painterly palette. No strong contrast, plastic gloss, text, characters or UI. Exact reference geometry is authoritative."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L06/top_right.webp",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        528
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "efafc96d540bf20fcf39bfd9ebf94d9183be70fabaebff634da0fc559ed22d13",
+      "decoded_rgb_sha256": "ab065c6c4813597726a60daa7aedf8053028e6600a22e8019e3504b28591bf07",
+      "webp_sha256": "0800eb570a092170d80fb42c709b66eabb26eb275dbdf560e6239c411522e386",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L06, ivory floral water garden. Exact source tile top_right attached as edit target. Repaint at largest native resolution (1536 square requested) with newly painted fine material detail for 2560x1440 gameplay. Preserve exact normalized composition, all stone joints, gold pavement curves, arches, glass roof, pavilion pillars, cascading water boundaries, walls, plants and shadows. Match every edge to its original neighboring image; no crop, zoom, rotation, extension, object addition/removal or shifting walking areas. Only refine surface details inside existing silhouettes: stone pores and bevels, gold engraving, small flower petals and leaf veins, glass fine reflections, water ripples. Retain soft creamy ivory, muted gold and turquoise painterly palette. No strong contrast, plastic gloss, text, characters or UI. Exact reference geometry is authoritative."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L06/bottom_left.webp",
+      "source_rect": [
+        0,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "51d9b60f2eb15f5727d1e8b211c3c94c673e812bc03e913602b79bdf73a251b3",
+      "decoded_rgb_sha256": "f25337fcf42f4dd76c64472d0c19a6739bf68fd885a31045cdda0ad8d9127cd5",
+      "webp_sha256": "dce4f179540e4a2989c07077ef6e0fcb1d27aedbab1b0470855a23b6cf68021a",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L06, ivory floral water garden. Exact source tile bottom_left attached as edit target. Repaint at largest native resolution (1536 square requested) with newly painted fine material detail for 2560x1440 gameplay. Preserve exact normalized composition, all stone joints, gold pavement curves, arches, glass roof, pavilion pillars, cascading water boundaries, walls, plants and shadows. Match every edge to its original neighboring image; no crop, zoom, rotation, extension, object addition/removal or shifting walking areas. Only refine surface details inside existing silhouettes: stone pores and bevels, gold engraving, small flower petals and leaf veins, glass fine reflections, water ripples. Retain soft creamy ivory, muted gold and turquoise painterly palette. No strong contrast, plastic gloss, text, characters or UI. Exact reference geometry is authoritative."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L06/bottom_middle.webp",
+      "source_rect": [
+        504,
+        504,
+        528,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "7015e73b89b570021244abbcd1c64dc4647fb37e0d33571900b1bf614c7326d6",
+      "decoded_rgb_sha256": "1c160d44ea701ff366c4a64c85a8f6931ecfa80b8fe8fc1f0ac9cb2ce5058090",
+      "webp_sha256": "ced56761d68bd2246e745829d804529f876d3a605ff6e8782ddf733126c7d9b8",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L06, ivory floral water garden. Exact source tile bottom_middle attached as edit target. Repaint at largest native resolution (1536 square requested) with newly painted fine material detail for 2560x1440 gameplay. Preserve exact normalized composition, all stone joints, gold pavement curves, arches, glass roof, pavilion pillars, cascading water boundaries, walls, plants and shadows. Match every edge to its original neighboring image; no crop, zoom, rotation, extension, object addition/removal or shifting walking areas. Only refine surface details inside existing silhouettes: stone pores and bevels, gold engraving, small flower petals and leaf veins, glass fine reflections, water ripples. Retain soft creamy ivory, muted gold and turquoise painterly palette. No strong contrast, plastic gloss, text, characters or UI. Exact reference geometry is authoritative."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L06/bottom_right.webp",
+      "source_rect": [
+        1016,
+        504,
+        520,
+        520
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "2e3ed1066a348594db1b93f01a7e6c597ecba502e2430794f1d82e48687480cf",
+      "decoded_rgb_sha256": "ad50960e978d1a91584c3bcd005051db364b1d5c7ef581798fe69550ae0544d3",
+      "webp_sha256": "41b3213ed0b09a6abd81bf2d822e6ce3263ee6acd54ce4356de8977ad221af2d",
+      "encoding": "lossless WebP; decoded RGB verified identical; no resize",
+      "prompt": "Use case: precise-object-edit. Production game room L06, ivory floral water garden. Exact source tile bottom_right attached as edit target. Repaint at largest native resolution (1536 square requested) with newly painted fine material detail for 2560x1440 gameplay. Preserve exact normalized composition, all stone joints, gold pavement curves, arches, glass roof, pavilion pillars, cascading water boundaries, walls, plants and shadows. Match every edge to its original neighboring image; no crop, zoom, rotation, extension, object addition/removal or shifting walking areas. Only refine surface details inside existing silhouettes: stone pores and bevels, gold engraving, small flower petals and leaf veins, glass fine reflections, water ripples. Retain soft creamy ivory, muted gold and turquoise painterly palette. No strong contrast, plastic gloss, text, characters or UI. Exact reference geometry is authoritative."
+    }
+  ],
+  "qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.7.2",
+    "framebuffer": [
+      2560,
+      1440
+    ],
+    "views": [
+      "center",
+      "northwest",
+      "northeast",
+      "southwest",
+      "southeast"
+    ],
+    "checks": 46,
+    "failures": 0,
+    "layout_polygon_camera_unchanged": true,
+    "texture_release_and_reload": true,
+    "visual_review": "All five original/native pairs reviewed by source-art owner, with integration-lead checks of the center and representative edge pair. Building/door footprints, path motifs and runtime anchors remain aligned, with no apparent hard tile joins. Material detail improves; small repainted details and mild contrast differences remain. Controlled static views do not establish natural crowded-combat readability.",
+    "rgba_mips_upper_bound_bytes": 50304432,
+    "graphics_backend": "private Xorg display :97, llvmpipe; physical GPU performance not benchmarked",
+    "evidence": [
+      {
+        "capture": "L06_center_original_2560x1440.png",
+        "sha256": "73be1c7a602e80cc5d421a4c5b37fa8edde4030c23acbbf002dc71568221c01d"
+      },
+      {
+        "capture": "L06_center_native_2560x1440.png",
+        "sha256": "d9122087124bd71ecac21a342d6f0861f714a6a68f3fb4cf680fbff60bf1bd3a"
+      },
+      {
+        "capture": "L06_northwest_original_2560x1440.png",
+        "sha256": "f894abd9f30d8d6899e42987a7665e8d06cd37c5be4302509d895fba9c3dc4cb"
+      },
+      {
+        "capture": "L06_northwest_native_2560x1440.png",
+        "sha256": "aa4755d8e75a9fbd7f651c404e9c7bb7dad764a2aa0274ed7c1f2896110fb3bc"
+      },
+      {
+        "capture": "L06_northeast_original_2560x1440.png",
+        "sha256": "28785d0555524fe57f88197f629cf58ecb6edea4235ed6a76dfa3d06b8327bc5"
+      },
+      {
+        "capture": "L06_northeast_native_2560x1440.png",
+        "sha256": "d8162cc12a9f56faee7ade87751e2520ad8c5a42903d444ee978ad3d637e21b7"
+      },
+      {
+        "capture": "L06_southwest_original_2560x1440.png",
+        "sha256": "536c62074f02c9ba3ef70f2c25428642ea047298f4f9c531808b5d785c4f90b7"
+      },
+      {
+        "capture": "L06_southwest_native_2560x1440.png",
+        "sha256": "dc8fcb6fa8247ec6c5fe1a2ff49ce40aa68966d789828e2a996c2990d93acc9e"
+      },
+      {
+        "capture": "L06_southeast_original_2560x1440.png",
+        "sha256": "9948b818fb3ea45c99ccd1c10f16ae111adc9b7775b9ffc6485ba4a4598d980d"
+      },
+      {
+        "capture": "L06_southeast_native_2560x1440.png",
+        "sha256": "6ef04219e7f0ab522801483ccb36947b8ab83786dffc8ba548ff269987e3346a"
+      }
+    ],
+    "log_sha256": "f924bbeda207d633848c93570eeddf4e3efee99eff38fa715db33bc745199df8"
+  }
+}

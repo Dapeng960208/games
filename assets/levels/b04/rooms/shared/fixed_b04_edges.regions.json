@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "texture": "asset://world/fixed_B04_edges_v1.png",
+  "biome_id": "B04",
+  "size": [
+    1774,
+    887
+  ],
+  "grid": {
+    "columns": 4,
+    "rows": 2,
+    "order": [
+      "B04_edge_north",
+      "B04_edge_east",
+      "B04_edge_south",
+      "B04_edge_west",
+      "B04_edge_corner",
+      "B04_edge_foreground",
+      "B04_edge_gateway",
+      "B04_edge_backdrop"
+    ]
+  },
+  "regions": {
+    "B04_edge_north": [
+      21,
+      99,
+      438,
+      294
+    ],
+    "B04_edge_east": [
+      489,
+      89,
+      393,
+      314
+    ],
+    "B04_edge_south": [
+      893,
+      140,
+      413,
+      259
+    ],
+    "B04_edge_west": [
+      1319,
+      42,
+      435,
+      378
+    ],
+    "B04_edge_corner": [
+      23,
+      484,
+      432,
+      342
+    ],
+    "B04_edge_foreground": [
+      497,
+      578,
+      342,
+      224
+    ],
+    "B04_edge_gateway": [
+      847,
+      458,
+      476,
+      364
+    ],
+    "B04_edge_backdrop": [
+      1330,
+      430,
+      420,
+      407
+    ]
+  },
+  "anchors": {
+    "B04_edge_north": [
+      350,
+      290
+    ],
+    "B04_edge_east": [
+      209,
+      310
+    ],
+    "B04_edge_south": [
+      356,
+      255
+    ],
+    "B04_edge_west": [
+      320,
+      374
+    ],
+    "B04_edge_corner": [
+      249,
+      338
+    ],
+    "B04_edge_foreground": [
+      151,
+      220
+    ],
+    "B04_edge_gateway": [
+      239,
+      360
+    ],
+    "B04_edge_backdrop": [
+      200,
+      403
+    ]
+  },
+  "ground_footprints": {
+    "B04_edge_north": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B04_edge_east": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B04_edge_south": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B04_edge_west": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B04_edge_corner": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B04_edge_foreground": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B04_edge_gateway": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "B04_edge_backdrop": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "collision": false,
+  "collidable": false,
+  "usage": {
+    "north": "短赤陶分段寨墙",
+    "east": "日照分层低砂岩",
+    "south": "粗木低骨栏",
+    "west": "部族刺绣棚背景",
+    "corner": "沙坡草石转角",
+    "foreground": "近景旱草小簇",
+    "gateway": "兽牙寨入口",
+    "backdrop": "靛蓝旗鼓远景"
+  },
+  "placement_note": "仅用于固定外围背景/低前景；不生成碰撞体，不围成阻挡唯一通路的高墙。完整边景靠透明轮廓组合，不拉伸地板贴图。",
+  "alpha_analysis": {
+    "mode": "RGBA",
+    "transparent_pixels": 845077,
+    "nonzero_pixels": 728461,
+    "significant_object_components": 8,
+    "bbox_threshold": 120
+  }
+}

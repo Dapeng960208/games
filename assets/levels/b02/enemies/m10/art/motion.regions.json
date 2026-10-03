@@ -1,0 +1,378 @@
+{
+  "texture": "asset://enemies/M10_storybook_motion_v1.png",
+  "enemy_id": "M10",
+  "visual_clan": "琥珀虫族",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "columns": 4,
+  "rows": 4,
+  "alpha_threshold": 32,
+  "padding": 2,
+  "body_height": 128.125,
+  "facing": "right",
+  "full_color": true,
+  "source_family": "storybook_2_5d_v1",
+  "clips": {
+    "idle": [
+      0
+    ],
+    "walk": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "windup": [
+      8,
+      9
+    ],
+    "locked": [
+      9
+    ],
+    "release": [
+      10
+    ],
+    "recovery": [
+      11
+    ],
+    "hurt": [
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "cycle_distance": 100,
+  "regions": {
+    "0": [
+      56,
+      134,
+      235,
+      161
+    ],
+    "1": [
+      376,
+      130,
+      232,
+      157
+    ],
+    "2": [
+      670,
+      134,
+      241,
+      155
+    ],
+    "3": [
+      985,
+      135,
+      232,
+      160
+    ],
+    "4": [
+      31,
+      428,
+      249,
+      160
+    ],
+    "5": [
+      370,
+      426,
+      238,
+      151
+    ],
+    "6": [
+      675,
+      426,
+      241,
+      152
+    ],
+    "7": [
+      988,
+      427,
+      246,
+      161
+    ],
+    "8": [
+      44,
+      710,
+      262,
+      187
+    ],
+    "9": [
+      377,
+      665,
+      229,
+      227
+    ],
+    "10": [
+      662,
+      758,
+      272,
+      144
+    ],
+    "11": [
+      976,
+      729,
+      253,
+      161
+    ],
+    "12": [
+      66,
+      996,
+      216,
+      178
+    ],
+    "13": [
+      370,
+      1025,
+      238,
+      149
+    ],
+    "14": [
+      675,
+      1013,
+      242,
+      161
+    ],
+    "15": [
+      985,
+      1015,
+      243,
+      158
+    ]
+  },
+  "frames": [
+    {
+      "index": 0,
+      "region": [
+        56,
+        134,
+        235,
+        161
+      ],
+      "foot": [
+        170,
+        292
+      ],
+      "pose": "walk_tripod_a_contact"
+    },
+    {
+      "index": 1,
+      "region": [
+        376,
+        130,
+        232,
+        157
+      ],
+      "foot": [
+        489,
+        282
+      ],
+      "pose": "walk_tripod_b_tuck"
+    },
+    {
+      "index": 2,
+      "region": [
+        670,
+        134,
+        241,
+        155
+      ],
+      "foot": [
+        790,
+        286
+      ],
+      "pose": "walk_tripod_b_reach"
+    },
+    {
+      "index": 3,
+      "region": [
+        985,
+        135,
+        232,
+        160
+      ],
+      "foot": [
+        1106,
+        292
+      ],
+      "pose": "walk_tripod_b_touchdown"
+    },
+    {
+      "index": 4,
+      "region": [
+        31,
+        428,
+        249,
+        160
+      ],
+      "foot": [
+        156,
+        585
+      ],
+      "pose": "walk_tripod_b_contact"
+    },
+    {
+      "index": 5,
+      "region": [
+        370,
+        426,
+        238,
+        151
+      ],
+      "foot": [
+        489,
+        572
+      ],
+      "pose": "walk_tripod_a_tuck"
+    },
+    {
+      "index": 6,
+      "region": [
+        675,
+        426,
+        241,
+        152
+      ],
+      "foot": [
+        795,
+        575
+      ],
+      "pose": "walk_tripod_a_reach"
+    },
+    {
+      "index": 7,
+      "region": [
+        988,
+        427,
+        246,
+        161
+      ],
+      "foot": [
+        1109,
+        585
+      ],
+      "pose": "walk_tripod_a_touchdown"
+    },
+    {
+      "index": 8,
+      "region": [
+        44,
+        710,
+        262,
+        187
+      ],
+      "foot": [
+        175,
+        894
+      ],
+      "pose": "windup_raise"
+    },
+    {
+      "index": 9,
+      "region": [
+        377,
+        665,
+        229,
+        227
+      ],
+      "foot": [
+        495,
+        889
+      ],
+      "pose": "windup_full"
+    },
+    {
+      "index": 10,
+      "region": [
+        662,
+        758,
+        272,
+        144
+      ],
+      "foot": [
+        785,
+        894
+      ],
+      "pose": "release_double_downslash"
+    },
+    {
+      "index": 11,
+      "region": [
+        976,
+        729,
+        253,
+        161
+      ],
+      "foot": [
+        1105,
+        887
+      ],
+      "pose": "recovery_guard"
+    },
+    {
+      "index": 12,
+      "region": [
+        66,
+        996,
+        216,
+        178
+      ],
+      "foot": [
+        170,
+        1171
+      ],
+      "pose": "hurt_snap"
+    },
+    {
+      "index": 13,
+      "region": [
+        370,
+        1025,
+        238,
+        149
+      ],
+      "foot": [
+        489,
+        1171
+      ],
+      "pose": "hurt_deep"
+    },
+    {
+      "index": 14,
+      "region": [
+        675,
+        1013,
+        242,
+        161
+      ],
+      "foot": [
+        795,
+        1171
+      ],
+      "pose": "hurt_rebalance"
+    },
+    {
+      "index": 15,
+      "region": [
+        985,
+        1015,
+        243,
+        158
+      ],
+      "foot": [
+        1106,
+        1170
+      ],
+      "pose": "hurt_settle"
+    }
+  ],
+  "quality_gate_passed": false,
+  "activation_status": "candidate_static_fallback_required"
+}

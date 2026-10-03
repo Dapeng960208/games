@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "biome_id": "B05",
+  "room_id": "L27",
+  "texture": "asset://world/rooms/L27_environment_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "walkable_normalized_rect": [
+    0.28,
+    0.3,
+    0.44,
+    0.4
+  ],
+  "placement_normalized_rect": [
+    0.11,
+    0.13,
+    0.78,
+    0.74
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.160142857,
+      0.212222222
+    ],
+    [
+      0.789714286,
+      0.212222222
+    ],
+    [
+      0.851,
+      0.294444444
+    ],
+    [
+      0.856571429,
+      0.763111111
+    ],
+    [
+      0.800857143,
+      0.812444444
+    ],
+    [
+      0.199142857,
+      0.812444444
+    ],
+    [
+      0.143428571,
+      0.722
+    ],
+    [
+      0.143428571,
+      0.294444444
+    ]
+  ],
+  "approved": false,
+  "candidate_only": true,
+  "source_sha256": "9146f2d2100566aacc76d5def5727202cbb7e75476c9e91aeb15bbd58f11d2b4",
+  "source_selection": "b05-art/regenerated/maps/L27/L27_base_v2.png",
+  "recovery_status": "new-generation-after-loss",
+  "geometry_unchanged": true,
+  "known_limits": "Candidate only; exact overlays, native detail seams and full-room acceptance pending."
+}

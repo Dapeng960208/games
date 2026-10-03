@@ -1,4 +1,4 @@
-extends "res://scripts/combat/room.gd"
+extends "res://scripts/gameplay/world/room_controller.gd"
 ## Timing only: both overrides call the unchanged production implementations.
 var navigation_usec: int = 0
 var room_usec: int = 0

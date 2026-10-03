@@ -1,0 +1,215 @@
+{
+  "texture": "asset://equipment/storybook_pants_v2.png",
+  "dimensions": [
+    1983,
+    793
+  ],
+  "status": "proposal_only",
+  "live": false,
+  "alpha_threshold": 16,
+  "padding": 2,
+  "regions": {
+    "PANTS01": [
+      113,
+      108,
+      183,
+      203
+    ],
+    "PANTS02": [
+      499,
+      107,
+      208,
+      202
+    ],
+    "PANTS03": [
+      877,
+      104,
+      232,
+      210
+    ],
+    "PANTS04": [
+      1272,
+      106,
+      217,
+      206
+    ],
+    "PANTS05": [
+      1674,
+      107,
+      206,
+      207
+    ],
+    "PANTS06": [
+      101,
+      479,
+      209,
+      219
+    ],
+    "PANTS07": [
+      502,
+      473,
+      207,
+      223
+    ],
+    "PANTS08": [
+      890,
+      466,
+      205,
+      231
+    ],
+    "PANTS09": [
+      1268,
+      473,
+      226,
+      226
+    ],
+    "PANTS10": [
+      1668,
+      472,
+      220,
+      226
+    ]
+  },
+  "items": {
+    "PANTS01": {
+      "proposal_id": "PANTS01",
+      "slot": "pants",
+      "name": "补片勘探裤",
+      "visual": "cream/taupe work trousers with three small brass repair patches",
+      "race_id": "",
+      "set_family": "",
+      "cell": [
+        0,
+        0,
+        397,
+        396
+      ]
+    },
+    "PANTS02": {
+      "proposal_id": "PANTS02",
+      "slot": "pants",
+      "name": "平衡载重裤",
+      "visual": "crossed carrying belt and symmetric cargo thigh pouches",
+      "race_id": "",
+      "set_family": "",
+      "cell": [
+        397,
+        0,
+        396,
+        396
+      ]
+    },
+    "PANTS03": {
+      "proposal_id": "PANTS03",
+      "slot": "pants",
+      "name": "辉砂壳瓣护腿",
+      "visual": "amber segmented insect carapace hollow wearable leg shells, cream wing plates and brass clasps",
+      "race_id": "B01",
+      "set_family": "S01",
+      "cell": [
+        793,
+        0,
+        397,
+        396
+      ]
+    },
+    "PANTS04": {
+      "proposal_id": "PANTS04",
+      "slot": "pants",
+      "name": "酸晶翅膜腿甲",
+      "visual": "folded insect wing membranes, acid-green crystal nodes and a chitin waist",
+      "race_id": "B01",
+      "set_family": "S02",
+      "cell": [
+        1190,
+        0,
+        396,
+        396
+      ]
+    },
+    "PANTS05": {
+      "proposal_id": "PANTS05",
+      "slot": "pants",
+      "name": "苔冠菌丝裤",
+      "visual": "mushroom kneecaps and woven mycelium body with luminous mint spores",
+      "race_id": "B02",
+      "set_family": "S03",
+      "cell": [
+        1586,
+        0,
+        397,
+        396
+      ]
+    },
+    "PANTS06": {
+      "proposal_id": "PANTS06",
+      "slot": "pants",
+      "name": "荧孢藤织护腿",
+      "visual": "living vine-woven leg wards and attached luminous spore pods",
+      "race_id": "B02",
+      "set_family": "S04",
+      "cell": [
+        0,
+        396,
+        397,
+        397
+      ]
+    },
+    "PANTS07": {
+      "proposal_id": "PANTS07",
+      "slot": "pants",
+      "name": "曜铜摆轮腿甲",
+      "visual": "antique copper/brass clockwork cuisses, visible gear joints and crystal steam capsules",
+      "race_id": "B03",
+      "set_family": "S05",
+      "cell": [
+        397,
+        396,
+        396,
+        397
+      ]
+    },
+    "PANTS08": {
+      "proposal_id": "PANTS08",
+      "slot": "pants",
+      "name": "晶汽联节护腿",
+      "visual": "gyroscope waist, brass linked segmented leg armor and blue reservoirs",
+      "race_id": "B03",
+      "set_family": "S06",
+      "cell": [
+        793,
+        396,
+        397,
+        397
+      ]
+    },
+    "PANTS09": {
+      "proposal_id": "PANTS09",
+      "slot": "pants",
+      "name": "镜潮叠棱腿铠",
+      "visual": "mirrored overlapping crystal shards, floating star-wave seam and translucent deep blue/violet",
+      "race_id": "B04",
+      "set_family": "S07",
+      "cell": [
+        1190,
+        396,
+        396,
+        397
+      ]
+    },
+    "PANTS10": {
+      "proposal_id": "PANTS10",
+      "slot": "pants",
+      "name": "星浪浮璃护腿",
+      "visual": "transparent ocean-crystal origami fin folds and light-teal star-wave surfaces",
+      "race_id": "B04",
+      "set_family": "S08",
+      "cell": [
+        1586,
+        396,
+        397,
+        397
+      ]
+    }
+  }
+}

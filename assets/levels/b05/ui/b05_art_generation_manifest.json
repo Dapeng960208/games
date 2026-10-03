@@ -1,0 +1,606 @@
+{
+  "schema_version": 1,
+  "chapter": "B05",
+  "published_checkpoint": "096ae6dad266a6ce55da0bf6d4f7808eb3b45928",
+  "tool": "OpenAI built-in image_gen.imagegen",
+  "model_id": null,
+  "model_version": null,
+  "model_identification": "Unknown: the generation tool responses did not expose a verifiable underlying model ID or model revision. No specific GPT Image model version is inferred.",
+  "style_reference": {
+    "url": "https://github.com/user-attachments/assets/319066d8-9906-426f-9fea-35ba81cf5768",
+    "sha256": "e19feb1a77f78a7ec17403b300dc2680af6ac1bde651bce3964001ad7b73bf93",
+    "native_size": [
+      1122,
+      1402
+    ],
+    "authority": "Revised PR5 B05 visual reference; gameplay geometry is independently frozen in data/levels/b05/room_geometry.json."
+  },
+  "families": [
+    {
+      "id": "equipment",
+      "root": "assets/generated/equipment/b05_v1",
+      "provenance": "assets/generated/equipment/b05_v1/B05-equipment-v1.manifest.json",
+      "prompt_files": [
+        "assets/generated/equipment/b05_v1/prompts/B05-SG-a-v1.prompt.txt",
+        "assets/generated/equipment/b05_v1/prompts/B05-SG-b-v1.prompt.txt",
+        "assets/generated/equipment/b05_v1/prompts/B05-SM-a-v1.prompt.txt",
+        "assets/generated/equipment/b05_v1/prompts/B05-SM-b-v1.prompt.txt",
+        "assets/generated/equipment/b05_v1/prompts/B05-SU-a-v1.prompt.txt",
+        "assets/generated/equipment/b05_v1/prompts/B05-SU-b-v1.prompt.txt",
+        "assets/generated/equipment/b05_v1/prompts/B05-SW-a-v1.prompt.txt",
+        "assets/generated/equipment/b05_v1/prompts/B05-SW-b-v1.prompt.txt",
+        "assets/generated/equipment/b05_v1/prompts/B05-U-scatter-v1.prompt.txt"
+      ],
+      "model_id": null,
+      "model_version": null,
+      "generation_provenance": "assets/generated/equipment/b05_v1/generation-provenance.json"
+    },
+    {
+      "id": "first_monsters",
+      "root": "assets/generated/enemies/b05_poses_v1",
+      "provenance": "assets/generated/enemies/b05_poses_v1/manifest.json",
+      "prompt_files": [
+        "assets/generated/enemies/b05_poses_v1/B05-M01_execute-v2.prompt.txt",
+        "assets/generated/enemies/b05_poses_v1/B05-M01_idle.prompt.txt",
+        "assets/generated/enemies/b05_poses_v1/B05-M01_telegraph-v2.prompt.txt",
+        "assets/generated/enemies/b05_poses_v1/B05-M02_execute-v2.prompt.txt",
+        "assets/generated/enemies/b05_poses_v1/B05-M02_idle.prompt.txt",
+        "assets/generated/enemies/b05_poses_v1/B05-M02_telegraph-v2.prompt.txt",
+        "assets/generated/enemies/b05_poses_v1/B05-M04_execute.prompt.txt",
+        "assets/generated/enemies/b05_poses_v1/B05-M04_idle.prompt.txt",
+        "assets/generated/enemies/b05_poses_v1/B05-M04_telegraph.prompt.txt"
+      ],
+      "model_id": null,
+      "model_version": null
+    },
+    {
+      "id": "root_well",
+      "root": "assets/generated/world/b05_rootwell",
+      "provenance": "assets/generated/world/b05_rootwell/source-manifest.json",
+      "prompt_files": [
+        "assets/generated/world/b05_rootwell/active-prompt.txt",
+        "assets/generated/world/b05_rootwell/destroyed-prompt.txt",
+        "assets/generated/world/b05_rootwell/disconnected-prompt.txt",
+        "assets/generated/world/b05_rootwell/hit-prompt.txt"
+      ],
+      "model_id": null,
+      "model_version": null
+    },
+    {
+      "id": "l25",
+      "root": "assets/generated/world/rooms_2k/L25",
+      "provenance": "assets/generated/world/rooms_2k/L25/manifest.json",
+      "prompt_files": [
+        "assets/generated/world/rooms/L25_environment_v1.prompt.json",
+        "assets/generated/world/rooms_2k/L25/manifest.json",
+        "assets/generated/world/rooms_2k/L25/verge_material_v1.json"
+      ],
+      "model_id": null,
+      "model_version": null
+    }
+  ],
+  "l25_base_prompt": "assets/generated/world/rooms/L25_environment_v1.prompt.json",
+  "assets": [
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M01_execute-native.png",
+      "sha256": "2892b8fb5ff0e9be97f7a2f6b755293591e9b9de289751c39c71a3e3f93423f4",
+      "bytes": 1625321,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M01_idle-native.png",
+      "sha256": "ed386784bcbed9b1655dfaeb39b829eded094f39ab806582339ce3b4597b3b5c",
+      "bytes": 1709452,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M01_telegraph-native.png",
+      "sha256": "b236c6db90d3353289dd7f1c833450af11e8baa7affef31c3a20803eb6b7e80a",
+      "bytes": 1737886,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M02_execute-native.png",
+      "sha256": "5a3629c0fea7ec467a5c75de127a3fe24f890433f5a6b27d71cc56e458e96946",
+      "bytes": 1524599,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M02_idle-native.png",
+      "sha256": "5794d1d3133a811b8ec7217477c40dd67b73c2e2e14c5b11f4ee519cb04e53d1",
+      "bytes": 1675145,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M02_telegraph-native.png",
+      "sha256": "6670ff995633590c6fd72d5eefa133c658ed7ed60659f82e2a0b166377351f7d",
+      "bytes": 1549132,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M04_execute-native.png",
+      "sha256": "4237536ef7f916f2b58d312c45d480b40b60727212d78b5bf74ed741f356eac7",
+      "bytes": 1363546,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M04_idle-native.png",
+      "sha256": "4abf5287d6ad749d078a2eab2f0d965884f40124cdd50b3079a8f893aeaeb7c6",
+      "bytes": 1148427,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/enemies/b05_poses_v1/B05-M04_telegraph-native.png",
+      "sha256": "f21d741ab3f5129c537a3b167cba439599ec98ec6cb0bfa3803ce5dd04ed9218",
+      "bytes": 1179757,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-a-v1.png",
+      "sha256": "c0892b0ddec0b9cb7c34b7463a1730f941d16d51434a7f166522dea19dd7e633",
+      "bytes": 1943572,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-accessory-native-v1.png",
+      "sha256": "cea5f8e12d3b8691b9830ea58679df75f49045a3a4ebb7b66bc0c2ce61e7be89",
+      "bytes": 515752,
+      "width": 612,
+      "height": 541,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-b-v1.png",
+      "sha256": "d325daddc22ebbaae73b5364e1498e250aad07bab1a66b151072c48db1644c48",
+      "bytes": 1653914,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-chest-native-v1.png",
+      "sha256": "4a9e6eb61b24b752a0a391b0721dd6afc69ac0ed06f39e818ea498f961a9fad0",
+      "bytes": 645185,
+      "width": 663,
+      "height": 592,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-feet-native-v1.png",
+      "sha256": "9d98f7bacda0b5c6ec8aed627c25e7182e747858388c022cfa9d195fab097480",
+      "bytes": 578264,
+      "width": 570,
+      "height": 607,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-hands-native-v1.png",
+      "sha256": "357d3978aec55f7e3471b649859111914a8497b70a39f87252e945270535d4b9",
+      "bytes": 486640,
+      "width": 623,
+      "height": 504,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-head-native-v1.png",
+      "sha256": "6ef04d7549fe2af49d95a32e93da0dfc26de88d0760b9a189a863e82cfa252fb",
+      "bytes": 380799,
+      "width": 619,
+      "height": 431,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-legs-native-v1.png",
+      "sha256": "7a60975de231e67fdbf87bdf406e2ca49d8a863f7c5ca1ea74e60a2c0ad9180e",
+      "bytes": 386410,
+      "width": 417,
+      "height": 625,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-ring-native-v1.png",
+      "sha256": "73e01e58460951159f1cad2a75e30603826d784333246a05352051032d25b7f6",
+      "bytes": 315558,
+      "width": 451,
+      "height": 484,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SG-weapon-native-v1.png",
+      "sha256": "0c912e00e3b1f48908214dea60b63c94ff6fdc250ae207e5854ab143a441584c",
+      "bytes": 199977,
+      "width": 718,
+      "height": 631,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-a-v1.png",
+      "sha256": "b56817d498c74e4ec818a47c8e88e2b58818743660cd8f832bac6a2c84a2589e",
+      "bytes": 1997464,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-accessory-native-v1.png",
+      "sha256": "630a077405cb07148fba818bbd05040405c12d0e8a55c5184d2c24cc4c361e30",
+      "bytes": 458669,
+      "width": 514,
+      "height": 605,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-b-v1.png",
+      "sha256": "2266104c7fb7d6df46caff09f5e135eda3915b890aa724c4a395d3f2ca2afb92",
+      "bytes": 1606502,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-chest-native-v1.png",
+      "sha256": "3d8eeacf3c41847d1199f2517d389dbdc7ac5a1807a07886d432d68499db829a",
+      "bytes": 591366,
+      "width": 613,
+      "height": 628,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-feet-native-v1.png",
+      "sha256": "b877ae3d7a132d9bfba09080e8a9562933eaf62d7e95322c7554d9d05bdba269",
+      "bytes": 544426,
+      "width": 622,
+      "height": 610,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-hands-native-v1.png",
+      "sha256": "05ea5bca3bfaffc8313e2b0dc8401e49c2bddab751b98c1d17c4b0a7b54a03d8",
+      "bytes": 450621,
+      "width": 607,
+      "height": 627,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-head-native-v1.png",
+      "sha256": "ad9c3d9a1adf34d10e29deb7e836729d5166d45c82705050c2969117df6e766a",
+      "bytes": 344658,
+      "width": 614,
+      "height": 470,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-legs-native-v1.png",
+      "sha256": "53badc8cd661e5312948aeb830c69b83b128f49ebd36c46d9cf92926becc0317",
+      "bytes": 555505,
+      "width": 610,
+      "height": 632,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-ring-native-v1.png",
+      "sha256": "79f77bdf344f2bb3f52dad15c6b54e704e691825a36eabca9b9d900326204dba",
+      "bytes": 339477,
+      "width": 407,
+      "height": 583,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SM-weapon-native-v1.png",
+      "sha256": "eb30760c8a5ba978b9eb3f19ed5a32885bac3d7fc057d82dd9bf2b85bbb36328",
+      "bytes": 213394,
+      "width": 611,
+      "height": 624,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-a-v1.png",
+      "sha256": "d08a0fc232aa8c9a5373aaff49bf22b7c0404ad1a950104fd10447d45fe3925a",
+      "bytes": 2017679,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-accessory-native-v1.png",
+      "sha256": "35aca56f8e58f63e40c6cee2c75488364d2079ee07fa5e760cf0014b8c5492e4",
+      "bytes": 540975,
+      "width": 625,
+      "height": 551,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-b-v1.png",
+      "sha256": "1971f4a4d82dbbc5516edaf8da751e82d3a49151ca80c5a332929cc5cbf76ecf",
+      "bytes": 1682026,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-chest-native-v1.png",
+      "sha256": "f21d02e61a43acdb5b541aaa8404e7e9799e3ac2f910c7b5a9d648e7aa62985d",
+      "bytes": 559587,
+      "width": 607,
+      "height": 605,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-feet-native-v1.png",
+      "sha256": "b6c6917b399d9ba1ea5760c36b38ab4744653e2b74a8a6d3ee76b002212c03c2",
+      "bytes": 498284,
+      "width": 629,
+      "height": 521,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-hands-native-v1.png",
+      "sha256": "f7bbaf19eea86e6fd9a67592479ac8b5e6040477ca8e49bba620c72eab3a3174",
+      "bytes": 457689,
+      "width": 583,
+      "height": 495,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-head-native-v1.png",
+      "sha256": "eee19bbf0ca2f5253d8dc8d448d761ecccce2096141dc0913170304f46f80660",
+      "bytes": 522696,
+      "width": 607,
+      "height": 585,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-legs-native-v1.png",
+      "sha256": "6a2cdeeb5baee13b37066e882247937466c3a2d4e38123042bb1359a415d70e4",
+      "bytes": 434587,
+      "width": 549,
+      "height": 630,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-ring-native-v1.png",
+      "sha256": "23e52bd93537c2b91ae75afa1c2316126d735036ed8b71b4c86b38e600e7928a",
+      "bytes": 339687,
+      "width": 449,
+      "height": 484,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SU-weapon-native-v1.png",
+      "sha256": "b16e98e5718c1be69a7a4d10d76e34365814aac94589de26c500ffcda18b91b9",
+      "bytes": 266265,
+      "width": 591,
+      "height": 656,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-a-v1.png",
+      "sha256": "5eb5566c77b34a77f68e90a1b6fff9bac66e0a60e885e9f983f06e62b6a11834",
+      "bytes": 2411089,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-accessory-native-v1.png",
+      "sha256": "225bdc3d7474f3b7d72539366cf320a01c9a4c88ace7837bb62025e50ebe7f4d",
+      "bytes": 416298,
+      "width": 495,
+      "height": 618,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-b-v1.png",
+      "sha256": "71d9ca4828dca2a92f669d934ad4c200cfc4bd8366405f697044596ead6e1d91",
+      "bytes": 1825679,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-chest-native-v1.png",
+      "sha256": "def8cdad2d2e7419c7bcd3b480769ce9707798dab5b9d65e027f19e330584149",
+      "bytes": 712128,
+      "width": 645,
+      "height": 620,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-feet-native-v1.png",
+      "sha256": "55d800235664b8dc051b6e824c4e7253c8ab534ce349a1bb4b2f6e48a9781730",
+      "bytes": 551438,
+      "width": 573,
+      "height": 595,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-hands-native-v1.png",
+      "sha256": "7a462b34ab1690363906f4ffa3e408e53b0789e8a4d4596f18e6d015c78dbcf3",
+      "bytes": 571752,
+      "width": 627,
+      "height": 551,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-head-native-v1.png",
+      "sha256": "dec98ccc0e810866ecddf76035a8cfff210bf25298253312490b9ca9f4c21081",
+      "bytes": 620101,
+      "width": 554,
+      "height": 623,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-legs-native-v1.png",
+      "sha256": "4543113a3d7f6dc206079b0852d01e76fea503935ddd659d85b980c5f977ae06",
+      "bytes": 460247,
+      "width": 426,
+      "height": 646,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-ring-native-v1.png",
+      "sha256": "3437483e22fa2c9b62ffcdb229c239a064196a6ae6ee36d3e49b40c39a62f98a",
+      "bytes": 438202,
+      "width": 498,
+      "height": 538,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-SW-weapon-native-v1.png",
+      "sha256": "6e6f52a659b553694094930b427ae615accaecba5a570a548b9bbca8aef5b235",
+      "bytes": 380140,
+      "width": 715,
+      "height": 654,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-U-scatter-v1.png",
+      "sha256": "d6edaad3a4243566d1ea581ec4d2e72314fcbe1a1821801cf4a501de499abf81",
+      "bytes": 1514569,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-U01-native-v1.png",
+      "sha256": "08033df55fd91518f13e4066f42050debea784301a81788c7642c92aa0d29519",
+      "bytes": 651137,
+      "width": 695,
+      "height": 587,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-U02-native-v1.png",
+      "sha256": "4682825d5df4fb84a7643b8758e1b1402eef709fde11570da7a5e971b589253e",
+      "bytes": 364018,
+      "width": 465,
+      "height": 560,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/equipment/b05_v1/B05-U03-native-v1.png",
+      "sha256": "dfa8e51ed8b39ff5e62073c998c0c84a3c29ace3a90be9dfc9cd3ba826cdf3b0",
+      "bytes": 457603,
+      "width": 467,
+      "height": 620,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/world/b05_rootwell/rootwell-active-native.png",
+      "sha256": "d1d80ce3791c85b14594e78c01ba90d4f2ebc577d165edc1ce53d8d70c60f3d3",
+      "bytes": 1479257,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/world/b05_rootwell/rootwell-destroyed-native.png",
+      "sha256": "2412c8d00fc768576bae12b88300a4e4c29fdb0d2b9deb5bbf4118451add58e0",
+      "bytes": 1400433,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/world/b05_rootwell/rootwell-disconnected-native.png",
+      "sha256": "aea018616913de99f2bead3f39ef9905eb46e347d69c8c026c0e37456a854e5d",
+      "bytes": 1373648,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/world/b05_rootwell/rootwell-hit-native.png",
+      "sha256": "c2567f512ca92762da1fa1064e111f7b560011a27feb50f4fa616a0647cb0519",
+      "bytes": 1450952,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA"
+    },
+    {
+      "path": "assets/generated/world/rooms/L25_environment_v1.png",
+      "sha256": "85926041f53b1c58b16ea610213f6ed5a036e5cf5a64a88264d8d0a5e9f4891b",
+      "bytes": 2913147,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L25/bottom_left.webp",
+      "sha256": "b9c2b0aaf0bd402c32bc3837da23db698da04fe23de1748ed271a4277aad8ab0",
+      "bytes": 1912132,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L25/bottom_middle.webp",
+      "sha256": "09298e3231fb5ca606b6399ab2e436e2113ca9a5cd5515be502edbd88f6bca32",
+      "bytes": 1903196,
+      "width": 1268,
+      "height": 1241,
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L25/bottom_right.webp",
+      "sha256": "e11445fef063391d1aa1b1670d46a1fdad37cf8462570f2613de122323e747ab",
+      "bytes": 2016534,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L25/top_left.webp",
+      "sha256": "c945889dd02869c3a12008b607fb2fa76bbd35dc6296ed28d9f4a2c98947497a",
+      "bytes": 2267322,
+      "width": 1240,
+      "height": 1268,
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L25/top_middle.webp",
+      "sha256": "84c7323df10edb3a8eb749b6b46ff7ae2ad0545ae042c4185479b8988a50de8e",
+      "bytes": 2104042,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L25/top_right.webp",
+      "sha256": "f8ed74231ee4061a128b9fa5e0f2da4704063777551d6a9cf862655311f1eff6",
+      "bytes": 2222550,
+      "width": 1241,
+      "height": 1268,
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/generated/world/rooms_2k/L25/verge_material_v1.webp",
+      "sha256": "29c7b3998b98736424b8ca0ef9db9938a43ccb331d215dc4a9f3ba1afff90744",
+      "bytes": 2934948,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB"
+    }
+  ],
+  "reproduction_limit": "Exact prompts, reference hashes and native outputs are retained; stochastic generation and an unexposed model revision do not guarantee identical future pixels."
+}

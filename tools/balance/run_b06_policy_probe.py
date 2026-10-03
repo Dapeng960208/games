@@ -3,7 +3,7 @@
 A plan is printed by default. A caller selects one stage, not an automatic matrix.
 """
 import argparse,hashlib,json,pathlib,subprocess,sys
-ROOT=pathlib.Path(__file__).resolve().parents[2]
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 RUNNER=ROOT/'tools/balance/run_b06_baseline.py'
 
 from b06_source_dependencies import fingerprint

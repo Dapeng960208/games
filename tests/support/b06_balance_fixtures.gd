@@ -1,15 +1,15 @@
 extends RefCounted
 ## Frozen S11 value fixtures. No RNG, battle commands, profile access or writes.
 ## Owning these legal items is assumed; this is not a crafting/unlock simulation.
-const Rules = preload("res://config/numerical_rules.gd")
-const Registry = preload("res://scripts/data/content_registry.gd")
-const Instances = preload("res://scripts/core/equipment_instances.gd")
-const Economy = preload("res://scripts/core/instance_economy.gd")
-const Progression = preload("res://scripts/core/hero_progression.gd")
-const Resolver = preload("res://scripts/combat/stat_resolver.gd")
+const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
+const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
+const Instances = preload("res://scripts/domain/equipment/equipment_instances.gd")
+const Economy = preload("res://scripts/domain/equipment/instance_economy.gd")
+const Progression = preload("res://scripts/domain/progression/hero_progression.gd")
+const Resolver = preload("res://scripts/domain/combat/stat_resolver.gd")
 
 const VERSION := "b06-lawful-fixtures-v1"
-const SPECIFICATION := "docs/balance/BOSS_DIFFICULTY_CALIBRATION.md"
+const SPECIFICATION := "docs/system/balance/boss_difficulty_calibration.md"
 const HEROES: Array[String] = ["CH01", "CH02", "CH03"]
 const SAMPLES: Array[String] = ["G2", "P5", "G0", "mixed", "green", "white", "lowG2"]
 const SLOTS: Array[String] = ["weapon", "head", "chest", "hands", "legs", "feet", "ring", "charm"]
@@ -120,7 +120,7 @@ static func build(chapter: int, hero_id: String, sample: String, mix: String = "
 		"case_id":case_id, "group_id":group_id, "chapter":chapter, "boss_id":"BO%02d" % chapter,
 		"hero_id":hero_id, "sample":sample, "level":level, "item_level":level,
 		"ruleset_version":Rules.V2, "versions":Rules.versions(), "seeds":SEEDS.duplicate(),
-		"parameters_sha256":FileAccess.get_file_as_string(Rules.PARAMETERS_PATH).sha256_text(),
+		"parameters_sha256":FileAccess.get_file_as_string(AssetCatalog.resolve(Rules.PARAMETERS_PATH)).sha256_text(),
 		"talents":talents.duplicate(true), "talent_rank_cap":Progression.rank_cap(),
 		"talent_points_spent":level - 1, "branches":branches.duplicate(true),
 		"set_counts":stats.sets.duplicate(true), "equipment":equipment_manifest,

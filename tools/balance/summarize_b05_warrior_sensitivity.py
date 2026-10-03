@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Transparent fixed-versus-legal-counter diagnostics; never accepts a candidate."""
 import collections,hashlib,json,pathlib
-ROOT=pathlib.Path(__file__).resolve().parents[2]
+ROOT=next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'project.godot').is_file())
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def compact(c):
  packets=c['outgoing_packets'];roots=collections.defaultdict(list)
@@ -20,6 +20,6 @@ for p in sorted((ROOT.parent/'_test_output/B05').glob('*/observations.json')):
  for c in d['cases']:
   if c['configuration']['seed'] not in [1001,1007,1009] or c['configuration']['sample']!='G2':continue
   rows.append({'run_id':p.parent.name,'raw_sha256':digest(p),**compact(c)})
-out={'schema':'b05-warrior-counter-sensitivity-v1','accepted':False,'fixed_build_sha256':digest(ROOT/'docs/balance/evidence/b05_frozen_builds_v1.json'),'policies_predeclared':['frozen','all_skills','q_approach'],'seed_selection':'1001 reference,1007 frozen slowest,1009 frozen fastest; selected before new policy results','rows':rows,'combat_hash_manifests':manifests}
-(ROOT/'docs/balance/evidence/b05_warrior_counter_sensitivity_v1.json').write_text(json.dumps(out,indent=2)+'\n')
+out={'schema':'b05-warrior-counter-sensitivity-v1','accepted':False,'fixed_build_sha256':digest(ROOT/'docs/levels/b05/balance/evidence/b05_frozen_builds_v1.json'),'policies_predeclared':['frozen','all_skills','q_approach'],'seed_selection':'1001 reference,1007 frozen slowest,1009 frozen fastest; selected before new policy results','rows':rows,'combat_hash_manifests':manifests}
+(ROOT/'docs/levels/b05/balance/evidence/b05_warrior_counter_sensitivity_v1.json').write_text(json.dumps(out,indent=2)+'\n')
 print(json.dumps([{k:r[k] for k in ['run_id','seed','experiment','active_seconds','outcome']} for r in rows],indent=2))

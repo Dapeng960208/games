@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "texture": "asset://props/fixed_B04_props_v1.png",
+  "biome_id": "B04",
+  "size": [
+    1402,
+    1122
+  ],
+  "grid": {
+    "columns": 5,
+    "rows": 4,
+    "order": [
+      "B04_prop_tooth_gate",
+      "B04_prop_windsock",
+      "B04_prop_drum_rack",
+      "B04_prop_bone_bench",
+      "B04_prop_training_dummy",
+      "B04_prop_water_urn",
+      "B04_prop_trophy_plinth",
+      "B04_prop_roast_stall",
+      "B04_prop_melon_cart",
+      "B04_prop_net_loom",
+      "B04_prop_bone_swing",
+      "B04_prop_scoreboard",
+      "B04_prop_bone_anvil",
+      "B04_prop_horn_helmet_rack",
+      "B04_prop_bellows_lizard",
+      "B04_prop_armor_mannequin",
+      "B04_prop_lantern_tree",
+      "B04_prop_signal_fire",
+      "B04_prop_bone_gong",
+      "B04_prop_tribal_standard"
+    ]
+  },
+  "regions": {
+    "B04_prop_tooth_gate": [
+      15,
+      17,
+      249,
+      266
+    ],
+    "B04_prop_windsock": [
+      316,
+      17,
+      242,
+      265
+    ],
+    "B04_prop_drum_rack": [
+      567,
+      63,
+      259,
+      215
+    ],
+    "B04_prop_bone_bench": [
+      854,
+      92,
+      258,
+      188
+    ],
+    "B04_prop_training_dummy": [
+      1165,
+      16,
+      195,
+      266
+    ],
+    "B04_prop_water_urn": [
+      13,
+      314,
+      254,
+      225
+    ],
+    "B04_prop_trophy_plinth": [
+      327,
+      325,
+      184,
+      213
+    ],
+    "B04_prop_roast_stall": [
+      540,
+      281,
+      314,
+      263
+    ],
+    "B04_prop_melon_cart": [
+      863,
+      325,
+      264,
+      217
+    ],
+    "B04_prop_net_loom": [
+      1148,
+      303,
+      251,
+      259
+    ],
+    "B04_prop_bone_swing": [
+      22,
+      558,
+      259,
+      260
+    ],
+    "B04_prop_scoreboard": [
+      313,
+      558,
+      217,
+      258
+    ],
+    "B04_prop_bone_anvil": [
+      589,
+      592,
+      221,
+      216
+    ],
+    "B04_prop_horn_helmet_rack": [
+      856,
+      553,
+      248,
+      268
+    ],
+    "B04_prop_bellows_lizard": [
+      1139,
+      610,
+      245,
+      195
+    ],
+    "B04_prop_armor_mannequin": [
+      52,
+      826,
+      166,
+      278
+    ],
+    "B04_prop_lantern_tree": [
+      306,
+      822,
+      223,
+      282
+    ],
+    "B04_prop_signal_fire": [
+      575,
+      835,
+      242,
+      258
+    ],
+    "B04_prop_bone_gong": [
+      847,
+      834,
+      242,
+      262
+    ],
+    "B04_prop_tribal_standard": [
+      1118,
+      804,
+      265,
+      300
+    ]
+  },
+  "anchors": {
+    "B04_prop_tooth_gate": [
+      97,
+      262
+    ],
+    "B04_prop_windsock": [
+      41,
+      261
+    ],
+    "B04_prop_drum_rack": [
+      120,
+      211
+    ],
+    "B04_prop_bone_bench": [
+      86,
+      184
+    ],
+    "B04_prop_training_dummy": [
+      96,
+      262
+    ],
+    "B04_prop_water_urn": [
+      118,
+      221
+    ],
+    "B04_prop_trophy_plinth": [
+      88,
+      209
+    ],
+    "B04_prop_roast_stall": [
+      98,
+      259
+    ],
+    "B04_prop_melon_cart": [
+      98,
+      213
+    ],
+    "B04_prop_net_loom": [
+      102,
+      255
+    ],
+    "B04_prop_bone_swing": [
+      39,
+      256
+    ],
+    "B04_prop_scoreboard": [
+      103,
+      254
+    ],
+    "B04_prop_bone_anvil": [
+      96,
+      212
+    ],
+    "B04_prop_horn_helmet_rack": [
+      123,
+      264
+    ],
+    "B04_prop_bellows_lizard": [
+      191,
+      191
+    ],
+    "B04_prop_armor_mannequin": [
+      79,
+      274
+    ],
+    "B04_prop_lantern_tree": [
+      98,
+      278
+    ],
+    "B04_prop_signal_fire": [
+      110,
+      254
+    ],
+    "B04_prop_bone_gong": [
+      52,
+      258
+    ],
+    "B04_prop_tribal_standard": [
+      49,
+      296
+    ]
+  },
+  "ground_footprints": {
+    "B04_prop_tooth_gate": [
+      50,
+      248,
+      95,
+      29
+    ],
+    "B04_prop_windsock": [
+      0,
+      247,
+      92,
+      29
+    ],
+    "B04_prop_drum_rack": [
+      71,
+      199,
+      98,
+      24
+    ],
+    "B04_prop_bone_bench": [
+      37,
+      174,
+      98,
+      21
+    ],
+    "B04_prop_training_dummy": [
+      59,
+      248,
+      74,
+      29
+    ],
+    "B04_prop_water_urn": [
+      70,
+      209,
+      97,
+      25
+    ],
+    "B04_prop_trophy_plinth": [
+      53,
+      198,
+      70,
+      23
+    ],
+    "B04_prop_roast_stall": [
+      48,
+      245,
+      100,
+      29
+    ],
+    "B04_prop_melon_cart": [
+      48,
+      201,
+      100,
+      24
+    ],
+    "B04_prop_net_loom": [
+      55,
+      241,
+      95,
+      28
+    ],
+    "B04_prop_bone_swing": [
+      0,
+      242,
+      98,
+      29
+    ],
+    "B04_prop_scoreboard": [
+      62,
+      240,
+      82,
+      28
+    ],
+    "B04_prop_bone_anvil": [
+      54,
+      200,
+      84,
+      24
+    ],
+    "B04_prop_horn_helmet_rack": [
+      76,
+      250,
+      94,
+      29
+    ],
+    "B04_prop_bellows_lizard": [
+      145,
+      181,
+      93,
+      21
+    ],
+    "B04_prop_armor_mannequin": [
+      48,
+      259,
+      63,
+      31
+    ],
+    "B04_prop_lantern_tree": [
+      56,
+      263,
+      85,
+      31
+    ],
+    "B04_prop_signal_fire": [
+      64,
+      240,
+      92,
+      28
+    ],
+    "B04_prop_bone_gong": [
+      6,
+      244,
+      92,
+      29
+    ],
+    "B04_prop_tribal_standard": [
+      0,
+      280,
+      100,
+      33
+    ]
+  },
+  "fallback_aliases": {
+    "B04_prop_axe_rack": "B04_prop_horn_helmet_rack",
+    "B04_prop_bone_dice": "B04_prop_scoreboard",
+    "B04_prop_charm_stake": "B04_prop_tribal_standard",
+    "B04_prop_cloth_canopy": "B04_prop_roast_stall",
+    "B04_prop_horn_telescope": "B04_prop_windsock",
+    "B04_prop_medal_tree": "B04_prop_trophy_plinth",
+    "B04_prop_painted_cairn": "B04_edge_corner",
+    "B04_prop_pet_bowl": "B04_prop_water_urn",
+    "B04_prop_pet_pen": "B04_prop_bone_bench",
+    "B04_prop_pot_stack": "B04_prop_water_urn",
+    "B04_prop_quench_basin": "B04_prop_water_urn",
+    "B04_prop_spectator_banner": "B04_prop_tribal_standard",
+    "B04_prop_echo_spiral_drum": "B04_prop_drum_rack",
+    "B04_prop_laughing_sun_market": "B04_prop_tooth_gate",
+    "B04_prop_tusk_open_grandstand": "B04_prop_bone_bench",
+    "B04_prop_sun_tooth_forge": "B04_prop_bone_anvil",
+    "B04_prop_sky_horn_beacon": "B04_prop_lantern_tree",
+    "B04_prop_three_clan_trial_arch": "B04_prop_tooth_gate",
+    "B04_prop_sun_crown_champion_seat": "B04_prop_trophy_plinth"
+  },
+  "landmark_compositions": {
+    "B04_prop_echo_spiral_drum": [
+      "B04_prop_drum_rack",
+      "B04_prop_windsock"
+    ],
+    "B04_prop_laughing_sun_market": [
+      "B04_prop_tooth_gate",
+      "B04_prop_melon_cart"
+    ],
+    "B04_prop_tusk_open_grandstand": [
+      "B04_prop_bone_bench",
+      "B04_prop_scoreboard",
+      "B04_prop_tribal_standard"
+    ],
+    "B04_prop_sun_tooth_forge": [
+      "B04_prop_bone_anvil",
+      "B04_prop_bellows_lizard",
+      "B04_prop_signal_fire"
+    ],
+    "B04_prop_sky_horn_beacon": [
+      "B04_prop_lantern_tree",
+      "B04_prop_bone_gong",
+      "B04_prop_tribal_standard"
+    ],
+    "B04_prop_three_clan_trial_arch": [
+      "B04_prop_tooth_gate",
+      "B04_prop_drum_rack",
+      "B04_prop_tribal_standard"
+    ],
+    "B04_prop_sun_crown_champion_seat": [
+      "B04_prop_trophy_plinth",
+      "B04_prop_horn_helmet_rack",
+      "B04_prop_tribal_standard"
+    ]
+  },
+  "ground_inlays": {
+    "B04_prop_practice_ring": {
+      "pattern": "indigo_ochre_training_rings",
+      "collision": false
+    },
+    "B04_prop_woven_mat": {
+      "pattern": "indigo_terracotta_sun_weave",
+      "collision": false
+    }
+  },
+  "collision_note": "碰撞以固定房间props.solid为准；此表脚点用于排序/小尺寸脚印，不能给所有装饰自动制造碰撞。",
+  "fallback_note": "20种独立精灵；fallback_aliases为同族近似替代，不表示额外制作了对应道具；地标建议使用已列组合而不是通用箱体。",
+  "alpha_analysis": {
+    "mode": "RGBA",
+    "transparent_pixels": 609887,
+    "nonzero_pixels": 963157,
+    "significant_object_components": 20,
+    "bbox_threshold": 120
+  }
+}

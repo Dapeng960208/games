@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "texture": "asset://world/fixed_B02_edges_v1.png",
+  "regions": {
+    "B02_edge_south": [
+      0,
+      17,
+      444,
+      427
+    ],
+    "B02_edge_corner": [
+      444,
+      12,
+      443,
+      432
+    ],
+    "B02_edge_west": [
+      887,
+      12,
+      443,
+      432
+    ],
+    "B02_edge_gateway": [
+      1330,
+      16,
+      430,
+      428
+    ],
+    "B02_edge_north": [
+      0,
+      444,
+      444,
+      443
+    ],
+    "B02_edge_east": [
+      444,
+      444,
+      443,
+      417
+    ],
+    "B02_edge_foreground": [
+      887,
+      493,
+      443,
+      377
+    ],
+    "B02_edge_backdrop": [
+      1330,
+      444,
+      443,
+      427
+    ]
+  },
+  "anchors": {
+    "B02_edge_south": [
+      222,
+      426
+    ],
+    "B02_edge_corner": [
+      221,
+      431
+    ],
+    "B02_edge_west": [
+      221,
+      431
+    ],
+    "B02_edge_gateway": [
+      215,
+      427
+    ],
+    "B02_edge_north": [
+      222,
+      442
+    ],
+    "B02_edge_east": [
+      221,
+      416
+    ],
+    "B02_edge_foreground": [
+      221,
+      376
+    ],
+    "B02_edge_backdrop": [
+      221,
+      426
+    ]
+  },
+  "ground_footprints": {},
+  "collision": {
+    "enabled": false,
+    "keys": [],
+    "note": "All eight are exterior scenery or fading foreground decoration. No collider or gameplay blocker."
+  },
+  "coordinate_system": {
+    "regions": "Absolute actual-PNG pixel bounds [x,y,width,height], measured from nonzero alpha within equal source cells.",
+    "anchors": "CROP-LOCAL lower-center anchor [x,y].",
+    "ground_footprints": "Empty: exterior edge decoration has no physical collision."
+  },
+  "atlas_layout": {
+    "columns": 4,
+    "rows": 2,
+    "uniform_grid": true,
+    "source_size": [
+      1774,
+      887
+    ],
+    "order": [
+      "B02_edge_south",
+      "B02_edge_corner",
+      "B02_edge_west",
+      "B02_edge_gateway",
+      "B02_edge_north",
+      "B02_edge_east",
+      "B02_edge_foreground",
+      "B02_edge_backdrop"
+    ],
+    "source_cells": {
+      "B02_edge_south": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "B02_edge_corner": [
+        444,
+        0,
+        443,
+        444
+      ],
+      "B02_edge_west": [
+        887,
+        0,
+        443,
+        444
+      ],
+      "B02_edge_gateway": [
+        1330,
+        0,
+        444,
+        444
+      ],
+      "B02_edge_north": [
+        0,
+        444,
+        444,
+        443
+      ],
+      "B02_edge_east": [
+        444,
+        444,
+        443,
+        443
+      ],
+      "B02_edge_foreground": [
+        887,
+        444,
+        443,
+        443
+      ],
+      "B02_edge_backdrop": [
+        1330,
+        444,
+        444,
+        443
+      ]
+    }
+  },
+  "asset_names": {
+    "B02_edge_south": "蜂蜡矮阶沿",
+    "B02_edge_corner": "琥珀根转角",
+    "B02_edge_west": "巨叶遮阳棚",
+    "B02_edge_gateway": "叶翅入口拱",
+    "B02_edge_north": "开放巢壁",
+    "B02_edge_east": "外围叶根坡",
+    "B02_edge_foreground": "近景紫翼花叶",
+    "B02_edge_backdrop": "蜂蜡巢屋远景"
+  },
+  "alpha_analysis": {
+    "mode": "RGBA",
+    "minimum": 0,
+    "maximum": 255,
+    "fully_transparent_pixels": 869726,
+    "total_pixels": 1573538,
+    "transparent_fraction": 0.55272,
+    "image_pixels_modified": false
+  },
+  "provenance": {
+    "method": "Built-in image_gen with transparent_background true. Source PNG copied without editing. Pillow used only to inspect alpha and compute manifest coordinates.",
+    "prompt": "asset://world/fixed_B02_edges_v1.prompt.json"
+  }
+}

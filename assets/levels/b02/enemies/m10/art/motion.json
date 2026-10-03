@@ -1,0 +1,1130 @@
+{
+  "texture": "asset://enemies/M10_storybook_motion_v1.png",
+  "enemy_id": "M10",
+  "visual_clan": "琥珀虫族",
+  "source_family": "storybook_2_5d_v1",
+  "full_color": true,
+  "facing": "right",
+  "columns": 4,
+  "rows": 4,
+  "clips": {
+    "idle": [
+      0
+    ],
+    "walk": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "windup": [
+      8,
+      9
+    ],
+    "locked": [
+      9
+    ],
+    "release": [
+      10
+    ],
+    "recovery": [
+      11
+    ],
+    "hurt": [
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "cycle_distance": 100,
+  "body_height": 128.125,
+  "image_size": [
+    1254,
+    1254
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "region": [
+        56,
+        134,
+        235,
+        161
+      ],
+      "foot": [
+        170,
+        292
+      ],
+      "pose": "walk_tripod_a_contact"
+    },
+    {
+      "index": 1,
+      "region": [
+        376,
+        130,
+        232,
+        157
+      ],
+      "foot": [
+        489,
+        282
+      ],
+      "pose": "walk_tripod_b_tuck"
+    },
+    {
+      "index": 2,
+      "region": [
+        670,
+        134,
+        241,
+        155
+      ],
+      "foot": [
+        790,
+        286
+      ],
+      "pose": "walk_tripod_b_reach"
+    },
+    {
+      "index": 3,
+      "region": [
+        985,
+        135,
+        232,
+        160
+      ],
+      "foot": [
+        1106,
+        292
+      ],
+      "pose": "walk_tripod_b_touchdown"
+    },
+    {
+      "index": 4,
+      "region": [
+        31,
+        428,
+        249,
+        160
+      ],
+      "foot": [
+        156,
+        585
+      ],
+      "pose": "walk_tripod_b_contact"
+    },
+    {
+      "index": 5,
+      "region": [
+        370,
+        426,
+        238,
+        151
+      ],
+      "foot": [
+        489,
+        572
+      ],
+      "pose": "walk_tripod_a_tuck"
+    },
+    {
+      "index": 6,
+      "region": [
+        675,
+        426,
+        241,
+        152
+      ],
+      "foot": [
+        795,
+        575
+      ],
+      "pose": "walk_tripod_a_reach"
+    },
+    {
+      "index": 7,
+      "region": [
+        988,
+        427,
+        246,
+        161
+      ],
+      "foot": [
+        1109,
+        585
+      ],
+      "pose": "walk_tripod_a_touchdown"
+    },
+    {
+      "index": 8,
+      "region": [
+        44,
+        710,
+        262,
+        187
+      ],
+      "foot": [
+        175,
+        894
+      ],
+      "pose": "windup_raise"
+    },
+    {
+      "index": 9,
+      "region": [
+        377,
+        665,
+        229,
+        227
+      ],
+      "foot": [
+        495,
+        889
+      ],
+      "pose": "windup_full"
+    },
+    {
+      "index": 10,
+      "region": [
+        662,
+        758,
+        272,
+        144
+      ],
+      "foot": [
+        785,
+        894
+      ],
+      "pose": "release_double_downslash"
+    },
+    {
+      "index": 11,
+      "region": [
+        976,
+        729,
+        253,
+        161
+      ],
+      "foot": [
+        1105,
+        887
+      ],
+      "pose": "recovery_guard"
+    },
+    {
+      "index": 12,
+      "region": [
+        66,
+        996,
+        216,
+        178
+      ],
+      "foot": [
+        170,
+        1171
+      ],
+      "pose": "hurt_snap"
+    },
+    {
+      "index": 13,
+      "region": [
+        370,
+        1025,
+        238,
+        149
+      ],
+      "foot": [
+        489,
+        1171
+      ],
+      "pose": "hurt_deep"
+    },
+    {
+      "index": 14,
+      "region": [
+        675,
+        1013,
+        242,
+        161
+      ],
+      "foot": [
+        795,
+        1171
+      ],
+      "pose": "hurt_rebalance"
+    },
+    {
+      "index": 15,
+      "region": [
+        985,
+        1015,
+        243,
+        158
+      ],
+      "foot": [
+        1106,
+        1170
+      ],
+      "pose": "hurt_settle"
+    }
+  ],
+  "quality_gate_passed": false,
+  "activation_status": "candidate_static_fallback_required",
+  "metadata": {
+    "layout": "4x4 row-major atlas with explicit measured regions. Use frames.region, not division of image_size.",
+    "coordinate_space": "region=[atlas_x,atlas_y,width,height]; foot=[absolute_atlas_x,absolute_atlas_y] ground projection below torso.",
+    "alpha_threshold": 32,
+    "padding": 2,
+    "body_height_measurement": "One global body_height is the arithmetic mean of anatomical rigid shell crown-to-recognizable walking-foot ground heights across normal walk frames0-7. Excludes antennae, all scythe reach, red fringe and raised-weapon bounds. Do not derive scale from each frame region.",
+    "body_height_crown_y": [
+      158,
+      158,
+      156,
+      159,
+      453,
+      453,
+      454,
+      453
+    ],
+    "body_height_ground_y": [
+      292,
+      282,
+      286,
+      292,
+      585,
+      572,
+      575,
+      585
+    ],
+    "body_height_frame_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "foot_measurement": "Foot Y is the lowest alpha>=32 pixel in visually selected walking-foot ROIs; anchor X is a steady visually estimated torso/leg-root ground projection rather than the moving toe. Release frame10 ground Y894 excludes blade pixels down to899.",
+    "foot_landmarks": [
+      {
+        "index": 0,
+        "anatomical_crown_y": 158,
+        "ground_y": 292,
+        "lowest_visible_foot": [
+          133,
+          292
+        ],
+        "ground_projection": [
+          170,
+          292
+        ],
+        "foot_roi": [
+          124,
+          278,
+          19,
+          21
+        ]
+      },
+      {
+        "index": 1,
+        "anatomical_crown_y": 158,
+        "ground_y": 282,
+        "lowest_visible_foot": [
+          381,
+          282
+        ],
+        "ground_projection": [
+          489,
+          282
+        ],
+        "foot_roi": [
+          375,
+          270,
+          20,
+          20
+        ]
+      },
+      {
+        "index": 2,
+        "anatomical_crown_y": 156,
+        "ground_y": 286,
+        "lowest_visible_foot": [
+          778,
+          286
+        ],
+        "ground_projection": [
+          790,
+          286
+        ],
+        "foot_roi": [
+          764,
+          276,
+          23,
+          18
+        ]
+      },
+      {
+        "index": 3,
+        "anatomical_crown_y": 159,
+        "ground_y": 292,
+        "lowest_visible_foot": [
+          1072,
+          292
+        ],
+        "ground_projection": [
+          1106,
+          292
+        ],
+        "foot_roi": [
+          1058,
+          280,
+          21,
+          19
+        ]
+      },
+      {
+        "index": 4,
+        "anatomical_crown_y": 453,
+        "ground_y": 585,
+        "lowest_visible_foot": [
+          110,
+          585
+        ],
+        "ground_projection": [
+          156,
+          585
+        ],
+        "foot_roi": [
+          102,
+          570,
+          21,
+          22
+        ]
+      },
+      {
+        "index": 5,
+        "anatomical_crown_y": 453,
+        "ground_y": 572,
+        "lowest_visible_foot": [
+          536,
+          572
+        ],
+        "ground_projection": [
+          489,
+          572
+        ],
+        "foot_roi": [
+          530,
+          560,
+          16,
+          20
+        ]
+      },
+      {
+        "index": 6,
+        "anatomical_crown_y": 454,
+        "ground_y": 575,
+        "lowest_visible_foot": [
+          782,
+          575
+        ],
+        "ground_projection": [
+          795,
+          575
+        ],
+        "foot_roi": [
+          764,
+          564,
+          26,
+          20
+        ]
+      },
+      {
+        "index": 7,
+        "anatomical_crown_y": 453,
+        "ground_y": 585,
+        "lowest_visible_foot": [
+          1062,
+          585
+        ],
+        "ground_projection": [
+          1109,
+          585
+        ],
+        "foot_roi": [
+          1055,
+          573,
+          24,
+          18
+        ]
+      },
+      {
+        "index": 8,
+        "ground_y": 894,
+        "lowest_visible_foot": [
+          160,
+          894
+        ],
+        "ground_projection": [
+          175,
+          894
+        ],
+        "foot_roi": [
+          140,
+          878,
+          26,
+          24
+        ]
+      },
+      {
+        "index": 9,
+        "ground_y": 889,
+        "lowest_visible_foot": [
+          448,
+          889
+        ],
+        "ground_projection": [
+          495,
+          889
+        ],
+        "foot_roi": [
+          438,
+          870,
+          31,
+          25
+        ]
+      },
+      {
+        "index": 10,
+        "ground_y": 894,
+        "lowest_visible_foot": [
+          756,
+          894
+        ],
+        "ground_projection": [
+          785,
+          894
+        ],
+        "foot_roi": [
+          747,
+          880,
+          18,
+          21
+        ]
+      },
+      {
+        "index": 11,
+        "ground_y": 887,
+        "lowest_visible_foot": [
+          1059,
+          887
+        ],
+        "ground_projection": [
+          1105,
+          887
+        ],
+        "foot_roi": [
+          1050,
+          873,
+          20,
+          20
+        ]
+      },
+      {
+        "index": 12,
+        "ground_y": 1171,
+        "lowest_visible_foot": [
+          159,
+          1171
+        ],
+        "ground_projection": [
+          170,
+          1171
+        ],
+        "foot_roi": [
+          148,
+          1155,
+          21,
+          23
+        ]
+      },
+      {
+        "index": 13,
+        "ground_y": 1171,
+        "lowest_visible_foot": [
+          465,
+          1171
+        ],
+        "ground_projection": [
+          489,
+          1171
+        ],
+        "foot_roi": [
+          447,
+          1155,
+          25,
+          23
+        ]
+      },
+      {
+        "index": 14,
+        "ground_y": 1171,
+        "lowest_visible_foot": [
+          745,
+          1171
+        ],
+        "ground_projection": [
+          795,
+          1171
+        ],
+        "foot_roi": [
+          738,
+          1155,
+          20,
+          23
+        ]
+      },
+      {
+        "index": 15,
+        "ground_y": 1170,
+        "lowest_visible_foot": [
+          1059,
+          1170
+        ],
+        "ground_projection": [
+          1106,
+          1170
+        ],
+        "foot_roi": [
+          1050,
+          1156,
+          23,
+          21
+        ]
+      }
+    ],
+    "alpha_validation": {
+      "count": 16,
+      "all_visible_alpha_inside_regions": true,
+      "alpha_outside_regions_max": 7,
+      "all_regions_disjoint": true,
+      "all_regions_in_bounds": true,
+      "outer_visible_alpha_pixels": 0,
+      "all_gutters_at_least_15_percent": false
+    },
+    "cell_measurements": [
+      {
+        "index": 0,
+        "cell": [
+          0,
+          0,
+          314,
+          314
+        ],
+        "bbox": [
+          58,
+          136,
+          231,
+          157
+        ],
+        "region": [
+          56,
+          134,
+          235,
+          161
+        ],
+        "margins": [
+          58,
+          136,
+          25,
+          21
+        ],
+        "minimum_gutter_fraction": 0.06687898089171974
+      },
+      {
+        "index": 1,
+        "cell": [
+          314,
+          0,
+          313,
+          314
+        ],
+        "bbox": [
+          378,
+          132,
+          228,
+          153
+        ],
+        "region": [
+          376,
+          130,
+          232,
+          157
+        ],
+        "margins": [
+          64,
+          132,
+          21,
+          29
+        ],
+        "minimum_gutter_fraction": 0.0670926517571885
+      },
+      {
+        "index": 2,
+        "cell": [
+          627,
+          0,
+          313,
+          314
+        ],
+        "bbox": [
+          672,
+          136,
+          237,
+          151
+        ],
+        "region": [
+          670,
+          134,
+          241,
+          155
+        ],
+        "margins": [
+          45,
+          136,
+          31,
+          27
+        ],
+        "minimum_gutter_fraction": 0.08626198083067092
+      },
+      {
+        "index": 3,
+        "cell": [
+          940,
+          0,
+          314,
+          314
+        ],
+        "bbox": [
+          987,
+          137,
+          228,
+          156
+        ],
+        "region": [
+          985,
+          135,
+          232,
+          160
+        ],
+        "margins": [
+          47,
+          137,
+          39,
+          21
+        ],
+        "minimum_gutter_fraction": 0.06687898089171974
+      },
+      {
+        "index": 4,
+        "cell": [
+          0,
+          314,
+          314,
+          313
+        ],
+        "bbox": [
+          33,
+          430,
+          245,
+          156
+        ],
+        "region": [
+          31,
+          428,
+          249,
+          160
+        ],
+        "margins": [
+          33,
+          116,
+          36,
+          41
+        ],
+        "minimum_gutter_fraction": 0.10543130990415335
+      },
+      {
+        "index": 5,
+        "cell": [
+          314,
+          314,
+          313,
+          313
+        ],
+        "bbox": [
+          372,
+          428,
+          234,
+          147
+        ],
+        "region": [
+          370,
+          426,
+          238,
+          151
+        ],
+        "margins": [
+          58,
+          114,
+          21,
+          52
+        ],
+        "minimum_gutter_fraction": 0.0670926517571885
+      },
+      {
+        "index": 6,
+        "cell": [
+          627,
+          314,
+          313,
+          313
+        ],
+        "bbox": [
+          677,
+          428,
+          237,
+          148
+        ],
+        "region": [
+          675,
+          426,
+          241,
+          152
+        ],
+        "margins": [
+          50,
+          114,
+          26,
+          51
+        ],
+        "minimum_gutter_fraction": 0.08306709265175719
+      },
+      {
+        "index": 7,
+        "cell": [
+          940,
+          314,
+          314,
+          313
+        ],
+        "bbox": [
+          990,
+          429,
+          242,
+          157
+        ],
+        "region": [
+          988,
+          427,
+          246,
+          161
+        ],
+        "margins": [
+          50,
+          115,
+          22,
+          41
+        ],
+        "minimum_gutter_fraction": 0.07028753993610223
+      },
+      {
+        "index": 8,
+        "cell": [
+          0,
+          627,
+          314,
+          313
+        ],
+        "bbox": [
+          46,
+          712,
+          258,
+          183
+        ],
+        "region": [
+          44,
+          710,
+          262,
+          187
+        ],
+        "margins": [
+          46,
+          85,
+          10,
+          45
+        ],
+        "minimum_gutter_fraction": 0.03194888178913738
+      },
+      {
+        "index": 9,
+        "cell": [
+          314,
+          627,
+          313,
+          313
+        ],
+        "bbox": [
+          379,
+          667,
+          225,
+          223
+        ],
+        "region": [
+          377,
+          665,
+          229,
+          227
+        ],
+        "margins": [
+          65,
+          40,
+          23,
+          50
+        ],
+        "minimum_gutter_fraction": 0.07348242811501597
+      },
+      {
+        "index": 10,
+        "cell": [
+          627,
+          627,
+          313,
+          313
+        ],
+        "bbox": [
+          664,
+          760,
+          268,
+          140
+        ],
+        "region": [
+          662,
+          758,
+          272,
+          144
+        ],
+        "margins": [
+          37,
+          133,
+          8,
+          40
+        ],
+        "minimum_gutter_fraction": 0.025559105431309903
+      },
+      {
+        "index": 11,
+        "cell": [
+          940,
+          627,
+          314,
+          313
+        ],
+        "bbox": [
+          978,
+          731,
+          249,
+          157
+        ],
+        "region": [
+          976,
+          729,
+          253,
+          161
+        ],
+        "margins": [
+          38,
+          104,
+          27,
+          52
+        ],
+        "minimum_gutter_fraction": 0.08626198083067092
+      },
+      {
+        "index": 12,
+        "cell": [
+          0,
+          940,
+          314,
+          314
+        ],
+        "bbox": [
+          68,
+          998,
+          212,
+          174
+        ],
+        "region": [
+          66,
+          996,
+          216,
+          178
+        ],
+        "margins": [
+          68,
+          58,
+          34,
+          82
+        ],
+        "minimum_gutter_fraction": 0.10828025477707007
+      },
+      {
+        "index": 13,
+        "cell": [
+          314,
+          940,
+          313,
+          314
+        ],
+        "bbox": [
+          372,
+          1027,
+          234,
+          145
+        ],
+        "region": [
+          370,
+          1025,
+          238,
+          149
+        ],
+        "margins": [
+          58,
+          87,
+          21,
+          82
+        ],
+        "minimum_gutter_fraction": 0.0670926517571885
+      },
+      {
+        "index": 14,
+        "cell": [
+          627,
+          940,
+          313,
+          314
+        ],
+        "bbox": [
+          677,
+          1015,
+          238,
+          157
+        ],
+        "region": [
+          675,
+          1013,
+          242,
+          161
+        ],
+        "margins": [
+          50,
+          75,
+          25,
+          82
+        ],
+        "minimum_gutter_fraction": 0.07987220447284345
+      },
+      {
+        "index": 15,
+        "cell": [
+          940,
+          940,
+          314,
+          314
+        ],
+        "bbox": [
+          987,
+          1017,
+          239,
+          154
+        ],
+        "region": [
+          985,
+          1015,
+          243,
+          158
+        ],
+        "margins": [
+          47,
+          77,
+          28,
+          83
+        ],
+        "minimum_gutter_fraction": 0.08917197452229299
+      }
+    ],
+    "quality_gate": {
+      "passed": false,
+      "identity_consistent": true,
+      "facing_right": true,
+      "attack_sequence_readable": true,
+      "regions_complete_disjoint_in_bounds": true,
+      "all_six_walking_feet_readable": false,
+      "coherent_eight_phase_walk": false,
+      "all_cell_gutters_at_least_15_percent": false
+    },
+    "quality_notes": [
+      "Built-in image generation returned 1254x1254 instead of the requested 2048x2048; the raw image is preserved without resampling.",
+      "The required 15% cell gutters were not achieved: minimum measured visible-alpha gutter is 2.56% in release frame10. All complete sprites are nevertheless isolated in disjoint, in-bounds measured regions.",
+      "Six separate walking feet cannot be certified visually. About 3-4 major feet are individually readable, with far-side/underbelly forms merging. Paired scythe arms remain clear.",
+      "Walking leg bends and swing poses are visible in frames1-2 and5-6, but a coherent eight-phase alternating-tripod gait cannot be certified.",
+      "Frame12 recoils clearly; hurt frames13-15 quickly resemble neutral returns.",
+      "Thin red/gold edge fringe remains in the raw generated artwork. Maximum alpha outside declared padded regions is7; raw alpha is preserved.",
+      "Anatomical crown coordinates are independent visual estimates with approximately +/-3px uncertainty. Foot ground Y was refined by read-only alpha measurements inside recognizable walking-foot ROIs; the invisible six-foot support plane cannot be certified."
+    ]
+  },
+  "provenance": {
+    "tool": "image_gen.imagegen (built-in)",
+    "requested_date": "2026-09-30",
+    "created_date": "2026-09-30",
+    "saved_date": "2026-10-01",
+    "reference": "C:\\webdev\\games\\assets\\generated\\enemies\\storybook_B01_bodies_v1.png",
+    "reference_scope": "Only top-left canonical amber/coral insect used; remaining nine creatures excluded.",
+    "enemy_id_reassignment": "Coordinator reassigned former M01 insect motion to M10 for new B02 琥珀虫族 while generation was in progress; art identity retained. No new M01 motion files were written.",
+    "original_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-2d9b8f31-c0f0-485b-9510-c9859d090bb8.png",
+    "repair1_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-37668b27-6fec-48b8-9032-05293b74bbcf.png",
+    "final_generated_source": "C:\\Users\\13326\\.codex\\generated_images\\01a0f2dd-4733-7ce0-8c3d-88218d682625\\exec-73a093c3-8b2e-472e-8ffa-2ec398e28e0e.png",
+    "transparent_background": true,
+    "prompt": "Use case: stylized-concept.\nAsset type: production enemy sprite motion atlas, transparent PNG, exactly sixteen full-body animation frames.\nInput image 1 is a STYLE AND IDENTITY REFERENCE. Use ONLY the TOP-LEFT creature in this reference sheet. Ignore and never borrow anatomy, colors, wings, tails or weapons from the other nine creatures. The top-left creature is the canonical M01 辉砂虫族: a dangerous nonhuman hulking amber/coral beetle-mantis insect with a low rounded segmented golden amber abdomen, orange-coral armored shell plates edged in pale ivory and old brass, glistening amber shell nodules, a small forward insect head with large jade/teal compound eyes, two delicate backward-curled brass antennae, SIX jointed insect walking legs ending in six pointed feet, and a separate pair of huge curved ivory-gold scythe forelimbs. No humanoid anatomy, no clothing, no fists, no human legs. Preserve this exact character in every frame, not sixteen different insects. A dangerous predatory insect, not a cute pet.\nLOCKED STANDARD: bright hand-painted cartoon fantasy, classical ruins combined with magical steam machinery, high camera three-quarter oblique overhead view, nearly isometric composition, 2.5D solid volume, warm sunshine inside the character surfaces and fresh vivid colors. Maintain crisp deep-plum contour edges, tactile painted facets, amber/coral/pale ivory/gold shell, jade compound eyes. Dark creases between hard shell plates, soft warm top-left highlights. Rich physical volume and thickness rather than flat icon shapes or photorealism.\nATLAS LAYOUT: square target 2048 x 2048 canvas, invisible precise 4 columns x 4 rows of equal 512 x 512 cells. Strict row-major index0–15 left-to-right then top-to-bottom. EXACTLY sixteen separate complete sprites. Every frame faces SCREEN RIGHT: the jade-eyed head is on the right and abdomen on the left, seen from consistent high three-quarter camera. Same anatomical body size and proportions in all frames. Walks IN PLACE. All six walking feet and both full curved scythes, antenna tips and full abdomen fit within their own cell. Sprite footprint including all appendages at most 60 percent of cell width and height. Leave at least 20 percent empty TRANSPARENT gutter on all four sides. Do not crop, overlap neighbors, or touch any cell edge. Normal body crown-to-ground height about 38 percent of cell height, excluding raised scythes and antennae. Ground/foot anchor near local x=256,y=370 for every cell; same global body scale. Deep anticipation and recoil can bend the body, but never resize it. Invisible grid, no labels or frame numbers.\nThe SIX distinct walking feet must remain complete and separate in every pose: three near-side feet and three far-side feet, visibly staggered so they can be counted. Keep pair of large scythe forelimbs in front, visually distinguishable from the six walking feet. Vary actual joint bends and planted versus lifted feet across the walk cycle. The stable armored abdomen is never recolored or changed.\nROW1 frame0–3: first half of an eight-phase alternating-tripod insect walking cycle, six legs moving anatomically in place.\n0 neutral contact/idle-compatible stance: near front foot forward and near rear foot back, middle near foot braced; complementary far leg tripod supports the abdomen, paired scythes held in threatening low forward guard.\n1 first tripod compresses: planted joints bend down under weight, complementary three feet begin lift, shell lowers very slightly.\n2 passing: lifted near front/far middle/near rear legs tuck and pass under body, other three feet fully planted, scythes counterbalance subtly.\n3 first tripod reaches forward: those three swing feet extend forward with toes lifted, other tripod holds body, shell lifts slightly.\nROW2 frame4–7: second half of the same continuous eight-phase cycle, visibly opposite leg sequence.\n4 opposite tripod contact: far front foot now forward, near middle and far rear support; other leg positions reverse frame0.\n5 opposite tripod compresses: opposite three planted joints flex, previous support feet lift, tiny downward shell motion.\n6 opposite passing: far front/near middle/far rear swing beneath shell while the other tripod anchors, scythes subtly counter-swing.\n7 opposite reach: opposite three swing feet extend in preparation for contact, abdomen rises slightly and returns smoothly to frame0.\nDo not make eight copies of the same stance. Each walk pose must have distinct foot placements, knee bends and tripod phase while shell dimensions remain constant.\nROW3 frame8–11: paired scythe attack, each silhouette decisively different.\n8 windup start: wide six-foot brace, torso tilts backward, BOTH scythe forelimbs lift upward diagonally, elbows curl in preparation.\n9 full windup/locked attack anticipation: both huge scythes raised high and back above head, sharp tips wholly inside cell, head pulled back, six feet fully braced. Clear overhead threatening silhouette.\n10 release: forceful DOWNWARD-FORWARD DOUBLE SCYTHE SLASH, both large blades sweep down ahead to the right near ground height, insect body pitches forward, six legs brace. Do not add action trails or effects. Blades visibly low, not raised.\n11 recovery: blades rise partly from the downslash into forward guard, shell halfway straightens, six feet settle centered.\nROW4 frame12–15: a four-frame hurt recoil and settle sequence.\n12 initial hit recoil: head and shell snap backward to the left, scythes recoil inward, six legs splay to catch balance, no added damage effect.\n13 deepest recoil: shell leans back and compresses, head pulls back markedly, hind feet plant harder and front feet recoil, lowered scythes protect body. Same character size.\n14 regain balance: abdomen and head return halfway forward, middle legs recover, scythes move back toward guard.\n15 hurt settle: stable threatening right-facing low guard, six feet regain ordinary tripod-ready stance and armor/head return toward walk0.\nTRANSPARENCY: real alpha-zero transparent background outside exact insect silhouettes, no opaque square, no floor, no ground planes, no cast shadows, no contact shadows, no drop shadows, no halo, no glow outside the insect, no scene or ruins painted in the atlas. Warm illumination is painted INSIDE the sprites only. No particles, slash streaks, impact flashes, blood, UI, labels, text, frame numbers, borders, grid, watermark or extra objects. Six feet and paired scythes wholly visible, no missing limbs, no extra walking legs, no flying insect, no cropped anatomy. All sixteen are the SAME canonical top-left amber/coral jade-eyed insect in distinct poses, right-facing high three-quarter view.",
+    "repair_prompts": [
+      "Use case: precise-object-edit.\nImage1 is the sixteen-frame M01 amber/coral insect motion atlas to repair. Image2 is its canonical identity reference; use ONLY image2's TOP-LEFT amber insect, ignore all other creatures.\nRepair image1 while keeping the successful same-character amber/coral rounded shell, golden/ivory seams, glowing amber nodes, jade compound eyes, curled gold antennae, paired long curved ivory-gold scythe forearms, dangerous predatory expression, bright polished hand-painted 2.5D style and high three-quarter SCREEN-RIGHT facing view. Preserve the row-major sequence and attack/recoil intent.\nTWO CONCRETE FIXES:\n1 Make all sixteen WHOLE sprites MUCH SMALLER with generous alpha-zero empty space. REDUCE THEM ALL to about 60 PERCENT of their current size, using one constant body scale. Square target2048x2048, strict invisible4x4 equal512cells. Each full silhouette INCLUDING all scythes, antennae and feet at most60percent cellwidth and60percent cellheight. At least18percent blank transparent space on ALL four sides of EVERY cell, including frame9 raised scythes and frame10 downslash. Same cell ground anchor local x=.5,y=.72; every appendage fully inside, no cell touching, no overlap, no clipping. Large obvious empty transparent bands between rows and columns. Keep anatomical shell size identical across poses; do NOT individually enlarge smaller bent poses.\n2 Redraw SIX WALKING LEGS so all SIX POINTED FEET are individually traceable and countable in EVERY frame, plus TWO separate big scythe forearms. Three walking legs on visible near side and three on farther side. Give far-side feet clear spaces between them, staggered beyond belly silhouette, do not merge them into dark tassels beneath abdomen. Each of the six legs has visible joints and a pointed insect foot. Long angular arthropod limb structure, never robot boots or humanoid arms. Scythes are attack appendages and NEVER substitute for any of the six walking feet.\nThe first eight frames MUST show a clear active insect alternating-tripod walk IN PLACE, with broad perceptible stride and dramatic joint changes, not tiny near-identical idle stances. Treat support groupA=near front+far middle+near rear; groupB=far front+near middle+far rear. Exactly6feet remain complete when lifted.\nROW1 indices0–3:\n0 groupA feet clearly PLANTED FORWARD, groupB feet clearly swept BACK; low scythe guard.\n1 groupA planted legs visibly BENT down under load, all3 groupB feet visibly LIFT off and curl inward.\n2 groupB feet swing UNDER abdomen, knees tightly bent and feet raised, groupA feet planted now behind body.\n3 groupB front/middle/rear feet reach visibly FORWARD with joints stretched and toes lifted, groupA stretches rearward.\nROW2 indices4–7:\n4 groupB feet clearly PLANTED FORWARD and groupA swept BACK, opposite contact from0.\n5 groupB planted joints visibly compress, all3 groupA feet visibly LIFT and curl inward.\n6 groupA feet pass UNDER abdomen with knees tucked, groupB anchors now behind.\n7 groupA feet extend visibly FORWARD toes lifted, groupB feet stretched rearward, ready to return0.\nKeep rounded shell anatomical volume constant while slight natural 5percent vertical movement and tiny counterrotation show weight. The eight panels must read as a sequence of real movement with distinct limb silhouettes.\nROW3:\n8 first windup: ALL6feet planted wide, BOTH scythes lift diagonally upward, shell tilts back.\n9 full overhead windup: BOTHscythes raised above the head and backward, visually high, ALL6feet bracing. Entire long curved tips safely inside cell with empty margin.\n10 downward-forward double scythe SLASH: BOTH blades now very LOW forward to the RIGHT, head thrust forward,6walkingfeet braced. No slash trail/particles. Tips visible, never overlap neighbors.\n11 recovery: both scythes halfway back to low guard, shell straightens,6feet settle.\nROW4:\n12 hit snap: body and jade-eyed head lean BACK left, front feet brace, scythes retract.\n13 deepest hurt: torso sharply recoils BACK left and crouches,6feet catch balance, scythes near body.\n14 rebalance halfway forward, feet recover and scythes return.\n15 settled dangerous right-facing guard,6feet clear and stable.\nReal alpha-zero transparent background. Warm light painted INSIDE the character only. No red fringe, colored halo, glow outside, ground, floor, shadows, scene, text, labels, numbering, grid, frames, UI, trails, impacts, detached limbs or extra insects. Exactly16same canonical insect, same high three-quarter camera, whole6feet+pairedscythes with spacious regular4x4 layout.",
+      "Use case: precise-object-edit.\nImage1 is the amber/coral scythe-insect16-frameatlas. Image2 is the identityreference, ONLY its TOP-LEFT creature. Same insect now named M10 琥珀虫族.\nFinal repair. KEEP the squat rounded amber/coral armored body, ivory/gold shell edging, amber nodes, jade compound eyes, curled antennae and TWO long curved ivory-gold SCYTHE ARMS. Keep right-facing high3/4near-isometric camera and warm bright handpainted cartoon2.5Dfantasy. SAME body proportions and anatomical body scale in every frame, same identity throughout. Do NOT morph into a human, robot, mantis with a long torso or another creature from image2.\nRedraw the SIX supporting WALKING LEGS FROM SCRATCH: fan out six short angular segmented legs into six SEPARATE readable negative-space slots under the squat shell. Three near-side legs in brighter armor; three thinner darker far-side legs clearly visible BETWEEN them. Every leg ends in ONE visible distinct pointed FOOT. All6feet complete and individually countable. Do not merge feet into the central dark underside. Keep TWO attacking scythe arms ABOVE and separate from this six-foot walking-leg fan. Exactly6walkinglegs+2scythes, never substituting a scythe for a foot.\nMake the eight WALK poses plainly different. Tripod A=near front+near rear+far middle. Tripod B=near middle+far front+far rear. In every walk frame,3planted feet rest on the same implied invisible ground baseline; the3raised feet are conspicuously off that baseline with visible bent joints. All6feet present.\nROW1 indices0–3:\n0 A planted, B rear toe-off, threatening scythes in lowguard.\n1 A planted, all3B legs TUCKED HIGH with sharply bent knees and their feet clearly elevated near underside, different silhouette.\n2 A planted, all3B legs EXTENDED FAR FORWARD while still airborne, different silhouette.\n3 B TOUCHDOWN forward, A rear heel lifting, different silhouette.\nROW2 indices4–7:\n4 B planted, A rear toe-off, opposite stance to0.\n5 B planted, all3A legs TUCKED HIGH, clearly raised feet and compact two-joint bends.\n6 B planted, all3A legs EXTENDED FAR FORWARD still airborne, long readable angles.\n7 A TOUCHDOWN forward, B rear heels lifting, closes cycleback0.\nWalk in place, no lateral drift. Only small natural bodybob; do not resize body perframe. Armored abdomen stays rounded and squat.\nROW3 indices8–11 preserve decisive action:\n8 both scythes start rising,6feet brace wide.\n9 BOTH scythes held HIGH OVERHEAD AND BACK, strongest anticipation;6feet planted.\n10 BOTH scythes SLASHED DOWNWARD-FORWARD toward RIGHT at low height, body pitching forward,6feet brace. No motiontrail.\n11 scythes halfway return toguard,6feet settle.\nROW4 indices12–15 preserve recoil:\n12 initial backward head/body snap toLEFT, scythes tuck,6feet catchbalance.\n13 deepest backward recoil and crouch, hindfeetbrace,6completefeet, two scythes separate.\n14 bodyhalfway returns forward, legsrecover.\n15 stable dangerous rightfacing lowguard,6feetgrounded.\nVERY IMPORTANT FINAL LAYOUT: EXACTLY sixteen separate wholecreatures on a square transparent4columns×4rows atlas, target2048×2048. Each invisiblecell equal512square. REDUCE current artwork size by HALF. Every COMPLETE creature silhouette, including all6feet, BOTH scythes and antennae, must occupy ONLY50percent of its owncell width and at most60percent height. At least20percent completely EMPTY transparent gutter on allfour sides. Visually make sprites muchsmaller and surroundedby lots of emptyspace. Allframes use oneglobal body scale, shellcrown-to-ground about30percentcellheight, groundanchor localx=.5,y=.68. Wholehead/body/feet/scythes perfectly visible, no touchingcellborder, nocropping, nooverlap. Center silhouettes horizontally and put feet at consistent groundbaseline. Raisedscythes allowedabove anatomicalcrown but also amplegutter.\nActual alpha-zero transparency outside silhouettes. Lighting stays inside objects. No background, floor, contactshadow, castshadow, halo, colored fringe, externalglow, trails, impacts, text, UI, labels, numbers, grid, borders. Preserve16whole right-facing canonicalamberinsect poses with clear6-footfan and large blanktransparentgutters."
+    ],
+    "repair_count": 2,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "target_dimensions": [
+      2048,
+      2048
+    ],
+    "image_processing": "Final raw PNG copied unchanged. Pillow/NumPy used only for read-only alpha bounds and foot ROI measurements; no raster edits, cropping, resampling or alpha cleanup.",
+    "independent_review": "Read-only visual reviewer confirmed identity/camera and attack actions, but failed six-foot visibility, coherent walking gait and full motion quality gate. New static art must remain fallback.",
+    "limitations": [
+      "Built-in image generation returned 1254x1254 instead of the requested 2048x2048; the raw image is preserved without resampling.",
+      "The required 15% cell gutters were not achieved: minimum measured visible-alpha gutter is 2.56% in release frame10. All complete sprites are nevertheless isolated in disjoint, in-bounds measured regions.",
+      "Six separate walking feet cannot be certified visually. About 3-4 major feet are individually readable, with far-side/underbelly forms merging. Paired scythe arms remain clear.",
+      "Walking leg bends and swing poses are visible in frames1-2 and5-6, but a coherent eight-phase alternating-tripod gait cannot be certified.",
+      "Frame12 recoils clearly; hurt frames13-15 quickly resemble neutral returns.",
+      "Thin red/gold edge fringe remains in the raw generated artwork. Maximum alpha outside declared padded regions is7; raw alpha is preserved.",
+      "Anatomical crown coordinates are independent visual estimates with approximately +/-3px uncertainty. Foot ground Y was refined by read-only alpha measurements inside recognizable walking-foot ROIs; the invisible six-foot support plane cannot be certified."
+    ]
+  }
+}

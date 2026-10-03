@@ -1,0 +1,40 @@
+{
+  "id": "B06-M01_telegraph-native-v1",
+  "folder": "enemies",
+  "transparent": true,
+  "ref": "enemies/B06-M01_idle-native-v2.png",
+  "prompt": "Use case: identity-preserve. Edit supplied B06-M01 idle native sprite into ONE single action keyframe. Preserve exactly this fish guard identity, face, dorsal fin, two arms and two legs, shell armor, three-tined trident, native1254x1254 canvas, genuine transparency, painterly detail and screen-right facing. Keep head and torso at same pixel scale and planted feet near the same positions. Allow pose changes only; keep whole silhouette inside image with at least6% clean transparent margins. No floor, shadow, effects, trails, projectile, ring, warning indicator, text, extra creature or sheet. TELEGRAPH: bend knees slightly, lean torso back, retract both gripping hands and long trident toward left hip in a compact thrust wind-up. Trident points screen-right horizontally with all three tines visible; rear shaft end remains inside canvas. Fin folds subtly backward. No forward lunge yet.",
+  "source": "/workspace/scratch/2244020fc8d6/generated_images/exec-000b7e7b-c1ed-483f-a725-499342fce8e0.png",
+  "file": "/workspace/scratch/2244020fc8d6/b06-art/generated/enemies/B06-M01_telegraph-native-v1.png",
+  "tool": "built-in image_gen",
+  "model": "unknown/unreported",
+  "source_chapter_sha": "4e15d1465a4bb551fef00dda62f9b47a8cf857dc",
+  "geometry_sha": "8d5d532",
+  "status": "candidate awaiting review",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "9045351c9ef87392bd18aca91f9d95c978fd52087f7dd708d7bfba15f4993f74",
+  "alpha_bbox": [
+    59,
+    39,
+    1228,
+    1254
+  ],
+  "reference_sha256": "90ba77e2ff08ae9dc7d47bc4ee3dc0250d6f702e18fa24b7049ddd1d8a3b5c6e",
+  "visible_alpha128_bbox": [
+    81,
+    137,
+    1225,
+    1166
+  ],
+  "selection_status": "selected_source_candidate",
+  "runtime_ready": false,
+  "source_anchors": [
+    "docs/levels/b06/README.md#2-地图元素与种族特性",
+    "docs/levels/b06/README.md#3-18种普通怪",
+    "docs/levels/b06/README.md#4-boss行走巨蟹堡垒"
+  ]
+}
