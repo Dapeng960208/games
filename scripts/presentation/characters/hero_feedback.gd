@@ -125,12 +125,14 @@ func skill_released(data: Dictionary, direction: Vector2, at: Vector2, index: in
 	var slot: String = str(data.slot)
 	var kind: String = str(data.get("effect_kind",data.get("kind","")))
 	var details: Dictionary = {"hero":hero,"slot":slot,"skill_id":str(data.get("skill_id","")),"input_slot":str(data.get("input_slot",slot)),"radius":float(data.get("radius",65.0)),"arc":float(data.get("arc",360.0)),"heavy":slot == "secondary" or slot == "ultimate" or kind in ["axe_crash","fault_line","aftershock_stomp"],"last":index == count-1,"index":index,"count":count,"target":at}
+	if kind == "fault_line":
+		details["line_width"] = float(data.get("line_width",100.0))
 	if hero == "CH01":
-		var visual: String = "ground_break" if kind in ["axe_crash","fault_line","aftershock_stomp"] else "brace" if kind in ["warcry","stone_guard","counter_guard"] else "pull" if kind == "rift_pull" else "rush" if kind == "charge" else "swing"
-		_emit(visual,at,direction,.46 if visual == "ground_break" else .32,details)
+		var visual: String = "fault_line" if kind == "fault_line" else "ground_break" if kind in ["axe_crash","aftershock_stomp"] else "brace" if kind in ["warcry","stone_guard","counter_guard"] else "pull" if kind == "rift_pull" else "rush" if kind == "charge" else "swing"
+		_emit(visual,at,direction,.46 if visual in ["ground_break","fault_line"] else .32,details)
 	elif hero == "CH02":
-		var visual: String = "reload_flash" if kind == "tactical_reload" else "grenade_toss" if kind in ["grenade","root_mine"] else "brace" if kind == "smoke_step" else "muzzle"
-		_emit(visual,actor.position if visual in ["reload_flash","grenade_toss"] else at,direction,.24 if visual == "reload_flash" else .18,details)
+		var visual: String = "sentry_place" if kind == "sentry" else "reload_flash" if kind == "tactical_reload" else "grenade_toss" if kind in ["grenade","root_mine"] else "brace" if kind == "smoke_step" else "muzzle"
+		_emit(visual,actor.position if visual in ["reload_flash","grenade_toss"] else at,direction,.30 if visual == "sentry_place" else .24 if visual == "reload_flash" else .18,details)
 	else:
 		var visual: String = "star_guard" if kind in ["guard","guard_burst"] else "pull" if kind == "vortex" else "dome_wave" if kind in ["field","moving_pulses","burst"] else "chorus" if kind == "resonance" else "blink_arrive" if kind == "blink_burst" else "arcane_release"
 		var center: Vector2 = actor.position if kind in ["guard","guard_burst","moving_pulses","resonance","blink_burst"] or bool(data.get("follow_player",false)) else at
@@ -296,6 +298,8 @@ func _draw() -> void:
 			"swing": _draw_cleave(at,dir,radius,float(effect.get("arc",100.0)),bool(effect.get("heavy",false)),t,fade,reduced,int(effect.get("variant",0)))
 			"chain_tick","chain_burst": _draw_chain_pulse(effect,at,t,fade,reduced)
 			"ground_break": _draw_fissure(at,dir,radius,t,fade,reduced,float(effect.get("arc",160.0)) if str(effect.get("slot","")) == "secondary" else 360.0)
+			"fault_line": _draw_fault_line(at,dir,radius,float(effect.line_width),t,fade,reduced)
+			"sentry_place": _draw_sentry_place(at,t,fade)
 			"rush": _draw_rush(at,dir,t,fade,reduced)
 			"brace": _draw_brace(at,dir,t,fade,reduced)
 			"berserk_start","berserk_end","counter":
@@ -475,6 +479,33 @@ func _draw_cleave(at: Vector2, dir: Vector2, radius: float, degrees: float, heav
 	if reduced: return
 	draw_arc(at,radius-thickness-8.0,start,finish-arc*.16,points,Color("ffb747",visible*.68),4.0,true)
 	_sparks(at+dir*radius*.72,dir,5 if heavy else 3,minf(21.0,radius*.16),visible,Color("fff0b0"))
+
+func _draw_fault_line(at: Vector2, dir: Vector2, radius: float, width: float, t: float, fade: float, reduced: bool) -> void:
+	var visible: float = minf(1.0,fade*1.4)
+	var normal: Vector2 = dir.orthogonal()
+	var half_width: float = minf(width*.5,radius)
+	var depth: float = sqrt(maxf(0.0,radius*radius-half_width*half_width))
+	# The true hit shape is the forward strip intersected with the radius disk.
+	# Its side rails and round cap never advertise damage behind the caster.
+	for side in [-1.0,1.0]:
+		var edge: Vector2 = normal*half_width*side
+		draw_line(at+edge,at+dir*depth+edge,Color("ffb13d",visible*.45),2.0,true)
+	var angle: float = asin(clampf(half_width/maxf(1.0,radius),0.0,1.0))
+	draw_arc(at,radius,dir.angle()-angle,dir.angle()+angle,12,Color("ffb13d",visible*.45),2.0,true)
+	var rays: int = 3 if reduced else 5
+	var spread: float = .38+.62*(1.0-pow(1.0-t,3.0))
+	for index in rays:
+		var side: float = (float(index)/maxf(1.0,rays-1)-.5)*half_width*1.7
+		var reach: float = sqrt(maxf(0.0,radius*radius-side*side))*spread
+		var crack := PackedVector2Array([at+dir*12.0+normal*side*.15,at+dir*reach*.34+normal*side*.4,at+dir*reach*.68+normal*side*.72,at+dir*reach+normal*side])
+		draw_polyline(crack,Color("552b21",visible*.95),8.0,true)
+		draw_polyline(crack,Color("ff8433",visible),4.0,true)
+		draw_polyline(crack,Color("fff0b6",visible*.95),1.7,true)
+
+func _draw_sentry_place(at: Vector2, t: float, fade: float) -> void:
+	_segmented_ring(at,21.0+t*9.0,3,.65,Color(AMBER,fade*.75),2.5)
+	var stamp: Vector2 = at+Vector2(0,-28.0+t*14.0)
+	draw_polyline(PackedVector2Array([stamp+Vector2(-7,-5),stamp+Vector2(0,3),stamp+Vector2(7,-5)]),Color(IVORY,fade),2.4,true)
 
 func _draw_fissure(at: Vector2, dir: Vector2, radius: float, t: float, fade: float, reduced: bool, degrees: float = 360.0) -> void:
 	var visible: float = minf(1.0,fade*1.4)
