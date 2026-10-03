@@ -7,6 +7,7 @@ const RoleSkin = preload("res://scripts/presentation/components/role_skin.gd")
 const Sampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const SKILLS := ["q","secondary","f","ultimate"]
 const ACTIONS := ["skill_q","skill_secondary","skill_f","skill_ultimate"]
+const CONTEXT_KEYS := ["dossier_slot","dossier_skill_id","dossier_search","dossier_filter","dossier_message","dossier_message_error","dossier_message_kind"]
 
 static func render(panel: Control) -> void:
 	var id := _hero_id(panel)
@@ -41,15 +42,32 @@ static func render(panel: Control) -> void:
 		metric(profile,Inspect.caption(key),Inspect.value(key,float(stats.get(key,0)),false,false,int(stats.get("ruleset_version",1))),Vector2(20+index*154,116),Vector2(144,67),id)
 	var scroll := _scroll(profile,"HeroStatScroll",Vector2(20,199),Vector2(606,286))
 	var flow := _flow(scroll,582)
-	_paragraph(flow,_t("战斗节奏","COMBAT RHYTHM"),582,20,colors.accent)
-	_paragraph(flow,SkillInspect.authored_text(_text(identity,"mechanic_text"),int(stats.get("ruleset_version",1))),582,18,colors.text).name = "HeroMechanicDescription"
-	_paragraph(flow,_t("已装备 · 出征前准备四个技能","EQUIPPED · FOUR SKILLS"),582,20,colors.accent)
 	var skill_view := _view(panel,"skill_page_view",id)
 	var equipped: Array = view.get("loadout",skill_view.get("loadout",[]))
+	var pending: Dictionary = panel.get_meta("dossier_draft_"+id,{})
+	var has_draft := not pending.is_empty() and _dirty(pending,skill_view)
+	_paragraph(flow,_t("已保存配置 · 技能草稿未应用","SAVED LOADOUT · SKILL DRAFT PENDING") if has_draft else _t("已装备 · 出征前准备四个技能","EQUIPPED · FOUR SKILLS"),582,20,colors.accent).name = "HeroEquippedStatus"
+	var skill_grid := GridContainer.new()
+	skill_grid.name = "HeroEquippedGrid"
+	skill_grid.columns = 2
+	skill_grid.add_theme_constant_override("h_separation",10)
+	skill_grid.add_theme_constant_override("v_separation",8)
+	flow.add_child(skill_grid)
 	for index: int in mini(4,equipped.size()):
-		var entry := SkillInspect.entry(skill_view,str(equipped[index]))
-		var item := _button(flow,"HeroEquipped_"+SKILLS[index],_binding(index)+" · "+str(entry.get("name",equipped[index])),Vector2.ZERO,Vector2(582,44),func(): _open_skill(panel,id,str(equipped[index])),id)
-		item.custom_minimum_size = Vector2(582,44)
+		var skill_id := str(equipped[index])
+		var entry := SkillInspect.entry(skill_view,skill_id)
+		var item := _button(skill_grid,"HeroEquipped_"+SKILLS[index],"",Vector2.ZERO,Vector2(286,60),func(): _open_skill(panel,id,skill_id),id)
+		item.custom_minimum_size = Vector2(286,60)
+		item.set_meta("skill_id",skill_id)
+		item.set_meta("input_slot",SKILLS[index])
+		item.tooltip_text = _binding(index)+" · "+str(entry.get("name",skill_id))+"\n"+_t("查看此技能与对应槽位","Inspect this skill and its input slot")
+		skill_icon(item,id,skill_id,Vector2(8,8),Vector2(44,44))
+		GameStyle.literal(item,_binding(index)+" · Lv.%d" % int(entry.get("mastery_level",1)),Vector2(64,3),Vector2(214,26),18,colors.accent)
+		var title := GameStyle.literal(item,str(entry.get("name",skill_id)),Vector2(64,29),Vector2(214,28),18,colors.text)
+		title.autowrap_mode = TextServer.AUTOWRAP_OFF
+		title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	_paragraph(flow,_t("战斗节奏","COMBAT RHYTHM"),582,20,colors.accent)
+	_paragraph(flow,SkillInspect.authored_text(_text(identity,"mechanic_text"),int(stats.get("ruleset_version",1))),582,18,colors.text).name = "HeroMechanicDescription"
 	var report: Dictionary = view.get("stat_report",{})
 	if not report.is_empty():
 		var toggle := _button(flow,"ToggleStatSources",_t("展开属性与来源","Show attributes and sources"),Vector2.ZERO,Vector2(582,44),func(): panel.set_meta("dossier_sources_open",not bool(panel.get_meta("dossier_sources_open",false))); panel.set_meta("dossier_focus","ToggleStatSources"); panel._render(),id,bool(panel.get_meta("dossier_sources_open",false)))
@@ -67,6 +85,7 @@ static func render_skills(panel: Control) -> void:
 	var view := _view(panel,"skill_page_view",id)
 	var colors := RoleSkin.palette(id)
 	var draft := _draft(panel,id,view)
+	var dirty := _dirty(draft,view)
 	var equipped: Array = draft.get("loadout",[])
 	var slot := clampi(int(panel.get_meta("dossier_slot",0)),0,3)
 	var selected := str(panel.get_meta("dossier_skill_id",equipped[slot] if equipped.size() == 4 else ""))
@@ -80,7 +99,7 @@ static func render_skills(panel: Control) -> void:
 		var role := _view(panel,"hero_view",hero_id)
 		var identity: Dictionary = role.get("identity",role)
 		_button(rail,"SkillHero_"+hero_id,_text(identity,"name",GameStyle.content_text(ContentRegistry.hero(hero_id),"name")),Vector2(12+index*84,13),Vector2(80,44),func(): _preview(panel,hero_id),hero_id,hero_id == id)
-	GameStyle.literal(rail,_t("已装备技能","EQUIPPED SKILLS"),Vector2(16,66),Vector2(240,28),21,colors.deep)
+	GameStyle.literal(rail,_t("配置草稿 · 未应用","DRAFT · UNSAVED") if dirty else _t("已装备技能","EQUIPPED SKILLS"),Vector2(16,66),Vector2(240,28),21,colors.deep).name = "SkillLoadoutStatus"
 	for index: int in 4:
 		var skill_id := str(equipped[index]) if index < equipped.size() else ""
 		var entry := SkillInspect.entry(view,skill_id)
@@ -96,15 +115,24 @@ static func render_skills(panel: Control) -> void:
 		swap.tooltip_text = _t("与下一槽互换","Swap with next slot")
 	var lock_text := str(view.get("lock_reason",""))
 	if lock_text.is_empty(): lock_text = _t("出征期间只读，回营地后调整","Read only during expeditions; edit in camp") if not editable else _t("选槽位，再选技能替换","Choose a slot, then a skill")
-	var lock_label := GameStyle.literal(rail,_t("出征锁定 · 回营地调整","Locked · Edit in camp") if not editable else lock_text,Vector2(16,405),Vector2(240,40),18,colors.muted)
+	var message := str(panel.get_meta("dossier_message",""))
+	var failed := bool(panel.get_meta("dossier_message_error",false)) and not message.is_empty()
+	var status := lock_text
+	if not editable: status = _t("出征锁定 · 回营地调整","Locked · Edit in camp")
+	elif failed: status = _t("预览失败 · 草稿保留","Preview failed · Draft kept") if panel.has_meta("dossier_fixture") else _t("保存失败 · 草稿保留","Save failed · Draft kept")
+	elif dirty: status = _t("预览草稿 · 未写入存档","Preview draft · Unsaved") if str(panel.get_meta("dossier_message_kind","")) == "preview" else _t("草稿未应用 · 等待应用","Draft not applied")
+	elif str(panel.get_meta("dossier_message_kind","")) == "reverted": status = _t("已还原 · 当前已保存配置","Saved loadout restored")
+	elif str(panel.get_meta("dossier_message_kind","")) == "saved": status = _t("配置已保存","Configuration saved")
+	if editable and dirty and not failed: lock_text = _t("四槽和分支仍是草稿，统一应用后才更新出征配置。","The slots and branches are a draft. Apply the complete draft to update the saved expedition loadout.")
+	var lock_label := GameStyle.literal(rail,status,Vector2(16,405),Vector2(240,40),18,GameStyle.RED if failed and editable else colors.accent if dirty or not message.is_empty() else colors.muted)
 	lock_label.name = "SkillConfigLockReason"
-	lock_label.tooltip_text = lock_text
+	lock_label.tooltip_text = status+"\n"+(message if not message.is_empty() and editable else lock_text)
 	lock_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	lock_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	var apply := _button(rail,"ApplySkillConfig",_t("应用配置","Apply"),Vector2(12,452),Vector2(121,44),func(): _apply(panel,id,view),id,false,true)
-	apply.disabled = not editable or not _dirty(draft,view) or bool(draft.get("busy",false))
-	var discard := _button(rail,"DiscardSkillDraft",_t("还原","Revert"),Vector2(141,452),Vector2(119,44),func(): panel.remove_meta("dossier_draft_"+id); panel.remove_meta("dossier_message"); panel._render(),id)
-	discard.disabled = not _dirty(draft,view) or bool(draft.get("busy",false))
+	apply.disabled = not editable or not dirty or bool(draft.get("busy",false))
+	var discard := _button(rail,"DiscardSkillDraft",_t("还原","Revert"),Vector2(141,452),Vector2(119,44),func(): _discard(panel,id),id)
+	discard.disabled = not editable or not dirty or bool(draft.get("busy",false))
 	var pool := RoleSkin.panel(panel.body,id,Vector2(288,0),Vector2(460,510))
 	var search := LineEdit.new()
 	search.name = "SkillPoolSearch"
@@ -123,7 +151,7 @@ static func render_skills(panel: Control) -> void:
 	var filter := str(panel.get_meta("dossier_filter","all"))
 	for index: int in 3:
 		var value: String = ["all","learned","equipped"][index]
-		_button(pool,"SkillFilter_"+value,[_t("全部","All"),_t("已学会","Learned"),_t("已装备","Equipped")][index],Vector2(12+index*147,65),Vector2(142,44),func(): panel.set_meta("dossier_filter",value); _filter_pool(panel),id,filter == value)
+		_button(pool,"SkillFilter_"+value,[_t("全部","All"),_t("已学会","Learned"),_t("草稿中","In draft") if dirty else _t("已装备","Equipped")][index],Vector2(12+index*147,65),Vector2(142,44),func(): panel.set_meta("dossier_filter",value); _filter_pool(panel),id,filter == value)
 	var grid := GridContainer.new()
 	grid.name = "SkillPoolGrid"
 	grid.position = Vector2(12,120)
@@ -140,7 +168,7 @@ static func render_skills(panel: Control) -> void:
 		action.set_meta("equipped",skill_id in equipped)
 		skill_icon(action,id,skill_id,Vector2(8,5),Vector2(42,42))
 		GameStyle.literal(action,"Lv.%d" % int(entry.get("mastery_level",1)) if learned else _t("未解锁","Locked"),Vector2(56,4),Vector2(76,27),18,colors.accent if learned else colors.muted)
-		GameStyle.literal(action,_t("已装备","Equipped") if skill_id in equipped else _t("已学会","Learned") if learned else _t("待收集","Explore"),Vector2(56,28),Vector2(76,24),18,colors.muted)
+		GameStyle.literal(action,(_t("草稿中","In draft") if dirty else _t("已装备","Equipped")) if skill_id in equipped else _t("已保存","Saved") if dirty and skill_id in view.get("loadout",[]) else _t("已学会","Learned") if learned else _t("待收集","Explore"),Vector2(56,28),Vector2(76,24),18,colors.muted)
 		var title := GameStyle.literal(action,str(entry.get("name","")),Vector2(7,54),Vector2(124,31),18,colors.text)
 		title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		title.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -207,12 +235,14 @@ static func _replace(panel: Control, id: String, view: Dictionary, skill_id: Str
 	var draft := _draft(panel,id,view)
 	var values: Array = draft.get("loadout",[]).duplicate()
 	if values.size() != 4: return
+	if str(values[slot]) == skill_id: return
 	var previous := values.find(skill_id)
 	if previous >= 0: values[previous] = values[slot]
 	values[slot] = skill_id
 	draft["loadout"] = values
 	draft["operation_id"] = ""
 	panel.set_meta("dossier_draft_"+id,draft)
+	_clear_message(panel)
 	panel.set_meta("dossier_focus","ApplySkillConfig")
 	panel._render()
 
@@ -224,10 +254,12 @@ static func _set_branch(panel: Control, id: String, view: Dictionary, skill_id: 
 	if not _can_edit(panel,view): return
 	var draft := _draft(panel,id,view)
 	var choices: Dictionary = draft.get("branches",{}).duplicate()
+	if str(choices.get(skill_id,"")) == branch: return
 	choices[skill_id] = branch
 	draft["branches"] = choices
 	draft["operation_id"] = ""
 	panel.set_meta("dossier_draft_"+id,draft)
+	_clear_message(panel)
 	panel.set_meta("dossier_focus","SkillBranch_"+(branch if not branch.is_empty() else "original"))
 	panel._render()
 
@@ -237,6 +269,7 @@ static func _apply(panel: Control, id: String, view: Dictionary) -> void:
 		var fixture: Dictionary = panel.get_meta("dossier_fixture",{})
 		panel.set_meta("dossier_message",str(fixture.get("apply_message",_t("预览模式：草稿仅用于界面预览，没有写入存档。","Preview only: this draft has not been written to a save."))))
 		panel.set_meta("dossier_message_error",bool(fixture.get("apply_failed",false)))
+		panel.set_meta("dossier_message_kind","preview")
 		panel._render()
 		return
 	var draft := _draft(panel,id,view)
@@ -250,13 +283,26 @@ static func _apply(panel: Control, id: String, view: Dictionary) -> void:
 		panel.remove_meta("dossier_draft_"+id)
 		panel.set_meta("dossier_message",_t("配置已保存，下次出征使用这四个技能。","Configuration saved for your next expedition."))
 		panel.set_meta("dossier_message_error",false)
+		panel.set_meta("dossier_message_kind","saved")
 		panel.set_meta("dossier_focus","InspectSkill_"+SKILLS[int(panel.get_meta("dossier_slot",0))])
 	else:
 		draft["operation_id"] = str(result.get("operation_id",draft.operation_id))
 		panel.set_meta("dossier_draft_"+id,draft)
 		panel.set_meta("dossier_message",SkillInspect.config_reason(str(result.get("reason",result.get("error","")))))
 		panel.set_meta("dossier_message_error",true)
+		panel.set_meta("dossier_message_kind","failed")
 		panel.set_meta("dossier_focus","ApplySkillConfig")
+	panel._render()
+
+static func _clear_message(panel: Control) -> void:
+	for key: String in ["dossier_message","dossier_message_error","dossier_message_kind"]: panel.remove_meta(key)
+
+static func _discard(panel: Control, id: String) -> void:
+	panel.remove_meta("dossier_draft_"+id)
+	panel.set_meta("dossier_message",_t("已还原当前已保存配置，未应用的修改已丢弃。","Saved configuration restored; unapplied changes were discarded."))
+	panel.set_meta("dossier_message_error",false)
+	panel.set_meta("dossier_message_kind","reverted")
+	panel.set_meta("dossier_focus","InspectSkill_"+SKILLS[clampi(int(panel.get_meta("dossier_slot",0)),0,3)])
 	panel._render()
 
 static func _filter_pool(panel: Control) -> void:
@@ -305,25 +351,40 @@ static func _can_edit(panel: Control, view: Dictionary) -> bool:
 
 static func _preview(panel: Control, id: String) -> void:
 	if Game.run != null: return
+	var previous := _hero_id(panel)
+	if previous == id: return
+	var context := {}
+	for key: String in CONTEXT_KEYS:
+		if panel.has_meta(key): context[key] = panel.get_meta(key)
+	panel.set_meta("dossier_context_"+previous,context)
 	panel.preview_hero = id
-	panel.remove_meta("dossier_skill_id")
-	panel.remove_meta("dossier_message")
+	var restored: Dictionary = panel.get_meta("dossier_context_"+id,{})
+	for key: String in CONTEXT_KEYS:
+		panel.remove_meta(key)
+		if restored.has(key): panel.set_meta(key,restored[key])
 	panel.set_meta("dossier_focus","SkillHero_"+id if str(panel.get("mode")) == "skills" else "Preview_"+id)
 	panel._render()
 
 static func _restore_focus(panel: Control) -> void:
 	var node_name := str(panel.get_meta("dossier_focus",""))
 	if node_name.is_empty(): return
+	panel.remove_meta("dossier_focus")
 	var target: Control = panel.find_child(node_name,true,false) as Control
-	if target != null and target.focus_mode != Control.FOCUS_NONE and not (target is BaseButton and target.disabled):
+	if target != null and target.is_visible_in_tree() and target.focus_mode != Control.FOCUS_NONE and not (target is BaseButton and target.disabled):
 		target.grab_focus.call_deferred()
 
 static func _open_skill(panel: Control, id: String, skill_id: String) -> void:
 	panel.preview_hero = id
 	panel.set_meta("dossier_skill_id",skill_id)
-	panel.set_meta("dossier_focus","SkillPool_"+skill_id)
+	var equipped: Array = _view(panel,"hero_view",id).get("loadout",[])
+	var slot := equipped.find(skill_id)
+	if slot >= 0: panel.set_meta("dossier_slot",slot)
+	panel.set_meta("dossier_search","")
+	panel.set_meta("dossier_filter","all")
 	if panel.has_method("_switch_page"): panel._switch_page("skills")
 	else: panel.set_meta("dossier_page","skills"); panel._render()
+	panel.set_meta("dossier_focus","SkillPool_"+skill_id)
+	_restore_focus(panel)
 
 static func _binding(index: int) -> String:
 	return ControlBindings.label_for(ACTIONS[clampi(index,0,3)],Game.profile.get("settings",{}).get("controls",{}),Words.locale)
@@ -348,6 +409,7 @@ static func _scroll(parent: Node, node_name: String, at: Vector2, extent: Vector
 	scroll.size = extent
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.focus_mode = Control.FOCUS_ALL
+	scroll.follow_focus = true
 	parent.add_child(scroll)
 	return scroll
 
@@ -370,6 +432,7 @@ static func skill_icon(parent: Node, hero: String, skill: String, at: Vector2, e
 	var icon := TextureRect.new()
 	var logical := "asset://skill."+skill.to_lower() if skill.begins_with("CH") else "asset://skills/"+hero+"_"+skill+"_v1.png"
 	icon.texture = Sampler.sampled(logical) if ResourceLoader.exists(AssetCatalog.resolve(logical)) else null
+	icon.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	icon.position = at

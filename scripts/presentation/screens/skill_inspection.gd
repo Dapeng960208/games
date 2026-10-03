@@ -32,6 +32,7 @@ static func config_reason(reason: String) -> String:
 		"SKILL_OPERATION_CONFLICT":["此前的保存仍需处理，请保持当前配置并重试。","A previous save still needs recovery. Keep this configuration and retry."],
 		"SKILL_PENDING_CONFLICT":["存档已发生变化，请还原草稿并重新配置。","The save has changed. Revert this draft and configure again."],
 		"SKILL_CONFIG_CAPACITY":["技能保存记录已达到上限，当前配置未应用。","Skill save records reached their limit. This configuration was not applied."],
+		"STORAGE_CAPACITY_EXCEEDED":["存档容量已达上限，当前配置未保存。草稿已保留，请稍后重试。","The save size limit was reached. This configuration was not saved; your draft is retained. Please retry later."],
 	}
 	if messages.has(reason): return str(messages[reason][1 if Words.locale == "en" else 0])
 	return reason if not reason.is_empty() and not reason.begins_with("SKILL_") else Inspect.t("保存失败，当前草稿保留；请重试同一配置。","Save failed. Your draft is retained; retry the same configuration.")
