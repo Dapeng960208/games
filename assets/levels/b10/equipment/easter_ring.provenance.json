@@ -1,0 +1,36 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-04",
+  "asset_id": "level.b10.equipment.easter_ring",
+  "content_identity": "Unique final-chapter all-attribute ring",
+  "image_file": "easter_ring.png",
+  "prompt": "Use case: stylized-concept.\nAsset type: final game equipment inventory artwork, one unique adult-sized fantasy ring, native 1024 x 1024 or higher, genuine transparent RGBA background.\nPrimary request: one original luxurious WHITE-PLATINUM DRAGON RING for the Star Dragon Court final chapter. The attached design is a STYLE/PALETTE reference only. Illustrate one single wearable ring in readable high three-quarter oblique view, with a complete large circular metal band opening and correct adult jewelry proportions. At the crown two small sculpted ivory-platinum DRAGON HEADS gently cradle one vivid faceted SAPPHIRE BLUE gemstone; a slender warm GOLD nine-star celestial orbit wraps the setting. Keep the ring physically plausible and unmistakably a ring, not a giant animal, pendant, helmet or portal.\nStyle: bright polished hand-painted cartoon fantasy, delightful 2.5D material depth, crisp royal blue-violet outlines, tangible brushed platinum, shining restrained gold detailing, clean jewel facets, warm sunny highlights. White platinum, sapphire and gold match the reference dragon's palette. Clear silhouette and simple strong visual hierarchy suitable for shrinking to a game inventory card.\nComposition: a SINGLE ring centered, full ring band and gemstone crown visible, approx 80% canvas extent with 10% blank transparent margin. No other object.\nBackground: ACTUAL clean transparent RGBA alpha, every pixel outside jewelry transparent. No background glow, no ground shadow, no smoke, no gradient, no vignette, no checkerboard painted into pixels, no floor, no plate or frame. Highlights only on the metal and gemstone. No text, letters, watermark, numbers, labels or UI panel. No photo realism.",
+  "reference_images": [
+    {
+      "role": "User-supplied chapter concept, style and palette reference",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "origin": "User attachment: codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+    }
+  ],
+  "sha256": "14e451700247bc5b1923edc03dac44dae8e8a32b8e184a99bb9f3657bd26738f",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "opaque_bbox": [
+    149,
+    9,
+    1118,
+    1208
+  ],
+  "transparent_pixels": 874703,
+  "opaque_pixels": 658687,
+  "opaque_edge_pixels": 0,
+  "alpha": "Native RGBA with fully transparent margins and ring opening; alpha preserved byte-for-byte.",
+  "view": "high three-quarter oblique view",
+  "visual_validation": "A single complete adult-sized wearable circular ring band, two white-platinum dragon heads, a sapphire gem and warm-gold star orbit. No text or UI backdrop.",
+  "processing": "Byte-for-byte copy of generated native 1254×1254 PNG. No upsampling, raster stretching, cropping, alpha replacement or compositing.",
+  "license": "Original artwork generated for this project with built-in ImageGen. User-supplied concept used as visual guidance; no source-reference pixels composited."
+}

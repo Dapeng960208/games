@@ -1,0 +1,28 @@
+{
+  "id": "bottom_left",
+  "tool": "built-in image_gen.imagegen",
+  "use_case": "precise-object-edit",
+  "prompt": "Use case: precise-object-edit. Asset type: L58 bottom_left native-resolution detail tile for a game room painting. Input image is a 538x538 SQUARE reference and the edit target; redraw its ENTIRE exact frame as one native 1536x1536 square PNG, with genuinely newly painted fine details. This is a geometry-locked high-resolution redraw, not a new scene. Preserve every object and all four edges at the same strict normalized coordinates, full-frame coverage, square aspect ratio, camera, perspective, silhouettes, floor geometry, contours, sizes and placements. Do not crop, zoom, rotate, reframe, shift, stretch or add padding. Keep the existing small outdoor decorative bell pavilion with two hanging warm-gold bells, its curving gold arch and ivory columns, the flat blue-and-gold circular star mosaic directly under it, the white curved planter with green foliage and small white/lavender flowers, the two large blue crystal shards within the planter, the pearl-white terrace tiles with thin gold star inlays, the partial flat gold floor ring entering the upper-right edge, and the lower cliffside blue crystal windows above the white cloud sea exactly as in the reference. Preserve the complete curved terrace rim, the tiny upper-left planter segment, all existing floor tile seams and every star inlay or ring endpoint where it reaches each edge. The top/right floor remains flat navigable ground, and the existing decorative bell remains on its same outside terrace; no extra steps, walls, objects or raised geometry. Improve only hand-painted surface micro-detail, crisp linework, gold metal highlights, pearl stone texture, fine flowers/foliage and subtle crystal facets. Style: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth, clear soft daylight, clean painterly outlines. Palette: pearl white, warm gold, sky blue and luminous blue star-crystal; purple only as tiny subtle shadow accents. Preserve the decorative bell already present, but add no new objects. No characters, monsters, dragon, portal, central star core, text, UI, labels, watermark, realism or dark gloomy lighting. Output one native 1536x1536 PNG (actual resolution at least 1254x1254); no synthetic resize or upsampling. Geometry fidelity to this exact square reference is the highest priority.",
+  "referenced_image_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/bottom_left.png",
+  "reference_sha256": "0a3c4ee7079fe969511a6cc81c5a2a3af27fefa9290e8a01474fb189ffb16a7c",
+  "reference_actual_size": [
+    538,
+    538
+  ],
+  "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e4-c7ec-7063-91d3-c9b5e665cbc5/exec-bfb23abb-d042-4215-9c55-0140371e19aa.png",
+  "requested_size": [
+    1536,
+    1536
+  ],
+  "actual_size": [
+    1254,
+    1254
+  ],
+  "generated_png_sha256": "0e290c83b94f91f4c08f3721bd89b68be9ad9965331d17bd587e837cab88526c",
+  "production_path": "res://assets/levels/b10/rooms/l58/detail/bottom_left.png",
+  "source_pixel_edits": "none",
+  "source_copy_policy": "Native generated PNG copied byte-for-byte to production; no resizing, upsampling, stretching, cropping, re-encoding or pixel editing.",
+  "license": "Project-generated original artwork",
+  "geometry_intent": "Complete square reference frame; strict normalized geometry and all four frame edges preserved by generation prompt.",
+  "validation_scope": "Native PNG dimensions and byte-for-byte copy hash checked; room alignment and 2K game acceptance remain part of unified acceptance."
+}

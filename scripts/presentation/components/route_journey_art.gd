@@ -4,6 +4,7 @@ const STEP := 109.0
 var nodes: Array = []
 var current := 0
 var completed: Array = []
+var finale := false
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -19,7 +20,7 @@ func _draw() -> void:
 		for sample: int in 25:
 			var amount := float(sample) / 24.0
 			points.append(start.lerp(finish, amount) + Vector2(0, sin(amount * PI) * (9.0 if index % 2 else -9.0)))
-		draw_polyline(points, Color("846344"), 5.0, true)
+		draw_polyline(points, Color("385d98") if finale else Color("846344"), 5.0, true)
 		draw_polyline(points, Color("ddba78"), 2.0, true)
 		if completed.has(index): draw_polyline(points, Color("719a75"), 2.0, true)
 	var font := get_theme_font("font", "Label")
@@ -30,6 +31,7 @@ func _draw() -> void:
 		var is_current := index == current
 		var is_done := completed.has(index)
 		var face := Color("3b8587") if is_current else (Color("d9e5c8") if is_done else Color("e5d9c3"))
+		if finale: face = Color("315a97") if is_current else (Color("dceaf9") if is_done else Color("f5f9ff"))
 		var ink := Color("fff3d0") if is_current else (Color("4e7455") if is_done else Color("8d8090"))
 		if is_current: draw_circle(at, 33.0, Color(0.77, 0.60, 0.32, 0.16))
 		draw_circle(at + Vector2(0, 2), 28.0, Color(0.28, 0.20, 0.24, 0.12))
@@ -47,7 +49,7 @@ func _draw() -> void:
 		draw_string(font, number_at + Vector2(-number_width * .5, 3.7), number, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, GameStyle.INK)
 		var label := str(roles.get(role, role))
 		var label_width := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x
-		draw_string(font, Vector2(at.x - label_width * .5, 94), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, GameStyle.CYAN if is_current else GameStyle.MUTED)
+		draw_string(font, Vector2(at.x - label_width * .5, 94), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, (Color("315a97") if finale else GameStyle.CYAN) if is_current else GameStyle.MUTED)
 		if is_done: draw_polyline(PackedVector2Array([at + Vector2(-6, -30), at + Vector2(-2, -26), at + Vector2(7, -34)]), GameStyle.GREEN, 2.4, true)
 		if is_current: draw_colored_polygon(PackedVector2Array([at + Vector2(-4, -39), at + Vector2(4, -39), at + Vector2(0, -32)]), GameStyle.CYAN)
 

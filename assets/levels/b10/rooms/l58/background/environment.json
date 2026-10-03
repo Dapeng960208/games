@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "L58",
+  "texture": "asset://world/rooms/L58_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "regions": {
+    "L58_environment": [
+      0,
+      0,
+      1564,
+      1006
+    ]
+  },
+  "walkable_normalized_rect": [
+    0.08,
+    0.21,
+    0.8300000000000001,
+    0.5950000000000001
+  ],
+  "placement_normalized_rect": [
+    0.06,
+    0.06024992899744386,
+    0.88,
+    0.8795001420051123
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.105,
+      0.365
+    ],
+    [
+      0.238,
+      0.255
+    ],
+    [
+      0.35,
+      0.215
+    ],
+    [
+      0.625,
+      0.21
+    ],
+    [
+      0.85,
+      0.39
+    ],
+    [
+      0.91,
+      0.505
+    ],
+    [
+      0.825,
+      0.695
+    ],
+    [
+      0.68,
+      0.805
+    ],
+    [
+      0.385,
+      0.795
+    ],
+    [
+      0.27,
+      0.7
+    ],
+    [
+      0.08,
+      0.52
+    ]
+  ],
+  "camera": "高机位三分之四斜俯视、近等距2.5D",
+  "baked_scenery": true,
+  "boundary": {
+    "basis": "per-room original dry stone inner edge; source->placement->2800x1800 blueprint->0.58 world",
+    "source_inner_floor_pixels": [
+      [
+        164.22,
+        367.19
+      ],
+      [
+        372.232,
+        256.53
+      ],
+      [
+        547.4,
+        216.29
+      ],
+      [
+        977.5,
+        211.26
+      ],
+      [
+        1329.4,
+        392.34
+      ],
+      [
+        1423.24,
+        508.03
+      ],
+      [
+        1290.3,
+        699.17
+      ],
+      [
+        1063.52,
+        809.83
+      ],
+      [
+        602.14,
+        799.77
+      ],
+      [
+        422.28,
+        704.2
+      ],
+      [
+        125.12,
+        523.12
+      ]
+    ],
+    "convex": true,
+    "authoring_minimum_route_clearance_world": 100.046,
+    "authoring_gate_clearance_world": {
+      "L58_gate_1": 131.212,
+      "L58_gate_2": 108.022
+    },
+    "validation_status": "pending_unified_runtime_acceptance"
+  },
+  "mapping_contract": "Actual native source ratio controls uniform image/world scaling; the source dry-stone outline and every blueprint foot use one placement, then blueprint * 0.58. Source and destination axes are not stretched.",
+  "notes": [
+    "独立原创调律庭背景，按前四关background/detail结构与共用WorldArt环境管线接入。",
+    "蓝星晶、珍珠白与金色为主；双环仅为平面地砖镶线，可走地面不由发光星纹改变。",
+    "钟、画面外缘星晶、鳞玻璃回廊与云海为静态环境原画；人物、龙、门户、星核和功能反馈由运行时绘制。",
+    "源PNG按字节复制；六片detail为精确源区域参考后的独立原生重绘，没有裁切放大或上采样。"
+  ],
+  "qa": {
+    "source_pixel_edits": "none",
+    "geometry_status": "source painting manually surveyed; shared source/blueprint mapping authored; unified GPU/path/2K acceptance pending",
+    "native_2k": "detail textures 1254x1254 each; no claim that the 1564x1006 overview is native 2K",
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "integer shared-image regions",
+    "texture_sampling": "complete independent room texture; region_filter_clip_enabled=false",
+    "texture_memory": "one background plus six native detail textures; no streaming claim"
+  },
+  "geometry_authority": "res://data/levels/b10/room_geometry.json",
+  "geometry_status": "painted_native_mapping_prepared",
+  "functional_anchors": {
+    "entry": [
+      410,
+      950
+    ],
+    "exit": [
+      2390,
+      950
+    ],
+    "gates": [
+      {
+        "id": "L58_gate_1",
+        "name": "星门 1",
+        "position": [
+          700,
+          600
+        ],
+        "destination": [
+          2110,
+          1250
+        ],
+        "pair_id": "L58_pair_1"
+      },
+      {
+        "id": "L58_gate_2",
+        "name": "星门 2",
+        "position": [
+          2110,
+          1250
+        ],
+        "destination": [
+          700,
+          600
+        ],
+        "pair_id": "L58_pair_1"
+      }
+    ],
+    "star_cores": [
+      {
+        "id": "L58_core_1",
+        "position": [
+          1080.597535,
+          1300.778889
+        ]
+      },
+      {
+        "id": "L58_core_2",
+        "position": [
+          1853.673564,
+          629.42339
+        ]
+      }
+    ],
+    "dragon_spawn": [
+      1510,
+      900
+    ],
+    "boss_spawn": [
+      1510,
+      900
+    ],
+    "encounter_anchors": [
+      [
+        1400,
+        900
+      ]
+    ],
+    "main_route": [
+      [
+        410,
+        950
+      ],
+      [
+        1050,
+        950
+      ],
+      [
+        1800,
+        950
+      ],
+      [
+        2390,
+        950
+      ]
+    ],
+    "walk_routes": [
+      [
+        [
+          410,
+          950
+        ],
+        [
+          1050,
+          950
+        ],
+        [
+          1800,
+          950
+        ],
+        [
+          2390,
+          950
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1080.597535,
+          1300.778889
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1853.673564,
+          629.42339
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          700,
+          600
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          2110,
+          1250
+        ]
+      ]
+    ],
+    "scenery_anchors": [
+      {
+        "id": "L58_landmark",
+        "key": "harmonic_bells",
+        "position": [
+          2555.545222,
+          312.055336
+        ],
+        "ground_footprint": [
+          80,
+          50
+        ],
+        "collision": false,
+        "render_mode": "baked_environment",
+        "painted_foot_source_pixels": [
+          1350,
+          214
+        ],
+        "baked_into_background": true
+      }
+    ]
+  },
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite.",
+  "source_sha256": "e0b1cf6f1a3b17ec6857fbfdbba53cbd86210ca83859a86c163d5057e318ea29"
+}

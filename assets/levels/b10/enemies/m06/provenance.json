@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "generated_at": "2026-10-04",
+  "enemy_id": "B10-M06",
+  "name": "晨辉护鳞者",
+  "resource_id": "level.b10.enemies.m06.body",
+  "asset_role": "single full-body combat-ready southeast-facing enemy illustration",
+  "prompt": "Use case: stylized-concept. Asset type: ONE original transparent full-body enemy sprite for a 2.5D fantasy action RPG, Star Dragon Court B10. Input reference is a STYLE REFERENCE ONLY. New independent dragonkin character, bright hand-painted cartoon fantasy with clear ink contours and painterly texture. White platinum dragon scales, ivory, deep cobalt, blue star crystal, warm gold. High mounted camera looking diagonally downward at 45 degrees, clearly show top of head, shoulders and feet; near-isometric three-quarter top-down sprite facing southeast/lower-right. Do not use low or eye-level heroic portrait camera. Character is entirely visible, small safe margins on all sides, in square native resolution at least 1024x1024; effective body height at least 600 pixels. One combat-ready standing pose with centered ground contact at normalized (0.50,0.84). Actual fully transparent RGBA background and no contact shadow or shadow disc. No floor, no pedestal, no scenery, no text, no UI, no watermark, no extra characters; no upscaling. Subject B10-M06 Dawnscale Defender: a broad stout upright mature dragon guardian with thick layered white platinum scales, angular horned dragon head, small blue-white wing shoulders, heavy long scaled tail and wide clawed feet. Hold a HUGE tall shield made of a single broad shield-shaped ivory dragon scale with gold rim and central brilliant blue star crystal, guard stance with shield on his left arm facing lower right. Other claw has a short blunt scaled mace at his side. Cobalt cloth under chunky gold-trimmed armor, strongest tank silhouette with shield unmistakable, no wings spread across entire canvas.",
+  "reference_images": [
+    {
+      "role": "style reference only; no typography or poster composition reused",
+      "provided_by": "user",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "color_mode": "RGBA",
+  "sha256": "4d0d6a42e092bb8556add9ce7cf2eeaad7861efde71cfc6572eb2f50bb93fc9a",
+  "alpha": {
+    "true_transparent_pixels": 818165,
+    "bounds_xywh": [
+      75,
+      11,
+      1109,
+      1222
+    ],
+    "visible_body_height_px": 1222
+  },
+  "requested_footpoint": [
+    0.5,
+    0.84
+  ],
+  "observed_footpoint_estimate": [
+    0.54,
+    0.9
+  ],
+  "footpoint_note": "Estimated midpoint of visible ground-contact claws; use the actual anchor in runtime art metadata. The generator did not place it exactly at the requested point.",
+  "runtime_intent": {
+    "world_display_height": 112,
+    "target_window": [
+      2560,
+      1440
+    ],
+    "sampling": "Downscale native pixels only; no source upsampling",
+    "poses": 1
+  },
+  "processing": "Byte-for-byte copy from built-in image_gen output. Native source pixels and alpha unchanged; no resizing, crops, paint edits, or procedural placeholder substitution.",
+  "license": "Project-generated original artwork created for this game with the built-in image_gen tool. No third-party character asset reused; user-provided image served only as style reference.",
+  "source_output": "exec-8d0a1472-dba9-4908-a48b-b84a526d6269.png",
+  "effective_body_height_px": 1222,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved.",
+  "actual_foot_px": [
+    677,
+    1129
+  ]
+}

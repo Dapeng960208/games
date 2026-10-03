@@ -1,0 +1,85 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-04",
+  "asset_id": "level.b10.bosses.bo10.body",
+  "content_identity": "BO10 — 星冠古龙",
+  "image_file": "body.png",
+  "prompt": "Use case: precise-object-edit.\nThis is our original SINGLE-HEADED Star-Crown Elder Dragon production sprite.\nKeep the same design, colours, rendering, ONE crowned dragon head, exactly FOUR clawed feet, TWO blue membrane wings and ONE curled tail, the high three-quarter top-down southeast camera and stance. Keep all anatomy and the elegant white-platinum/sapphire/gold fantasy identity unchanged.\nOnly fix safe framing: output a native square 1254 x 1254 or larger RGBA image. REDUCE THE WHOLE CREATURE UNIFORMLY ABOUT 10 PERCENT, center it, and add a visibly empty transparent safety margin at least 55 native pixels on EVERY side. All wing top hooks, outer wing contours, claw tips, horns and tail must be completely visible and fit INSIDE that margin. Restore the upper tip of the left wing if it was clipped by the previous canvas. Entire character silhouette should be approximately x=55..1199 y=55..1199, about 1140 pixels tall, with contact forefeet around normalized (0.50,0.84). Do not stretch or distort.\nKeep actual alpha transparency outside the dragon and inside holes between limbs/wings. No shadow, aura, glow off the silhouette, floor, backdrop, scene, panel, labels, letters, text, frame or watermark.",
+  "reference_images": [
+    {
+      "role": "User-supplied chapter concept, style and palette reference",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "origin": "User attachment: codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+    }
+  ],
+  "sha256": "8fa0bbe55f6930a96a2f114727e73ee670d208f529d59bba40951edcdf0c5bc0",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "opaque_bbox": [
+    83,
+    83,
+    1196,
+    1174
+  ],
+  "transparent_pixels": 854013,
+  "opaque_pixels": 644896,
+  "opaque_edge_pixels": 0,
+  "alpha": "Native RGBA; fully transparent margins and no opaque pixels on canvas perimeter. Alpha preserved byte-for-byte.",
+  "body_anchor_normalized": [
+    0.5,
+    0.84
+  ],
+  "view": "high-position three-quarter oblique 2.5D, facing lower-right",
+  "visual_validation": "One crowned dragon head, four clawed feet, two complete wings and one complete curled tail. White-platinum scales, sapphire armour and warm-gold trim. Effective opaque height is 1091 pixels.",
+  "processing": "Byte-for-byte copy of generated native 1254×1254 PNG. No upsampling, raster stretching, cropping, alpha replacement or compositing.",
+  "license": "Original artwork generated for this project with built-in ImageGen. User-supplied concept used as visual guidance; no source-reference pixels composited.",
+  "generation_history": [
+    {
+      "prompt": "Use case: stylized-concept.\nAsset type: original FINAL game-boss full-body sprite, a single adult STAR-CROWN ELDER DRAGON, bright hand-painted cartoon fantasy 2.5D. The attached concept is a style/palette reference only; use the elegant white-platinum, sapphire crystal and warm-gold dragon identity in its lower character row.\nSubject: EXACTLY ONE HEAD, one full dragon body. A majestic powerful adult white-platinum dragon with one beautiful crowned dragon head, long tapered gold-blue horns, expressive sapphire-blue eyes, a large sapphire star crystal in the gold crown, white ivory scales with clean dark blue-violet contours, blue crystal armour accents and restrained gold filigree. FOUR strong clawed legs, TWO complete elegant grand blue-membrane wings, ONE complete long curling armoured tail. No extra head, no snake, no tentacle.\nCamera: high-position THREE-QUARTER OBLIQUE TOP-DOWN near-isometric game view; we clearly see top of back and broad shoulder surfaces; the body and dragon muzzle face SOUTHEAST / lower-right in a grounded four-legged battle-ready stance. This is not a front-on character portrait. A stable visually readable silhouette suitable for the action game's ground plane.\nComposition: full complete creature alone centered on square native 1254 x 1254 or larger canvas. The entire illustrated silhouette including both wings, crown horn tips, four feet and long curled tail fits INSIDE the canvas with blank transparent margin. Creature is large: opaque silhouette height at least 1050 native pixels. Do not crop tips. Contact foot anchor normalized (0.5,0.84). Wings sweep upward to fit the square; tail curls beside the feet without hiding their structure.\nStyle/materials: bright polished HAND-PAINTED CARTOON FANTASY, finely painted tangible platinum scales, clear sapphire facets, gold lines, blue wing membrane gradients, warm sunlight highlights and clean readable anatomy, 2.5D depth. Regal courageous powerful final boss, no horror, no photorealism, no gore.\nBackdrop: ACTUAL clean transparent RGBA alpha. Every pixel outside the creature is transparent, including between limbs and wings. No environment, no floor, no platform, no cast shadow, no aura, no haze, no backdrop gradients or glows, no checkerboard in pixels. Highlights belong ON the dragon only. No text, labels, numbers, frames, watermarks or interface panel.",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "sha256": "e837dcc4f4972d81f10c77e627310113b2c8144d5a55818169cb9dcbdacce969",
+      "result": "Single-headed Star-Crown Elder Dragon source; final edit restores safe margin around complete silhouette."
+    },
+    {
+      "prompt": "Use case: stylized-concept.\nAsset type: FINAL production transparent full-body 2.5D game boss sprite, native 2048 x 2048 pixels. The attached image is only a STYLE/PALETTE reference, not an edit target. Use the white-platinum, sapphire blue crystal, restrained warm gold, bright hand-painted cartoon fantasy dragon identity from its lower-row spirit dragon.\nSubject: one majestic NINE-HEADED STAR DRAGON, the game's final boss. EXACTLY NINE clearly visible and individually countable proper DRAGON HEADS on nine separate short muscular scaled necks connected to one powerful dragon shoulder and torso. Arrange heads in a clean crown fan: FOUR heads on the left side, ONE largest central head, FOUR heads on the right side. Every head has its own clearly separate muzzle, two blue-gold horns, eyes and jaw. Nine dragon faces total; no hidden tenth face, no fused faces, no snake or tentacle heads, no serpentine hydra.\nOne complete dragon body with four strong legs, clawed feet, two grand open blue-membrane platinum dragon wings and one complete long armoured tail. White ivory/platinum scales with clean dark blue-violet outlines; sapphire crystal armour plates; delicate warm-gold filigree and star motifs. Regal heroic menace, cute readable fantasy anatomy, no gore. Central breast crystal and subtle gold crown, but no floating surrounding objects.\nCamera: high-position three-quarter oblique top-down near-isometric view looking toward southeast / lower right, matching a 2.5D action game. Keep the full wings, all nine heads, all feet and whole tail visible.\nComposition: entire silhouette large and centered within square canvas with 5% transparent margin on every side. Main torso and legs sufficiently large, not a tiny body under huge necks. Contact foot anchor around normalized x=.50 y=.84. Entire illustrated body occupies at least 1450 pixels of height in the requested 2048 square native output; no cropping.\nStyle: polished bright HAND-PAINTED CARTOON FANTASY, tangible painted 2.5D materials, warm sun highlights, clean readable silhouettes and restrained blue shadows, coherent design with the reference dragon court. No photorealism, no dark horror.\nBackdrop: actual transparent RGBA alpha, completely empty around the silhouette, preserve transparency. No floor, no scene, no platform, no ground shadow, no checkerboard drawn in pixels. No title, no labels, no text, no watermarks, no rectangular background.",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "sha256": "8661539087771c67118a576ad93a94aa8c3dcc99cd8e8cdb80c7f60a095fac58",
+      "result": "Superseded concept. Former nine-headed specification was cancelled by the latest user instruction. Not retained as production artwork."
+    },
+    {
+      "prompt": "Use case: precise-object-edit. The attached ORIGINAL game dragon is the edit target.\nIt currently has SEVEN dragon heads. Correct this into an EXACTLY NINE-HEADED final boss. Add precisely TWO additional clearly separated complete dragon heads: one additional head at the far lower-left side of the neck fan and one additional head at the far lower-right side of the neck fan. They have their own ivory scaly necks visibly joining shoulders, their own dragon muzzle, jaw, eyes, blue crystal horns and gold trim. All NINE heads must be separately recognizable and countable. In the final image the arrangement is FOUR LEFT HEADS, ONE CENTRAL HEAD, FOUR RIGHT HEADS. Do not hide, merge, duplicate or omit any of these nine faces. No snakes or tentacles.\nPreserve the exact dragon's bright hand-painted cartoon fantasy white platinum scale / sapphire armour / warm-gold trim identity. Preserve four strong feet, two entire blue wing membranes and one entire curled armoured tail. Recompose to a VERTICAL portrait transparent production sprite canvas 1024 x 1536 native pixels, more height than width, without distortion. The full dragon occupies about 90% canvas height and 90% width, with transparent margin on ALL sides. No part of horn, wing, tail or claw is cropped. High camera three-quarter southeast / lower-right oblique top-down 2.5D game camera. Contact footpoint centered near normalized (0.50,0.84).\nPlease verify that there are nine distinct dragon heads before finishing: four on left, one center, four on right. The two added side heads must be similar size to the existing small side heads.\nActual transparent RGBA backdrop, empty pixels outside creature. No floor, no shadow, no pedestal, no backplate, no text, no labels, no watermarks.",
+      "source_size": [
+        1024,
+        1536
+      ],
+      "sha256": "46484b8bb800d569512c35458af9cca453ae3b7c3e4aa7741227e6acd5322b9d",
+      "result": "Superseded former nine-headed concept, not retained as production artwork."
+    },
+    {
+      "prompt": "Use case: precise-object-edit.\nEdit this original final-boss sprite. KEEP EXACTLY THE SAME NINE DRAGON HEADS, identical anatomy and identities: four heads on left, one central head, four on right. Preserve all four legs, both complete wings, the curled tail, white-platinum scales, sapphire plates and gold accents. Keep the same bright hand-painted fantasy cartoon 2.5D style, details and colours.\nOnly correct the composition and transparency. Keep the native vertical 1024 x 1536 portrait canvas. Make the entire creature slightly smaller so BOTH WHOLE WINGS fit completely inside the image, with at least 40 native pixels of empty transparent margin at LEFT and RIGHT. Recover and show complete uncut wing tips, full horns, claws, feet and full tail. Entire illustrated silhouette between x=40..984 and y=85..1410. Body must not touch or cross the canvas edge. The center contact feet are around (512,1290), i.e. normalized (0.50,0.84).\nRemove EVERY grey/brown/blue backdrop haze, floor, ground glow and shadow; every pixel outside the creature silhouette must be truly transparent RGBA alpha=0, including holes between wings, necks and legs. Clean antialiased RGBA edges. Keep highlight glints only directly ON armour/crystals. No added objects, no words, no diagrams, no opaque backdrop, no checkerboard painted into image. Do not delete any of the nine heads or deform/stretch the original illustration.",
+      "source_size": [
+        1024,
+        1536
+      ],
+      "sha256": "87df4cc7e7489bcb9bc509f037d085ac14e49d52f1fcae9fbbb233dbef24c077",
+      "result": "Superseded former nine-headed concept, not retained as production artwork."
+    }
+  ],
+  "effective_body_height_px": 1094,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved.",
+  "actual_foot_px": [
+    756,
+    1008
+  ],
+  "footpoint_method": "Manual visual estimate of supporting claw ground-contact footprint center; excludes wings/tail."
+}

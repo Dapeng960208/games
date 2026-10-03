@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.bosses.d02.body",
+  "content_id": "B10-D02",
+  "name": "镜鳞苍龙",
+  "theme": "mirror",
+  "asset_path": "assets/levels/b10/bosses/d02/body.png",
+  "source": "OpenAI built-in image_gen",
+  "generation_mode": "built_in",
+  "generated_date": "2026-10-04",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "output_mode": "RGBA",
+  "transparent_background": true,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visible_bbox_alpha_64": [
+    36,
+    10,
+    1238,
+    1242
+  ],
+  "visible_height_pixels": 1232,
+  "actual_foot_px": [
+    769,
+    1055
+  ],
+  "footpoint_method": "manual_visual_ground_footprint_center; average of four ground-contact projections, excluding tail and wings",
+  "ground_contact_points_px": [
+    [
+      392,
+      1000
+    ],
+    [
+      659,
+      907
+    ],
+    [
+      872,
+      1212
+    ],
+    [
+      1154,
+      1102
+    ]
+  ],
+  "inferred_occluded_contact_indices": [],
+  "sha256": "2a3c942308e08582c08f1851651f304039d1175393acfdc83743a48ce275b7a4",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1027d-94a5-78a1-b838-65c51de7ce89\\exec-cbac6a48-114b-4943-bed2-6bc2cf10110e.png",
+  "reference": {
+    "role": "user-provided style reference only",
+    "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+  },
+  "license": "Original artwork generated for this project with OpenAI image generation; service terms apply. The style reference was supplied by the user.",
+  "prompt": "Use case: stylized-concept\nAsset type: production game guardian dragon sprite B10-D02, Mirror-Scale Crystal Dragon / 镜鳞苍龙.\nInput image: the provided Starlit Dragon Court image is a STYLE REFERENCE ONLY. Use its luminous ivory, warm gold and sapphire-blue celestial dragon aesthetic, bright hand-painted cartoon fantasy and 2.5D depth. Do not reproduce text, scenery or humanoids.\nPrimary request: exactly one complete quadrupedal crystal dragon with a distinctive compact muscular silhouette, a broad diamond-shaped mirrored crystal crown instead of a suncrest, faceted pale-blue crystal plates along its ivory scales, twin sapphire horns pointing backward, thick paws with golden claws, two angular translucent pale-cyan wings with warm gold edges, and a heavy tail ending in a clear blue diamond blade. Elongated reptilian head, one head and long curved neck. A formidable guardian beast, not a humanoid.\nCamera/pose: high three-quarter oblique down view at about 45 degrees, near-isometric 2.5D game perspective. Stand facing southeast / screen lower-right, feet firmly placed, see top of head and back. Wings raised just enough to reveal all four feet; complete tail curls up-left within canvas. Readable battle-ready stance.\nStyle/medium: bright polished hand-painted cartoon fantasy; soft painted volume, fine brush texture, strong readable silhouette; warm daylight; ivory and fresh sapphire colors, silver-blue mirror facets and restrained warm gold trim. Clean crisp edges.\nCanvas/framing: native square PNG requested 1536 x 1536 or higher, at least 1254 x 1254 native. Creature occupies about 82-86 percent of height, at least 1000 painted pixels tall, 7 percent clear alpha margin on every side. Include every horn, wingtip, claw and tail tip, none cropped. This image will only be downscaled in a 2560 x 1440 game.\nBackground: genuine transparent RGBA alpha outside the creature. No floor, pedestal, shadow plate, environment, clouds, frame or backdrop.\nConstraints: one full dragon only, four legs, two wings, one head; no humanoid posture or clothes, no weapons, no labels, text, logos, watermark, UI, sheet or border; no dark realism or horror.",
+  "verification": {
+    "subject": "One complete non-humanoid dragon, all tail and wing tips retained",
+    "camera": "High three-quarter oblique down view, facing southeast",
+    "visual_review": true,
+    "native_no_upscale": true,
+    "usage": "218-world-unit body rendered by downscaling for 2K viewport"
+  },
+  "effective_body_height_px": 1233,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

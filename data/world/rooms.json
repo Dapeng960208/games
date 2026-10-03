@@ -198,36 +198,15 @@
     },
     "B10": {
       "biome_id": "B10",
-      "name": "熔辉魔堡",
-      "name_en": "Molten Radiance Castle",
-      "race": "炎魔族",
-      "race_en": "Fire demons",
-      "status": "todo",
-      "implemented": false,
-      "visual": "日照火山、赤陶堡垒、熔金裂隙、火山玻璃、蒸汽；亮橙砖红铜金。",
-      "planned_mechanic": "熔岩喷发冷却交替，临时通路与清晰预警。"
-    },
-    "B11": {
-      "biome_id": "B11",
-      "name": "虹伞菌谷",
-      "name_en": "Rainbow Mushroom Vale",
-      "race": "菌灵族",
-      "race_en": "Fungal spirits",
-      "status": "todo",
-      "implemented": false,
-      "visual": "彩色巨菇、菌阶、透明孢子、菌丝桥、暖光；桃红紫罗兰黄绿。",
-      "planned_mechanic": "弹跳菇跨地形、孢子连锁爆裂参与战斗。"
-    },
-    "B12": {
-      "biome_id": "B12",
       "name": "星辉龙庭",
-      "name_en": "Starlight Dragon Court",
-      "race": "星辉龙裔",
-      "race_en": "Star dragonkin",
-      "status": "todo",
-      "implemented": false,
+      "name_en": "Starlit Dragon Court",
+      "race": "星辉龙族",
+      "race_en": "Starlit Dragonkin",
+      "status": "runtime_integrated",
+      "implemented": true,
+      "final_chapter": true,
       "visual": "高空圣庭、星环、星图砖、半透明鳞楼、日光星门；珍珠星紫金。",
-      "planned_mechanic": "星门切换战场、破坏各位置星核解除多层盾。"
+      "planned_mechanic": "六个独立龙首领房间；固定星门、星核与九首星冠古龙终战。"
     }
   },
   "rooms": {

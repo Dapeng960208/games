@@ -38,6 +38,7 @@ const Numerical = preload("res://scripts/infrastructure/content/runtime_rules.gd
 ## V2 S11 counts successful original paid casts at commit, with a stable cast root
 ## and actual paid_cost. Hit/deployment callbacks cannot contribute to this count.
 
+const B10 = preload("res://scripts/levels/b10/combat/equipment_effects.gd")
 const B09 = preload("res://scripts/levels/b09/combat/equipment_effects.gd")
 const B06 = preload("res://scripts/levels/b06/combat/equipment_effects.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
@@ -78,12 +79,12 @@ static func implemented_ids(ruleset: int = 1) -> Array[String]:
 		result.append("EQ%02d" % index)
 	# New templates have no inherited old fixed affixes.
 	if ruleset == 2:
-		for id: String in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B09-U01", "B09-U02", "B09-U03"]: result.append(id)
+		for id: String in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B09-U01", "B09-U02", "B09-U03", "B10-U01", "B10-U02", "B10-U03"]: result.append(id)
 	return result
 
 static func implemented_set_ids(ruleset: int = 1) -> Array[String]:
 	var result: Array[String] = ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14"]
-	if ruleset == 2: result.append_array(["B05-SW", "B05-SG", "B05-SM", "B05-SU", "B06-SW", "B06-SG", "B06-SM", "B06-SU", "B09-SW", "B09-SG", "B09-SM", "B09-SU"])
+	if ruleset == 2: result.append_array(["B05-SW", "B05-SG", "B05-SM", "B05-SU", "B06-SW", "B06-SG", "B06-SM", "B06-SU", "B09-SW", "B09-SG", "B09-SM", "B09-SU", "B10-SW", "B10-SG", "B10-SM", "B10-SU"])
 	return result
 
 func configure(loadout: Dictionary, resolved_stats: Dictionary, type: String) -> void:
@@ -170,11 +171,11 @@ static func loadout_binding(loadout: Dictionary, resolved_stats: Dictionary = {}
 ## so retaining two pieces never keeps a former four/six-piece benefit.
 static func source_active(source: String, binding: Dictionary) -> bool:
 	var id: String = source.trim_prefix("equipment:").trim_prefix("set_").get_slice(":", 0)
-	if id in ["B05-combat", "B06-combat", "B09-combat"]:
+	if id in ["B05-combat", "B06-combat", "B09-combat", "B10-combat"]:
 		for template_id: String in binding.get("equipped", {}):
 			if template_id.begins_with(id.trim_suffix("combat")): return true
 		return false
-	if id.begins_with("EQ") or id in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B09-U01", "B09-U02", "B09-U03"]:
+	if id.begins_with("EQ") or id in ["B05-U01", "B05-U02", "B05-U03", "B06-U01", "B06-U02", "B06-U03", "B09-U01", "B09-U02", "B09-U03", "B10-U01", "B10-U02", "B10-U03"]:
 		return bool(binding.get("equipped", {}).get(id, false))
 	var pieces: PackedStringArray = id.split("_")
 	return pieces.size() == 2 and pieces[0] in implemented_set_ids(2) and pieces[1] in ["2", "4", "6"] and int(binding.get("set_counts", {}).get(pieces[0], 0)) >= int(pieces[1])
@@ -289,6 +290,7 @@ func _health_ratio(ctx: Dictionary) -> float:
 func _modifiers(ctx: Dictionary, out: Dictionary) -> void:
 	B09.modifiers(self,ctx,out)
 	B06.modifiers(self, ctx, out)
+	B10.modifiers(self, ctx, out)
 	var shielded: bool = float(ctx.get("shield", 0.0)) > 0.0
 	for id: String in equipped:
 		var passive: Dictionary = Registry.equipment(id, int(stats.get("ruleset_version", Numerical.LEGACY))).get("combat_passive", {})
@@ -380,6 +382,7 @@ func advance(delta: float, ctx: Dictionary) -> Dictionary:
 		_refund(out, ctx, root, "EQ22", 8.0, "dash", 0.20)
 	B06.advance(self, delta, ctx, out)
 	B09.advance(self,ctx)
+	B10.advance(self, delta, ctx, out)
 	_b05_advance(ctx, out)
 	_modifiers(ctx, out)
 	return _cap_modifiers(out)
@@ -470,6 +473,7 @@ func _handle(event: String, ctx: Dictionary) -> Dictionary:
 	_b05_event(event, ctx, root, out)
 	B06.event(self, event, ctx, root, out)
 	B09.event(self,event,ctx,root,out)
+	B10.event(self, event, ctx, root, out)
 	_modifiers(ctx, out)
 	return _cap_modifiers(out)
 
@@ -477,6 +481,7 @@ func skill_cost(base_cost: float, ctx: Dictionary = {}) -> float:
 	if base_cost <= 0.0:
 		return 0.0
 	var reduction: float = 0.08 if _window("EQ56") and str(ctx.get("resource_type", resource_type)) == resource_type else 0.0
+	if Numerical.is_v2(stats) and _has_set("B10-SU", 4) and _window("B10-SU_4:discount"): reduction += 0.08
 	var ruleset := int(stats.get("ruleset_version", Numerical.LEGACY))
 	return Numerical.amount(maxf(Numerical.scale(1.0, ruleset), base_cost * (1.0 - minf(0.20, reduction))), ruleset)
 
@@ -722,6 +727,7 @@ func _enter_room(ctx: Dictionary, root: Dictionary, out: Dictionary) -> void:
 	if id != room_id:
 		clear_b05_temporary()
 		clear_b06_temporary()
+		clear_b10_temporary()
 		B09.clear_temporary(self)
 	if id.is_empty(): return
 	# Reused fixed-room blueprints still become the current room. Retain their
@@ -1121,3 +1127,8 @@ func clear_b06_temporary() -> void:
 	for values: Dictionary in [windows, counts, buffs]:
 		for key: String in values.keys():
 			if key.begins_with("B06-"): values.erase(key)
+
+func clear_b10_temporary() -> void:
+	for values: Dictionary in [windows, counts, buffs]:
+		for key: String in values.keys():
+			if key.begins_with("B10-"): values.erase(key)

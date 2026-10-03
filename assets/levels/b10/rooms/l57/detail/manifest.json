@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "room_id": "L57",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L57_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "ce3caa7071a1cb00d59fc91e024be2fa82ec9b155ca3565a4592d1aeb5f529e7",
+  "generation_tool": "built-in image_gen",
+  "representation": "six independently generated native detail repaints over exact square regions of one independent room painting; overlapping feather zones preserve fallback",
+  "feather_source_pixels": [
+    11,
+    33
+  ],
+  "source_overlap_pixels": [
+    23,
+    68
+  ],
+  "grid": [
+    3,
+    2
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L57/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        537,
+        537
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "a0b30df1bc548f1a204199ea5d5edeb511f0ab09df438e6f896e7e69fb6dd1f8",
+      "sha256": "a0b30df1bc548f1a204199ea5d5edeb511f0ab09df438e6f896e7e69fb6dd1f8",
+      "encoding": "original generated PNG bytes preserved; no resize, upscale, crop or color conversion",
+      "prompt": "Use case: precise-object-edit\nAsset type: L57 top_left original native high resolution square game-map detail tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. This is the precise 0,0,537,537 pixel portion of the complete L57 original room painting.\nPrimary request: Faithfully REPAINT this exact complete square crop at a native 1536 x 1536 resolution or the largest native square output. Generate real new fine painted material detail; do not digitally enlarge or resize the source pixels. Preserve every object silhouette, full crop edge and normalized feature coordinate EXACTLY. Only add finer hand-painted texture within existing shapes. Preserve the left scale-roof surveying pavilion, brass noninteractive exterior armillary monument, crystal-tipped pearl-white railings, cliff walls, cloud-sea and empty ivory courtyard floor exactly where shown.\nStyle and materials: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth. Pearl-white masonry, fine engraved brass gold, brilliant blue sapphire and cyan crystals, blue banners, subtle green foliage, fresh blue-white cloud-sea; purple only a minor accent. Match the source sunny exposure and southeast shadows.\nLOCK: full square framing, crop edges, composition, camera, every geometry and normalized location, floor and cliff boundaries, scale of every feature, stair widths and steps, railing silhouettes, lighting, palette and all edge fragments. Fine paving grain, painted sapphire facets and gold engraving must stay within existing outlines.\nAvoid: any new object or structure; relocation, crop, expansion, borders, rotation, zoom, change of floor continuity; living characters, monsters, dragons, dynamic star cores, portals, pickups, text, labels, symbols beyond already-painted decorative inlays, HUD or watermark. Native generation only.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10277-da64-7bc2-b2ad-c57e140336f2\\exec-f3f49510-c7ea-4354-9ac3-e7b58a8845d6.png",
+      "reference_crop_sha256": "f3327028fe53615b81a8c8e7756f5e6667bbc57dfb72a1309a36f094f22bb84f",
+      "generation_tool": "built-in image_gen",
+      "license": "AI-generated project artwork created at the user's request; no third-party game asset imported."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L57/top_middle.png",
+      "source_rect": [
+        514,
+        0,
+        537,
+        537
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "3dcb6221ca3a1441100fd69f40023cc321bdb71efdbd70ab6952ae2c31f8f16a",
+      "sha256": "3dcb6221ca3a1441100fd69f40023cc321bdb71efdbd70ab6952ae2c31f8f16a",
+      "encoding": "original generated PNG bytes preserved; no resize, upscale, crop or color conversion",
+      "prompt": "Use case: precise-object-edit\nAsset type: L57 top_middle original native high resolution square game-map detail tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. This is the precise 514,0,537,537 pixel portion of the complete L57 original room painting.\nPrimary request: Faithfully REPAINT this exact complete square crop at a native 1536 x 1536 resolution or the largest native square output. Generate real new fine painted material detail; do not digitally enlarge or resize the source pixels. Preserve every object silhouette, full crop edge and normalized feature coordinate EXACTLY. Only add finer hand-painted texture within existing shapes. Preserve the upper courtyard balustrade, empty central ivory paving with exact broad diagonal blue-and-gold inlay and central compass medallion, distant floating palaces and clouds exactly where shown.\nStyle and materials: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth. Pearl-white masonry, fine engraved brass gold, brilliant blue sapphire and cyan crystals, blue banners, subtle green foliage, fresh blue-white cloud-sea; purple only a minor accent. Match the source sunny exposure and southeast shadows.\nLOCK: full square framing, crop edges, composition, camera, every geometry and normalized location, floor and cliff boundaries, scale of every feature, stair widths and steps, railing silhouettes, lighting, palette and all edge fragments. Fine paving grain, painted sapphire facets and gold engraving must stay within existing outlines.\nAvoid: any new object or structure; relocation, crop, expansion, borders, rotation, zoom, change of floor continuity; living characters, monsters, dragons, dynamic star cores, portals, pickups, text, labels, symbols beyond already-painted decorative inlays, HUD or watermark. Native generation only.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10277-da64-7bc2-b2ad-c57e140336f2\\exec-99bc1cb3-f927-47a1-a9ff-e7091b1fa205.png",
+      "reference_crop_sha256": "db9f2556daa3fc1b797a90d71744a187408b7f4a8b2de0ac499f739f996f16e3",
+      "generation_tool": "built-in image_gen",
+      "license": "AI-generated project artwork created at the user's request; no third-party game asset imported."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L57/top_right.png",
+      "source_rect": [
+        1027,
+        0,
+        537,
+        537
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "de8e68d06b8256842061430c9f3023ccdd304f1b42852f2b2271fb66805609c7",
+      "sha256": "de8e68d06b8256842061430c9f3023ccdd304f1b42852f2b2271fb66805609c7",
+      "encoding": "original generated PNG bytes preserved; no resize, upscale, crop or color conversion",
+      "prompt": "Use case: precise-object-edit\nAsset type: L57 top_right original native high resolution square game-map detail tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. This is the precise 1027,0,537,537 pixel portion of the complete L57 original room painting.\nPrimary request: Faithfully REPAINT this exact complete square crop at a native 1536 x 1536 resolution or the largest native square output. Generate real new fine painted material detail; do not digitally enlarge or resize the source pixels. Preserve every object silhouette, full crop edge and normalized feature coordinate EXACTLY. Only add finer hand-painted texture within existing shapes. Preserve the northeast broad stair exit, pearl-white and gold railings, sapphire crystal finials and scale-roof edge pavilion, distant floating palaces and cloud-sea exactly where shown.\nStyle and materials: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth. Pearl-white masonry, fine engraved brass gold, brilliant blue sapphire and cyan crystals, blue banners, subtle green foliage, fresh blue-white cloud-sea; purple only a minor accent. Match the source sunny exposure and southeast shadows.\nLOCK: full square framing, crop edges, composition, camera, every geometry and normalized location, floor and cliff boundaries, scale of every feature, stair widths and steps, railing silhouettes, lighting, palette and all edge fragments. Fine paving grain, painted sapphire facets and gold engraving must stay within existing outlines.\nAvoid: any new object or structure; relocation, crop, expansion, borders, rotation, zoom, change of floor continuity; living characters, monsters, dragons, dynamic star cores, portals, pickups, text, labels, symbols beyond already-painted decorative inlays, HUD or watermark. Native generation only.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10277-da64-7bc2-b2ad-c57e140336f2\\exec-c388d38c-7497-437e-8db1-54c87d6d7922.png",
+      "reference_crop_sha256": "458e6f6bf794b1b78097757908fa5de9b1a9d750c9fee85ae2f03c2c60d7d861",
+      "generation_tool": "built-in image_gen",
+      "license": "AI-generated project artwork created at the user's request; no third-party game asset imported."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L57/bottom_left.png",
+      "source_rect": [
+        0,
+        469,
+        537,
+        537
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "d0425b1d904fb85fbe08d169dd5db08325b8aec2796f70c79e227c0fbbd4ebf3",
+      "sha256": "d0425b1d904fb85fbe08d169dd5db08325b8aec2796f70c79e227c0fbbd4ebf3",
+      "encoding": "original generated PNG bytes preserved; no resize, upscale, crop or color conversion",
+      "prompt": "Use case: precise-object-edit\nAsset type: L57 bottom_left original native high resolution square game-map detail tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. This is the precise 0,469,537,537 pixel portion of the complete L57 original room painting.\nPrimary request: Faithfully REPAINT this exact complete square crop at a native 1536 x 1536 resolution or the largest native square output. Generate real new fine painted material detail; do not digitally enlarge or resize the source pixels. Preserve every object silhouette, full crop edge and normalized feature coordinate EXACTLY. Only add finer hand-painted texture within existing shapes. Preserve the broad southwest stair entrance and circular landing, exact gold-inlaid empty paving, ivory cliff-edge towers and long blue banners, sapphire finials, vegetation and cloud-sea exactly where shown.\nStyle and materials: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth. Pearl-white masonry, fine engraved brass gold, brilliant blue sapphire and cyan crystals, blue banners, subtle green foliage, fresh blue-white cloud-sea; purple only a minor accent. Match the source sunny exposure and southeast shadows.\nLOCK: full square framing, crop edges, composition, camera, every geometry and normalized location, floor and cliff boundaries, scale of every feature, stair widths and steps, railing silhouettes, lighting, palette and all edge fragments. Fine paving grain, painted sapphire facets and gold engraving must stay within existing outlines.\nAvoid: any new object or structure; relocation, crop, expansion, borders, rotation, zoom, change of floor continuity; living characters, monsters, dragons, dynamic star cores, portals, pickups, text, labels, symbols beyond already-painted decorative inlays, HUD or watermark. Native generation only.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10277-da64-7bc2-b2ad-c57e140336f2\\exec-58195b0b-9af5-447e-b97a-e0328deef34b.png",
+      "reference_crop_sha256": "82100fd1014fa30d84da1f356265925fcb3d3c4349045c01a0db85f28dbdb278",
+      "generation_tool": "built-in image_gen",
+      "license": "AI-generated project artwork created at the user's request; no third-party game asset imported."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L57/bottom_middle.png",
+      "source_rect": [
+        514,
+        469,
+        537,
+        537
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "2951d1f05b0c7df18770d2d3c9a2f9227df9cd76c029af926301c48c61b088bd",
+      "sha256": "2951d1f05b0c7df18770d2d3c9a2f9227df9cd76c029af926301c48c61b088bd",
+      "encoding": "original generated PNG bytes preserved; no resize, upscale, crop or color conversion",
+      "prompt": "Use case: precise-object-edit\nAsset type: L57 bottom_middle original native high resolution square game-map detail tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. This is the precise 514,469,537,537 pixel portion of the complete L57 original room painting.\nPrimary request: Faithfully REPAINT this exact complete square crop at a native 1536 x 1536 resolution or the largest native square output. Generate real new fine painted material detail; do not digitally enlarge or resize the source pixels. Preserve every object silhouette, full crop edge and normalized feature coordinate EXACTLY. Only add finer hand-painted texture within existing shapes. Preserve the open lower ivory courtyard floor, exact gold inlay curves, pearl-white balustrade and carved floating cliff-side arches, sapphire small finials and cloud-sea exactly where shown.\nStyle and materials: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth. Pearl-white masonry, fine engraved brass gold, brilliant blue sapphire and cyan crystals, blue banners, subtle green foliage, fresh blue-white cloud-sea; purple only a minor accent. Match the source sunny exposure and southeast shadows.\nLOCK: full square framing, crop edges, composition, camera, every geometry and normalized location, floor and cliff boundaries, scale of every feature, stair widths and steps, railing silhouettes, lighting, palette and all edge fragments. Fine paving grain, painted sapphire facets and gold engraving must stay within existing outlines.\nAvoid: any new object or structure; relocation, crop, expansion, borders, rotation, zoom, change of floor continuity; living characters, monsters, dragons, dynamic star cores, portals, pickups, text, labels, symbols beyond already-painted decorative inlays, HUD or watermark. Native generation only.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10277-da64-7bc2-b2ad-c57e140336f2\\exec-15e51700-7be3-4c13-a1eb-a4cdeaf9e7ad.png",
+      "reference_crop_sha256": "8abffaaae7a07b716c3ca260ddd77a2a9c7cbf527b7b3ebe5cb0eb8064d2fe66",
+      "generation_tool": "built-in image_gen",
+      "license": "AI-generated project artwork created at the user's request; no third-party game asset imported."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L57/bottom_right.png",
+      "source_rect": [
+        1027,
+        469,
+        537,
+        537
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "5e514c73c5675d36c358518f010bfb2abfe1bb749e2269833b96daba24c41a06",
+      "sha256": "5e514c73c5675d36c358518f010bfb2abfe1bb749e2269833b96daba24c41a06",
+      "encoding": "original generated PNG bytes preserved; no resize, upscale, crop or color conversion",
+      "prompt": "Use case: precise-object-edit\nAsset type: L57 bottom_right original native high resolution square game-map detail tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. This is the precise 1027,469,537,537 pixel portion of the complete L57 original room painting.\nPrimary request: Faithfully REPAINT this exact complete square crop at a native 1536 x 1536 resolution or the largest native square output. Generate real new fine painted material detail; do not digitally enlarge or resize the source pixels. Preserve every object silhouette, full crop edge and normalized feature coordinate EXACTLY. Only add finer hand-painted texture within existing shapes. Preserve the right edge pearl-white surveying pavilion with sapphire scale roof and open golden rings, long blue banners, crystal finials, floating cliff faces, pale waterfall and distant cloud islands exactly where shown.\nStyle and materials: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth. Pearl-white masonry, fine engraved brass gold, brilliant blue sapphire and cyan crystals, blue banners, subtle green foliage, fresh blue-white cloud-sea; purple only a minor accent. Match the source sunny exposure and southeast shadows.\nLOCK: full square framing, crop edges, composition, camera, every geometry and normalized location, floor and cliff boundaries, scale of every feature, stair widths and steps, railing silhouettes, lighting, palette and all edge fragments. Fine paving grain, painted sapphire facets and gold engraving must stay within existing outlines.\nAvoid: any new object or structure; relocation, crop, expansion, borders, rotation, zoom, change of floor continuity; living characters, monsters, dragons, dynamic star cores, portals, pickups, text, labels, symbols beyond already-painted decorative inlays, HUD or watermark. Native generation only.",
+      "generated_source_path": "C:\\Users\\13326\\.codex\\generated_images\\01a10277-da64-7bc2-b2ad-c57e140336f2\\exec-8fecfbe6-c096-4a8b-b0b5-98ef0420b87f.png",
+      "reference_crop_sha256": "46e1e898d544f54859203e83af162d1fb24093fbcd87a5cada17287f6ffcc7ee",
+      "generation_tool": "built-in image_gen",
+      "license": "AI-generated project artwork created at the user's request; no third-party game asset imported."
+    }
+  ],
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
+  "qa": {
+    "status": "native_source_and_gpu_mapping_verified",
+    "native_generation": true,
+    "scale_or_upscale_applied": false,
+    "generated_png_bytes_preserved": true,
+    "geometry_changed_by_tiles": false,
+    "natural_playthrough_claimed": false,
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  },
+  "coordinate_mapping": {
+    "placement_normalized_rect": [
+      0.06,
+      0.06024992899744386,
+      0.88,
+      0.8795001420051123
+    ],
+    "blueprint_size": [
+      2800,
+      1800
+    ],
+    "world_scale": 0.58,
+    "authority": "room_geometry.json and environment.json use one source-ratio mapping",
+    "native_coverage_equivalent_pixels": [
+      3652.246,
+      2349.207
+    ],
+    "coverage_note": "Equivalent coverage only; no stitched or upsampled image generated."
+  },
+  "acceptance_claimed": true
+}

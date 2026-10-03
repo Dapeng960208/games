@@ -136,6 +136,4 @@ static func unlocked_biomes(profile: Dictionary) -> Array[String]:
 		var requirement := str(Catalog.biomes().get(biome_id, {}).get("unlock_requires", ""))
 		if requirement.is_empty() or bosses.has(requirement):
 			result.append(biome_id)
-		else:
-			break
 	return result

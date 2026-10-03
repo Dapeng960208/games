@@ -1,0 +1,25 @@
+{
+  "id": "bottom_right",
+  "tool": "image_gen.imagegen (built-in)",
+  "prompt": "Use case: style-transfer.\nAsset type: production game room detail texture, L58 bottom_right; a square high-resolution redraw registered to the supplied square reference.\nInput image 1 is the sole composition and geometry reference. Render a native 1536 × 1536 PNG (square, at least 1254 × 1254 actual pixels). Redraw the complete 538 × 538 reference frame at higher native detail; do not crop, extend, rotate, mirror, add borders or padding, recenter, or change any normalized coordinates.\nPrimary request: faithfully refine the existing pearl-white and warm-gold fantasy courtyard edge, sapphire-blue stained star crystal parapet, green foliage and tiny white flowers in the upper-right planter, floating fantasy castle and waterfall islands, bright clouds and clear sky. Keep every existing object, every cream tile edge, every gold floor arc, every parapet contour and every island landmark at precisely the same normalized position, shape and perspective as the reference. Preserve all four full image edges and all objects that meet them.\nStyle/medium: bright hand-painted cartoon fantasy, high-camera three-quarter oblique overhead view, near-isometric 2.5D depth. Crisp delicate painted outlines, softly modeled gold metal, pearl marble, blue faceted stained crystal, white clouds, fresh green foliage, luminous warm daylight. Pearl white / warm gold / blue star crystal dominate; purple is allowed only as tiny shadow tint.\nOnly increase fine painted material detail and edge clarity within the unchanged geometry. The partial concentric gold floor arcs at upper left, curved parapet crossing diagonally from lower left to upper right, vertical ornate gold crest pillar at about 58 percent width / 54 percent height, and floating blue castle at right must be identical in placement and size. Keep the original open cloud region and the complete edge framing. Do not add or remove objects.\nAvoid: any character, human, creature, dragon, portal, star core, text, letters, numbers, UI, watermarks, new ornaments, camera change, perspective distortion, dark mood, purple field, blank bands. This image is a texture aligned to a shared map coordinate transform, so exact framing is more important than creative reinterpretation.",
+  "referenced_image_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/bottom_right.png",
+  "reference_actual_size": [
+    538,
+    538
+  ],
+  "reference_sha256": "1781e2e24b67e53755f2c70c606bf352bf8b7032ba229896371c921a97b9d262",
+  "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e5-d20b-7523-966f-bbeb4f5ff166/exec-ff4421f3-4178-4221-a038-4a65bc9aa5fe.png",
+  "requested_size": [
+    1536,
+    1536
+  ],
+  "actual_size": [
+    1254,
+    1254
+  ],
+  "generated_png_sha256": "a1549da31cac984c82566b8e741465859b803e594151022dfb9548cdb52f66f4",
+  "source_pixel_edits": "none",
+  "production_save": "Original generated PNG copied byte-for-byte without resize, upsample, stretching or re-encoding.",
+  "license": "Project-generated original artwork",
+  "validation": "Square full-frame reference was supplied and visual composition inspected. Unified 2K GPU and map-coordinate acceptance remains pending."
+}

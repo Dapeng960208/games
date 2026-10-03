@@ -408,7 +408,16 @@ func finish_run(outcome: String) -> Dictionary:
 		for eq: String in run.expedition.equipment_discoveries:
 			if not eq in next_profile.equipment_discoveries: next_profile.equipment_discoveries.append(eq)
 		if run.ruleset_version() == Numbers.V2:
-			if outcome == "extracted": retained_equipment = Loot.bank(next_profile, run.expedition, run.boss_defeats)
+			if outcome == "extracted":
+				retained_equipment = Loot.bank(next_profile, run.expedition, run.boss_defeats)
+				var finale: Dictionary = _expedition_service.bank_finale_ring(next_profile)
+				if not bool(finale.ok):
+					last_error = "STORAGE_INVALID_DATA"
+					_settling = false
+					changed.emit()
+					settlement_failed.emit(outcome)
+					return {}
+				retained_equipment.append_array(finale.retained)
 			else: lost_equipment.assign(run.expedition.pending_equipment.keys())
 		for eq: String in run.expedition.pending_equipment:
 			if run.ruleset_version() == Numbers.V2: continue
@@ -478,6 +487,8 @@ func finish_run(outcome: String) -> Dictionary:
 		settlement_failed.emit(outcome)
 		return {}
 	profile = next_profile
+	# Presentation evidence belongs to this successfully committed journey.
+	result["final_chapter_completed"] = not run.demo and outcome == "extracted" and "BO10" in run.boss_defeats and "BO10" in profile.bosses
 	_session_result = result.duplicate(true)
 	run.relics.clear()
 	run = null
@@ -713,6 +724,9 @@ func expedition_snapshot() -> Dictionary:
 	value["hero_id"] = run.hero_id
 	value["run_id"] = run.id
 	return value
+
+func finale_ring_claimed() -> bool:
+	return _expedition_service.finale_ring_claimed(profile)
 
 func _restore_expedition(receipt: Dictionary) -> void:
 	run = RunSession.new()

@@ -1,0 +1,9 @@
+{
+  "generator": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "prompt": "Use case: stylized-concept.\nAsset type: final game equipment inventory artwork, one unique adult-sized fantasy ring, native 1024 x 1024 or higher, genuine transparent RGBA background.\nPrimary request: one original luxurious WHITE-PLATINUM DRAGON RING for the Star Dragon Court final chapter. The attached design is a STYLE/PALETTE reference only. Illustrate one single wearable ring in readable high three-quarter oblique view, with a complete large circular metal band opening and correct adult jewelry proportions. At the crown two small sculpted ivory-platinum DRAGON HEADS gently cradle one vivid faceted SAPPHIRE BLUE gemstone; a slender warm GOLD nine-star celestial orbit wraps the setting. Keep the ring physically plausible and unmistakably a ring, not a giant animal, pendant, helmet or portal.\nStyle: bright polished hand-painted cartoon fantasy, delightful 2.5D material depth, crisp royal blue-violet outlines, tangible brushed platinum, shining restrained gold detailing, clean jewel facets, warm sunny highlights. White platinum, sapphire and gold match the reference dragon's palette. Clear silhouette and simple strong visual hierarchy suitable for shrinking to a game inventory card.\nComposition: a SINGLE ring centered, full ring band and gemstone crown visible, approx 80% canvas extent with 10% blank transparent margin. No other object.\nBackground: ACTUAL clean transparent RGBA alpha, every pixel outside jewelry transparent. No background glow, no ground shadow, no smoke, no gradient, no vignette, no checkerboard painted into pixels, no floor, no plate or frame. Highlights only on the metal and gemstone. No text, letters, watermark, numbers, labels or UI panel. No photo realism."
+}

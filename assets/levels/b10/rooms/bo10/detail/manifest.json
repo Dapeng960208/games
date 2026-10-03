@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "BO10",
+  "approved": true,
+  "source_texture": "asset://world/rooms/BO10_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "d85fbd601829fb9cfc81e8a0609962434de85980eb0b67aaed06fcf6e2cf0930",
+  "generation_tool": "built-in image_gen",
+  "representation": "Six native high-resolution detail repaints from exact 538-square source reference crops, with shared room coordinate mapping and overlapping feather zones",
+  "feather_source_pixels": [
+    12,
+    34
+  ],
+  "grid": [
+    3,
+    2
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/BO10/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "130dd1b9869e4df286dbc1ed072b0b332e12435e32acca6fd561285d0a0c626e",
+      "decoded_rgba_sha256": "16243162a7eb33cb0185aaf55050aae649c513cedd2d485256ea7303f88129c8",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit.\nAsset type: BO10 top_left, native high-resolution 2.5D fantasy game-map detail tile.\nInput image 1: the SOLE exact square 538 x 538 crop edit target from the approved room painting, not a style or mood reference.\nPrimary request: faithfully REPAINT THIS EXACT COMPLETE CROP at native 1536 x 1536 pixels or the largest native square output. Retain ALL image content, all objects and all four full crop edges at exactly the same normalized coordinates. Only enhance fine original hand-painted brushwork within existing silhouettes: ivory paving stone texture, delicate gold filigree, sapphire blue crystal material and soft white cloud volume. Do not resize the input pixels; generate a genuinely new detailed native painting with locked geometry.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead view, close-to-isometric 2.5D. Match exactly the input's sunny exposure, pearl-white and cream stone, fine gold details, sapphire and royal blue star crystals and blue banners, green garden accents, fluffy daytime cloud ocean and floating dragon court.\nLOCK: complete crop framing, every feature and silhouette size, exact normalized position of all paving seams, gold star inlays, railings, crystal finials, stair edges, bridge outlines, architecture, cliff edges, cloud positions and shadows. Same camera, lighting direction, brightness, palette and edges. No crop, expansion, rearrangement, rotation or mirror. No painted portal, core, dragon or character is added.\nConstraints: output one native square, filled edge-to-edge with the exact crop. Do not add any object, character, creature, symbol, star pattern, text, UI, HUD, border, letter or watermark. No new architecture, no moved landmarks, no raised platform, no obscuring effect. Only native material detail inside unchanged forms.",
+      "requested_size": [
+        1536,
+        1536
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10279-46f4-73c3-93b8-e76aaf0b2dd0/exec-83212472-fa60-4c3e-833e-0e67cd162d85.png",
+      "reference_crop_sha256": "acbf93b46abd2b72acc719d2042b7655d4015182441f0b3dd529b423d8e1c2ef",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop checked for bright pearl-white/gold/blue fantasy style, continuous paving, unchanged architecture and absent dynamic actors; unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/BO10/top_middle.png",
+      "source_rect": [
+        513,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "b220c085eec18b30e61ae69d8e58f84156e377c6348a610a6cba546ab7c56a3b",
+      "decoded_rgba_sha256": "a302b7751f0d65bf91877e7a70aac2026fe5fd5db83c938c50440945fcdfc9ba",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit.\nAsset type: BO10 top_middle, native high-resolution 2.5D fantasy game-map detail tile.\nInput image 1: the SOLE exact square 538 x 538 crop edit target from the approved room painting, not a style or mood reference.\nPrimary request: faithfully REPAINT THIS EXACT COMPLETE CROP at native 1536 x 1536 pixels or the largest native square output. Retain ALL image content, all objects and all four full crop edges at exactly the same normalized coordinates. Only enhance fine original hand-painted brushwork within existing silhouettes: ivory paving stone texture, delicate gold filigree, sapphire blue crystal material and soft white cloud volume. Do not resize the input pixels; generate a genuinely new detailed native painting with locked geometry.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead view, close-to-isometric 2.5D. Match exactly the input's sunny exposure, pearl-white and cream stone, fine gold details, sapphire and royal blue star crystals and blue banners, green garden accents, fluffy daytime cloud ocean and floating dragon court.\nLOCK: complete crop framing, every feature and silhouette size, exact normalized position of all paving seams, gold star inlays, railings, crystal finials, stair edges, bridge outlines, architecture, cliff edges, cloud positions and shadows. Same camera, lighting direction, brightness, palette and edges. No crop, expansion, rearrangement, rotation or mirror. No painted portal, core, dragon or character is added.\nConstraints: output one native square, filled edge-to-edge with the exact crop. Do not add any object, character, creature, symbol, star pattern, text, UI, HUD, border, letter or watermark. No new architecture, no moved landmarks, no raised platform, no obscuring effect. Only native material detail inside unchanged forms.",
+      "requested_size": [
+        1536,
+        1536
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10279-46f4-73c3-93b8-e76aaf0b2dd0/exec-220d1790-4e70-492d-9f2d-0aa4f7961268.png",
+      "reference_crop_sha256": "ed9c62145627e712e543e577ff0ae3fa3c82467dfad7cbf24d138553ac65a61b",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop checked for bright pearl-white/gold/blue fantasy style, continuous paving, unchanged architecture and absent dynamic actors; unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/BO10/top_right.png",
+      "source_rect": [
+        1026,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "4d74c38e944df270c4b7049c8f54054d8f8f66f813cdb6ac7d683db810ac0e19",
+      "decoded_rgba_sha256": "a7f6ab6777ded2e8a72ffdde1edceaf67e529ab85f0a00776ce90c995889e8e7",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit.\nAsset type: BO10 top_right, native high-resolution 2.5D fantasy game-map detail tile.\nInput image 1: the SOLE exact square 538 x 538 crop edit target from the approved room painting, not a style or mood reference.\nPrimary request: faithfully REPAINT THIS EXACT COMPLETE CROP at native 1536 x 1536 pixels or the largest native square output. Retain ALL image content, all objects and all four full crop edges at exactly the same normalized coordinates. Only enhance fine original hand-painted brushwork within existing silhouettes: ivory paving stone texture, delicate gold filigree, sapphire blue crystal material and soft white cloud volume. Do not resize the input pixels; generate a genuinely new detailed native painting with locked geometry.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead view, close-to-isometric 2.5D. Match exactly the input's sunny exposure, pearl-white and cream stone, fine gold details, sapphire and royal blue star crystals and blue banners, green garden accents, fluffy daytime cloud ocean and floating dragon court.\nLOCK: complete crop framing, every feature and silhouette size, exact normalized position of all paving seams, gold star inlays, railings, crystal finials, stair edges, bridge outlines, architecture, cliff edges, cloud positions and shadows. Same camera, lighting direction, brightness, palette and edges. No crop, expansion, rearrangement, rotation or mirror. No painted portal, core, dragon or character is added.\nConstraints: output one native square, filled edge-to-edge with the exact crop. Do not add any object, character, creature, symbol, star pattern, text, UI, HUD, border, letter or watermark. No new architecture, no moved landmarks, no raised platform, no obscuring effect. Only native material detail inside unchanged forms.",
+      "requested_size": [
+        1536,
+        1536
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10279-46f4-73c3-93b8-e76aaf0b2dd0/exec-efd2b6e8-12a5-420c-88a8-eb07b1b5be47.png",
+      "reference_crop_sha256": "ebf540fa2c2a488980d0497ea8a6a04c69403f8a5661cb9d39f3480ac1e61e35",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop checked for bright pearl-white/gold/blue fantasy style, continuous paving, unchanged architecture and absent dynamic actors; unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/BO10/bottom_left.png",
+      "source_rect": [
+        0,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "2b9bf761e55fe5ea41fdbf9d6ec4ecff81f44a8ae7e72e589edd0f6034358904",
+      "decoded_rgba_sha256": "34ca85731f572f379825c32e4bea906e528dc879cc08944d4ec511fa4ab3e8db",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit.\nAsset type: BO10 bottom_left, native high-resolution 2.5D fantasy game-map detail tile.\nInput image 1: the SOLE exact square 538 x 538 crop edit target from the approved room painting, not a style or mood reference.\nPrimary request: faithfully REPAINT THIS EXACT COMPLETE CROP at native 1536 x 1536 pixels or the largest native square output. Retain ALL image content, all objects and all four full crop edges at exactly the same normalized coordinates. Only enhance fine original hand-painted brushwork within existing silhouettes: ivory paving stone texture, delicate gold filigree, sapphire blue crystal material and soft white cloud volume. Do not resize the input pixels; generate a genuinely new detailed native painting with locked geometry.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead view, close-to-isometric 2.5D. Match exactly the input's sunny exposure, pearl-white and cream stone, fine gold details, sapphire and royal blue star crystals and blue banners, green garden accents, fluffy daytime cloud ocean and floating dragon court.\nLOCK: complete crop framing, every feature and silhouette size, exact normalized position of all paving seams, gold star inlays, railings, crystal finials, stair edges, bridge outlines, architecture, cliff edges, cloud positions and shadows. Same camera, lighting direction, brightness, palette and edges. No crop, expansion, rearrangement, rotation or mirror. No painted portal, core, dragon or character is added.\nConstraints: output one native square, filled edge-to-edge with the exact crop. Do not add any object, character, creature, symbol, star pattern, text, UI, HUD, border, letter or watermark. No new architecture, no moved landmarks, no raised platform, no obscuring effect. Only native material detail inside unchanged forms.",
+      "requested_size": [
+        1536,
+        1536
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10279-46f4-73c3-93b8-e76aaf0b2dd0/exec-2c629a2d-5958-4c2d-9f05-72ec821802eb.png",
+      "reference_crop_sha256": "dd9dec33724c9d92b2c19c731dd2bddc9df07328b1bd76a19780f291d70e62ce",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop checked for bright pearl-white/gold/blue fantasy style, continuous paving, unchanged architecture and absent dynamic actors; unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/BO10/bottom_middle.png",
+      "source_rect": [
+        513,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "8f50dc1c6b6215d632947e84660901919663db6275c79a33f5899fd315267dc1",
+      "decoded_rgba_sha256": "78f48449748889bf1f41e3fe010e9ff61d7222dd33ad1243cf9a383cd13c4f37",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit.\nAsset type: BO10 bottom_middle, native high-resolution 2.5D fantasy game-map detail tile.\nInput image 1: the SOLE exact square 538 x 538 crop edit target from the approved room painting, not a style or mood reference.\nPrimary request: faithfully REPAINT THIS EXACT COMPLETE CROP at native 1536 x 1536 pixels or the largest native square output. Retain ALL image content, all objects and all four full crop edges at exactly the same normalized coordinates. Only enhance fine original hand-painted brushwork within existing silhouettes: ivory paving stone texture, delicate gold filigree, sapphire blue crystal material and soft white cloud volume. Do not resize the input pixels; generate a genuinely new detailed native painting with locked geometry.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead view, close-to-isometric 2.5D. Match exactly the input's sunny exposure, pearl-white and cream stone, fine gold details, sapphire and royal blue star crystals and blue banners, green garden accents, fluffy daytime cloud ocean and floating dragon court.\nLOCK: complete crop framing, every feature and silhouette size, exact normalized position of all paving seams, gold star inlays, railings, crystal finials, stair edges, bridge outlines, architecture, cliff edges, cloud positions and shadows. Same camera, lighting direction, brightness, palette and edges. No crop, expansion, rearrangement, rotation or mirror. No painted portal, core, dragon or character is added.\nConstraints: output one native square, filled edge-to-edge with the exact crop. Do not add any object, character, creature, symbol, star pattern, text, UI, HUD, border, letter or watermark. No new architecture, no moved landmarks, no raised platform, no obscuring effect. Only native material detail inside unchanged forms.",
+      "requested_size": [
+        1536,
+        1536
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10279-46f4-73c3-93b8-e76aaf0b2dd0/exec-53c60cf5-b816-4521-aa30-474f0302798f.png",
+      "reference_crop_sha256": "0cb6fa4555630ca75220ebb3dd017885f2980b249d896e4596c81e6c173ad215",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop checked for bright pearl-white/gold/blue fantasy style, continuous paving, unchanged architecture and absent dynamic actors; unified GPU/runtime acceptance pending."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/BO10/bottom_right.png",
+      "source_rect": [
+        1026,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "0b8e5def26e48d6716df7987020dab5bd4bdf03a8c115533ec79bab7bd406ee4",
+      "decoded_rgba_sha256": "68a325a183b9209994316ce90b9becfd832f6cd2ad9e7e3ac827dffcfef02fde",
+      "encoding": "Original native PNG bytes; no resize; no upscale; no raster edits",
+      "prompt": "Use case: precise-object-edit.\nAsset type: BO10 bottom_right, native high-resolution 2.5D fantasy game-map detail tile.\nInput image 1: the SOLE exact square 538 x 538 crop edit target from the approved room painting, not a style or mood reference.\nPrimary request: faithfully REPAINT THIS EXACT COMPLETE CROP at native 1536 x 1536 pixels or the largest native square output. Retain ALL image content, all objects and all four full crop edges at exactly the same normalized coordinates. Only enhance fine original hand-painted brushwork within existing silhouettes: ivory paving stone texture, delicate gold filigree, sapphire blue crystal material and soft white cloud volume. Do not resize the input pixels; generate a genuinely new detailed native painting with locked geometry.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead view, close-to-isometric 2.5D. Match exactly the input's sunny exposure, pearl-white and cream stone, fine gold details, sapphire and royal blue star crystals and blue banners, green garden accents, fluffy daytime cloud ocean and floating dragon court.\nLOCK: complete crop framing, every feature and silhouette size, exact normalized position of all paving seams, gold star inlays, railings, crystal finials, stair edges, bridge outlines, architecture, cliff edges, cloud positions and shadows. Same camera, lighting direction, brightness, palette and edges. No crop, expansion, rearrangement, rotation or mirror. No painted portal, core, dragon or character is added.\nConstraints: output one native square, filled edge-to-edge with the exact crop. Do not add any object, character, creature, symbol, star pattern, text, UI, HUD, border, letter or watermark. No new architecture, no moved landmarks, no raised platform, no obscuring effect. Only native material detail inside unchanged forms.",
+      "requested_size": [
+        1536,
+        1536
+      ],
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10279-46f4-73c3-93b8-e76aaf0b2dd0/exec-f9652bcc-50bc-4511-9df1-aef1f0c20d30.png",
+      "reference_crop_sha256": "8b67d92d72e063b25cf4980c162d77044c6e1b24e192c5cd4b811464bfc844e3",
+      "license": "Project-generated original artwork.",
+      "generated_at": "2026-10-04",
+      "visual_inspection": "Complete crop checked for bright pearl-white/gold/blue fantasy style, continuous paving, unchanged architecture and absent dynamic actors; unified GPU/runtime acceptance pending."
+    }
+  ],
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
+  "acceptance_claimed": true,
+  "geometry_changed_by_tiles": false,
+  "scale_or_upscale_applied": false,
+  "license": "Project-generated original artwork.",
+  "qa": {
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  }
+}

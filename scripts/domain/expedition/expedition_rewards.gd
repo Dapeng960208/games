@@ -6,7 +6,7 @@ const Instances = preload("res://scripts/domain/equipment/equipment_instances.gd
 const Rewards = preload("res://scripts/domain/world/room_rewards.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
 const MAX_EVENTS := 2048
-const MATERIAL_KEYS := ["forge","race:B01","race:B02","race:B03","race:B04","race:B05","race:B06","core:B01","core:B02","core:B03","core:B04","core:B05","core:B06"]
+const MATERIAL_KEYS := ["forge","race:B01","race:B02","race:B03","race:B04","race:B05","race:B06","core:B01","core:B02","core:B03","core:B04","core:B05","core:B06","race:B10","core:B10"]
 
 static func initialize(value: Dictionary, profile: Dictionary, run_id: String, wish: String = "") -> void:
 	value["loot_seed"] = (int(value.seed) ^ (run_id + ":loot:v2").hash()) & 0x7fffffff
@@ -22,7 +22,7 @@ static func context(value: Dictionary, run_id: String, hero_id: String, event_id
 	var result := {"event_id":event_id,"seed":int(value.loot_seed),"source":source,"race_id":race,"difficulty":int(value.difficulty),"challenge_level":Rewards.challenge_level(room, zone),"power_type":"magic" if hero_id == "CH03" else "physical","wish_slot":str(value.wish_slot),"force_gold":source == "boss" and int(value.difficulty) == 4 and int(value.pity_snapshot.get(race, 0)) >= 3}
 
 	if generator_version >= 2: result["hero_id"] = hero_id
-	if (generator_version >= 3 and race == "B05") or (generator_version >= 4 and race == "B06"):
+	if (generator_version >= 3 and race == "B05") or (generator_version >= 4 and race == "B06") or (generator_version >= 5 and race in ["B09", "B10"]):
 		result["room_id"] = room
 		if source in ["normal", "elite"] and not actor_id.is_empty(): result["monster_id"] = actor_id
 	return result
@@ -212,7 +212,7 @@ static func material_map_valid(value: Variant) -> bool:
 static func pity_valid(value: Variant) -> bool:
 	if not value is Dictionary: return false
 	for key: Variant in value:
-		if key not in ["B01","B02","B03","B04","B05","B06"] and not (key=="B09" and preload("res://scripts/infrastructure/content/runtime_rules.gd").b09_candidate_enabled()): return false
+		if key not in ["B01","B02","B03","B04","B05","B06","B10"] and not (key=="B09" and preload("res://scripts/infrastructure/content/runtime_rules.gd").b09_candidate_enabled()): return false
 		if not _number(value[key],3): return false
 	return true
 

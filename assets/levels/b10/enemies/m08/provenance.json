@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.enemies.m08.body",
+  "enemy_id": "B10-M08",
+  "name": "星图测绘者",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "recorded_at_utc": "2026-10-03T16:20:39Z",
+  "prompt": "Use case: stylized-concept. Asset type: ONE original game enemy full-body transparent cutout, B10-M08 Star Chart Surveyor / 星图测绘者. Input image is style reference only: match its bright ivory-gold-blue star dragon fantasy, delicate painted highlights and dragon horns; do not copy text or page layout. Subject is a slender adult DRAGONKIN cartographer mage, unmistakably draconic ivory snout with sapphire crest and two swept-back gold tipped horns, small neatly folded blue wing membranes, visible curling ivory dragon tail. Wears short ivory-and-cobalt surveying robes with gold geometric trim, carries a small gold star astrolabe in one hand and a sapphire pointed surveyor staff in the other, a compact navy blank chart case at belt. Distinct slender scholarly silhouette; calm ready pose; two digitigrade clawed feet visibly stand beneath hips. High camera at approximately 45 degrees down, three-quarter near-isometric game view facing lower-right/southeast. We see top of shoulders, crown and foot tops. Bright hand-painted cartoon fantasy, thin ink-blue outlines, 2.5D soft sculpted volume, clean small-game readability, warm sunny lights, ivory platinum scales, blue star crystal and gold rings, no photorealism. TECHNICAL FRAME: square native >=1024 pixels, true RGBA transparent background. Render the complete character SMALLER WITH LOTS OF TRANSPARENT MARGINS. All tips occupy only the central 70% width and y=10% to y=84%; character body including horns at least 650 native pixels tall. BOTH foot tips lie along y=84%, with midpoint x=50%. Lower 16% of canvas is completely empty transparent alpha. Full staff, horns, wings, robes, tail, claws contained with margin. No cropping. Exactly ONE character. No floor, base, ground, shadow, clouds, background, text, labels, numbers, symbols written as text, frames, watermark or glowing backdrop. Original project character.",
+  "reference_images": [
+    {
+      "role": "style reference",
+      "name": "user final-chapter Starlit Dragon Court concept",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "origin": "User-supplied final-chapter concept artwork; reference style and dragon anatomy only",
+      "reference_rights": "User-provided reference; no ownership claim. Reference pixels are not copied into generated assets."
+    }
+  ],
+  "source_file_name": "exec-57f54cac-a190-4160-90f7-e0da742fcaf3.png",
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "b061c43ea0b638bdcf7fd441fbd27e4aa6bf943b2062920df6ced09f4737cd17",
+  "alpha_bbox": [
+    168,
+    35,
+    1142,
+    1089
+  ],
+  "alpha_bbox_format": "[left, top, right_exclusive, bottom_exclusive]",
+  "alpha_bbox_threshold": 16,
+  "alpha_bbox_raw": [
+    29,
+    19,
+    1222,
+    1222
+  ],
+  "alpha_range": [
+    0,
+    255
+  ],
+  "effective_silhouette_size": [
+    974,
+    1054
+  ],
+  "actual_foot_px": [
+    674,
+    1033
+  ],
+  "foot_anchor_normalized": [
+    0.53748,
+    0.823764
+  ],
+  "foot_anchor_method": "Manual visual estimate of supporting feet/paws midpoint in native pixel coordinates; validate ground placement during unified runtime acceptance.",
+  "facing": "SE",
+  "camera": "High-angle three-quarter overhead near-isometric 2.5D",
+  "world_display_height": 112,
+  "processing": "Byte-for-byte copy of selected built-in output; native pixels and RGBA alpha preserved. No postprocessing, upsampling, mirroring, or rotation applied.",
+  "scale_policy": "Source 1254x1254 is larger than its intended world display at 2560x1440. Runtime downsamples uniformly and maps the recorded foot anchor; never enlarge this source.",
+  "license": "Project-generated original artwork for this game. User-supplied concept used as a style and design brief only; no third-party character pixels reused.",
+  "status": "Original body artwork delivered; unified game acceptance pending. Existing action presentation is reused, not an independent animation set.",
+  "effective_body_height_px": 1054,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

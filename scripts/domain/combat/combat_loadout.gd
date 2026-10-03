@@ -5,7 +5,7 @@ extends RefCounted
 
 const Rules = preload("res://scripts/domain/combat/equipment_effects.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
-const MODIFIER_KEYS: Array[String] = ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction", "received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale", "b09_glide_distance_scale", "b09_direct_reduction"]
+const MODIFIER_KEYS: Array[String] = ["damage_bonus", "crit_bonus", "attack_speed_bonus", "move_speed_bonus", "damage_reduction_bonus", "knockback_scale", "received_knockback_scale", "slow_resistance", "chill_duration_bonus", "cost_reduction", "received_displacement_reduction", "terrain_slow_reduction", "received_healing_bonus", "immediate_w_radius_scale", "b09_glide_distance_scale", "b09_direct_reduction", "b10_direct_damage_reduction", "b10_ranged_damage_reduction"]
 
 var owner_player: Node2D
 var effects: RefCounted
@@ -84,11 +84,13 @@ func tick(delta: float) -> void:
 	var ordinary_move: bool = travelled > 0.01 and float(owner_player.get("dash_remaining")) <= 0.0
 	var knockback: Vector2 = owner_player.get("knockback")
 	ordinary_move = ordinary_move and knockback.length_squared() < 1.0
+	# Portals cannot count as ordinary travelled distance for star-balance.
+	ordinary_move = ordinary_move and travelled <= float(owner_player.call("stat", "move_speed", 220.0)) * delta * 1.5 + 4.0
 	var abilities: Variant = owner_player.get("abilities")
 	if abilities != null and bool(abilities.call("busy")):
 		ordinary_move = false
 	_movement_time = _movement_time + delta if ordinary_move else 0.0
-	var context: Dictionary = _context({"moving": ordinary_move})
+	var context: Dictionary = _context({"moving": ordinary_move, "actual_movement_distance":travelled if ordinary_move else 0.0})
 	var result: Dictionary = effects.call("advance", delta, context)
 	_update_modifiers(result)
 	_apply_commands(result, context)
@@ -380,7 +382,7 @@ func _context(extra: Dictionary = {}) -> Dictionary:
 		nearby.append({"id": candidate.get_instance_id(), "distance": origin.distance_to(candidate.position), "alive": _alive(candidate), "states": _statuses(candidate)})
 	context["nearby_targets"] = nearby
 	var b05_combat_needed: bool = effects != null and (int(effects.set_counts.get("B05-SM", 0)) >= 4 or int(effects.set_counts.get("B05-SG", 0)) >= 6)
-	context["combat_active"] = bool(extra.get("combat_active", false)) or ((b05_combat_needed or (effects != null and effects.equipped.keys().any(func(id: String) -> bool: return id.begins_with("B09-"))) or (effects != null and (int(effects.set_counts.get("B06-SU", 0)) >= 4 or int(effects.set_counts.get("B06-SM", 0)) >= 6)) or (effects != null and effects.equipped.has("B06-U03"))) and _combat_active(room))
+	context["combat_active"] = bool(extra.get("combat_active", false)) or ((b05_combat_needed or (effects != null and effects.equipped.keys().any(func(id: String) -> bool: return id.begins_with("B09-") or id.begins_with("B10-"))) or (effects != null and (int(effects.set_counts.get("B06-SU", 0)) >= 4 or int(effects.set_counts.get("B06-SM", 0)) >= 6)) or (effects != null and effects.equipped.has("B06-U03"))) and _combat_active(room))
 	if effects != null and int(effects.set_counts.get("B05-SW", 0)) >= 4: context["b05_arc_targets"] = _b05_arc_targets(extra)
 	if effects != null and int(effects.set_counts.get("B05-SG", 0)) >= 4: context["b05_pierce_targets"] = _b05_pierce_targets(extra)
 	var e_guard: Dictionary = owner_player.status.guards.get("hero_f", {})
@@ -539,6 +541,8 @@ func b06_r_shot(context: Dictionary) -> Dictionary:
 	extra["b06_tide_marked"] = _alive(target) and _clock < float(_b06_tide_mark.get("until", 0.0))
 	if bool(extra.b06_tide_marked): extra["target_id"] = str(target.get_instance_id())
 	var result := event("gunner_r_shot", extra)
+	if result.has("b10_r_bonus"):
+		return result.b10_r_bonus
 	if result.has("b06_r_bonus"):
 		_b06_tide_mark.clear()
 		return result.b06_r_bonus

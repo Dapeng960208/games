@@ -1,0 +1,764 @@
+{
+  "schema_version": 1,
+  "chapter_id": "B10",
+  "enabled": true,
+  "items": {
+    "B10-SW-head": {
+      "texture": "asset://level.b10.equipment.sw",
+      "region": [
+        0,
+        0,
+        443,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        436,
+        442
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "head",
+      "sha256": "503f08e693f9b1f7f4e555cd946cc93f6e6e2243e1b45a15e4021b6eca9320e9",
+      "provenance": "assets/levels/b10/equipment/sw.prompt.json"
+    },
+    "B10-SW-chest": {
+      "texture": "asset://level.b10.equipment.sw",
+      "region": [
+        443,
+        0,
+        444,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "chest",
+      "sha256": "503f08e693f9b1f7f4e555cd946cc93f6e6e2243e1b45a15e4021b6eca9320e9",
+      "provenance": "assets/levels/b10/equipment/sw.prompt.json"
+    },
+    "B10-SW-hands": {
+      "texture": "asset://level.b10.equipment.sw",
+      "region": [
+        887,
+        0,
+        443,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "hands",
+      "sha256": "503f08e693f9b1f7f4e555cd946cc93f6e6e2243e1b45a15e4021b6eca9320e9",
+      "provenance": "assets/levels/b10/equipment/sw.prompt.json"
+    },
+    "B10-SW-legs": {
+      "texture": "asset://level.b10.equipment.sw",
+      "region": [
+        1330,
+        0,
+        444,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        400,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "legs",
+      "sha256": "503f08e693f9b1f7f4e555cd946cc93f6e6e2243e1b45a15e4021b6eca9320e9",
+      "provenance": "assets/levels/b10/equipment/sw.prompt.json"
+    },
+    "B10-SW-feet": {
+      "texture": "asset://level.b10.equipment.sw",
+      "region": [
+        0,
+        443,
+        443,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        442,
+        444
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "sha256": "503f08e693f9b1f7f4e555cd946cc93f6e6e2243e1b45a15e4021b6eca9320e9",
+      "provenance": "assets/levels/b10/equipment/sw.prompt.json"
+    },
+    "B10-SW-ring": {
+      "texture": "asset://level.b10.equipment.sw",
+      "region": [
+        443,
+        443,
+        444,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        428
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "sha256": "503f08e693f9b1f7f4e555cd946cc93f6e6e2243e1b45a15e4021b6eca9320e9",
+      "provenance": "assets/levels/b10/equipment/sw.prompt.json"
+    },
+    "B10-SW-accessory": {
+      "texture": "asset://level.b10.equipment.sw",
+      "region": [
+        887,
+        443,
+        443,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        444
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "sha256": "503f08e693f9b1f7f4e555cd946cc93f6e6e2243e1b45a15e4021b6eca9320e9",
+      "provenance": "assets/levels/b10/equipment/sw.prompt.json"
+    },
+    "B10-SW-weapon": {
+      "texture": "asset://level.b10.equipment.sw",
+      "region": [
+        1330,
+        443,
+        444,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        428
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "weapon",
+      "sha256": "503f08e693f9b1f7f4e555cd946cc93f6e6e2243e1b45a15e4021b6eca9320e9",
+      "provenance": "assets/levels/b10/equipment/sw.prompt.json"
+    },
+    "B10-SG-head": {
+      "texture": "asset://level.b10.equipment.sg",
+      "region": [
+        0,
+        0,
+        443,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        440,
+        427
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "head",
+      "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+      "provenance": "assets/levels/b10/equipment/sg.prompt.json"
+    },
+    "B10-SG-chest": {
+      "texture": "asset://level.b10.equipment.sg",
+      "region": [
+        443,
+        0,
+        444,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "chest",
+      "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+      "provenance": "assets/levels/b10/equipment/sg.prompt.json"
+    },
+    "B10-SG-hands": {
+      "texture": "asset://level.b10.equipment.sg",
+      "region": [
+        887,
+        0,
+        443,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "hands",
+      "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+      "provenance": "assets/levels/b10/equipment/sg.prompt.json"
+    },
+    "B10-SG-legs": {
+      "texture": "asset://level.b10.equipment.sg",
+      "region": [
+        1330,
+        0,
+        444,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        428,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "legs",
+      "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+      "provenance": "assets/levels/b10/equipment/sg.prompt.json"
+    },
+    "B10-SG-feet": {
+      "texture": "asset://level.b10.equipment.sg",
+      "region": [
+        0,
+        443,
+        443,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        434,
+        415
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+      "provenance": "assets/levels/b10/equipment/sg.prompt.json"
+    },
+    "B10-SG-ring": {
+      "texture": "asset://level.b10.equipment.sg",
+      "region": [
+        443,
+        443,
+        444,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        426
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+      "provenance": "assets/levels/b10/equipment/sg.prompt.json"
+    },
+    "B10-SG-accessory": {
+      "texture": "asset://level.b10.equipment.sg",
+      "region": [
+        887,
+        443,
+        443,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        440,
+        422
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+      "provenance": "assets/levels/b10/equipment/sg.prompt.json"
+    },
+    "B10-SG-weapon": {
+      "texture": "asset://level.b10.equipment.sg",
+      "region": [
+        1330,
+        443,
+        444,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        420
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "weapon",
+      "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+      "provenance": "assets/levels/b10/equipment/sg.prompt.json"
+    },
+    "B10-SM-head": {
+      "texture": "asset://level.b10.equipment.sm",
+      "region": [
+        0,
+        0,
+        443,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        442
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "head",
+      "sha256": "09df451fe1eb505609456dec6ef7706b637654ae3e6dfa90e1550251c260df64",
+      "provenance": "assets/levels/b10/equipment/sm.prompt.json"
+    },
+    "B10-SM-chest": {
+      "texture": "asset://level.b10.equipment.sm",
+      "region": [
+        443,
+        0,
+        444,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "chest",
+      "sha256": "09df451fe1eb505609456dec6ef7706b637654ae3e6dfa90e1550251c260df64",
+      "provenance": "assets/levels/b10/equipment/sm.prompt.json"
+    },
+    "B10-SM-hands": {
+      "texture": "asset://level.b10.equipment.sm",
+      "region": [
+        887,
+        0,
+        443,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "hands",
+      "sha256": "09df451fe1eb505609456dec6ef7706b637654ae3e6dfa90e1550251c260df64",
+      "provenance": "assets/levels/b10/equipment/sm.prompt.json"
+    },
+    "B10-SM-legs": {
+      "texture": "asset://level.b10.equipment.sm",
+      "region": [
+        1330,
+        0,
+        444,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        410,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "legs",
+      "sha256": "09df451fe1eb505609456dec6ef7706b637654ae3e6dfa90e1550251c260df64",
+      "provenance": "assets/levels/b10/equipment/sm.prompt.json"
+    },
+    "B10-SM-feet": {
+      "texture": "asset://level.b10.equipment.sm",
+      "region": [
+        0,
+        443,
+        443,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        444
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "sha256": "09df451fe1eb505609456dec6ef7706b637654ae3e6dfa90e1550251c260df64",
+      "provenance": "assets/levels/b10/equipment/sm.prompt.json"
+    },
+    "B10-SM-ring": {
+      "texture": "asset://level.b10.equipment.sm",
+      "region": [
+        443,
+        443,
+        444,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        428
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "sha256": "09df451fe1eb505609456dec6ef7706b637654ae3e6dfa90e1550251c260df64",
+      "provenance": "assets/levels/b10/equipment/sm.prompt.json"
+    },
+    "B10-SM-accessory": {
+      "texture": "asset://level.b10.equipment.sm",
+      "region": [
+        887,
+        443,
+        443,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        444
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "sha256": "09df451fe1eb505609456dec6ef7706b637654ae3e6dfa90e1550251c260df64",
+      "provenance": "assets/levels/b10/equipment/sm.prompt.json"
+    },
+    "B10-SM-weapon": {
+      "texture": "asset://level.b10.equipment.sm",
+      "region": [
+        1330,
+        443,
+        444,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        428,
+        444
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "weapon",
+      "sha256": "09df451fe1eb505609456dec6ef7706b637654ae3e6dfa90e1550251c260df64",
+      "provenance": "assets/levels/b10/equipment/sm.prompt.json"
+    },
+    "B10-SU-head": {
+      "texture": "asset://level.b10.equipment.su",
+      "region": [
+        0,
+        0,
+        443,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "head",
+      "sha256": "f9767fafdba8d413c6691995eb6b19fd543ae3965d3c51c66ee5b68ad04ed675",
+      "provenance": "assets/levels/b10/equipment/su.prompt.json"
+    },
+    "B10-SU-chest": {
+      "texture": "asset://level.b10.equipment.su",
+      "region": [
+        443,
+        0,
+        444,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "chest",
+      "sha256": "f9767fafdba8d413c6691995eb6b19fd543ae3965d3c51c66ee5b68ad04ed675",
+      "provenance": "assets/levels/b10/equipment/su.prompt.json"
+    },
+    "B10-SU-hands": {
+      "texture": "asset://level.b10.equipment.su",
+      "region": [
+        887,
+        0,
+        443,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "hands",
+      "sha256": "f9767fafdba8d413c6691995eb6b19fd543ae3965d3c51c66ee5b68ad04ed675",
+      "provenance": "assets/levels/b10/equipment/su.prompt.json"
+    },
+    "B10-SU-legs": {
+      "texture": "asset://level.b10.equipment.su",
+      "region": [
+        1330,
+        0,
+        444,
+        443
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        415,
+        443
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "legs",
+      "sha256": "f9767fafdba8d413c6691995eb6b19fd543ae3965d3c51c66ee5b68ad04ed675",
+      "provenance": "assets/levels/b10/equipment/su.prompt.json"
+    },
+    "B10-SU-feet": {
+      "texture": "asset://level.b10.equipment.su",
+      "region": [
+        0,
+        443,
+        443,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        443,
+        400
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "sha256": "f9767fafdba8d413c6691995eb6b19fd543ae3965d3c51c66ee5b68ad04ed675",
+      "provenance": "assets/levels/b10/equipment/su.prompt.json"
+    },
+    "B10-SU-ring": {
+      "texture": "asset://level.b10.equipment.su",
+      "region": [
+        443,
+        443,
+        444,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        444,
+        424
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "sha256": "f9767fafdba8d413c6691995eb6b19fd543ae3965d3c51c66ee5b68ad04ed675",
+      "provenance": "assets/levels/b10/equipment/su.prompt.json"
+    },
+    "B10-SU-accessory": {
+      "texture": "asset://level.b10.equipment.su",
+      "region": [
+        887,
+        443,
+        443,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        442,
+        433
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "sha256": "f9767fafdba8d413c6691995eb6b19fd543ae3965d3c51c66ee5b68ad04ed675",
+      "provenance": "assets/levels/b10/equipment/su.prompt.json"
+    },
+    "B10-SU-weapon": {
+      "texture": "asset://level.b10.equipment.su",
+      "region": [
+        1330,
+        443,
+        444,
+        444
+      ],
+      "native_dimensions": [
+        1774,
+        887
+      ],
+      "native_foreground_pixels": [
+        430,
+        444
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "weapon",
+      "sha256": "f9767fafdba8d413c6691995eb6b19fd543ae3965d3c51c66ee5b68ad04ed675",
+      "provenance": "assets/levels/b10/equipment/su.prompt.json"
+    },
+    "B10-U01": {
+      "texture": "asset://level.b10.equipment.unique",
+      "region": [
+        0,
+        0,
+        724,
+        724
+      ],
+      "native_dimensions": [
+        2172,
+        724
+      ],
+      "native_foreground_pixels": [
+        686,
+        708
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "feet",
+      "sha256": "bf0c073c071e9bf6526c749b130450f2a11f2e25846ed827716a754115d4289b",
+      "provenance": "assets/levels/b10/equipment/unique.prompt.json"
+    },
+    "B10-U02": {
+      "texture": "asset://level.b10.equipment.unique",
+      "region": [
+        724,
+        0,
+        724,
+        724
+      ],
+      "native_dimensions": [
+        2172,
+        724
+      ],
+      "native_foreground_pixels": [
+        714,
+        698
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "sha256": "bf0c073c071e9bf6526c749b130450f2a11f2e25846ed827716a754115d4289b",
+      "provenance": "assets/levels/b10/equipment/unique.prompt.json"
+    },
+    "B10-U03": {
+      "texture": "asset://level.b10.equipment.u03",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_foreground_pixels": [
+        1080,
+        1196
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "charm",
+      "sha256": "5504557a7fbccd3dfd36402ffd28f8500705d838f58ccf1218309de88edc1d31",
+      "provenance": "assets/levels/b10/equipment/u03.prompt.provenance.json"
+    },
+    "B10-EASTER-RING": {
+      "texture": "asset://level.b10.equipment.easter_ring",
+      "region": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "native_dimensions": [
+        1254,
+        1254
+      ],
+      "native_foreground_pixels": [
+        969,
+        1199
+      ],
+      "native_unmodified": true,
+      "runtime_slot": "ring",
+      "sha256": "14e451700247bc5b1923edc03dac44dae8e8a32b8e184a99bb9f3657bd26738f",
+      "provenance": "assets/levels/b10/equipment/easter_ring.provenance.json"
+    }
+  },
+  "representation": "native unmodified image-generation atlases; pixel regions only, no upscaling"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.decorations.triune_obelisk",
+  "name": "三曜碑",
+  "asset_path": "assets/levels/b10/decorations/triune_obelisk.png",
+  "source": "OpenAI built-in image_gen",
+  "generation_mode": "built_in",
+  "generated_date": "2026-10-04",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "output_mode": "RGBA",
+  "transparent_background": true,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visible_bbox_alpha_64": [
+    96,
+    17,
+    1160,
+    1222
+  ],
+  "visible_height_pixels": 1205,
+  "actualgroundfoot_px": [
+    627,
+    1196
+  ],
+  "actual_foot_px": [
+    627,
+    1196
+  ],
+  "footpoint_method": "manual_visual_center_of_front_ground_contact_edge_of_physical_base; excludes transparent padding",
+  "ground_footprint_center_px_estimate": [
+    627,
+    1110
+  ],
+  "intended_world_height": 180,
+  "display_policy": "downscale_only",
+  "sha256": "8ac6edb1aefc7e56a3f9abc5da060cefc2a750fbd7b2d6b5a8a0993d6f1d8e69",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1027d-94a5-78a1-b838-65c51de7ce89\\exec-6bdcc16d-8bca-46a6-b215-8ecf372ba539.png",
+  "reference": {
+    "role": "user-provided style reference only",
+    "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+  },
+  "license": "Original artwork generated for this project with OpenAI image generation; service terms apply. The style reference was supplied by the user.",
+  "prompt": "Use case: stylized-concept\nAsset type: one isolated production game scene-object sprite, Triune Obelisk / 三曜碑 for L60 Starlit Dragon Court.\nInput image: user-supplied Starlit Dragon Court design is STYLE REFERENCE ONLY for bright hand-painted fantasy, ivory-white stone, warm gold, sapphire-blue crystals, celestial motifs and high-camera 2.5D volume. Do not copy any lettering, character, dragon, landscape or building.\nPrimary request: exactly one broad ivory-white celestial stone monument with a clear gold-trimmed beveled slab shape and a low grounded rectangular-octagonal foundation. THREE separate blue star crystals are embedded across the upper portion of this single wide stone monument, left / center / right, all three clearly visible and easy to count. The central blue star crystal is slightly taller, the left and right are equal, each has a narrow warm-gold setting. Keep the monument one connected object; no floating crystals. The lower slab is plain white stone with simple gold geometric trim and no inscriptions. Broad compact silhouette, a shrine marker rather than a castle or huge tower. The low base is physically part of the monument, not a display pedestal.\nCamera/pose: high camera three-quarter oblique down view around 45 degrees, near-isometric 2.5D, principal broad front faces southeast / screen lower-right. Clearly show the base's complete front ground-contact edge and the top planes. All three star crystals readable from this view.\nStyle/medium: bright hand-painted cartoon fantasy, warm daylight, fresh ivory-white stone with refined warm-gold bevels and sapphire blue crystal, polished brush texture and soft 2.5D depth, crisp clean readable shapes matching the user reference.\nCanvas/framing: request native 1536 x 1536 square PNG or higher, minimum native 1254 x 1254; full object fills 80-85 percent of canvas height, actual painted object at least 1000 pixels tall, with 7 percent transparent safe margin all around. Every crystal tip, slab corner and the full grounding base inside canvas, never cropped. Intended world height 180, only downscaled for a 2560 x 1440 game viewport.\nBackground: genuine transparent RGBA alpha, nothing outside this single monument. No floor plane, no cast-shadow plate, no ground tile, landscape, clouds, island, other props, backdrop, frame or border.\nConstraints: exactly one broad monument and exactly three mounted blue star crystals; no characters, dragons, text, numbers, letters, runes, labels, logos, watermark or UI; no floating detached pieces, no scene, no dark realism or horror.",
+  "verification": {
+    "visual_review": true,
+    "complete_ground_base": true,
+    "no_floor_shadow_plate": true,
+    "crystal_count": 3,
+    "native_no_upscale": true
+  },
+  "effective_body_height_px": 1205,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

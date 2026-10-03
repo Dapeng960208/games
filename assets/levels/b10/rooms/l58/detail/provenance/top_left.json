@@ -1,0 +1,28 @@
+{
+  "id": "top_left",
+  "tool": "built-in image_gen.imagegen",
+  "use_case": "precise-object-edit",
+  "prompt": "Use case: precise-object-edit. Asset type: L58 top_left native-resolution detail tile for a game room painting. Input image is a 538x538 SQUARE reference and the edit target; redraw its ENTIRE exact frame as one native 1536x1536 square PNG, using genuinely newly painted fine details. This is a geometry-locked high-resolution redraw, not a new scene. Preserve every object and all four edges at the same strict normalized coordinates, full-frame coverage, square aspect ratio, camera, perspective, silhouettes, floor geometry, contours, sizes and placements. Do not crop, zoom, rotate, reframe, shift, stretch or add padding. Keep the foreground pearl-white floor paving and thin warm-gold star inlays, the partial gold circular floor ring entering the right edge, the curved ivory and gold balustrade and existing planter pots with tiny green foliage and white lavender flowers, the existing blue crystal architectural arches at left and upper right, the hanging narrow blue and gold banner, the distant white fantasy castle, cyan waterfall and bright white cloud sea exactly as in the reference. Preserve the floor tile seams and all star inlay endpoints where they touch each edge. The near floor is a flat navigable surface; do not create raised steps, blocking props or new geometry. Improve only hand-painted surface micro-detail, crisp linework, gold metal highlights, pearl stone texture, soft foliage detail and cloud/water detail. Style: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth, clear soft daylight, clean painterly outlines. Palette: pearl white, warm gold, sky blue and luminous blue star-crystal; purple only as tiny subtle shadow accents. Preserve objects already present; no new objects. No characters, monsters, dragon, portal, central star core, text, UI, labels, watermark, realism or dark gloomy lighting. Output one native 1536x1536 PNG (actual resolution at least 1254x1254); no synthetic resize or upsampling. Geometry fidelity to this exact square reference is the highest priority.",
+  "referenced_image_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/top_left.png",
+  "reference_sha256": "a4de3d2380afbb27c1262db583bbdc0be36859fac1471ad7e855ca096e81a39a",
+  "reference_actual_size": [
+    538,
+    538
+  ],
+  "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e4-c7ec-7063-91d3-c9b5e665cbc5/exec-9a0128c9-3387-4ec2-adbd-5cbe144f8954.png",
+  "requested_size": [
+    1536,
+    1536
+  ],
+  "actual_size": [
+    1254,
+    1254
+  ],
+  "generated_png_sha256": "604c1604f52c0274f36782978f76b851dd7ac1edbf2068ada30cb12b3196aa06",
+  "production_path": "res://assets/levels/b10/rooms/l58/detail/top_left.png",
+  "source_pixel_edits": "none",
+  "source_copy_policy": "Native generated PNG copied byte-for-byte to production; no resizing, upsampling, stretching, cropping, re-encoding or pixel editing.",
+  "license": "Project-generated original artwork",
+  "geometry_intent": "Complete square reference frame; strict normalized geometry and all four frame edges preserved by generation prompt.",
+  "validation_scope": "Native PNG dimensions and byte-for-byte copy hash checked; room alignment and 2K game acceptance remain part of unified acceptance."
+}

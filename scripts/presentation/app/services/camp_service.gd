@@ -1,6 +1,7 @@
 extends RefCounted
 ## Camp behavior owned by this host.
 ## The host retains state and lifecycle; this service never owns its Node.
+const Finale = preload("res://scripts/presentation/components/finale_artwork.gd")
 var host
 
 func _init(context: Node) -> void:
@@ -38,6 +39,12 @@ func show_camp() -> void:
 	brand.add_child(bank)
 	host._camp_ui_icon(bank,"gold",Vector2(10,4),Vector2(36,36))
 	GameStyle.literal(bank,str(int(Game.profile.get("permanent_gold",0))),Vector2(62,7),Vector2(162,34),23,GameStyle.INK)
+	var finale_link := GameStyle.button(host.screen,"",Vector2(42,78),Vector2(344,36),func(): Finale.show_preview(host))
+	finale_link.name = "OpenFinaleChapter"
+	finale_link.text = host._ex_text("10  星辉龙庭  ·  最终章","10  DRAGON COURT  ·  FINAL CHAPTER")
+	finale_link.add_theme_font_size_override("font_size",14)
+	finale_link.add_theme_color_override("font_color",Finale.BLUE)
+	finale_link.tooltip_text = (host._ex_text("终章已完成","Final chapter complete") if Finale.completed() else host._ex_text("查看终章与入口要求","Preview the final chapter and entrance requirements"))+"\n"+Finale.ring_status()
 	var portrait = GameStyle.hero_portrait(host.screen,hero_id,Vector2(28,116),Vector2(380,428))
 	portrait.name = "CampHeroIllustration"
 	var identity_plate = GameStyle.panel(host.screen,Vector2(42,505),Vector2(344,128))
@@ -50,8 +57,8 @@ func show_camp() -> void:
 	var departure = GameStyle.panel(host.screen,Vector2(430,112),Vector2(806,196))
 	departure.name = "CampDeparturePlan"
 	host._camp_ui_icon(departure,"route",Vector2(17,10),Vector2(48,48))
-	GameStyle.literal(departure,host._ex_text("下一站，向着阳光出发。","YOUR NEXT EXPEDITION."),Vector2(76,14),Vector2(706,39),27,GameStyle.INK)
-	GameStyle.literal(departure,host._ex_text("出发 Lv.%d · 预计 %d 站 / 目标、遗物、补给与首领","DEPARTURE LV.%d · %d STOPS / OBJECTIVES, RELICS & A BOSS") % [level,host.RoutePlanner.node_count_for_level(level)],Vector2(24,63),Vector2(758,28),15,GameStyle.MUTED)
+	GameStyle.literal(departure,host._ex_text("下一站，向着阳光出发。","YOUR NEXT EXPEDITION."),Vector2(76,14),Vector2(706,39),27,GameStyle.INK).name = "DepartureHeading"
+	GameStyle.literal(departure,"",Vector2(24,63),Vector2(758,28),15,GameStyle.MUTED).name = "DepartureRouteHint"
 	host._build_biome_selector()
 	var difficulty_hint = GameStyle.literal(host.screen,"",Vector2(454,264),Vector2(758,22),12,GameStyle.INK)
 	difficulty_hint.name = "DepartureDifficultyHint"
@@ -83,8 +90,8 @@ func show_camp() -> void:
 	var circuit = GameStyle.panel(host.screen,Vector2(430,574),Vector2(444,67))
 	circuit.name = "CampCircuitHint"
 	host._camp_ui_icon(circuit,"state_shock",Vector2(10,6),Vector2(52,52))
-	GameStyle.literal(circuit,host._ex_text("职业被动 · 自动生效","HERO PASSIVE · AUTOMATIC"),Vector2(74,9),Vector2(348,24),17,GameStyle.CYAN)
-	GameStyle.literal(circuit,host._ex_text("四项技能搭配普攻   ·   在设置中开启自动普攻","Chain four skills with attacks · Auto attack in settings"),Vector2(74,37),Vector2(348,21),12,GameStyle.MUTED)
+	GameStyle.literal(circuit,host._ex_text("职业被动 · 自动生效","HERO PASSIVE · AUTOMATIC"),Vector2(74,9),Vector2(348,24),17,GameStyle.CYAN).name = "CampPassiveHeading"
+	GameStyle.literal(circuit,host._ex_text("四项技能搭配普攻   ·   在设置中开启自动普攻","Chain four skills with attacks · Auto attack in settings"),Vector2(74,37),Vector2(348,21),12,GameStyle.MUTED).name = "CampPassiveNote"
 	circuit.tooltip_text = host._ex_text("每位英雄拥有符合职业定位的独特被动；战斗中自动触发，无需额外操作。","Each hero has a unique role-based passive that triggers automatically in combat.")
 	circuit.mouse_filter = Control.MOUSE_FILTER_PASS
 	var depart = host._camp_navigation(host.screen,Vector2(900,571),Vector2(336,82),host._ex_text("开始远征","BEGIN EXPEDITION"),host._ex_text("登上升降台 · 探索新的区域","Board the lift and explore"),4,GameStyle.CYAN,host._start_run,true)
@@ -97,6 +104,7 @@ func show_camp() -> void:
 	camp_settings.text = host._ex_text("设置与操作","SETTINGS")
 	camp_settings.size = Vector2(168,44)
 	host._show_warning(host.screen,Vector2(752,671),Vector2(478,25))
+	_update_finale_departure()
 	depart.grab_focus()
 
 func _camp_navigation(parent: Node, at: Vector2, extent: Vector2, title: String, subtitle: String, icon_index: int, accent: Color, action: Callable, prominent: bool = false) -> Button:
@@ -137,10 +145,17 @@ func _departure_enemy_count(difficulty: int) -> int:
 	var rooms: Array = definition.get("room_ids",[])
 	var sample_room = str(rooms[0]) if not rooms.is_empty() else "L01"
 	for zone in host.DifficultyProfiles.ZONE_COUNT:
-		total += int(host.DifficultyProfiles.encounter_plan(sample_room,zone,difficulty,2 if host.selected_biome in ["B05","B06"] else 1).get("total_count",0))
+		total += int(host.DifficultyProfiles.encounter_plan(sample_room,zone,difficulty,2 if host.selected_biome in ["B05","B06","B10"] else 1).get("total_count",0))
 	return total
 
 func _update_departure_difficulty_hint() -> void:
+	_update_finale_departure()
+	var route_hint: Label = host.screen.find_child("DepartureRouteHint", true, false)
+	if route_hint != null:
+		var hero_level: int = Game.hero_level(str(Game.profile.get("selected_hero", "CH01")))
+		route_hint.text = host._ex_text("出发 Lv.%d · 预计 %d 站 / 目标、遗物、补给与首领", "DEPARTURE LV.%d · %d STOPS / OBJECTIVES, RELICS & A BOSS") % [hero_level, host.RoutePlanner.node_count_for_biome(host.selected_biome, hero_level)]
+		route_hint.size.x = 510.0 if host.selected_biome == "B10" else 758.0
+		if host.selected_biome == "B10": route_hint.text = host._ex_text("出发 Lv.%d · 六房守关龙 → 星冠古龙","DEPARTURE Lv.%d · SIX DRAGONS → ANCIENT DRAGON") % hero_level
 	var hint: Label = host.screen.find_child("DepartureDifficultyHint",true,false)
 	if hint == null: return
 	var difficulty = clampi(host.selected_difficulty,0,host.DifficultyProfiles.MAX_DIFFICULTY)
@@ -150,10 +165,13 @@ func _update_departure_difficulty_hint() -> void:
 	var level = host.DifficultyProfiles.encounter_level(sample_room,0,difficulty)
 	var enhancement: String = ["+0","+0–1","+1","+2","+3"][difficulty]
 	if int(Game.profile.get("ruleset_version",1)) == 2:
-		var chapter = clampi(int(host.selected_biome.trim_prefix("B")),1,int(preload("res://scripts/infrastructure/content/runtime_rules.gd").value("implemented_chapters",4)))
+		var chapter = int(host.selected_biome.trim_prefix("B"))
 		var first = (chapter-1)*5+1
 		var counts: Array = preload("res://scripts/infrastructure/content/runtime_rules.gd").value("boss_drop_counts")
 		hint.text = host._ex_text("固定挑战Lv.%d/%d/%d · 首领Lv.%d · 清房1件 / 首领%d件 · 金≤+1，其余≤+5","Fixed challenge Lv.%d/%d/%d · Boss Lv.%d · Room1 / Boss%d items · Gold≤+1, others≤+5") % [first,first+2,first+4,chapter*5,int(counts[difficulty])]
+		if host.selected_biome == "B10":
+			hint.text = host._ex_text("终章Lv.46/48/50 · 六房六龙 / 星冠古龙Lv.50 · 清房1件 / 终首领%d件", "FINAL Lv.46/48/50 · SIX DRAGON ROOMS / ANCIENT DRAGON Lv.50 · Room1 / Final boss%d items") % int(counts[difficulty])
+			hint.tooltip_text = Finale.ring_status()+"\n"+Finale.ring_condition()
 		return
 	var normal_drops = 2 if difficulty >= 2 else 1
 	var boss_drops = 2+int(difficulty/2)
@@ -180,7 +198,7 @@ func _build_biome_selector() -> void:
 		var locked = not available.has(biome_id)
 		var status = host._ex_text(" · 待开发"," · TODO") if not implemented else (host._ex_text(" · 首领未解锁", " · Locked") if locked else "")
 		if definition.get("candidate",false): status += host._ex_text(" · 候选试玩"," · Candidate")
-		picker.add_item(GameStyle.content_text(definition,"name",biome_id)+status,index)
+		picker.add_item((host._ex_text("10 · 星辉龙庭 · 最终章","10 · Dragon Court · Final chapter") if biome_id == "B10" else GameStyle.content_text(definition,"name",biome_id))+status,index)
 		picker.set_item_disabled(index,not implemented or locked)
 		picker.set_item_metadata(index,biome_id if implemented else "")
 		var race_name = GameStyle.content_text(definition,"race","")
@@ -189,6 +207,8 @@ func _build_biome_selector() -> void:
 			availability = host._ex_text("待开发 · 仅展示计划，尚不能进入","TODO · roadmap only; this region cannot be entered")
 		elif locked:
 			availability = host._ex_text("未解锁 · 击败前一区域首领并撤离后解锁","Locked · defeat the previous boss and extract to unlock")
+			if biome_id == "B10": availability = host._ex_text("未解锁 · 击败第九章霜晶女王并撤离后开放", "Locked · defeat the Chapter 9 Frostcrystal Queen and extract")
+		if biome_id == "B10": availability += "\n"+Finale.ring_status()+"\n"+Finale.ring_condition()
 		picker.get_popup().set_item_tooltip(index,race_name+"\n"+availability)
 	picker.select(int(host.selected_biome.trim_prefix("B"))-1)
 	picker.item_selected.connect(func(index: int):
@@ -200,7 +220,31 @@ func _build_biome_selector() -> void:
 	host.screen.add_child(picker)
 	GameStyle.literal(host.screen,host._ex_text("击败首领并撤离后开放下一区域", "Defeat the boss and extract to unlock the next area"),Vector2(454,286),Vector2(490,18),10,GameStyle.MUTED)
 	var count := WorldCatalog.biomes().size()
-	var roadmap = GameStyle.literal(host.screen,host._ex_text("12 个地区规划 · %d 个正式开放 / %d 个待开发", "12 REGIONS PLANNED · %d RELEASED / %d TODO") % [count,12-count],Vector2(953,286),Vector2(259,18),10,GameStyle.CYAN)
+	var roadmap = GameStyle.literal(host.screen,host._ex_text("10 个地区 · %d 个已接入 / %d 个待开发", "10 REGIONS · %d INTEGRATED / %d TODO") % [count,10-count],Vector2(953,286),Vector2(259,18),10,GameStyle.CYAN)
 	roadmap.name = "CampRegionPlanSummary"
 	roadmap.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	roadmap.tooltip_text = host._ex_text("正式地区按击败前一首领并撤离的顺序解锁。B07–B12 为待开发地区。","Released regions unlock after defeating the previous boss and extracting. B07–B12 are planned regions.")
+	roadmap.tooltip_text = host._ex_text("前六关按首领通关与撤离顺序解锁。第七至九关待开发；第十关星辉龙庭需先解锁第九关。", "The first six chapters unlock after defeating the previous boss and extracting. Regions 7–9 are planned; the final dragon court requires Region 9 to be unlocked.")
+
+func _update_finale_departure() -> void:
+	if not is_instance_valid(host.screen): return
+	var departure: Panel = host.screen.find_child("CampDeparturePlan",true,false)
+	if departure == null: return
+	var final_selected: bool = host.selected_biome == "B10"
+	var heading: Label = departure.find_child("DepartureHeading",true,false)
+	if heading != null:
+		heading.text = host._ex_text("10  星辉龙庭 · 最终章","10  DRAGON COURT · FINAL CHAPTER") if final_selected else host._ex_text("下一站，向着阳光出发。","YOUR NEXT EXPEDITION.")
+		heading.size.x = 462.0 if final_selected else 706.0
+		heading.add_theme_color_override("font_color",Finale.DEEP if final_selected else GameStyle.INK)
+	departure.add_theme_stylebox_override("panel",GameStyle.box(Finale.CLOUD,Finale.GOLD,2) if final_selected else GameStyle.paper_box())
+	var art: Control = departure.find_child("FinaleDepartureIllustration",false,false)
+	if final_selected and art == null:
+		art = Finale.banner(departure,Vector2(552,8),Vector2(238,88))
+		art.name = "FinaleDepartureIllustration"
+	if art != null: art.visible = final_selected
+	var passive_heading: Label = host.screen.find_child("CampPassiveHeading",true,false)
+	var passive_note: Label = host.screen.find_child("CampPassiveNote",true,false)
+	if passive_heading != null:
+		passive_heading.text = Finale.ring_status() if final_selected else host._ex_text("职业被动 · 自动生效","HERO PASSIVE · AUTOMATIC")
+		passive_heading.add_theme_color_override("font_color",Finale.BLUE if final_selected else GameStyle.CYAN)
+	if passive_note != null:
+		passive_note.text = host._ex_text("D4 通关并存活撤离 · 每份存档一枚","D4 CLEAR + LIVE EXTRACTION · ONE PER SAVE") if final_selected else host._ex_text("四项技能搭配普攻   ·   在设置中开启自动普攻","Chain four skills with attacks · Auto attack in settings")

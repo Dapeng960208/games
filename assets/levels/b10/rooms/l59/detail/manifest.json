@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "room_id": "L59",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L59_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "079b1a961b111f5b5ce8a669606c802f138d1484d13222d4e57d4da17b4f3aad",
+  "generation_tool": "built-in image_gen",
+  "representation": "six independently generated native square detail repaints over exact original square mapping; overlapping feather zones retain complete room fallback",
+  "feather_source_pixels": [
+    12,
+    34
+  ],
+  "native_mapping": "all source_rect and native_size are square; runtime uses uniform scaling only",
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L59/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "309392248c87719089962635d6dcea185c3c47610e98f5b38c73c7acfb20cf23",
+      "generation_tool": "built-in image_gen",
+      "native_generated": true,
+      "encoding": "Original generated PNG bytes preserved; no resize, conversion or pixel edit.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L59 top_left native high-resolution environmental detail tile for an action RPG.\nInput image: sole exact square cropped map EDIT TARGET, not a mood reference.\nPrimary request: Faithfully repaint this COMPLETE exact crop at the largest native square resolution, requested 1536 x 1536 pixels. Maintain ALL image edges, composition and every landmark at the EXACT same normalized coordinates. ONLY add finer hand-painted material texture INSIDE existing outlines: pearl-white stonework, warm gold star trim, sapphire-blue glass and domes, pale sky clouds, distant spires, outer balustrade, and existing floor paving.\nStyle: Bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-orthographic 2.5D. Match input pearl white / cream / warm gold / blue star crystals and sky-blue clouds. Purple only a tiny shadow accent. Match warm sunlight direction and exposure exactly.\nLOCK: Complete square framing; normalized feature positions, floor and railing edges, tower silhouettes, architectural perspective, star inlays, all flowers, lamp crystals and their bases, exact lighting, shadows and color balance. Do not add, remove, move, enlarge or shrink anything. No zoom, no crop, no rotation, no rearrangement, no borders, no text, no creatures, no dynamic portals or cores. Output a single native square painting, not a contact sheet. No raster enlargement.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-549a-7230-a64b-70ab41f5044d/exec-8dae462e-1d7b-452b-9608-0be33feb94b6.png",
+      "reference_crop_sha256": "4dd3e8f8bfd9d8d7a9529e654fcd5aebdb2a6457a1f514da09f419e3c92e83d2",
+      "reference_size": [
+        538,
+        538
+      ],
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L59/top_middle.png",
+      "source_rect": [
+        513,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "ba229964b55ff0fe20a3a0997cbb82b1b107fd1759f53fc2084996844bd3c84a",
+      "generation_tool": "built-in image_gen",
+      "native_generated": true,
+      "encoding": "Original generated PNG bytes preserved; no resize, conversion or pixel edit.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L59 top_middle native high-resolution environmental detail tile for an action RPG.\nInput image: sole exact square cropped map EDIT TARGET, not a mood reference.\nPrimary request: Faithfully repaint this COMPLETE exact crop at the largest native square resolution, requested 1536 x 1536 pixels. Maintain ALL image edges, composition and every landmark at the EXACT same normalized coordinates. ONLY add finer hand-painted material texture INSIDE existing outlines: pearl-white stonework, warm gold star trim, sapphire-blue glass and domes, pale sky clouds, distant spires, outer balustrade, and existing floor paving.\nStyle: Bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-orthographic 2.5D. Match input pearl white / cream / warm gold / blue star crystals and sky-blue clouds. Purple only a tiny shadow accent. Match warm sunlight direction and exposure exactly.\nLOCK: Complete square framing; normalized feature positions, floor and railing edges, tower silhouettes, architectural perspective, star inlays, all flowers, lamp crystals and their bases, exact lighting, shadows and color balance. Do not add, remove, move, enlarge or shrink anything. No zoom, no crop, no rotation, no rearrangement, no borders, no text, no creatures, no dynamic portals or cores. Output a single native square painting, not a contact sheet. No raster enlargement.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-549a-7230-a64b-70ab41f5044d/exec-e1acb48e-43b5-408b-99db-5509d03ea7ad.png",
+      "reference_crop_sha256": "ed6bbd80082a9ff53fcb1ce984460d6bb689443a89e3c07320f6712ea2fe9365",
+      "reference_size": [
+        538,
+        538
+      ],
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L59/top_right.png",
+      "source_rect": [
+        1026,
+        0,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "4e6947956530f2ca1f0c41a0cff58efa327c30c2f1695e26979b0555a2c5cf85",
+      "generation_tool": "built-in image_gen",
+      "native_generated": true,
+      "encoding": "Original generated PNG bytes preserved; no resize, conversion or pixel edit.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L59 top_right native high-resolution environmental detail tile for an action RPG.\nInput image: sole exact square cropped map EDIT TARGET, not a mood reference.\nPrimary request: Faithfully repaint this COMPLETE exact crop at the largest native square resolution, requested 1536 x 1536 pixels. Maintain ALL image edges, composition and every landmark at the EXACT same normalized coordinates. ONLY add finer hand-painted material texture INSIDE existing outlines: pearl-white stonework, warm gold star trim, sapphire-blue glass and domes, pale sky clouds, distant spires, outer balustrade, and existing floor paving.\nStyle: Bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-orthographic 2.5D. Match input pearl white / cream / warm gold / blue star crystals and sky-blue clouds. Purple only a tiny shadow accent. Match warm sunlight direction and exposure exactly.\nLOCK: Complete square framing; normalized feature positions, floor and railing edges, tower silhouettes, architectural perspective, star inlays, all flowers, lamp crystals and their bases, exact lighting, shadows and color balance. Do not add, remove, move, enlarge or shrink anything. No zoom, no crop, no rotation, no rearrangement, no borders, no text, no creatures, no dynamic portals or cores. Output a single native square painting, not a contact sheet. No raster enlargement.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-549a-7230-a64b-70ab41f5044d/exec-09de03f9-892f-4fae-a7a1-eb64dfdc1ac1.png",
+      "reference_crop_sha256": "d3514aafff940c3197b74e9eebf18d698bac1ad6e3243a2d41e84682019d0827",
+      "reference_size": [
+        538,
+        538
+      ],
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L59/bottom_left.png",
+      "source_rect": [
+        0,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "2a1f428d0d498a1a9f6583d39187f10461b94a2e5b848aae2aa53f38423a56c6",
+      "generation_tool": "built-in image_gen",
+      "native_generated": true,
+      "encoding": "Original generated PNG bytes preserved; no resize, conversion or pixel edit.",
+      "prompt": "Use case: precise-object-edit. Asset type: L59 bottom_left detail tile for an existing 2.5D fantasy game room; exact 538 x 538 square crop edit target, not a redesigned scene. Input image: the provided bottom_left crop is the exact edit target, and its composition and relative coordinates are authoritative. Render a native high-resolution 1536 x 1536 square PNG. Redraw the existing image with more fine hand-painted material detail inside the current outlines: pearl-white cream marble, delicate gold trims, clear bright azure sapphire glass, tiny star-crystal facets, sunny white clouds. Bright hand-drawn cartoon fantasy, high-camera three-quarter oblique top-down view, soft 2.5D depth; retain the existing uplifting daylight and white/gold/blue color balance, with purple allowed only as a very small accent. Preserve EXACTLY the camera, framing, perspective, existing marble floor footprint and tile seams, upper-right floor star motif, border stripe positions, all railing and pillar silhouettes, both flower-pot positions and footprints, every tower and gold spire silhouette, blue crystal lamp footprint and silhouette, bridge arches, stairs if any, cloud distribution and all partial objects cut off at image edges. Do not shift, move, add, remove, stretch, crop, zoom, rotate, recenter, or change any geometry or the traversable ground. Treat the input as a strict coordinate map. More resolution should refine surfaces only, and preserve the same full square crop edge-to-edge without padding. No people, heroes, monsters, animals, dragons, portals, dynamic star core, text, letters, UI, labels, watermarks, or new props.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a1027e-c15b-76b3-92db-aceca5e48dc4/exec-8053a836-a3ad-420e-a613-ad32fd1b5472.png",
+      "reference_crop_sha256": "5277a8982036fb6f2211649c1cd4986c9ee7ec5851687061219ddef9885cdc28",
+      "reference_size": [
+        538,
+        538
+      ],
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L59/bottom_middle.png",
+      "source_rect": [
+        513,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "dcfcb56e9d16d297422a9ef90fe6f2b5778e72bcc96ac533afdf2f12a90046e0",
+      "generation_tool": "built-in image_gen",
+      "native_generated": true,
+      "encoding": "Original generated PNG bytes preserved; no resize, conversion or pixel edit.",
+      "prompt": "Use case: precise-object-edit. Asset type: L59 bottom_middle detail tile for an existing 2.5D fantasy game room; exact 538 x 538 square crop edit target, not a redesigned scene. Input image: the provided bottom_middle crop is the exact edit target, and every silhouette and relative coordinate is authoritative. Render a native high-resolution 1536 x 1536 square PNG. Refine only the existing material interiors with fine hand-painted detail: pearl-white cream marble with very subtle luminous grain, polished delicate gold inlay, bright azure sapphire geometric strips, soft sunlit white stone. Bright hand-drawn cartoon fantasy, high-camera three-quarter oblique top-down view, clear soft 2.5D depth, warm bright daylight; white/gold/blue palette with purple permitted only as a tiny accent. Preserve EXACTLY the full existing square crop edge-to-edge: camera/framing/perspective, the centered gold eight-point star on the upper floor and its long vertical axis, all smaller blue diamond-star inlays, floor tile seams and crack locations, the gold rectangular outline and blue lattice bands, every stair tread count and width, stair silhouette and height, the two side stair balustrades and gold finials, diagonal left-side stair shadow, lower landing and center gold arrow motif, and every partial object cut off by the image edges. Do not shift, move, add, remove, stretch, crop, zoom, rotate, recenter, or change any floor, stair, pillar, path, object footprint or geometric boundary. More resolution means surface detail only within current outlines. Strict coordinate map preservation; no padding. No people, heroes, monsters, animals, dragons, portals, dynamic star core, text, letters, UI, labels, watermarks, or new props.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a1027e-c15b-76b3-92db-aceca5e48dc4/exec-af17e1dc-c179-497f-9545-a481b3ac42e7.png",
+      "reference_crop_sha256": "4b08f783123de972978253fc09474bf329cd9c13feeade903bc6891af92b5519",
+      "reference_size": [
+        538,
+        538
+      ],
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L59/bottom_right.png",
+      "source_rect": [
+        1026,
+        468,
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "7ae5654441ad10e6c54ea156c7d45ca166d19569cf750254bfa5e598f2cbd658",
+      "generation_tool": "built-in image_gen",
+      "native_generated": true,
+      "encoding": "Original generated PNG bytes preserved; no resize, conversion or pixel edit.",
+      "prompt": "Use case: precise-object-edit. Asset type: L59 bottom_right detail tile for an existing 2.5D fantasy game room; exact 538 x 538 square crop edit target, not a redesigned scene. Input image: the provided bottom_right crop is the exact edit target; composition, footprints and relative coordinates are authoritative. Render a native high-resolution 1536 x 1536 square PNG. Refine the existing image only with fine hand-painted surface details within current outlines: pearl-white cream marble, delicate gold trims, clear bright azure sapphire glass lattice, tiny blue star-crystal facets, sunny white clouds. Bright hand-drawn cartoon fantasy, high-camera three-quarter oblique top-down view, soft 2.5D depth; retain the existing uplifting daylight and white/gold/blue color balance, purple only as an extremely small accent. Preserve EXACTLY the camera, framing, perspective, full square crop edge-to-edge, marble floor footprint and tile seams, upper-left floor blue diamond-star motif, blue-and-gold border stripe positions, all railing and pillar silhouettes, both flower-pot positions and footprints, every distant tower and gold spire silhouette, blue crystal lamp footprint and silhouette on left, bridge arches, blue hanging banner, lower-right blue-domed tower and smaller blue dome, cloud distribution, and all partial objects cut off at image edges. Do not shift, move, add, remove, stretch, crop, zoom, rotate, recenter, or change any geometry, floor boundary, traversable ground, path or architectural outline. Treat the input as a strict coordinate map. More resolution should refine surfaces only without padding. No people, heroes, monsters, animals, dragons, portals, dynamic star core, text, letters, UI, labels, watermarks, or new props.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a1027e-c15b-76b3-92db-aceca5e48dc4/exec-be36e172-d4d0-4624-940b-5766ab7610c8.png",
+      "reference_crop_sha256": "6f7b31813f5d4676d5a2c3e8df3581b67d2b1bbec50dec377abcf6917b73000b",
+      "reference_size": [
+        538,
+        538
+      ],
+      "license": "Project-generated original artwork."
+    }
+  ],
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
+  "acceptance": {
+    "visual_source_inspection": "All six native PNGs inspected; pearl-white/gold/blue palette, high three-quarter overhead 2.5D and static floor layout retained.",
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "natural_playthrough_claimed": false,
+    "runtime_acceptance": "pending unified chapter acceptance"
+  },
+  "qa": {
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  },
+  "acceptance_claimed": true
+}

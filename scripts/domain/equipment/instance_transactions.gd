@@ -7,9 +7,10 @@ const Economy = preload("res://scripts/domain/equipment/instance_economy.gd")
 const Acquisition = preload("res://scripts/domain/equipment/equipment_acquisition.gd")
 const Instances = preload("res://scripts/domain/equipment/equipment_instances.gd")
 const Registry = preload("res://scripts/infrastructure/content/content_registry.gd")
+const Expedition = preload("res://scripts/app/expedition_controller.gd")
 const Growth = preload("res://scripts/domain/progression/hero_progression.gd")
 const VERSION := 1 # Ledger envelope remains compatible with mixed historical receipts.
-const RECEIPT_VERSION := 3
+const RECEIPT_VERSION := 4
 const MAX_NUMBER := 1_000_000_000_000
 const MAX_PROFILE_BYTES := 32 * 1024 * 1024
 const KINDS := ["purchase", "craft", "complete_set"]
@@ -95,6 +96,8 @@ static func _quote(profile: Dictionary, request: Dictionary, kind: String, check
 	if templates.is_empty(): return _reject("INVALID_TEMPLATES")
 	for template_id: String in templates:
 		var template := Registry.equipment(template_id, 2)
+		if bool(template.get("reward_only", false)): return _reject("REWARD_ONLY_TEMPLATE")
+		if str(template.get("race_id", "")) == "B10" and not Expedition.unlocked_biomes(profile).has("B10"): return _reject("TEMPLATE_REGION_LOCKED")
 		var allowed: Array = template.get("allowed_heroes", [])
 		if allowed.size() == 1 and canonical.power_type != Registry.ClassPolicy.power_type(str(allowed[0])): return _reject("CLASS_POWER_MISMATCH")
 		var boss := str(template.get("unlock_boss", ""))
@@ -205,7 +208,7 @@ static func _request(request: Dictionary, kind: String, historical: bool = false
 	var required := ["hero_id", "rarity", "power_type", "item_level", "set_id", "template_ids"] if kind == "complete_set" else ["hero_id", "rarity", "power_type", "item_level", "template_id"]
 	if request.size() != required.size() or not request.has_all(required): return {}
 	if request.hero_id not in ["CH01", "CH02", "CH03"] or request.power_type not in ["physical", "magic"]: return {}
-	if not _integer(request.item_level, 1, (20 if receipt_version == 1 else 25 if receipt_version == 2 else 30) if historical else Growth.level_cap()) or not request.rarity is String: return {}
+	if not _integer(request.item_level, 1, (20 if receipt_version == 1 else 25 if receipt_version == 2 else 30 if receipt_version == 3 else 50) if historical else Growth.level_cap()) or not request.rarity is String: return {}
 	if kind == "craft":
 		if (not Economy.V1_FORGE.has(request.rarity)) if historical else (Economy.crafting_unlock_level(request.rarity) < 0): return {}
 	elif request.rarity not in ["white", "green"]: return {}

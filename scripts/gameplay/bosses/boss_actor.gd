@@ -88,6 +88,8 @@ func _initialize_boss_runtime() -> void:
 	if boss_id == "BO01":
 		status.grant_guard(health.maximum * 0.22, 3600.0, "boss_solar", health.maximum)
 	boss_brain = preload("res://scripts/levels/b06/combat/boss_brain.gd").new() if boss_id == "BO06" else preload("res://scripts/levels/b05/combat/boss_brain.gd").new() if boss_id == "BO05" else BossBrainScript.new()
+	if bool(profile.get("b10_combat_version",false)):
+		boss_brain = preload("res://scripts/levels/b10/combat/boss_brain.gd").new()
 	if boss_id == "BO09": boss_brain = preload("res://scripts/levels/b09/combat/brain.gd").new()
 	boss_brain.configure(profile, boss_seed)
 	if boss_id == "BO06" and is_instance_valid(room) and get_parent() == room.enemies and is_instance_valid(room.b06_mechanics):
@@ -112,6 +114,14 @@ func _initialize_boss_runtime() -> void:
 	queue_redraw()
 
 func _load_boss_art() -> void:
+	if bool(profile.get("b10_combat_version",false)):
+		var native: Dictionary = preload("res://scripts/levels/b10/art/native_art.gd").frame(boss_id)
+		if not native.is_empty():
+			_boss_art_path = native.texture_path
+			body_texture = native.texture
+			body_region = native.region
+			body_bounds = native.bounds
+			return
 	if boss_id == "BO09":
 		preload("res://scripts/presentation/monsters/enemy_art.gd").install(self)
 		return
@@ -142,10 +152,12 @@ func _load_boss_art() -> void:
 	body_bounds = Rect2(-width * 0.5, 48.0 - height, width, height)
 
 func boss_phase_started(next_phase: int, ratio: float) -> void:
-	# Every phase owns a fresh hazard set. This removes pools/charges from the old
-	# phase before its reinforcement notification can be consumed by the room.
+	# Final-court missiles keep their frozen sources across phase transitions.
 	if is_instance_valid(room) and is_instance_valid(room.enemy_skills):
-		room.enemy_skills.cancel_owner(self)
+		if bool(profile.get("b10_combat_version",false)):
+			room.enemy_skills.b10.phase_started(self)
+		else:
+			room.enemy_skills.cancel_owner(self)
 	phase_changed.emit(boss_id, next_phase, ratio)
 	_queue_reinforcement_wave(next_phase)
 	queue_redraw()

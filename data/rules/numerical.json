@@ -21,7 +21,17 @@
     "medians_require_fixed_seeds": 10
   },
   "implemented_chapters": 6,
-  "planned_chapters": 12,
+  "released_chapters": [
+    "B01",
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B10"
+  ],
+  "level_cap": 50,
+  "planned_chapters": 10,
   "growth": {
     "attack": 0.04,
     "ability_power": 0.05,

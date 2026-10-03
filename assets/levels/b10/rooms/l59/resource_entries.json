@@ -1,0 +1,12 @@
+{
+  "world/rooms/L59_environment_v1.png": "res://assets/levels/b10/rooms/l59/background/environment.png",
+  "world/rooms/L59_environment_v1.json": "res://assets/levels/b10/rooms/l59/background/environment.json",
+  "world/rooms/L59_environment_v1.prompt.json": "res://assets/levels/b10/rooms/l59/background/environment.prompt.json",
+  "world/rooms_2k/L59/manifest.json": "res://assets/levels/b10/rooms/l59/detail/manifest.json",
+  "world/rooms_2k/L59/top_left.png": "res://assets/levels/b10/rooms/l59/detail/top_left.png",
+  "world/rooms_2k/L59/top_middle.png": "res://assets/levels/b10/rooms/l59/detail/top_middle.png",
+  "world/rooms_2k/L59/top_right.png": "res://assets/levels/b10/rooms/l59/detail/top_right.png",
+  "world/rooms_2k/L59/bottom_left.png": "res://assets/levels/b10/rooms/l59/detail/bottom_left.png",
+  "world/rooms_2k/L59/bottom_middle.png": "res://assets/levels/b10/rooms/l59/detail/bottom_middle.png",
+  "world/rooms_2k/L59/bottom_right.png": "res://assets/levels/b10/rooms/l59/detail/bottom_right.png"
+}

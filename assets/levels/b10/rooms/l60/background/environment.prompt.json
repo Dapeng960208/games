@@ -1,0 +1,27 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-04",
+  "prompt": "Use case: stylized-concept\nAsset type: original final-chapter action-RPG room background painting, B10 L60 Three Stars Sanctuary.\nInput image 1 role: visual style and architecture reference ONLY, not an edit target and not a composition template. Use its pearl-white stone, champagne-gold trim, brilliant blue star crystals, blue-and-gold pointed towers, suspended cloud islands and sunny hand-painted fantasy atmosphere. Purple is only a very small accent. Do NOT copy any reference text, labels, number 12, layout panels, creatures, huge dragon statue or UI.\nPrimary request: create one complete independent playable room illustration, landscape native 2800 x 1800 pixels if available, with crisp hand-painted material detail suited to a 2560 x 1440 game viewport. This is a bright sunlit high-altitude dragon sanctuary floating in clouds, pearl-white marble, blue crystalline star spires and refined gold star-ring floor inlays. Bright hand-drawn cartoon fantasy, high three-quarter oblique overhead view, near-isometric orthographic 2.5D depth, clean blue-violet outlines, visible painterly brushwork.\nComposition and exact gameplay layout: whole room and all floor boundaries visible. Broad single connected open pearl-marble courtyard with empty central arena. Keep the courtyard top surface inside these approximate image-normalized outline vertices clockwise: (13%,42%), (25%,25%), (50%,18%), (80%,20%), (89%,39%), (86%,70%), (66%,82%), (31%,82%), (12%,69%). Its northern edge has low pearl-blue scale towers and gold railings outside this boundary; airy clouds surround the platform. West entrance is an open marble threshold near (19%,59%), northeast exit is an open threshold near (78%,31%). A generous unobstructed diagonal walk route goes from western entrance through (38%,59%) and (58%,45%) to northeastern exit. Left small star-core terrace is contiguous floor at (28%,34%); right small star-core terrace is contiguous floor at (71%,70%). No gap between these terraces and the central floor. Four flat unobtrusive circular landing inlays sit at (26%,66%), (37%,31%), (72%,38%), (72%,67%), each with plenty of empty floor around it. They are floor decoration only. Keep the very wide center around (50%,50%) entirely empty for a large battle and three finite waves.\nLighting/mood: sunny hopeful final-chapter wonder, clear pale pearl floor, warm gold highlights, vivid blue crystal edges and cool soft shadows, blue-white cloud sea. High structures and heavy shadows outside the walkable perimeter. Floor paving stays legible and open.\nConstraints: floor-only landing inlays; NO standing gateways, portal VFX, star-core objects, obelisks, NPCs, dragons, dragon sculptures, players, creatures, monsters, equipment, combat effects, treasure chests or breakable props baked into painting. Runtime actors and interactive objects will be separate. No text, letters, labels, numeric marks, HUD, logos, watermark, border, diagram annotations, dark outer-space backdrop or top-down flat whiteboard. Do not reuse earlier chapter artwork. Full-width complete room landscape, not a close-up.",
+  "reference_images": [
+    {
+      "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "role": "User-provided pearl-white/gold/blue sky-dragon court style reference only; no labels, number 12, characters or dragon copied.",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "sha256": "3330db01d8466ee060944bc7aec818f02761067facbbf4d28853e1649d10f249",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "requested_size": [
+    2800,
+    1800
+  ],
+  "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-ca8c-7ea1-a880-19e6265a9acb/exec-f5523612-a267-42f1-a603-f936ff76cafd.png",
+  "processing": "Byte-for-byte native PNG source copy, no pixel editing, resize, upscale or encoding conversion.",
+  "license": "Project-generated original artwork; user-provided visual reference used for art direction.",
+  "native_2k_source": false
+}

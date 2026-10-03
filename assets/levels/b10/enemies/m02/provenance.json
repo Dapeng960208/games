@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "generated_at": "2026-10-04",
+  "enemy_id": "B10-M02",
+  "name": "星核幼龙",
+  "resource_id": "level.b10.enemies.m02.body",
+  "asset_role": "single full-body combat-ready southeast-facing enemy illustration",
+  "prompt": "Use case: stylized-concept. Asset type: ONE original transparent full-body action RPG enemy sprite for Star Dragon Court B10. Input image 1 is ONLY a style reference: bright hand-painted cartoon fantasy, white platinum dragon scales, azure blue star crystals and warm gold details. Generate a new independent character, not copy the poster. Camera MUST be clearly high elevated three-quarter diagonal TOP-DOWN like an isometric action RPG ground unit, looking down at head shoulders and feet, character facing southeast/lower right, 2.5D painterly texture with clean readable contour, cheerful daylight. Composition: one complete character in native square 1024x1024 or greater resolution, including all horns, wings, tail, limbs and equipment with comfortable clear margins; centered full body at least 600 pixels high; contact footpoint at normalized (0.50,0.84). True transparent RGBA, no ground/shadow disc, no platform, no scenery, no text, no UI, no watermark, no other characters. No upscaling. Subject B10-M02 Stellar Whelp: a compact young quadrupedal white dragon, short broad blue-membrane wings, small gold-tipped horns, round luminous sapphire star core clearly set in its chest, thick curling tail with blue crystal tip. Combat-ready crouched standing pose with all four clawed feet grounded, alert expressive dragon head. Strong compact silhouette, no humanoid clothing or weapons; gold star collar bands and chunky soft scale armor accents.",
+  "reference_images": [
+    {
+      "role": "style reference only; no typography or poster composition reused",
+      "provided_by": "user",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "color_mode": "RGBA",
+  "sha256": "e55d82117973e7ea343c018e8f2e64595f967680cef27d93a2e8d4e4848929b3",
+  "alpha": {
+    "true_transparent_pixels": 870921,
+    "bounds_xywh": [
+      37,
+      106,
+      1185,
+      1071
+    ],
+    "visible_body_height_px": 1071
+  },
+  "requested_footpoint": [
+    0.5,
+    0.84
+  ],
+  "observed_footpoint_estimate": [
+    0.62,
+    0.86
+  ],
+  "footpoint_note": "Estimated midpoint of visible ground-contact claws; use the actual anchor in runtime art metadata. The generator did not place it exactly at the requested point.",
+  "runtime_intent": {
+    "world_display_height": 112,
+    "target_window": [
+      2560,
+      1440
+    ],
+    "sampling": "Downscale native pixels only; no source upsampling",
+    "poses": 1
+  },
+  "processing": "Byte-for-byte copy from built-in image_gen output. Native source pixels and alpha unchanged; no resizing, crops, paint edits, or procedural placeholder substitution.",
+  "license": "Project-generated original artwork created for this game with the built-in image_gen tool. No third-party character asset reused; user-provided image served only as style reference.",
+  "source_output": "exec-810e779e-0ba1-4e21-b18b-5dcf08e708f2.png",
+  "effective_body_height_px": 1071,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved.",
+  "actual_foot_px": [
+    777,
+    1078
+  ]
+}

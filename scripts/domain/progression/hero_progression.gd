@@ -5,8 +5,8 @@ const Numbers = preload("res://scripts/infrastructure/content/runtime_rules.gd")
 const TALENTS := ["mastery", "precision", "vitality", "resistance", "agility", "dexterity"]
 
 static func level_cap() -> int:
-	if Numbers.b09_candidate_enabled(): return 45
-	return mini(60, int(Numbers.value("implemented_chapters")) * int(Numbers.value("chapter_level_step")))
+	if Numbers.b09_candidate_enabled() and not Numbers.chapter_enabled("B10"): return 45
+	return mini(50, int(Numbers.value("level_cap", int(Numbers.value("implemented_chapters")) * int(Numbers.value("chapter_level_step")))))
 
 static func thresholds(cap: int = 0) -> Array:
 	var limit := level_cap() if cap <= 0 else clampi(cap, 1, 60)
@@ -80,7 +80,7 @@ static func hero_base(definition: Dictionary, level: int, talents: Dictionary = 
 	return result
 
 static func award(profile: Dictionary, hero: String, amount: int, event_id: String, race: String, defer_materials: bool = false) -> Dictionary:
-	if hero not in ["CH01", "CH02", "CH03"] or amount < 0 or amount > 3600 or event_id.is_empty() or race not in ["B01", "B02", "B03", "B04", "B05", "B06"]: return {}
+	if hero not in ["CH01", "CH02", "CH03"] or amount < 0 or amount > 3600 or event_id.is_empty() or race not in ["B01", "B02", "B03", "B04", "B05", "B06", "B10"]: return {}
 	var next := profile.duplicate(true)
 	var receipts: Dictionary = next.get("progression_receipts", {})
 	if receipts.has(event_id):
@@ -96,7 +96,7 @@ static func award(profile: Dictionary, hero: String, amount: int, event_id: Stri
 	var progress := int(research.get(hero, 0)) + overflow
 	var interval := int(Numbers.value("research_xp_per_reward"))
 	var rewards := int(progress / interval)
-	if rewards > 0 and race not in ["B01", "B02", "B03", "B04", "B05", "B06"]: return {}
+	if rewards > 0 and race not in ["B01", "B02", "B03", "B04", "B05", "B06", "B10"]: return {}
 	research[hero] = progress % interval
 	next["research_xp"] = research
 	var materials: Dictionary = next.get("materials", {})

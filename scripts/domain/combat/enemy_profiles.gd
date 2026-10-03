@@ -50,6 +50,8 @@ static func _ensure_loaded() -> void:
 		_data = parsed
 
 static func resolve(enemy_id: String, enemy_level: int = 1, rank: String = "normal", ruleset: int = 1, difficulty: int = 0, calibration: Variant = null) -> Dictionary:
+	if enemy_id.begins_with("B10-M"):
+		return preload("res://scripts/levels/b10/combat/enemy_skills.gd").profile(enemy_id,enemy_level,difficulty,rank,calibration) if ruleset==2 else {}
 	if enemy_id.begins_with("B06-M") and Catalog.b06_enabled():
 		return preload("res://scripts/levels/b06/combat/enemy_skills.gd").profile(enemy_id,enemy_level,difficulty,rank,calibration) if ruleset==2 else {}
 	if enemy_id.begins_with("B05-M"):
@@ -234,6 +236,8 @@ static func _encounter_member(id: String, level: int, rank: String, zone: int, d
 	return profile
 
 static func encounter_plan(room_id: String, zone_index: int, difficulty: int = 0, ruleset: int = 1, calibration: Variant = null) -> Dictionary:
+	if room_id in ["L55","L56","L57","L58","L59","L60"]:
+		return preload("res://scripts/levels/b10/combat/enemy_skills.gd").encounter_plan(room_id,zone_index,difficulty,calibration) if ruleset==2 else {}
 	if Catalog.b06_enabled() and room_id in Catalog.B06.biome().room_ids:
 		return preload("res://scripts/levels/b06/world/candidate.gd").encounter_plan(room_id,zone_index,difficulty,calibration) if ruleset==2 else {}
 	if Catalog.b05_enabled() and room_id in Catalog.B05.biome().room_ids:

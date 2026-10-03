@@ -6,7 +6,7 @@
 
 完整目录树、文件放置责任与迁移检查见 [目录结构规范](engineering/repository_structure.md)。
 
-角色资源和文档按 `characters/{warrior,gunner,mage}`；系统按 `system/<feature>`；关卡按 `levels/b01...b12`，普通怪 `enemies` 与首领 `bosses` 分开，每种再按稳定 ID 建目录。已实现关卡的资源位于 assets；未实现关卡只在 docs 保留明确标注的设计。
+角色资源和文档按 `characters/{warrior,gunner,mage}`；系统按 `system/<feature>`；关卡按 `levels/b01...b10`，普通怪 `enemies` 与首领 `bosses` 分开，每种再按稳定 ID 建目录。已实现关卡的资源位于 assets；未实现关卡只在 docs 保留明确标注的设计。
 
 物理目录、文件名统一小写 `snake_case`，资源按语义命名，不在文件名重复职业/关卡或堆叠版本。确需保留有效备选，使用清楚的用途名；来源记录保留原始版本和哈希。CH/BO/M/EQ/L 等稳定内容 ID 不因搬迁改变，不能重排存档身份。
 

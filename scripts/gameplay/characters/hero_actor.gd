@@ -342,9 +342,12 @@ func _physics_process(delta: float) -> void:
 	attack_buffer = maxf(0.0, attack_buffer - delta)
 	_basic_chain_remaining = maxf(0.0, _basic_chain_remaining - delta)
 	_tick_b05_control(delta)
+	var slow_was_active := _enemy_slow_remaining > 0.0
 	_enemy_slow_remaining = maxf(0.0, _enemy_slow_remaining - delta)
 	if _enemy_slow_remaining <= 0.0:
 		_enemy_slow_multiplier = 1.0
+		if slow_was_active and loadout != null:
+			loadout.event("ordinary_slow_ended", {"actually_slowed":true})
 	for key: String in cooldowns:
 		cooldowns[key] = maxf(0.0, float(cooldowns[key]) - delta)
 	# Synchronize external shield damage before expiries recompute the maximum pool.
@@ -426,7 +429,10 @@ func _physics_process(delta: float) -> void:
 		velocity = motion * stat("move_speed", 220.0) * abilities.movement_scale() + knockback * _b06_knockback_distance_scale
 		if is_instance_valid(room.b09_mechanics): velocity = room.b09_mechanics.movement_velocity(self,motion,velocity,delta)
 		position = room.move_actor(position, velocity * delta, Balance.PLAYER_RADIUS)
+	var was_knocked := knockback.length_squared() > 0.0
 	knockback = knockback.move_toward(Vector2.ZERO, Balance.PLAYER_KNOCKBACK_DECAY * delta)
+	if was_knocked and knockback.is_zero_approx() and loadout != null:
+		loadout.event("ordinary_forced_movement_ended", {"actual_enemy_forced_movement":true})
 	stride += position.distance_to(from) * 0.12
 	loadout.tick(delta)
 	if combo_queue.is_empty() and attack_buffer > 0.0 and pointer_enabled and not _attack_release_required and room.controls_enabled():
@@ -1020,6 +1026,10 @@ func receive_damage(amount: float, origin: Vector2, context: Dictionary = {}) ->
 	loadout.refresh_modifiers()
 	var modifiers: Dictionary = loadout.modifiers()
 	if not is_dot: _b06_knockback_distance_scale = 1.0 - clampf(float(modifiers.get("received_displacement_reduction", 0.0)), 0.0, 0.5)
+	if not is_dot and not bool(context.get("fixed_mechanism_cost", false)):
+		damage_context["damage_reduction"] = float(damage_context.damage_reduction) + maxf(0.0, float(modifiers.get("b10_direct_damage_reduction", 0.0)))
+		if bool(context.get("ranged_direct_damage", false)):
+			damage_context["damage_reduction"] += maxf(0.0, float(modifiers.get("b10_ranged_damage_reduction", 0.0)))
 	var damaged_run: RunSession = Game.run
 	damage_context["damage_reduction"] = minf(0.65, float(damage_context.damage_reduction) + maxf(0.0, float(modifiers.get("damage_reduction_bonus", 0.0))))
 	if not is_dot and not bool(damage_context.get("b09_environment",false)) and not bool(damage_context.get("self_damage",false)):

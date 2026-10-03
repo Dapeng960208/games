@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "generated_at": "2026-10-04",
+  "enemy_id": "B10-M01",
+  "name": "星翼龙卫",
+  "resource_id": "level.b10.enemies.m01.body",
+  "asset_role": "single full-body combat-ready southeast-facing enemy illustration",
+  "prompt": "Use case: stylized-concept. Asset type: original transparent full-body isometric action RPG enemy sprite B10-M01, Starwing Dragon Guard. Input image 1 is ONLY a stylistic reference: bright hand-painted fantasy cartoon, ivory white platinum dragon scales, saturated azure-blue star crystals, delicate warm gold star ornaments. Generate ONE NEW independent character, not a poster or collage. Subject: a mature upright draconic knight, dragon head with swept gold horns, distinct white dragon wings at the shoulders, powerful long white scaled tail, articulated clawed feet, wearing white platinum scale armor and cobalt fabric, wielding one curved scale sword in his right hand. Full body combat-ready neutral standing stance facing southeast / lower right, alert heroic enemy guard silhouette. Camera high elevated three-quarter diagonal top-down, near-isometric 2.5D hand-painted game art, see top planes of shoulders and feet, not eye-level or flat front view. Clear painterly ink contours, bright natural light, readable broad material shapes. Composition single isolated character centered in a square native at least 1024x1024 canvas; full visible horns, wings, sword, tail, and feet; body visually occupies at least 600 pixels of height, leave safe padding. Place the ground-contact footpoint at normalized (0.50,0.84) so it can shrink crisply to 112 world-height pixels on a 2560x1440 display. Truly transparent RGBA background, preserve actual alpha, no scenery, no ground shadow, no shadow disc, no base/platform, no text, no lettering, no watermark, no UI. Do not upscale existing pixels. Keep anatomical dragon identity clear and restrained crystalline highlights.",
+  "reference_images": [
+    {
+      "role": "style reference only; no typography or poster composition reused",
+      "provided_by": "user",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "color_mode": "RGBA",
+  "sha256": "3b933b513e75d96f082f0a4d993870e852550a7294028075771df70fca597010",
+  "alpha": {
+    "true_transparent_pixels": 759416,
+    "bounds_xywh": [
+      51,
+      14,
+      1145,
+      1226
+    ],
+    "visible_body_height_px": 1226
+  },
+  "requested_footpoint": [
+    0.5,
+    0.84
+  ],
+  "observed_footpoint_estimate": [
+    0.6,
+    0.91
+  ],
+  "footpoint_note": "Estimated midpoint of visible ground-contact claws; use the actual anchor in runtime art metadata. The generator did not place it exactly at the requested point.",
+  "runtime_intent": {
+    "world_display_height": 112,
+    "target_window": [
+      2560,
+      1440
+    ],
+    "sampling": "Downscale native pixels only; no source upsampling",
+    "poses": 1
+  },
+  "processing": "Byte-for-byte copy from built-in image_gen output. Native source pixels and alpha unchanged; no resizing, crops, paint edits, or procedural placeholder substitution.",
+  "license": "Project-generated original artwork created for this game with the built-in image_gen tool. No third-party character asset reused; user-provided image served only as style reference.",
+  "source_output": "exec-b0713b1e-ecd7-4a09-990c-de94705964fe.png",
+  "effective_body_height_px": 1226,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved.",
+  "actual_foot_px": [
+    752,
+    1141
+  ]
+}

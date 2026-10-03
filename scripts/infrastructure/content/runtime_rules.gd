@@ -26,6 +26,19 @@ static func b05_candidate_enabled() -> bool:
 static func b06_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b06")
 
+## Chapter identity is independent of the highest authored level. The shipped
+## first six chapters remain released when the final court is registered.
+static func released_chapters() -> Array:
+	return value("released_chapters", ["B01", "B02", "B03", "B04", "B05", "B06"])
+
+static func chapter_enabled(chapter: Variant) -> bool:
+	var chapter_id := ""
+	if chapter is int and chapter >= 1 and chapter <= 10:
+		chapter_id = "B%02d" % chapter
+	elif chapter is String:
+		chapter_id = chapter
+	if chapter_id == "B10" and (b05_candidate_enabled() or b09_candidate_enabled()): return false
+	return chapter_id in released_chapters()
 static func b09_candidate_enabled() -> bool:
 	return OS.has_feature("debug") and _candidate_arguments_valid(OS.get_cmdline_user_args(),"b09")
 
@@ -46,10 +59,8 @@ static func _candidate_arguments_valid(args: PackedStringArray, chapter: String 
 		if component in ["", ".", ".."]: return false
 	return true
 
-static func chapter_enabled(chapter: int) -> bool:
-	return chapter >= 1 and chapter <= int(value("implemented_chapters", 4))
-
 static func value(key: String, fallback: Variant = null) -> Variant:
+	if key == "level_cap" and b05_candidate_enabled(): return 30
 	if _parameters.is_empty(): parameters()
 	var result: Variant = _parameters.get(key, fallback)
 	return result.duplicate(true) if result is Dictionary or result is Array else result

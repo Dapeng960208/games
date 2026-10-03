@@ -1,0 +1,12 @@
+{
+  "tool": "built-in image_gen",
+  "exact_prompt": "Production game equipment sprite atlas. Gunner Comet-Hunt: brass optical dragon goggle, refined pearl leather shooting coat, slim reinforced gloves, belted tactical scaled trousers, agile boots, reticle signet ring, brass astrolabe pendant, long detailed magical flintlock sniper rifle. Adult fitted equipment. Style: bright hand-painted cartoon fantasy, warm sunlight highlights, pearl ivory, star lavender and antique gold, clean readable shapes, fine material detail, 2.5D volume, three-quarter elevated view appropriate for isometric action RPG icons. All objects isolated on true alpha-transparent background, no text, numbers, UI, scenery or shadows outside silhouette. Wide 2048x1024 native image exactly4 columns x2 rows, exactly8 separate objects. Reading order top row helmet/head, chest garment, gloves(pair), trousers; bottom row boots(pair), ring, pendant/accessory, weapon. Each centered inside512x512cell with30pxpadding, no overlap, no borders, consistent icon silhouette scale. Full objects visible no crop. Native generation, no enlarged low-resolution source. Detailed adult equipment, no chibi faces or mascot styling.",
+  "original_source": "/workspace/generated_images/exec-1da967df-ff1a-439e-a2dd-bfcd34653ecd.png",
+  "sha256": "bd53086f23af9521230e46f5b175ee15b1056141dba898e2dbc33b435925648b",
+  "native_dimensions": [
+    1774,
+    887
+  ],
+  "encoding": "original PNG bytes, not resized",
+  "alpha": true
+}

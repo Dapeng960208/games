@@ -1,0 +1,8 @@
+{
+  "level.b10.bosses.bo10.body": "res://assets/levels/b10/bosses/bo10/body.png",
+  "level.b10.bosses.bo10.prompt": "res://assets/levels/b10/bosses/bo10/body.prompt.json",
+  "level.b10.bosses.bo10.provenance": "res://assets/levels/b10/bosses/bo10/provenance.json",
+  "level.b10.equipment.easter_ring": "res://assets/levels/b10/equipment/easter_ring.png",
+  "level.b10.equipment.easter_ring.prompt": "res://assets/levels/b10/equipment/easter_ring.prompt.json",
+  "level.b10.equipment.easter_ring.provenance": "res://assets/levels/b10/equipment/easter_ring.provenance.json"
+}

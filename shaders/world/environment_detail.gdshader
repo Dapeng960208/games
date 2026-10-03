@@ -7,6 +7,8 @@ render_mode unshaded;
 uniform vec2 source_size;
 uniform vec2 feather_width = vec2(16.0, 24.0);
 uniform vec4 feather_edges;
+uniform vec2 uv_origin = vec2(0.0);
+uniform vec2 uv_extent = vec2(1.0);
 varying vec4 authored_color;
 
 void vertex() {
@@ -14,7 +16,7 @@ void vertex() {
 }
 
 void fragment() {
-	vec2 pixel = UV * source_size;
+	vec2 pixel = (UV - uv_origin) / uv_extent * source_size;
 	float coverage = 1.0;
 	if (feather_edges.x > 0.0) coverage *= smoothstep(0.0, feather_width.x, pixel.x);
 	if (feather_edges.y > 0.0) coverage *= smoothstep(0.0, feather_width.y, pixel.y);

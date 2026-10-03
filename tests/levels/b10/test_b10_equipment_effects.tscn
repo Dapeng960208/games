@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/levels/b10/test_b10_equipment_effects.gd" id="1"]
+[node name="B10EquipmentEffects" type="Node"]
+script = ExtResource("1")

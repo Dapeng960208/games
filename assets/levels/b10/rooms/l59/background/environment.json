@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "room_id": "L59",
+  "texture": "asset://world/rooms/L59_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "regions": {
+    "L59_environment": [
+      0,
+      0,
+      1564,
+      1006
+    ]
+  },
+  "walkable_normalized_rect": [
+    0.0959079283887468,
+    0.18886679920477137,
+    0.8056265984654731,
+    0.6202783300198808
+  ],
+  "placement_normalized_rect": [
+    0.06,
+    0.06024992899744386,
+    0.88,
+    0.8795001420051123
+  ],
+  "walkable_normalized_polygon": [
+    [
+      0.2237851662404092,
+      0.18886679920477137
+    ],
+    [
+      0.7672634271099744,
+      0.18886679920477137
+    ],
+    [
+      0.8567774936061381,
+      0.4423459244532803
+    ],
+    [
+      0.90153452685422,
+      0.5805168986083499
+    ],
+    [
+      0.7960358056265985,
+      0.7107355864811133
+    ],
+    [
+      0.5,
+      0.8091451292246521
+    ],
+    [
+      0.2237851662404092,
+      0.7107355864811133
+    ],
+    [
+      0.0959079283887468,
+      0.5805168986083499
+    ],
+    [
+      0.1374680306905371,
+      0.43240556660039764
+    ]
+  ],
+  "camera": "高机位三分之四斜俯视、近等距2.5D",
+  "baked_scenery": true,
+  "boundary": {
+    "basis": "per-room original dry stone inner edge; source->placement->2800x1800 blueprint->0.58 world",
+    "source_inner_floor_pixels": [
+      [
+        350.0,
+        190.0
+      ],
+      [
+        1200.0,
+        190.0
+      ],
+      [
+        1340.0,
+        445.0
+      ],
+      [
+        1410.0,
+        584.0
+      ],
+      [
+        1245.0,
+        715.0
+      ],
+      [
+        782.0,
+        814.0
+      ],
+      [
+        350.0,
+        715.0
+      ],
+      [
+        150.0,
+        584.0
+      ],
+      [
+        215.0,
+        435.0
+      ]
+    ],
+    "convex": true,
+    "authoring_minimum_route_clearance_world": 118.179,
+    "authoring_gate_clearance_world": {
+      "L59_gate_1": 137.298,
+      "L59_gate_2": 137.327,
+      "L59_gate_3": 118.179,
+      "L59_gate_4": 137.327
+    },
+    "validation_status": "pending_unified_runtime_acceptance"
+  },
+  "notes": [
+    "独立星冠前殿原画，南北常通主道与两个侧向支路；明亮手绘白金蓝龙族云海圣庭，紫色仅为小面积阴影点缀。",
+    "背景PNG和六片原生高清PNG均保存生成源字节，不裁切最终图、不放大、不做像素编辑。",
+    "静态栏杆、灯、花台、冠形亭阁、宫殿与楼梯已在原画中；不重复叠加陈设sprite。动态四星门、两星核、龙、人物与危险预警单独运行。",
+    "源图1564×1006不宣称原生2K；六片1254×1254原生detail各对应538×538方形源区域，严格等比显示。",
+    "统一接入须依据该可见地砖内缘逆算room_geometry.json外边界；旧蓝图南侧左右底角不可沿用为栏外通行。"
+  ],
+  "qa": {
+    "source_pixel_edits": "none",
+    "style_source_inspection": "complete",
+    "geometry_status": "目视测定源图内缘；由art_inventory统一逆变换与碰撞/锚点检查，GPU最终验收待统一完成。",
+    "runtime_acceptance": "pending unified chapter acceptance",
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  },
+  "runtime_chunks": {
+    "grid": [
+      3,
+      2
+    ],
+    "source_partition": "six independent square native detail repaints; source overlap 25px horizontal and 70px vertical",
+    "texture_sampling": "full independent room texture plus canonical native detail manifest",
+    "texture_memory": "shared original background with six native textures; no streaming claim"
+  },
+  "geometry_authority": "res://data/levels/b10/room_geometry.json",
+  "geometry_status": "painted_native_mapping_prepared",
+  "mapping_contract": "Actual native source ratio controls uniform image/world scaling; the source dry-stone outline and every blueprint foot use one placement, then blueprint * 0.58. Source and destination axes are not stretched.",
+  "functional_anchors": {
+    "entry": [
+      1400.0,
+      1300.778889
+    ],
+    "exit": [
+      1400.0,
+      487.014648
+    ],
+    "gates": [
+      {
+        "id": "L59_gate_1",
+        "name": "星门 1",
+        "position": [
+          826.29621,
+          1158.370146
+        ],
+        "destination": [
+          720,
+          500
+        ],
+        "pair_id": "L59_pair_1"
+      },
+      {
+        "id": "L59_gate_2",
+        "name": "星门 2",
+        "position": [
+          720,
+          500
+        ],
+        "destination": [
+          826.29621,
+          1158.370146
+        ],
+        "pair_id": "L59_pair_1"
+      },
+      {
+        "id": "L59_gate_3",
+        "name": "星门 3",
+        "position": [
+          1985.910253,
+          1199.058359
+        ],
+        "destination": [
+          2080,
+          500
+        ],
+        "pair_id": "L59_pair_2"
+      },
+      {
+        "id": "L59_gate_4",
+        "name": "星门 4",
+        "position": [
+          2080,
+          500
+        ],
+        "destination": [
+          1985.910253,
+          1199.058359
+        ],
+        "pair_id": "L59_pair_2"
+      }
+    ],
+    "star_cores": [
+      {
+        "id": "L59_core_1",
+        "position": [
+          800,
+          760
+        ]
+      },
+      {
+        "id": "L59_core_2",
+        "position": [
+          2000,
+          760
+        ]
+      }
+    ],
+    "dragon_spawn": [
+      1400,
+      820
+    ],
+    "boss_spawn": [
+      1400,
+      820
+    ],
+    "encounter_anchors": [
+      [
+        1400,
+        900
+      ]
+    ],
+    "main_route": [
+      [
+        1400.0,
+        1300.778889
+      ],
+      [
+        1400,
+        900
+      ],
+      [
+        1400.0,
+        487.014648
+      ]
+    ],
+    "walk_routes": [
+      [
+        [
+          1400.0,
+          1300.778889
+        ],
+        [
+          1400,
+          900
+        ],
+        [
+          1400.0,
+          487.014648
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          800,
+          760
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          2000,
+          760
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          826.29621,
+          1158.370146
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          720,
+          500
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          1985.910253,
+          1199.058359
+        ]
+      ],
+      [
+        [
+          1400,
+          900
+        ],
+        [
+          2080,
+          500
+        ]
+      ]
+    ],
+    "scenery_anchors": [
+      {
+        "id": "L59_landmark",
+        "key": "crown_pavilion",
+        "position": [
+          2636.921646,
+          293.745641
+        ],
+        "ground_footprint": [
+          80,
+          50
+        ],
+        "collision": false,
+        "render_mode": "baked_environment",
+        "painted_foot_source_pixels": [
+          1390,
+          205
+        ],
+        "baked_into_background": true
+      }
+    ]
+  },
+  "static_landmark_foot_contract": "The recorded native source foot maps through the same placement as the floor, gates and camera. baked_environment entries are already painted and never submit a duplicate sprite.",
+  "source_sha256": "079b1a961b111f5b5ce8a669606c802f138d1484d13222d4e57d4da17b4f3aad"
+}

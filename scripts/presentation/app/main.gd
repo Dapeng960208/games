@@ -880,6 +880,9 @@ func show_result(result: Dictionary) -> void:
 		room = null
 	_new_screen("result")
 	expedition = null
+	if preload("res://scripts/presentation/components/finale_artwork.gd").completed_result(result):
+		preload("res://scripts/presentation/components/finale_artwork.gd").show_result(self,result)
+		return
 	var outcome: String = result.get("outcome","death")
 	var title: String = {"extracted":"EXTRACTED","death":"DEATH","abandoned":"ABANDONED"}.get(outcome,"DEATH")
 	var accent := GameStyle.GREEN if outcome == "extracted" else GameStyle.RED

@@ -1,0 +1,28 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-03",
+  "mode": "independent generation with user style reference",
+  "prompt": "Use case: stylized-concept.\nAsset type: BO10 Ninefold Dragon Throne, complete independent game room background painting, landscape native 2800 x 1800 pixels if supported. This is final original raster production art for a bright fantasy 2.5D action game.\nInput image 1: STYLE and MATERIAL reference only, not an edit target. Use its pearl white masonry, delicate gilded royal filigree, sapphire blue star crystals, buoyant cloud sea and floating dragon-court architecture. Generate a new, independent composition without any lettering, poster layout, character, dragon, or graphic inset from the reference.\nScene: the final throne arena of an ancient celestial dragon court, suspended above a bright daytime cloud ocean. A pearl-white ivory stone circular-ish royal terrace fills most of the composition, supported below by carved floating pale cliffs; elegant gold edges and modest azure crystal ornaments mark only its outer perimeter. Beyond the north/top arena boundary is a remote dragon-crown sanctuary facade with nine small fixed heraldic crown-fin crests arranged around its roof silhouette. Far left and right perimeter glimpses reveal smaller floating blue-and-gold cathedral terraces and slim bridges beyond the active room. Daylight, sunny pale cream floor, light blue fluffy cloud sea, vivid clean royal blue details, only tiny violet accents.\nCamera: high elevated three-quarter oblique overhead, close to isometric 2.5D, exactly the playable mapping perspective. Hand-painted bright cartoon fantasy brushwork, clean readable soft outlined forms and dimensional material light.\nGAMEPLAY COORDINATE LOCK: normalized image coordinates x/y. Keep a SINGLE continuous, flat, walkable, dry, pale ivory stone floor throughout and slightly beyond this polygon [(0.186,0.318),(0.346,0.183),(0.657,0.183),(0.836,0.318),(0.890,0.598),(0.764,0.813),(0.607,0.869),(0.377,0.869),(0.230,0.785),(0.120,0.603)]. The polygon is the broad boss arena and must visually read as solid open stone, no internal cliff cuts, pond, crevice, central pedestal or raised wall. Floor visually dominates the image. Small subtle shallow blue-gold inlaid star paths and tiny irregular paving seams are permitted on floor, no large saturated busy patterns.\nReserve clear ground around these coordinates for runtime objects: dragon at (0.50,0.495), star cores at (0.283,0.509), (0.72,0.509), (0.50,0.294); four portal pairs at (0.277,0.71), (0.283,0.388), (0.72,0.71), (0.72,0.388); bottom entry (0.50,0.775), north exit (0.50,0.262). No painted portal or standing core is present: ALL dynamic monsters, dragon, portals, cores and objectives are excluded from this environment. Entrance and exit are clear traversable paving transitions, not doors. Large throne architecture remains OUTSIDE the open ground polygon at north top; no sculpture, monument, pillar, tree or raised throne inside the playable floor.\nComposition: broad uninterrupted arena shaped as the locked polygon with curved, gently faceted outer edge, a clear wide bottom approach and open northern exit. Thin gold parapet segments and tiny blue crystal finials only beyond polygon boundary, with breaks at approaches, elegant peripheral blue star banners, small fresh green plants only outside the floor. No tall object obscures the playable floor. No rigid square slab, no boxed courtyard, no grid map.\nConstraints: full standalone painting to every canvas edge; no characters, creatures, flying dragons, boss, decorative dragon bodies, interactive gates, active star cores, treasure, chest, item, HUD, menu, minimap, diagram, labels, words, signature or watermark. Do not render a black cosmic sky. Preserve light cheerful hand-painted cartoon fantasy and high three-quarter oblique 2.5D depth. Output one complete landscape native 2800 x 1800 image, do not enlarge a smaller picture.",
+  "reference_images": [
+    {
+      "path": "C:/Users/13326/AppData/Local/Temp/codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "role": "user-supplied style and material reference only",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181"
+    }
+  ],
+  "source_path": "C:/Users/13326/.codex/generated_images/01a10279-46f4-73c3-93b8-e76aaf0b2dd0/exec-d19bbde7-5012-4920-afb2-7905f2b891b5.png",
+  "requested_size": [
+    2800,
+    1800
+  ],
+  "source_size": [
+    1564,
+    1006
+  ],
+  "processing": "Byte-for-byte source copy, no pixel editing, no upsampling.",
+  "license": "Project-generated original artwork.",
+  "status": "generated; runtime acceptance pending",
+  "sha256": "d85fbd601829fb9cfc81e8a0609962434de85980eb0b67aaed06fcf6e2cf0930"
+}

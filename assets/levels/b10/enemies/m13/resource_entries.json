@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "resources": {
+    "level.b10.enemies.m13.body": "res://assets/levels/b10/enemies/m13/body.png",
+    "level.b10.enemies.m14.body": "res://assets/levels/b10/enemies/m14/body.png",
+    "level.b10.enemies.m15.body": "res://assets/levels/b10/enemies/m15/body.png",
+    "level.b10.enemies.m16.body": "res://assets/levels/b10/enemies/m16/body.png",
+    "level.b10.enemies.m17.body": "res://assets/levels/b10/enemies/m17/body.png",
+    "level.b10.enemies.m18.body": "res://assets/levels/b10/enemies/m18/body.png"
+  }
+}

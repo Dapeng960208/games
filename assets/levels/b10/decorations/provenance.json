@@ -1,0 +1,85 @@
+{
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at": "2026-10-04",
+  "license": "Original artwork generated for this project with built-in ImageGen. User-supplied concept used as visual guidance; no source-reference pixels composited.",
+  "processing": "Byte-for-byte copy of each generated native 1254×1254 PNG. No upsampling, raster stretching, cropping, alpha replacement or compositing.",
+  "reference_images": [
+    {
+      "role": "User-supplied final-chapter concept, style/palette reference",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "origin": "User attachment: codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+    }
+  ],
+  "assets": {
+    "stargate": {
+      "asset_id": "level.b10.decorations.stargate",
+      "image_file": "stargate.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: final production game scene-object sprite, ONE walk-through STARGATE, native square 1254 x 1254 or larger transparent RGBA. The attached concept is a STYLE/PALETTE reference, especially its gold-blue Star Gate sketch.\nSubject: one upright tall ELLIPTICAL golden celestial portal ring, clearly large enough for one adult hero to walk through the empty opening. A single continuous fine warm-gold ellipse rim with platinum detailing, tiny gold stars, small sapphire-blue crystal runes along the inner rim and one restrained blue crystal at the crown. Adult architectural proportions; the opening is about twice as tall as it is wide. The inside opening is actually transparent, not filled with a painting. Two small white-platinum feet or supports near the lower sides join ONE compact low WHITE-PLATINUM FOOT SEAT underneath the ellipse. Clean readable construction, stable and graceful. No large staircase, columns, walkway, rock, floor disc or sprawling base.\nView: high-position three-quarter oblique top-down southeast facing, near-isometric 2.5D game-camera view. We can see the TOP surface of the low foot seat and the thickness of the upright rim. Entire ellipse, crown jewel and bottom feet visible. Ground footprint is small and compact centered under the frame; visual foot at lower center. The low base must not spread farther than the rim width; no long projected shadow, no overhanging objects hiding the ground near the base.\nStyle: bright polished HAND-PAINTED CARTOON FANTASY, white-platinum stone, warm-gold metal, vivid sapphire-blue crystal, warm sunny highlights, readable gentle violet-blue contour plus bright edge highlights, tangible 2.5D material depth. Match the reference's Star Dragon Court architecture. No dark purple, no horror, no photorealism.\nComposition: one isolated complete object centered. Full silhouette should occupy about 85% canvas height, with at least 50 empty native pixels on all sides. Bottom contact centered around normalized (.50,.88).\nBackdrop: actual transparent alpha outside AND through the portal opening. No scene, no floor, no cast shadow, no outer glow haze, no long shadow. Only a restrained light blue edge glow DIRECTLY on the ring and its runes. No label, writing, letters, numbers, watermark, frame or UI panel.",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "sha256": "283bfc3b7405fe6c9cb2d948fe903f519a03c27fc6c9b571d864faa7af6c1adf",
+      "opaque_bbox": [
+        278,
+        9,
+        987,
+        1167
+      ],
+      "transparent_pixels": 1167869,
+      "opaque_pixels": 341976,
+      "opaque_edge_pixels": 0,
+      "actual_foot_px": [
+        627,
+        1136
+      ],
+      "actual_foot_normalized": [
+        0.5,
+        0.9059011164274322
+      ],
+      "foot_definition": "Central low foot-seat contact at the ground plane; front-most right support extends farther down due to southeast perspective.",
+      "intended_world_height": 96,
+      "view": "high three-quarter oblique southeast 2.5D",
+      "visual_validation": "One complete upright adult-passable gold ellipse, clear transparent aperture, sapphire runes, compact white-platinum lower supports and foot-seat. No floor or long cast shadow.",
+      "alpha": "Native RGBA; transparent outside the object and through the aperture. Source alpha preserved.",
+      "effective_body_height_px": 1165,
+      "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+    },
+    "star_core": {
+      "asset_id": "level.b10.decorations.star_core",
+      "image_file": "star_core.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: final production game scene-object sprite, ONE BREAKABLE STAR CORE, native square 1254 x 1254 or larger, actual transparent RGBA. The attached Star Dragon Court concept is a STYLE/PALETTE reference.\nSubject: one large vivid SAPPHIRE-BLUE STAR CRYSTAL with clear faceted cut surfaces and pointed star-like geometry, held in one small elegant celestial gyroscope. EXACTLY THREE distinct slender warm-GOLD ORBIT RINGS encircle this one crystal on three different inclinations. Ring design is structural jewelry-thin curved gold with a few small star joint details, not large discs. The single central crystal remains clearly visible and visually dominant; three rings separately countable. This is a small destructible energy node, not a character, boss, orb planet or text sign.\nUnder the core: ONE compact, very LOW WHITE-PLATINUM GROUND PLINTH with gold trim. The plinth is just a small round stable foot seat, narrower than the orbit silhouette. No tall pedestal tower, no huge floor disc, no stairs or separate environment. Entire object sits on its low ground contact at lower center.\nView: high-position three-quarter oblique top-down southeast, near-isometric 2.5D game camera. We can clearly see the plinth TOP surface, depth of crystal facets and the tilt of all three gold rings.\nStyle: bright polished HAND-PAINTED CARTOON FANTASY, royal sapphire crystal, crisp ivory-platinum material, warm-gold metal, warm sunshine highlights, gentle dark blue-violet outlines with bright highlight edges, tangible painted 2.5D depth. Match the reference's blue-gold star-orbit architecture. No dark purple generic effect, no photorealism.\nComposition: one isolated full object centered in square canvas, full crystal tips, all THREE COMPLETE orbit rings and the small ground plinth visible. Approx 85% canvas extent, at least 50 native pixels of clear empty margin on every side. Bottom contact around normalized (.50,.88). Compact scene footprint, no sprawling objects that hide the nearby ground.\nBackdrop: ACTUAL transparent RGBA alpha outside the object and in holes between rings. No floor, no cast shadow, no long shadow, no haze, no off-object bloom, no backdrop gradient, no drawn checkerboard. Gem glow remains ONLY within the crystal. No words, letters, numbers, labels, watermark, UI panel, frame or humanoid.",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "sha256": "bcf24dd2ded82fac4f3ffbab2124803e0a9d092263ad3709924a604575e18199",
+      "opaque_bbox": [
+        114,
+        22,
+        1143,
+        1159
+      ],
+      "transparent_pixels": 1064107,
+      "opaque_pixels": 430154,
+      "opaque_edge_pixels": 0,
+      "actual_foot_px": [
+        642,
+        1157
+      ],
+      "actual_foot_normalized": [
+        0.5119617224880383,
+        0.9226475279106858
+      ],
+      "foot_definition": "Bottom center of the low white-platinum ground plinth.",
+      "intended_world_height": 70,
+      "view": "high three-quarter oblique southeast 2.5D",
+      "visual_validation": "One visible sapphire-blue faceted star crystal, three distinct warm-gold orbit rings on different inclinations, low compact white-platinum ground plinth. No character, text, floor or long cast shadow.",
+      "alpha": "Native RGBA; transparent outside and between orbit rings. Source alpha preserved.",
+      "effective_body_height_px": 1139,
+      "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+    }
+  }
+}

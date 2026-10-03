@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "identity": "B10-M13",
+  "name": "星冠禁卫",
+  "name_en": "Starcrown Praetorian",
+  "art_id": "level.b10.enemies.m13.body",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at_utc": "2026-10-03T16:01:16.5167524Z",
+  "prompt": "Use case: stylized-concept. Asset type: final production transparent full-body enemy sprite for a 2.5D fantasy action game, identity B10-M13 Starcrown Praetorian / 星冠禁卫. Generate ONE independent original character illustration. Style vocabulary derived from the supplied Star Dragon Court reference: bright hand-painted cartoon fantasy, elegant ivory-white dragon scales, sapphire and sky-blue star crystals, polished golden star rings, warm sunlit highlights, painterly texture, clean dark-blue contour lines. Subject: an imposing adult bipedal dragonkin palace guard, unmistakably draconic long angular snout, two backward golden ivory horns, small powerful blue membrane wings, thick curling white scaled tail, strong armored legs. Identity silhouette: triangular three-point star crown and an enormous broad crystal-edged gold greatblade held diagonally out to the lower right, deep royal-blue sash and white-gold armor. Pose: standing combat-ready, whole body from horns to claws fully visible, anatomically coherent, facing southeast (screen lower right), high camera three-quarter oblique overhead view, see top surfaces of head and shoulders, 2.5D game perspective. Composition: native square canvas at least 1024×1024, character itself at least 600 native pixels tall, body centered, grounded feet contact midpoint at normalized (0.50,0.84), claws share a single ground-contact baseline, horns near y=.10, wings/tail/blade leave generous transparent outer margin and stay fully inside frame. Real alpha transparent background, crisp isolated silhouette and opaque painted body; NO background, floor, shadow disc, pedestal, grid, scenery, label, letters, watermark, UI, additional characters, border or crop. Designed to render at 112 world-pixel body height in a 2560×1440 viewport by downscaling only. Produce this subject at native resolution, do not enlarge or upscale an old asset.",
+  "reference_images": [
+    {
+      "identity": "User-supplied Star Dragon Court design reference",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "role": "Agent viewed style reference; style vocabulary described in original-generation prompt; no source image pixels copied into delivery"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    54,
+    13,
+    1241,
+    1254
+  ],
+  "visible_alpha_bbox": [
+    59,
+    15,
+    1239,
+    1213
+  ],
+  "visible_alpha_threshold": 8,
+  "opaque_alpha_bbox": [
+    59,
+    16,
+    1238,
+    1212
+  ],
+  "effective_body_height_px": 1198,
+  "actual_foot_px": [
+    550,
+    1211
+  ],
+  "foot_point_normalized": [
+    0.438596,
+    0.96571
+  ],
+  "foot_measurement": "Visually measured on native image: horizontal center of the two foreground grounded claws, lowest visible ground-contact claw tip for y; tail and decorative cloth excluded.",
+  "facing": "SE",
+  "camera": "High three-quarter oblique overhead, near-isometric 2.5D",
+  "world_body_height": 112,
+  "display_intent": "2560x1440 world rendering; downscale from native source only",
+  "sha256": "a0c50685e8be4aea0897c72c5496d79bfef6b383ae330334765325f5144e1671",
+  "processing": "Byte-for-byte copy from built-in generator output; original pixels and alpha preserved. No resampling, compositing, procedural replacement or upsampling.",
+  "license": "Project-generated original artwork for this game; no third-party character artwork reused. User-supplied reference is retained as style context with its source hash.",
+  "source_generation_filename": "exec-21daafe5-9321-42d4-8a71-abc7ebb6f9c3.png",
+  "animation_scope": "Independent original identity body; existing shared runtime movement/action presentation reused. This file does not claim to contain separate continuous animation frames.",
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

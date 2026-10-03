@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.bosses.d04.body",
+  "content_id": "B10-D04",
+  "name": "极光长尾龙",
+  "theme": "resonance",
+  "asset_path": "assets/levels/b10/bosses/d04/body.png",
+  "source": "OpenAI built-in image_gen",
+  "generation_mode": "built_in",
+  "generated_date": "2026-10-04",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "output_mode": "RGBA",
+  "transparent_background": true,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visible_bbox_alpha_64": [
+    33,
+    39,
+    1230,
+    1232
+  ],
+  "visible_height_pixels": 1193,
+  "actual_foot_px": [
+    810,
+    1078
+  ],
+  "footpoint_method": "manual_visual_ground_footprint_center; average of four ground-contact projections, excluding tail and wings",
+  "ground_contact_points_px": [
+    [
+      427,
+      1065
+    ],
+    [
+      711,
+      950
+    ],
+    [
+      947,
+      1200
+    ],
+    [
+      1155,
+      1097
+    ]
+  ],
+  "inferred_occluded_contact_indices": [],
+  "sha256": "9aeef2051f882dc2656cb9916275e4961cce2622170f2d86dad8c8fe80fa8ccb",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1027d-94a5-78a1-b838-65c51de7ce89\\exec-b7d912da-1c8c-4b32-9e13-c768a2d382d6.png",
+  "reference": {
+    "role": "user-provided style reference only",
+    "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+  },
+  "license": "Original artwork generated for this project with OpenAI image generation; service terms apply. The style reference was supplied by the user.",
+  "prompt": "Use case: stylized-concept\nAsset type: production game guardian dragon sprite B10-D04, Twin-Ring Resonance / Aurora Long-Tail Dragon / 极光长尾龙.\nInput image: supplied Starlit Dragon Court image is STYLE REFERENCE ONLY for luminous ivory scales, sapphire crystals, warm gold and celestial dragon design with bright painterly cartoon fantasy. Never include its text, humanoids or scenery.\nPrimary request: exactly one complete quadrupedal resonance dragon with a tall graceful neck, rounded gentle reptilian face, long curved gold antler-like horns and TWO visibly different golden resonator rings physically attached around the bases of its swept-back crown fins. Distinct silhouette: softly rounded fan-shaped wings with layered pale-blue, mint and lavender aurora membranes, sinuous ivory torso, four strong feet, and a long curling ribbon-like tail ending in a rounded twin-lobed sapphire fin. The warm golden rings and the rounded wing fans distinguish it from angular crystal dragons. This is a real full dragon beast with one head, not a humanoid, no separate floating objects.\nCamera/pose: high three-quarter oblique down view about 45 degrees, near-isometric 2.5D, facing southeast / screen lower-right. All four legs and ground-contact feet should be visible around the body. Neck arches forward; wings held above legs; tail curves back upper-left fully inside canvas.\nStyle/medium: bright hand-painted cartoon fantasy, polished soft painted 2.5D volume and clean readable edges; warm sunlight; ivory, warm gold, fresh sapphire with soft mint-lavender aurora accents. Match the provided reference.\nCanvas: native square PNG 1536 x 1536 requested or higher, at least 1254 x 1254 native. Actual full creature at least 1000 painted pixels tall, fills 80-85 percent of height. Provide at least 7 percent transparent margin on all sides, all horns, wing tips, claws and tail tip fully inside canvas. Intended for downscaling, never enlargement, in 2560 x 1440 game.\nBackground: genuinely transparent RGBA alpha outside dragon. No floor or shadow plate, no clouds, landscape, pedestal, border or backdrop.\nConstraints: exactly one complete dragon, one head, four legs, two wings, one tail; no human form, no humanoid clothes, no weapons, no text, labels, letters, numbers, logo, watermark, UI or sprite sheet; no cropping, photorealism or horror.",
+  "verification": {
+    "subject": "One complete non-humanoid dragon, all tail and wing tips retained",
+    "camera": "High three-quarter oblique down view, facing southeast",
+    "visual_review": true,
+    "native_no_upscale": true,
+    "usage": "218-world-unit body rendered by downscaling for 2K viewport"
+  },
+  "effective_body_height_px": 1195,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

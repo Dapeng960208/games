@@ -1,0 +1,11 @@
+{
+  "id": "top_left",
+  "prompt": "Use case: precise-object-edit.\nAsset type: production native high-resolution room detail tile, L55 Sunlit Stargate, for 2560x1440 game rendering.\nInput image: exact square crop of an existing original room painting, edit target; NOT a style reference.\nPrimary request: repaint this EXACT crop at native 1536x1536 square resolution (minimum1254x1254 desired), adding fine hand-painted material detail only. Do not upscale or enlarge the old pixel source; create new native brushwork inside the existing shapes.\nCRITICAL invariants: framing, perspective, scale, every paving seam, gold mosaic, blue inlay, cloud edge, railing, crystal silhouette, pillar, leaf, arch, stair and shadow stays at IDENTICAL normalized coordinates, including all four edges. Exact full crop composition and exposure locked; no crop, no zoom, no extension, no camera move, no architecture remodel, no new objects. This tile joins five neighbor tiles using a fixed shared coordinate system.\nStyle: bright hand-painted cartoon fantasy, high camera three-quarter oblique overhead 2.5D, warm sunlight, pearl ivory, antique gold, luminous cobalt and sapphire blue crystal, fresh plants, airy bright cloud sea. Improve fine stone grain, delicate marble chips, gold engraving and crystal facets. Keep overall colors and contrast matching original precisely.\nAvoid: people, monsters, dragons, characters, portals, star cores, chests, UI, text, warnings, grids, dark cosmos, extra props, invented paving pattern, blurry upscale. Square complete image reaches every edge.\nTile identity: top_left.",
+  "source_path": "C:/Users/13326/.codex/generated_images/01a10272-0d54-7bd0-9eb3-34b06f2d0167/exec-a0aea5b9-9e83-4ce8-8f5c-0848074342b4.png",
+  "reference_path": "C:/Users/13326/.codex/generated_images/l55_detail_references/top_left.png",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "sha256": "b982ef1fe4d2920f62b07a29c1f7eb15bd3d1c8b285dd873c78012fa21afb96b"
+}

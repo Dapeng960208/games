@@ -53,6 +53,12 @@ static func _read_manifest() -> Dictionary:
 		merge_b05_manifest(_manifest, JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(B05_MANIFEST_PATH))))
 	if preload("res://scripts/infrastructure/content/runtime_rules.gd").chapter_enabled(6) and FileAccess.file_exists(AssetCatalog.resolve(B06_MANIFEST_PATH)):
 		merge_b06_candidate(_manifest, JSON.parse_string(FileAccess.get_file_as_string(AssetCatalog.resolve(B06_MANIFEST_PATH))))
+	if preload("res://scripts/infrastructure/content/runtime_rules.gd").chapter_enabled("B10"):
+		var b10_path := AssetCatalog.resolve("asset://level.b10.equipment.manifest")
+		if FileAccess.file_exists(b10_path):
+			var b10: Variant = JSON.parse_string(FileAccess.get_file_as_string(b10_path))
+			if b10 is Dictionary and b10.get("chapter_id") == "B10" and bool(b10.get("enabled", false)) and b10.get("items") is Dictionary:
+				_manifest.items.merge(b10.items, false)
 	return _manifest
 
 static func merge_b05_manifest(base: Dictionary, candidate: Variant) -> void:

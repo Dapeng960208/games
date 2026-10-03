@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "identity": "B10-M14",
+  "name": "双门织法者",
+  "name_en": "Twin-Gate Weaver",
+  "art_id": "level.b10.enemies.m14.body",
+  "generator": "built-in image_gen",
+  "model_id": null,
+  "model_version": null,
+  "generated_at_utc": "2026-10-03T16:03:21.3296237Z",
+  "prompt": "Use case: stylized-concept. Asset type: ONE final production original full-body transparent enemy sprite for a 2.5D fantasy action game. Style follows the viewed Star Dragon Court reference: bright hand-painted cartoon fantasy, adult fantasy proportions, elegant ivory-white draconic scales, sapphire and sky-blue star crystals, polished warm gold trim, royal-blue cloth, warm sunlight, painterly texture, readable dark-blue contours. High camera three-quarter oblique overhead, see upper head/shoulder/back surfaces, facing southeast toward screen lower right, 2.5D near-isometric. Native square canvas at least 1024×1024; whole painted character at least 600 native pixels tall. Very important framing: make character occupy only central 70 percent width and central 72 percent height with visibly generous transparent space at EVERY edge, never any horn, wing, tail, weapon or magic ring touching an edge. Subject centered in x, top around y=.12, contact point midway between grounded claws exactly at normalized (.50,.84), all of both feet visible. No scenery, no floor, no pedestal, no shadow disk, no ground tiles, no labels, no text, no watermark, no UI, no border, no cropped body, no additional characters. Entire background must be genuine alpha transparency; opaque painted subject. Intended rendering at 112 world pixels body-height in 2560×1440 viewport by downscaling only, no enlargement. Identity B10-M14 双门织法者 Twin-Gate Weaver. A tall slender adult upright dragonkin spell weaver, long reptilian snout, curled paired horns, white scaled neck, small blue webbed wings and a curled tapering tail. Deep blue and ivory caster coat with refined gold panels. Signature is exactly TWO separate small upright blue-crystal portal rings, each ring with gold star notches, hovering close beside one hand at shoulder level; keep magic rings compact and clearly separated. Holding hands ready to weave a ray between these two rings, calm focused gaze, balanced grounded stance. The two rings belong to the one character; no giant portal, no scenery. Clear caster silhouette differs from an armored warrior.",
+  "reference_images": [
+    {
+      "identity": "User-supplied Star Dragon Court design reference",
+      "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png",
+      "sha256": "b0b2e9b47bb037fc05febd2ec3d743506b78a56f858e092117f344436bac6181",
+      "role": "Agent viewed style reference; style vocabulary described in original-generation prompt; no source image pixels copied into delivery"
+    }
+  ],
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "source_size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_bbox": [
+    43,
+    21,
+    1192,
+    1232
+  ],
+  "visible_alpha_bbox": [
+    232,
+    85,
+    1037,
+    1165
+  ],
+  "visible_alpha_threshold": 8,
+  "opaque_alpha_bbox": [
+    233,
+    87,
+    1036,
+    1164
+  ],
+  "effective_body_height_px": 1079,
+  "actual_foot_px": [
+    667,
+    1164
+  ],
+  "foot_point_normalized": [
+    0.531898,
+    0.92823
+  ],
+  "foot_measurement": "Visually measured on native image: horizontal center of the two foreground grounded claws, lowest visible ground-contact claw tip for y; tail and decorative cloth excluded.",
+  "facing": "SE",
+  "camera": "High three-quarter oblique overhead, near-isometric 2.5D",
+  "world_body_height": 112,
+  "display_intent": "2560x1440 world rendering; downscale from native source only",
+  "sha256": "a9bfc7611ba4b9df16ddd211e4cec9932ce91343a7322421c85d27839e2612a9",
+  "processing": "Byte-for-byte copy from built-in generator output; original pixels and alpha preserved. No resampling, compositing, procedural replacement or upsampling.",
+  "license": "Project-generated original artwork for this game; no third-party character artwork reused. User-supplied reference is retained as style context with its source hash.",
+  "source_generation_filename": "exec-d0d70a76-ff83-4872-a3be-6942a8c1f504.png",
+  "animation_scope": "Independent original identity body; existing shared runtime movement/action presentation reused. This file does not claim to contain separate continuous animation frames.",
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

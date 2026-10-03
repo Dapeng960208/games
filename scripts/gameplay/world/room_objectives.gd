@@ -45,6 +45,12 @@ var label_layer: Node2D
 func configure(next_room: Node2D, next_layout: Dictionary, node_role: String = "branch") -> void:
 	_configure_context(next_room, next_layout, node_role)
 	var biome: String = str(definition.get("biome_id", layout.get("biome_id","")))
+	if biome == "B10":
+		module = preload("res://scripts/levels/b10/world/objectives.gd").new()
+		module.configure(self)
+		_add_fixed_optional_rewards()
+		queue_redraw()
+		return
 	if biome == "B09" and bool(layout.get("b09_candidate",false)):
 		module = preload("res://scripts/levels/b09/world/objectives.gd").new()
 		module.configure(self)
@@ -82,6 +88,9 @@ func configure_cleared(next_room: Node2D, next_layout: Dictionary, node_role: St
 	finished = true
 	completed_count = required_count
 	quality = "full"
+	if str(layout.get("biome_id", "")) == "B10":
+		module = preload("res://scripts/levels/b10/world/objectives.gd").new()
+		module.configure(self)
 	if bool(layout.get("fixed_layout", false)):
 		_add_fixed_optional_rewards(claimed_optional)
 	elif room_id == "L01":

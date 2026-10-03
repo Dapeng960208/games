@@ -1,0 +1,713 @@
+{
+  "schema_version": 1,
+  "biome_id": "B10",
+  "source_design": "docs/levels/b12/README.md",
+  "identity_remap": "Final dragon chapter transplanted from B12 to B10; authored B12 identity superseded by user final chapter request",
+  "enemies": {
+    "B10-M01": {
+      "enemy_id": "B10-M01",
+      "biome_id": "B10",
+      "name": "星翼龙卫",
+      "name_en": "Starwing Dragon Guard",
+      "profile": "F",
+      "role": "F",
+      "introduced_level": 46,
+      "level": 46,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 90,
+        "damage": 16,
+        "move_speed": 92,
+        "armor": 8,
+        "magic_resist": 6,
+        "attack_range": 150
+      },
+      "cooldown": 8,
+      "tell": 1.1,
+      "action_name": "斜翼斩",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "斜翼斩"
+        },
+        "2": {
+          "source_text": "斩后换守2秒"
+        },
+        "4": {
+          "source_text": "断核取消守势"
+        }
+      }
+    },
+    "B10-M02": {
+      "enemy_id": "B10-M02",
+      "biome_id": "B10",
+      "name": "星核幼龙",
+      "name_en": "Stellar Whelp",
+      "profile": "A",
+      "role": "A",
+      "introduced_level": 46,
+      "level": 46,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 70,
+        "damage": 16,
+        "move_speed": 112,
+        "armor": 3,
+        "magic_resist": 5,
+        "attack_range": 160
+      },
+      "cooldown": 8,
+      "tell": 1.0,
+      "action_name": "星核扑落",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "星核扑落"
+        },
+        "2": {
+          "source_text": "落地吐出小星弹"
+        },
+        "4": {
+          "source_text": "扑后停地1.3秒"
+        }
+      }
+    },
+    "B10-M03": {
+      "enemy_id": "B10-M03",
+      "biome_id": "B10",
+      "name": "龙裔术士",
+      "name_en": "Draconic Sorcerer",
+      "profile": "C",
+      "role": "C",
+      "introduced_level": 46,
+      "level": 46,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 70,
+        "damage": 15,
+        "move_speed": 84,
+        "armor": 3,
+        "magic_resist": 10,
+        "attack_range": 340
+      },
+      "cooldown": 9,
+      "tell": 1.2,
+      "action_name": "星咒落点",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "星咒落点"
+        },
+        "2": {
+          "source_text": "原锁点0.9秒后回响"
+        },
+        "4": {
+          "source_text": "断核取消回响"
+        }
+      }
+    },
+    "B10-M04": {
+      "enemy_id": "B10-M04",
+      "biome_id": "B10",
+      "name": "鳞镜弩卫",
+      "name_en": "Scale-Mirror Arbalist",
+      "profile": "R",
+      "role": "R",
+      "introduced_level": 46,
+      "level": 46,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 78,
+        "damage": 16,
+        "move_speed": 88,
+        "armor": 5,
+        "magic_resist": 6,
+        "attack_range": 340
+      },
+      "cooldown": 9,
+      "tell": 1.1,
+      "action_name": "鳞镜星矢",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "鳞镜星矢"
+        },
+        "2": {
+          "source_text": "箭后侧移70"
+        },
+        "4": {
+          "source_text": "侧移前短换守"
+        }
+      }
+    },
+    "B10-M05": {
+      "enemy_id": "B10-M05",
+      "biome_id": "B10",
+      "name": "星门侍从",
+      "name_en": "Stargate Attendant",
+      "profile": "S",
+      "role": "S",
+      "introduced_level": 46,
+      "level": 46,
+      "clan": "dragon",
+      "threat_cost": 2,
+      "raw_stats": {
+        "max_hp": 84,
+        "damage": 12,
+        "move_speed": 80,
+        "armor": 5,
+        "magic_resist": 10,
+        "attack_range": 360
+      },
+      "cooldown": 12,
+      "tell": 1.2,
+      "action_name": "星门转位",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "星门转位"
+        },
+        "2": {
+          "source_text": "转位后移速增加8%"
+        },
+        "4": {
+          "source_text": "打断后收势"
+        }
+      }
+    },
+    "B10-M06": {
+      "enemy_id": "B10-M06",
+      "biome_id": "B10",
+      "name": "晨辉护鳞者",
+      "name_en": "Dawnscale Defender",
+      "profile": "T",
+      "role": "T",
+      "introduced_level": 46,
+      "level": 46,
+      "clan": "dragon",
+      "threat_cost": 2,
+      "raw_stats": {
+        "max_hp": 140,
+        "damage": 16,
+        "move_speed": 64,
+        "armor": 12,
+        "magic_resist": 12,
+        "attack_range": 220
+      },
+      "cooldown": 10,
+      "tell": 1.2,
+      "action_name": "晨辉护鳞",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "晨辉护鳞"
+        },
+        "2": {
+          "source_text": "盾击留短星线"
+        },
+        "4": {
+          "source_text": "断核减守势"
+        }
+      }
+    },
+    "B10-M07": {
+      "enemy_id": "B10-M07",
+      "biome_id": "B10",
+      "name": "轨星骑兵",
+      "name_en": "Orbital Cavalier",
+      "profile": "F",
+      "role": "F",
+      "introduced_level": 48,
+      "level": 48,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 90,
+        "damage": 16,
+        "move_speed": 92,
+        "armor": 8,
+        "magic_resist": 6,
+        "attack_range": 150
+      },
+      "cooldown": 10,
+      "tell": 1.2,
+      "action_name": "折线冲刺",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "折线冲刺"
+        },
+        "2": {
+          "source_text": "终点尾扫"
+        },
+        "4": {
+          "source_text": "末端固定收势"
+        }
+      }
+    },
+    "B10-M08": {
+      "enemy_id": "B10-M08",
+      "biome_id": "B10",
+      "name": "星图测绘者",
+      "name_en": "Star Chart Surveyor",
+      "profile": "C",
+      "role": "C",
+      "introduced_level": 48,
+      "level": 48,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 70,
+        "damage": 15,
+        "move_speed": 84,
+        "armor": 3,
+        "magic_resist": 10,
+        "attack_range": 340
+      },
+      "cooldown": 11,
+      "tell": 1.3,
+      "action_name": "星图双爆",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "星图双爆"
+        },
+        "2": {
+          "source_text": "额外无伤路标"
+        },
+        "4": {
+          "source_text": "统一危险符号"
+        }
+      }
+    },
+    "B10-M09": {
+      "enemy_id": "B10-M09",
+      "biome_id": "B10",
+      "name": "长尾彗矛手",
+      "name_en": "Comet Spear Thrower",
+      "profile": "R",
+      "role": "R",
+      "introduced_level": 48,
+      "level": 48,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 78,
+        "damage": 16,
+        "move_speed": 88,
+        "armor": 5,
+        "magic_resist": 6,
+        "attack_range": 340
+      },
+      "cooldown": 9,
+      "tell": 1.1,
+      "action_name": "彗矛投掷",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "彗矛投掷"
+        },
+        "2": {
+          "source_text": "矛尾留下短余迹"
+        },
+        "4": {
+          "source_text": "余迹仅1秒"
+        }
+      }
+    },
+    "B10-M10": {
+      "enemy_id": "B10-M10",
+      "biome_id": "B10",
+      "name": "星核守望者",
+      "name_en": "Core Watcher",
+      "profile": "S",
+      "role": "S",
+      "introduced_level": 48,
+      "level": 48,
+      "clan": "dragon",
+      "threat_cost": 2,
+      "raw_stats": {
+        "max_hp": 84,
+        "damage": 12,
+        "move_speed": 80,
+        "armor": 5,
+        "magic_resist": 10,
+        "attack_range": 360
+      },
+      "cooldown": 14,
+      "tell": 1.4,
+      "action_name": "星核修复",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "星核修复"
+        },
+        "2": {
+          "source_text": "给自己4%盾"
+        },
+        "4": {
+          "source_text": "每核每房只修复一次"
+        }
+      }
+    },
+    "B10-M11": {
+      "enemy_id": "B10-M11",
+      "biome_id": "B10",
+      "name": "鳞台裂击兽",
+      "name_en": "Scale Terrace Beast",
+      "profile": "T",
+      "role": "T",
+      "introduced_level": 48,
+      "level": 48,
+      "clan": "dragon",
+      "threat_cost": 2,
+      "raw_stats": {
+        "max_hp": 140,
+        "damage": 16,
+        "move_speed": 64,
+        "armor": 12,
+        "magic_resist": 12,
+        "attack_range": 220
+      },
+      "cooldown": 11,
+      "tell": 1.3,
+      "action_name": "鳞台裂击",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "鳞台裂击"
+        },
+        "2": {
+          "source_text": "地纹两侧小星刺"
+        },
+        "4": {
+          "source_text": "断核延长收势"
+        }
+      }
+    },
+    "B10-M12": {
+      "enemy_id": "B10-M12",
+      "biome_id": "B10",
+      "name": "光尾回旋者",
+      "name_en": "Lighttail Dancer",
+      "profile": "A",
+      "role": "A",
+      "introduced_level": 48,
+      "level": 48,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 70,
+        "damage": 16,
+        "move_speed": 112,
+        "armor": 3,
+        "magic_resist": 5,
+        "attack_range": 160
+      },
+      "cooldown": 9,
+      "tell": 1.1,
+      "action_name": "光尾弧扫",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "光尾弧扫"
+        },
+        "2": {
+          "source_text": "原弧0.9秒后回响"
+        },
+        "4": {
+          "source_text": "结束无伤滑行"
+        }
+      }
+    },
+    "B10-M13": {
+      "enemy_id": "B10-M13",
+      "biome_id": "B10",
+      "name": "星冠禁卫",
+      "name_en": "Starcrown Praetorian",
+      "profile": "F",
+      "role": "F",
+      "introduced_level": 50,
+      "level": 50,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 90,
+        "damage": 16,
+        "move_speed": 92,
+        "armor": 8,
+        "magic_resist": 6,
+        "attack_range": 150
+      },
+      "cooldown": 10,
+      "tell": 1.2,
+      "action_name": "双段冠斩",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "双段冠斩"
+        },
+        "2": {
+          "source_text": "第二斩后短换守"
+        },
+        "4": {
+          "source_text": "断核暴露侧背"
+        }
+      }
+    },
+    "B10-M14": {
+      "enemy_id": "B10-M14",
+      "biome_id": "B10",
+      "name": "双门织法者",
+      "name_en": "Twin-Gate Weaver",
+      "profile": "C",
+      "role": "C",
+      "introduced_level": 50,
+      "level": 50,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 70,
+        "damage": 15,
+        "move_speed": 84,
+        "armor": 3,
+        "magic_resist": 10,
+        "attack_range": 340
+      },
+      "cooldown": 12,
+      "tell": 1.3,
+      "action_name": "双门射线",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "双门射线"
+        },
+        "2": {
+          "source_text": "出口端小圈"
+        },
+        "4": {
+          "source_text": "预告时固定出口"
+        }
+      }
+    },
+    "B10-M15": {
+      "enemy_id": "B10-M15",
+      "biome_id": "B10",
+      "name": "彗晶炮龙",
+      "name_en": "Comet Cannon Drake",
+      "profile": "R",
+      "role": "R",
+      "introduced_level": 50,
+      "level": 50,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 78,
+        "damage": 16,
+        "move_speed": 88,
+        "armor": 5,
+        "magic_resist": 6,
+        "attack_range": 340
+      },
+      "cooldown": 11,
+      "tell": 1.3,
+      "action_name": "彗晶炮击",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "彗晶炮击"
+        },
+        "2": {
+          "source_text": "两枚彗晶向外飞"
+        },
+        "4": {
+          "source_text": "炮背暴露"
+        }
+      }
+    },
+    "B10-M16": {
+      "enemy_id": "B10-M16",
+      "biome_id": "B10",
+      "name": "天穹调律者",
+      "name_en": "Sky Harmonist",
+      "profile": "S",
+      "role": "S",
+      "introduced_level": 50,
+      "level": 50,
+      "clan": "dragon",
+      "threat_cost": 2,
+      "raw_stats": {
+        "max_hp": 84,
+        "damage": 12,
+        "move_speed": 80,
+        "armor": 5,
+        "magic_resist": 10,
+        "attack_range": 360
+      },
+      "cooldown": 15,
+      "tell": 1.4,
+      "action_name": "天穹回响",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "天穹回响"
+        },
+        "2": {
+          "source_text": "下一主动回响"
+        },
+        "4": {
+          "source_text": "打断取消未提交回响"
+        }
+      }
+    },
+    "B10-M17": {
+      "enemy_id": "B10-M17",
+      "biome_id": "B10",
+      "name": "陨鳞镇庭兽",
+      "name_en": "Meteor Scale Guardian",
+      "profile": "T",
+      "role": "T",
+      "introduced_level": 50,
+      "level": 50,
+      "clan": "dragon",
+      "threat_cost": 2,
+      "raw_stats": {
+        "max_hp": 140,
+        "damage": 16,
+        "move_speed": 64,
+        "armor": 12,
+        "magic_resist": 12,
+        "attack_range": 220
+      },
+      "cooldown": 13,
+      "tell": 1.4,
+      "action_name": "陨鳞重踏",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "陨鳞重踏"
+        },
+        "2": {
+          "source_text": "可拆低鳞石"
+        },
+        "4": {
+          "source_text": "拆石失衡2秒"
+        }
+      }
+    },
+    "B10-M18": {
+      "enemy_id": "B10-M18",
+      "biome_id": "B10",
+      "name": "终庭誓龙使",
+      "name_en": "Final Court Oathkeeper",
+      "profile": "C",
+      "role": "C",
+      "introduced_level": 50,
+      "level": 50,
+      "clan": "dragon",
+      "threat_cost": 1,
+      "raw_stats": {
+        "max_hp": 70,
+        "damage": 15,
+        "move_speed": 84,
+        "armor": 3,
+        "magic_resist": 10,
+        "attack_range": 340
+      },
+      "cooldown": 14,
+      "tell": 1.5,
+      "action_name": "三印誓击",
+      "counter_and_drop_text": "离开已锁定危险区；拆毁星核后接近收势中的龙裔。",
+      "skills": {
+        "0": {
+          "source_text": "三印誓击"
+        },
+        "2": {
+          "source_text": "结束短换守"
+        },
+        "4": {
+          "source_text": "破核取消最后一印"
+        }
+      }
+    }
+  },
+  "bosses": {
+    "B10-D01": {
+      "boss_id": "B10-D01",
+      "name": "日冕翼龙",
+      "name_en": "Suncrest Wing Dragon",
+      "theme": "sun",
+      "level": 46,
+      "raw_hp": 600,
+      "raw_damage": 26,
+      "radius": 50
+    },
+    "B10-D02": {
+      "boss_id": "B10-D02",
+      "name": "镜鳞晶龙",
+      "name_en": "Mirror-Scale Crystal Dragon",
+      "theme": "mirror",
+      "level": 46,
+      "raw_hp": 650,
+      "raw_damage": 28,
+      "radius": 52
+    },
+    "B10-D03": {
+      "boss_id": "B10-D03",
+      "name": "彗轨长尾龙",
+      "name_en": "Comet-Tail Dragon",
+      "theme": "comet",
+      "level": 48,
+      "raw_hp": 700,
+      "raw_damage": 30,
+      "radius": 54
+    },
+    "B10-D04": {
+      "boss_id": "B10-D04",
+      "name": "双环音律龙",
+      "name_en": "Twin-Ring Resonance Dragon",
+      "theme": "resonance",
+      "level": 48,
+      "raw_hp": 750,
+      "raw_damage": 32,
+      "radius": 56
+    },
+    "B10-D05": {
+      "boss_id": "B10-D05",
+      "name": "星冠织门龙",
+      "name_en": "Starcrown Gate Dragon",
+      "theme": "gate",
+      "level": 50,
+      "raw_hp": 800,
+      "raw_damage": 34,
+      "radius": 58
+    },
+    "B10-D06": {
+      "boss_id": "B10-D06",
+      "name": "三曜陨星龙",
+      "name_en": "Three-Sun Meteor Dragon",
+      "theme": "meteor",
+      "level": 50,
+      "raw_hp": 850,
+      "raw_damage": 36,
+      "radius": 60
+    },
+    "BO10": {
+      "boss_id": "BO10",
+      "name": "星冠古龙",
+      "name_en": "Starcrown Ancient Dragon",
+      "theme": "ancient",
+      "level": 50,
+      "raw_hp": 1700,
+      "raw_damage": 38,
+      "radius": 82,
+      "heads": 1,
+      "head_count": 1,
+      "visual_identity": "单首白金古龙、蓝色晶鳞与金色龙冠"
+    }
+  }
+}

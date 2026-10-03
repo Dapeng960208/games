@@ -138,6 +138,8 @@ func _ready() -> void:
 		brain = preload("res://scripts/levels/b05/combat/enemy_brain.gd").new() if enemy_id.begins_with("B05-M") else BrainScript.new()
 		if enemy_id.begins_with("B06-M") and not bool(profile.get("b06_candidate_contact_only",true)):
 			brain = preload("res://scripts/levels/b06/combat/enemy_brain.gd").new()
+		if enemy_id.begins_with("B10-M"):
+			brain = preload("res://scripts/levels/b10/combat/enemy_brain.gd").new()
 		if enemy_id.begins_with("B09-M"):
 			brain = preload("res://scripts/levels/b09/combat/brain.gd").new()
 		brain.configure(profile)
@@ -147,7 +149,11 @@ func _ready() -> void:
 		add_child(body_visual)
 		body_visual.configure(self)
 
+func b10_body_frame() -> Dictionary:
+	return preload("res://scripts/levels/b10/art/native_art.gd").frame(enemy_id) if enemy_id == "B10-CORE" or enemy_id.begins_with("B10-M") or preload("res://scripts/levels/b10/combat/enemy_skills.gd").is_boss(enemy_id) else {}
+
 func impact_material() -> String:
+	if enemy_id.begins_with("B10-") or enemy_id=="BO10": return "organic"
 	if enemy_id.begins_with("B05-M") or enemy_id == "BO05": return "organic"
 	if enemy_id in ["M04", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M28", "M29", "M32", "M33", "M35"]:
 		return "organic"
@@ -310,6 +316,7 @@ func take_damage(amount: float, kind: StringName, from_direction := Vector2.ZERO
 	if room.enemy_skills != null and room.enemy_skills.b05 != null:
 		amount = room.enemy_skills.b05.filter_damage(self,amount,kind,from_direction,damage_type)
 		amount = room.enemy_skills.b06.filter_damage(self,amount,kind,from_direction,damage_type,context)
+		amount = room.enemy_skills.b10.filter_damage(self,amount,kind,from_direction,damage_type)
 	if is_instance_valid(room.b09_mechanics):
 		amount = room.b09_mechanics.filter_damage(self,amount,kind,context)
 	var auxiliary_absorbed: Variant = Numerical.amount(0.0, status.ruleset_version)
@@ -640,6 +647,14 @@ func _draw() -> void:
 		draw_string(room.fx_font,Vector2(-text_width*.5,37),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,11,Color("49364f"))
 
 func _draw_skill_anchor() -> void:
+	if enemy_id == "B10-CORE":
+		var native := b10_body_frame()
+		if not native.is_empty():
+			draw_texture_rect(native.texture, native.bounds, false, Color.WHITE)
+			set_meta("b10_native_art", native.texture_path)
+			draw_rect(Rect2(-17,-77,34,5),Color("25447c"))
+			draw_rect(Rect2(-16,-76,32*health.current/maxf(1,health.maximum),3),Color("5ac6fa"))
+			return
 	if str(get_meta("enemy_skill_anchor_kind","")) in ["crystal_column","crystal_wall"]:
 		var texture := TextureSampler.sampled("asset://b09/crystal_column/source.png")
 		if texture!=null: draw_texture_rect(texture,Rect2(-36,-78,72,86),false)

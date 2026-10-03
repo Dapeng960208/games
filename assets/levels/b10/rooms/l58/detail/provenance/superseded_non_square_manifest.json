@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "room_id": "L58",
+  "approved": false,
+  "source_texture": "asset://world/rooms/L58_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "e0b1cf6f1a3b17ec6857fbfdbba53cbd86210ca83859a86c163d5057e318ea29",
+  "generation_tool": "built-in image_gen",
+  "representation": "six native detail repaints over exact original mapping; narrow overlapping feather zones retain fallback",
+  "feather_source_pixels": [
+    15,
+    23
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L58/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        537,
+        527
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "ab72b4c4bc3741a8bbd790153331c04a778ee8acd2da650e0459c08ed65b7841",
+      "encoding": "Original generated PNG bytes; no re-encoding, resize or upscale.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L58 top_left native high-resolution detailed game-map tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. It is a source region from the same original independent L58 room painting.\nPrimary request: faithfully repaint this exact COMPLETE crop at the largest native square output, 1536 x 1536 pixels, at least 1254 x 1254 actual pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted pearl-white paving, fine gold bands, cobalt and cyan-blue star-glass crystals, botanical and sky-cloud material fidelity INSIDE existing silhouettes. Keep all complete paving geometry, inset double-ring curves, flat blue-star inlays, bell silhouettes, architectural outlines, small distant palaces, clouds and terrace boundaries exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead camera, near-isometric 2.5D depth. Match the source's sunny luminous exposure, pearl-white cream floor, elegant warm gold outlines, clean cobalt/cyan-blue crystal, white clouds and greenery. Purple is only a minute shadow accent.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, traversable paving and cloud-cliff boundaries, stairs, terrace and gallery geometry, lighting direction, exposure, colors, silhouettes and all edge features. No crop, expansion, rearrangement, rotation, new architecture or added objects. No new characters, creatures, dragons, portals, star cores, armillary spheres, text, labels, borders, HUD or watermark. Do not enlarge or shrink any feature inside the image. Repaint natively, never resize or upscale the original crop. Output one complete square native illustration, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/exec-e9e0b747-38ad-4ca1-996f-316fb994539c.png",
+      "reference_crop_sha256": "450b0e45c4be4fee2bc8143793d955ea855f0f6b1641e942c34957d46569883b",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L58/top_middle.png",
+      "source_rect": [
+        505,
+        0,
+        553,
+        527
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "168410e145569713ee8bdc383e1d73932d7c80eef77a0e095ef9d288b3555e31",
+      "encoding": "Original generated PNG bytes; no re-encoding, resize or upscale.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L58 top_middle native high-resolution detailed game-map tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. It is a source region from the same original independent L58 room painting.\nPrimary request: faithfully repaint this exact COMPLETE crop at the largest native square output, 1536 x 1536 pixels, at least 1254 x 1254 actual pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted pearl-white paving, fine gold bands, cobalt and cyan-blue star-glass crystals, botanical and sky-cloud material fidelity INSIDE existing silhouettes. Keep all complete paving geometry, inset double-ring curves, flat blue-star inlays, bell silhouettes, architectural outlines, small distant palaces, clouds and terrace boundaries exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead camera, near-isometric 2.5D depth. Match the source's sunny luminous exposure, pearl-white cream floor, elegant warm gold outlines, clean cobalt/cyan-blue crystal, white clouds and greenery. Purple is only a minute shadow accent.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, traversable paving and cloud-cliff boundaries, stairs, terrace and gallery geometry, lighting direction, exposure, colors, silhouettes and all edge features. No crop, expansion, rearrangement, rotation, new architecture or added objects. No new characters, creatures, dragons, portals, star cores, armillary spheres, text, labels, borders, HUD or watermark. Do not enlarge or shrink any feature inside the image. Repaint natively, never resize or upscale the original crop. Output one complete square native illustration, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/exec-eee78ab9-9917-4ce3-b95e-b23965f60aa3.png",
+      "reference_crop_sha256": "2c694d5576053853030cad493ea202c49d8d4c56b7463c86550fd53a6a0aaa85",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L58/top_right.png",
+      "source_rect": [
+        1026,
+        0,
+        538,
+        527
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "b2f42b597da3fc04b5f6de6950fdbfdd9f7d8bc65ec15013eaf6d74788780c92",
+      "encoding": "Original generated PNG bytes; no re-encoding, resize or upscale.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L58 top_right native high-resolution detailed game-map tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. It is a source region from the same original independent L58 room painting.\nPrimary request: faithfully repaint this exact COMPLETE crop at the largest native square output, 1536 x 1536 pixels, at least 1254 x 1254 actual pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted pearl-white paving, fine gold bands, cobalt and cyan-blue star-glass crystals, botanical and sky-cloud material fidelity INSIDE existing silhouettes. Keep all complete paving geometry, inset double-ring curves, flat blue-star inlays, bell silhouettes, architectural outlines, small distant palaces, clouds and terrace boundaries exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead camera, near-isometric 2.5D depth. Match the source's sunny luminous exposure, pearl-white cream floor, elegant warm gold outlines, clean cobalt/cyan-blue crystal, white clouds and greenery. Purple is only a minute shadow accent.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, traversable paving and cloud-cliff boundaries, stairs, terrace and gallery geometry, lighting direction, exposure, colors, silhouettes and all edge features. No crop, expansion, rearrangement, rotation, new architecture or added objects. No new characters, creatures, dragons, portals, star cores, armillary spheres, text, labels, borders, HUD or watermark. Do not enlarge or shrink any feature inside the image. Repaint natively, never resize or upscale the original crop. Output one complete square native illustration, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/exec-3779628f-f81b-4fdd-a054-bef8256060c1.png",
+      "reference_crop_sha256": "6a25779fc8c303dbd5144cf79de3ac66857e05fd1b315f5a63b110d7c0143b4a",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L58/bottom_left.png",
+      "source_rect": [
+        0,
+        479,
+        537,
+        527
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "98c4cb15f8a536e770419e2ec2d5e0eac1c505f99a960a995910d399be154f17",
+      "encoding": "Original generated PNG bytes; no re-encoding, resize or upscale.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L58 bottom_left native high-resolution detailed game-map tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. It is a source region from the same original independent L58 room painting.\nPrimary request: faithfully repaint this exact COMPLETE crop at the largest native square output, 1536 x 1536 pixels, at least 1254 x 1254 actual pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted pearl-white paving, fine gold bands, cobalt and cyan-blue star-glass crystals, botanical and sky-cloud material fidelity INSIDE existing silhouettes. Keep all complete paving geometry, inset double-ring curves, flat blue-star inlays, bell silhouettes, architectural outlines, small distant palaces, clouds and terrace boundaries exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead camera, near-isometric 2.5D depth. Match the source's sunny luminous exposure, pearl-white cream floor, elegant warm gold outlines, clean cobalt/cyan-blue crystal, white clouds and greenery. Purple is only a minute shadow accent.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, traversable paving and cloud-cliff boundaries, stairs, terrace and gallery geometry, lighting direction, exposure, colors, silhouettes and all edge features. No crop, expansion, rearrangement, rotation, new architecture or added objects. No new characters, creatures, dragons, portals, star cores, armillary spheres, text, labels, borders, HUD or watermark. Do not enlarge or shrink any feature inside the image. Repaint natively, never resize or upscale the original crop. Output one complete square native illustration, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/exec-feb09fc3-158b-4b7f-8106-7f2efa1329e0.png",
+      "reference_crop_sha256": "80cb23a7dddd47bc9e2f82cff7662dcf3ae5bc4899a231cd2dbed42fc5561f30",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L58/bottom_middle.png",
+      "source_rect": [
+        505,
+        479,
+        553,
+        527
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "f56db2ead3b603bdb65bb9b9563f4b82c871d4d1dab9475c1c9ab81a2da52f55",
+      "encoding": "Original generated PNG bytes; no re-encoding, resize or upscale.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L58 bottom_middle native high-resolution detailed game-map tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. It is a source region from the same original independent L58 room painting.\nPrimary request: faithfully repaint this exact COMPLETE crop at the largest native square output, 1536 x 1536 pixels, at least 1254 x 1254 actual pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted pearl-white paving, fine gold bands, cobalt and cyan-blue star-glass crystals, botanical and sky-cloud material fidelity INSIDE existing silhouettes. Keep all complete paving geometry, inset double-ring curves, flat blue-star inlays, bell silhouettes, architectural outlines, small distant palaces, clouds and terrace boundaries exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead camera, near-isometric 2.5D depth. Match the source's sunny luminous exposure, pearl-white cream floor, elegant warm gold outlines, clean cobalt/cyan-blue crystal, white clouds and greenery. Purple is only a minute shadow accent.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, traversable paving and cloud-cliff boundaries, stairs, terrace and gallery geometry, lighting direction, exposure, colors, silhouettes and all edge features. No crop, expansion, rearrangement, rotation, new architecture or added objects. No new characters, creatures, dragons, portals, star cores, armillary spheres, text, labels, borders, HUD or watermark. Do not enlarge or shrink any feature inside the image. Repaint natively, never resize or upscale the original crop. Output one complete square native illustration, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/exec-1098210d-f0f4-46aa-a547-0979fdbbfc42.png",
+      "reference_crop_sha256": "1f879fb0b2ce34327bb79b16c790d94ac0ab8dc59ad11373f861e85fc39929a7",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L58/bottom_right.png",
+      "source_rect": [
+        1026,
+        479,
+        538,
+        527
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "78d5d8d1a18effcc85e14cb06f46ca4e6b9e10a9a1f40059d200493d1f38aaad",
+      "encoding": "Original generated PNG bytes; no re-encoding, resize or upscale.",
+      "prompt": "Use case: precise-object-edit\nAsset type: L58 bottom_right native high-resolution detailed game-map tile.\nInput image: sole exact cropped map EDIT TARGET, not a mood reference. It is a source region from the same original independent L58 room painting.\nPrimary request: faithfully repaint this exact COMPLETE crop at the largest native square output, 1536 x 1536 pixels, at least 1254 x 1254 actual pixels. Retain every object and all full crop edges at exactly the same normalized coordinates. ONLY add fine hand-painted pearl-white paving, fine gold bands, cobalt and cyan-blue star-glass crystals, botanical and sky-cloud material fidelity INSIDE existing silhouettes. Keep all complete paving geometry, inset double-ring curves, flat blue-star inlays, bell silhouettes, architectural outlines, small distant palaces, clouds and terrace boundaries exactly where shown.\nStyle: bright hand-painted cartoon fantasy, high elevated three-quarter oblique overhead camera, near-isometric 2.5D depth. Match the source's sunny luminous exposure, pearl-white cream floor, elegant warm gold outlines, clean cobalt/cyan-blue crystal, white clouds and greenery. Purple is only a minute shadow accent.\nLOCK: complete framing, composition, camera angle, normalized feature positions, all outlines, structures, traversable paving and cloud-cliff boundaries, stairs, terrace and gallery geometry, lighting direction, exposure, colors, silhouettes and all edge features. No crop, expansion, rearrangement, rotation, new architecture or added objects. No new characters, creatures, dragons, portals, star cores, armillary spheres, text, labels, borders, HUD or watermark. Do not enlarge or shrink any feature inside the image. Repaint natively, never resize or upscale the original crop. Output one complete square native illustration, no borders.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/exec-18d95251-8a04-4477-91b9-c817eba95ddc.png",
+      "reference_crop_sha256": "b15be28e01aca4611c8e377e1fa2e63cb6ff17cc9fae8773d0d3f330909f2bf4",
+      "license": "Project-generated original artwork."
+    }
+  ],
+  "approval_scope": "Authoring-ready assets for shared runtime integration; unified 2K GPU and all-character acceptance pending.",
+  "acceptance": {
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "source_pixel_edits": "none",
+    "natural_playthrough_claimed": false
+  },
+  "status": "superseded",
+  "superseded_reason": "Non-square full source reference repainted into square output; replaced by actual square 538x538 source crops with matching aspect."
+}

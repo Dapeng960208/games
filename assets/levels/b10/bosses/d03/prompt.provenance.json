@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "asset_id": "level.b10.bosses.d03.body",
+  "content_id": "B10-D03",
+  "name": "彗轨风龙",
+  "theme": "comet",
+  "asset_path": "assets/levels/b10/bosses/d03/body.png",
+  "source": "OpenAI built-in image_gen",
+  "generation_mode": "built_in",
+  "generated_date": "2026-10-04",
+  "native_dimensions": [
+    1254,
+    1254
+  ],
+  "output_mode": "RGBA",
+  "transparent_background": true,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "visible_bbox_alpha_64": [
+    75,
+    17,
+    1218,
+    1240
+  ],
+  "visible_height_pixels": 1223,
+  "actual_foot_px": [
+    794,
+    1031
+  ],
+  "footpoint_method": "manual_visual_ground_footprint_center; average of four ground-contact projections, excluding tail and wings",
+  "ground_contact_points_px": [
+    [
+      497,
+      916
+    ],
+    [
+      733,
+      885
+    ],
+    [
+      900,
+      1192
+    ],
+    [
+      1044,
+      1132
+    ]
+  ],
+  "inferred_occluded_contact_indices": [],
+  "sha256": "5e9cd9dbcca948b587422c498c879eea8317e38126a8f9342aa89d3c12b33a39",
+  "source_output_path": "C:\\Users\\13326\\.codex\\generated_images\\01a1027d-94a5-78a1-b838-65c51de7ce89\\exec-b18cd252-9905-48f4-bcd6-29cfbcb3937c.png",
+  "reference": {
+    "role": "user-provided style reference only",
+    "filename": "codex-clipboard-9034b184-c81a-4970-96cc-6a450c8738e6.png"
+  },
+  "license": "Original artwork generated for this project with OpenAI image generation; service terms apply. The style reference was supplied by the user.",
+  "prompt": "Use case: stylized-concept\nAsset type: production game guardian dragon sprite B10-D03, Comet-Tail Wind Dragon / 彗轨风龙.\nInput image: supplied Starlit Dragon Court image is STYLE REFERENCE ONLY for the luminous ivory-gold-sapphire palette, bright hand-painted cartoon fantasy and celestial dragons. No reference text, humanoids or landscape.\nPrimary request: one complete non-humanoid quadrupedal comet dragon. Give it a visibly slender aerodynamic reptilian body, elongated swan-like neck, narrow swept-back sapphire horns, sleek white scales edged in gold, two narrow scythe-shaped wings with translucent sky-blue membranes, four graceful clawed legs, and a very long elegant S-curving comet tail with THREE small glowing blue crystal fins along its tip. The tail is solid dragon anatomy, with a subtle attached pale-blue magical comet shimmer that never hides its tip. Compared to a bulky wing dragon its silhouette is agile, narrow-winged and extraordinarily long-tailed. One head only.\nCamera/pose: high camera three-quarter downward view around 45 degrees, near-isometric 2.5D game view, facing southeast / screen lower-right. Stand in a nimble stalking stance with all feet readable and wings partially spread upward. Tail curls toward the upper-left inside the canvas. See top of back and head.\nStyle/medium: bright hand-painted cartoon fantasy, warm daylight, polished brush texture and soft 2.5D painted depth, fresh colors, crisp legible silhouette; bright ivory, sapphire, sky-blue and restrained warm gold.\nCanvas: native square 1536 x 1536 PNG requested or larger, minimum native 1254 x 1254. Complete dragon fills 80-85 percent of height, actual painted silhouette at least 1000 pixels tall for downscaling in a 2560 x 1440 game. Keep at least 7 percent true transparent padding all around; every tail tip, wing tip, claw and horn fully contained.\nBackground: genuine transparent RGBA alpha. No floor, ground shadow, cloud environment, backdrop, pedestal, board or frame.\nConstraints: exactly one full dragon, one head, four legs and two wings; no humanoid body, no armor person, no carried weapon; no labels, words, letters, numbers, logos, watermark, UI, spritesheet; no cropped parts; no dark realism.",
+  "verification": {
+    "subject": "One complete non-humanoid dragon, all tail and wing tips retained",
+    "camera": "High three-quarter oblique down view, facing southeast",
+    "visual_review": true,
+    "native_no_upscale": true,
+    "usage": "218-world-unit body rendered by downscaling for 2K viewport"
+  },
+  "effective_body_height_px": 1224,
+  "effective_body_height_measurement": "Native alpha >=16 bounding-box height; source pixels preserved."
+}

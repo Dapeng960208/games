@@ -44,8 +44,8 @@ func _run() -> void:
 	if OS.get_cmdline_user_args().has("--b09-release-gate"):
 		check(not Rules.b09_candidate_enabled(),"ordinary profile lacks B09 candidate")
 		check(int(Rules.value("implemented_chapters"))==6,"six formal chapters remain released")
-		check(preload("res://scripts/domain/progression/hero_progression.gd").level_cap()==30,"formal level cap30")
-		check(ContentRegistry.equipment_ids(2).size()==194,"formal catalog retains194 released templates")
+		check(preload("res://scripts/domain/progression/hero_progression.gd").level_cap()==50,"final chapter raises the production level cap to50")
+		check(ContentRegistry.equipment_ids(2).size()==230,"production contains194 prior templates and36 final chapter templates")
 		check(ContentRegistry.equipment("B09-SW-weapon",2).is_empty(),"B09 definition inaccessible outside strict candidate")
 		check(not ContentRegistry.sets(2).has("B09-SW"),"B09 sets inaccessible")
 		var denied := Acquisition.roll_item({"instance_id":"unreleased","source_event_id":"unreleased","template_id":"B09-SW-weapon","rarity":"purple","power_type":"physical","item_level":45,"source":"drop","hero_id":"CH01"},1)

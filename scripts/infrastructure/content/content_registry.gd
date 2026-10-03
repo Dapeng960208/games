@@ -3,6 +3,7 @@ extends RefCounted
 const Progression = preload("res://scripts/domain/progression/hero_progression.gd")
 const ClassPolicy = preload("res://scripts/domain/equipment/equipment_class_policy.gd")
 const B05Catalog = preload("res://scripts/levels/b05/equipment/equipment_catalog.gd")
+const B10Catalog = preload("res://scripts/levels/b10/equipment/equipment_catalog.gd")
 const B09Catalog = preload("res://scripts/levels/b09/equipment/equipment_catalog.gd")
 const B06Catalog = preload("res://scripts/levels/b06/equipment/equipment_catalog.gd")
 const Rules = preload("res://scripts/infrastructure/content/runtime_rules.gd")
@@ -31,6 +32,70 @@ const B06_UNIQUE_TEXT := {
  "B06-U01":["地形减速幅度-20%，同类上限50%；不减潮推距离","Terrain slow magnitude -20%, combined cap 50%; does not reduce tide push"],
  "B06-U02":["自身护盾实承伤后受治疗+8%4秒；冷却12秒","After own shield absorbs damage: received healing +8% for 4s; 12s ICD"],
  "B06-U03":["完成战斗机关交互后获4%生命盾3秒；冷却15秒","Complete a combat mechanism interaction: 4% HP shield for 3s; 15s ICD"]
+}
+
+const B10_SET_TEXT := {
+ "B10-SW": {
+  "2": [
+   "破阵冲锋直接伤害+8%",
+   "Formation Charge direct damage +8%"
+  ],
+  "4": [
+   "4秒内破阵冲锋→裂地重斩命中同敌获得星誓，最多2层，持续8秒；每次施法一次",
+   "Formation Charge then Earthsplit Cleave hitting the same enemy within 4s grants a Star Oath, max 2 for 8s; once per cast"
+  ],
+  "6": [
+   "铁壁战吼成功提交消耗星誓：下次裂地重斩每层伤害+8%、命中获每层3%生命盾4秒；窗口6秒，冷却12秒",
+   "Ironwall Warcry consumes Star Oaths: next Earthsplit Cleave gains +8% damage and a 3% HP shield for 4s per stack; 6s window, 12s ICD"
+  ]
+ },
+ "B10-SG": {
+  "2": [
+   "磁轨贯穿主目标伤害+8%",
+   "Rail Pierce primary target damage +8%"
+  ],
+  "4": [
+   "震爆榴弹命中留下6秒彗轨印，下次磁轨贯穿命中追加0.30P；冷却8秒",
+   "Shock Grenade marks a target for 6s; the next Rail Pierce hit adds 0.30P; 8s ICD"
+  ],
+  "6": [
+   "8秒内游击撤射真实转位、震爆榴弹与磁轨贯穿命中同敌，下次火力倾泻实发前3弹对其各追加0.18P；窗口6秒，冷却12秒",
+   "Real Skirmish Retreat movement then Shock Grenade and Rail Pierce hits on one target within 8s: the next Barrage first 3 fired rounds add 0.18P against it; 6s window, 12s ICD"
+  ]
+ },
+ "B10-SM": {
+  "2": [
+   "星铃飞弹直接伤害+8%",
+   "Starbell Bolt direct damage +8%"
+  ],
+  "4": [
+   "8秒内成功付费施放十二技能中的三种不同技能且总实耗>80，回复80法力；冷却10秒",
+   "Three different successful paid spells from the twelve-skill catalog within 8s spending more than 80 mana restore 80; 10s ICD"
+  ],
+  "6": [
+   "同一三技能事件后，下次星铃飞弹或星愿之庭首段追加0.60P星环，最多3目标并共享派生伤害预算；窗口6秒，冷却12秒",
+   "After the same three-spell event, the next Starbell Bolt or Court of Wishes first segment adds a 0.60P star burst to up to 3 targets within the shared derived-damage budget; 6s window, 12s ICD"
+  ]
+ },
+ "B10-SU": {
+  "2": [
+   "受到远程直接伤害-6%",
+   "Ranged direct damage received -6%"
+  ],
+  "4": [
+   "自身护盾被实际伤害击破后，下个成功付费技能成本-8%；支持十二技能，窗口6秒，冷却12秒",
+   "After own shield breaks from real damage, the next successful paid skill costs 8% less; supports all twelve skills; 6s window, 12s ICD"
+  ],
+  "6": [
+   "10秒内真实移动160、直接命中、技能成功提交，获直接减伤8%及移速8%4秒；支持十二技能，冷却12秒",
+   "Move 160, land a direct hit and commit a skill within 10s: direct damage reduction and speed +8% for 4s; supports all twelve skills; 12s ICD"
+  ]
+ }
+}
+const B10_UNIQUE_TEXT := {
+ "B10-U01":["普通减速结束后下一次闪避剩余冷却-0.5秒；冷却12秒","After an ordinary slow ends: next dash cooldown -0.5s; 12s ICD"],
+ "B10-U02":["自己击破敌盾或供能机关后获3%最大生命盾4秒；冷却12秒","Break an enemy shield or power mechanism: 3% max HP shield for 4s; 12s ICD"],
+ "B10-U03":["从敌方普通位移恢复后直接减伤6%4秒；冷却15秒","Recover from ordinary enemy forced movement: direct damage received -6% for 4s; 15s ICD"]
 }
 
 static var _heroes: Dictionary = _read_json("res://data/characters/heroes.json")
@@ -66,6 +131,7 @@ static func slots(ruleset: int = 1) -> Array[String]:
 static func equipment(id: String, ruleset: int = 1) -> Dictionary:
 	var catalog := _v2_equipment() if ruleset == 2 else _equipment
 	if id.begins_with("B09-") and not Rules.b09_candidate_enabled(): return {}
+	if id.begins_with("B10-") and not Rules.chapter_enabled("B10"): return {}
 	var result: Dictionary = catalog.get(id, {}).duplicate(true)
 	if ruleset == 2 and not result.is_empty():
 		result["allowed_heroes"] = ClassPolicy.allowed_heroes(str(result.get("set_id", "")))
@@ -80,6 +146,8 @@ static func equipment_ids(ruleset: int = 1) -> Array:
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B05-"))
 	if ruleset == 2 and int(Rules.value("implemented_chapters",4)) < 6:
 		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B06-"))
+	if ruleset == 2 and not Rules.chapter_enabled("B10"):
+		ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B10-"))
 	if ruleset == 2 and not Rules.b09_candidate_enabled(): ids = ids.filter(func(id: String) -> bool: return not id.begins_with("B09-"))
 	ids.sort()
 	return ids
@@ -100,6 +168,8 @@ static func sets(ruleset: int = 1) -> Dictionary:
 			for set_id: String in B05Catalog.sets(): result[set_id] = _b05_set(set_id)
 		if int(Rules.value("implemented_chapters",4)) >= 6:
 			for set_id: String in B06Catalog.sets(): result[set_id] = _b06_set(set_id)
+		if Rules.chapter_enabled("B10"):
+			for set_id: String in B10Catalog.sets(): result[set_id] = _b10_set(set_id)
 		if Rules.b09_candidate_enabled():
 			for set_id: String in B09Catalog.sets():
 				var definition: Dictionary = B09Catalog.sets()[set_id]
@@ -214,6 +284,26 @@ static func _v2_equipment() -> Dictionary:
 		item["runtime_implemented"] = true
 		if not item.unique_effect.is_empty(): item.unique_effect["runtime_implemented"] = true
 		_equipment_v2[id] = item
+	for id: String in B10Catalog.equipment_ids():
+		var item := B10Catalog.equipment(id)
+		item["drop_origin"] = "B10"
+		item["class_policy_version"] = ClassPolicy.B10_VERSION
+		item["affix_tendencies"] = item.affix_tendencies_by_power[item.power_types[0]].duplicate()
+		item["description"] = "星辉龙庭终章装备；共有实例获得时固定物理/魔法取向"
+		item["description_en"] = "Star Dragon Court finale gear; shared instances retain their acquired physical or magical orientation"
+		item["base_stat_text"] = "属性由装备实例决定"
+		item["base_stat_text_en"] = "Stats are determined by the equipment instance"
+		item["affix_id"] = ""
+		item["affix_text"] = B10_UNIQUE_TEXT.get(id, ["", ""])[0]
+		item["affix_text_en"] = B10_UNIQUE_TEXT.get(id, ["", ""])[1]
+		item["runtime_implemented"] = true
+		if id == B10Catalog.FINALE_RING_ID:
+			item["drop_origin"] = ""
+			item["description"] = "最高难度终章胜利后首次撤离的账号唯一奖品；三职业共享，固定提升全部属性，不能交易或改造"
+			item["description_en"] = "One per account after the first successful extraction from the final chapter on maximum difficulty; boosts every stat for all three classes; cannot be traded or forged"
+			item["base_stat_text"] = "全部十九项属性固定提升，物理与魔法属性同时生效"
+			item["base_stat_text_en"] = "Fixed bonuses to all nineteen stats, with physical and magical stats active together"
+		_equipment_v2[id] = item
 	for id: String in B09Catalog.equipment_ids():
 		var item := B09Catalog.equipment(id)
 		item.merge({"drop_origin":"B09", "class_policy_version":4, "description":"霜晶王庭候选装备；固定取向、属性与效果由真实装备实例解析", "description_en":"Crystal Court candidate gear; instance stats and combat effects", "base_stat_text":"属性由装备实例决定", "base_stat_text_en":"Stats are determined by the equipment instance", "affix_id":"", "affix_text":"", "affix_text_en":""})
@@ -223,6 +313,17 @@ static func _v2_equipment() -> Dictionary:
 			item["affix_text_en"] = item.affix_text
 		_equipment_v2[id] = item
 	return _equipment_v2
+
+static func _b10_set(set_id: String) -> Dictionary:
+	var result: Dictionary = B10Catalog.sets().get(set_id, {}).duplicate(true)
+	if result.is_empty(): return result
+	result["race_id"] = "B10"
+	result["class_policy_version"] = ClassPolicy.B10_VERSION
+	for tier: String in result.thresholds:
+		result.thresholds[tier]["name"] = result.name + " " + tier
+		result.thresholds[tier]["text"] = B10_SET_TEXT[set_id][tier][0]
+		result.thresholds[tier]["text_en"] = B10_SET_TEXT[set_id][tier][1]
+	return result
 
 static func _b06_set(set_id: String) -> Dictionary:
 	var result: Dictionary = B06Catalog.sets().get(set_id,{}).duplicate(true)
@@ -400,9 +501,10 @@ static func _check_required(definition: Dictionary, fields: Array, label: String
 static func _validate_v2() -> Array[String]:
 	var errors: Array[String] = []
 	var b05_released := int(Rules.value("implemented_chapters", 4)) >= 5
-	if equipment_ids(2).size() != ((194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124) + (35 if Rules.b09_candidate_enabled() else 0)): errors.append("Unexpected version-two template count.")
+	if equipment_ids(2).size() != ((194 if int(Rules.value("implemented_chapters",4))>=6 else 159 if b05_released else 124) + (35 if Rules.b09_candidate_enabled() else 0) + (36 if Rules.chapter_enabled("B10") else 0)): errors.append("Unexpected version-two template count.")
 	errors.append_array(B05Catalog.validate())
 	errors.append_array(B06Catalog.validate())
+	errors.append_array(B10Catalog.validate())
 	errors.append_array(B09Catalog.validate())
 	if slots(2).size() != 8: errors.append("Expected eight version-two slots.")
 	var general_count := 0

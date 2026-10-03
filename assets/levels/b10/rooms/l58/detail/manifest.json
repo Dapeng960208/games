@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "room_id": "L58",
+  "approved": true,
+  "source_texture": "asset://world/rooms/L58_environment_v1.png",
+  "source_size": [
+    1564,
+    1006
+  ],
+  "source_sha256": "e0b1cf6f1a3b17ec6857fbfdbba53cbd86210ca83859a86c163d5057e318ea29",
+  "generation_tool": "built-in image_gen",
+  "representation": "Six true-square 538x538 source-region references repainted at native 1254x1254 with matching aspect; overlapping feather zones retain fallback.",
+  "feather_source_pixels": [
+    12,
+    34
+  ],
+  "tiles": [
+    {
+      "id": "top_left",
+      "texture": "asset://world/rooms_2k/L58/top_left.png",
+      "source_rect": [
+        0,
+        0,
+        538,
+        538
+      ],
+      "reference_native_size": [
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "604c1604f52c0274f36782978f76b851dd7ac1edbf2068ada30cb12b3196aa06",
+      "encoding": "Original native generated PNG bytes; no re-encoding, resize, stretching or upscale.",
+      "prompt": "Use case: precise-object-edit. Asset type: L58 top_left native-resolution detail tile for a game room painting. Input image is a 538x538 SQUARE reference and the edit target; redraw its ENTIRE exact frame as one native 1536x1536 square PNG, using genuinely newly painted fine details. This is a geometry-locked high-resolution redraw, not a new scene. Preserve every object and all four edges at the same strict normalized coordinates, full-frame coverage, square aspect ratio, camera, perspective, silhouettes, floor geometry, contours, sizes and placements. Do not crop, zoom, rotate, reframe, shift, stretch or add padding. Keep the foreground pearl-white floor paving and thin warm-gold star inlays, the partial gold circular floor ring entering the right edge, the curved ivory and gold balustrade and existing planter pots with tiny green foliage and white lavender flowers, the existing blue crystal architectural arches at left and upper right, the hanging narrow blue and gold banner, the distant white fantasy castle, cyan waterfall and bright white cloud sea exactly as in the reference. Preserve the floor tile seams and all star inlay endpoints where they touch each edge. The near floor is a flat navigable surface; do not create raised steps, blocking props or new geometry. Improve only hand-painted surface micro-detail, crisp linework, gold metal highlights, pearl stone texture, soft foliage detail and cloud/water detail. Style: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth, clear soft daylight, clean painterly outlines. Palette: pearl white, warm gold, sky blue and luminous blue star-crystal; purple only as tiny subtle shadow accents. Preserve objects already present; no new objects. No characters, monsters, dragon, portal, central star core, text, UI, labels, watermark, realism or dark gloomy lighting. Output one native 1536x1536 PNG (actual resolution at least 1254x1254); no synthetic resize or upsampling. Geometry fidelity to this exact square reference is the highest priority.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e4-c7ec-7063-91d3-c9b5e665cbc5/exec-9a0128c9-3387-4ec2-adbd-5cbe144f8954.png",
+      "reference_crop_sha256": "a4de3d2380afbb27c1262db583bbdc0be36859fac1471ad7e855ca096e81a39a",
+      "reference_crop_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/top_left.png",
+      "provenance": "provenance/top_left.json",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "top_middle",
+      "texture": "asset://world/rooms_2k/L58/top_middle.png",
+      "source_rect": [
+        513,
+        0,
+        538,
+        538
+      ],
+      "reference_native_size": [
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "75e319d36d50a9c1c76745aa7e473a3b3611bcd2cbebb6a503b0e9aa87329b6f",
+      "encoding": "Original native generated PNG bytes; no re-encoding, resize, stretching or upscale.",
+      "prompt": "Use case: stylized-concept.\nAsset type: native high-resolution square detail texture for the L58 fantasy game room, top_middle tile.\nInput image 1 is the exact 538×538 full-frame composition and geometry reference. Redraw this whole square frame at native 1536×1536 resolution (actual output must be at least 1254×1254), adding only fine hand-painted material detail and crisp edges. Keep every visible object, full frame, all four edges and every normalized position exactly aligned with the reference. No zoom, crop, padding, reframing, stretching, rotation, changed perspective, or moved geometry.\nScene: bright pearl-white marble terrace with thin warm-gold flat inlaid concentric floor rings, blue star-crystal floor motifs along the vertical centerline, gold railing ornaments, and distant cloud castles exactly as shown. The ground pattern is flat floor inlay, not raised objects. Preserve the partial star at the bottom edge and the cut ring edges so this tile joins the surrounding room.\nStyle: bright hand-painted cartoon fantasy, high-camera three-quarter oblique overhead view, near-isometric 2.5D substance; pearl white, warm gold, clear blue star crystal and sunlit cloud sea. Purple only as a tiny shadow accent. Increase subtle marble grain, brush strokes, gold edge clarity and crystalline highlights without changing shape or location.\nConstraints: preserve the complete original square field and exact normalized ground/object geometry; retain only objects already present, including existing perimeter decorative structures. No new objects, text, watermark, UI, characters, creature, dragon, portal, star core, dramatic shadows or fog hiding the floor. Output one opaque native square PNG.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e5-5725-7133-971c-345abf905415/exec-88ebfe7e-df61-4d5b-92a6-8461c1e6714c.png",
+      "reference_crop_sha256": "b31fb05c63a8d70a2b04030ad48e2ca8cff39ebfee9bc0b9d51b2cf38aaebeca",
+      "reference_crop_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/top_middle.png",
+      "provenance": "provenance/top_middle.json",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "top_right",
+      "texture": "asset://world/rooms_2k/L58/top_right.png",
+      "source_rect": [
+        1026,
+        0,
+        538,
+        538
+      ],
+      "reference_native_size": [
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "398fb54f5f3d8f4dc788580c09bb14b2d0869c8276bf5eddddd0b2ce3ec29835",
+      "encoding": "Original native generated PNG bytes; no re-encoding, resize, stretching or upscale.",
+      "prompt": "Use case: style-transfer.\nAsset type: production game room detail texture, L58 top_right; a square high-resolution redraw registered to the supplied square reference.\nInput image 1 is the sole composition and geometry reference. Render a native 1536 × 1536 PNG (square, at least 1254 × 1254 actual pixels). Redraw the complete 538 × 538 reference frame at higher native detail; do not crop, extend, rotate, mirror, add borders or padding, recenter, or change any normalized coordinates.\nPrimary request: faithfully refine the existing pearl-white and warm-gold fantasy courtyard with sapphire-blue star crystal, hanging gold bells, flowering planter, ornate blue-and-gold vertical banner, cream tiles, curved low walls, stairs and cloud sky. Keep every existing object, every tile edge, every gold ring arc, every footprint and every perimeter landmark at precisely the same normalized position, shape and perspective as the reference. Preserve all four full image edges and objects that meet them. Keep the existing outer decorative bells.\nStyle/medium: bright hand-painted cartoon fantasy, high-camera three-quarter oblique overhead view, near-isometric 2.5D depth. Crisp delicate painted outlines, softly modeled gold metal, pearl marble, blue faceted stained crystal, tiny white flowers and green foliage, luminous warm daylight. Pearl white / warm gold / blue star crystal dominate; purple is allowed only as tiny shadow tint.\nOnly increase fine painted material detail and edge clarity within the unchanged geometry. The lower-left partial concentric gold floor arc, upper hanging bell stage, right banner, top-left blue window and right-edge planter must be identical in placement and size. Do not add or remove objects.\nAvoid: any character, human, creature, dragon, portal, star core, text, letters, numbers, UI, watermarks, new ornaments, camera change, perspective distortion, dark mood, purple field, blank bands. This image is a texture aligned to a shared map coordinate transform, so exact framing is more important than creative reinterpretation.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e5-d20b-7523-966f-bbeb4f5ff166/exec-12efbbcf-27fa-407f-ac33-78d15f5441c5.png",
+      "reference_crop_sha256": "478edc193707486c6307cc45eb299c544a30e61b7d175c23c7481e40cd79eb09",
+      "reference_crop_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/top_right.png",
+      "provenance": "provenance/top_right.json",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_left",
+      "texture": "asset://world/rooms_2k/L58/bottom_left.png",
+      "source_rect": [
+        0,
+        468,
+        538,
+        538
+      ],
+      "reference_native_size": [
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "0e290c83b94f91f4c08f3721bd89b68be9ad9965331d17bd587e837cab88526c",
+      "encoding": "Original native generated PNG bytes; no re-encoding, resize, stretching or upscale.",
+      "prompt": "Use case: precise-object-edit. Asset type: L58 bottom_left native-resolution detail tile for a game room painting. Input image is a 538x538 SQUARE reference and the edit target; redraw its ENTIRE exact frame as one native 1536x1536 square PNG, with genuinely newly painted fine details. This is a geometry-locked high-resolution redraw, not a new scene. Preserve every object and all four edges at the same strict normalized coordinates, full-frame coverage, square aspect ratio, camera, perspective, silhouettes, floor geometry, contours, sizes and placements. Do not crop, zoom, rotate, reframe, shift, stretch or add padding. Keep the existing small outdoor decorative bell pavilion with two hanging warm-gold bells, its curving gold arch and ivory columns, the flat blue-and-gold circular star mosaic directly under it, the white curved planter with green foliage and small white/lavender flowers, the two large blue crystal shards within the planter, the pearl-white terrace tiles with thin gold star inlays, the partial flat gold floor ring entering the upper-right edge, and the lower cliffside blue crystal windows above the white cloud sea exactly as in the reference. Preserve the complete curved terrace rim, the tiny upper-left planter segment, all existing floor tile seams and every star inlay or ring endpoint where it reaches each edge. The top/right floor remains flat navigable ground, and the existing decorative bell remains on its same outside terrace; no extra steps, walls, objects or raised geometry. Improve only hand-painted surface micro-detail, crisp linework, gold metal highlights, pearl stone texture, fine flowers/foliage and subtle crystal facets. Style: bright hand-painted cartoon fantasy, high three-quarter oblique overhead camera, near-isometric 2.5D depth, clear soft daylight, clean painterly outlines. Palette: pearl white, warm gold, sky blue and luminous blue star-crystal; purple only as tiny subtle shadow accents. Preserve the decorative bell already present, but add no new objects. No characters, monsters, dragon, portal, central star core, text, UI, labels, watermark, realism or dark gloomy lighting. Output one native 1536x1536 PNG (actual resolution at least 1254x1254); no synthetic resize or upsampling. Geometry fidelity to this exact square reference is the highest priority.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e4-c7ec-7063-91d3-c9b5e665cbc5/exec-bfb23abb-d042-4215-9c55-0140371e19aa.png",
+      "reference_crop_sha256": "0a3c4ee7079fe969511a6cc81c5a2a3af27fefa9290e8a01474fb189ffb16a7c",
+      "reference_crop_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/bottom_left.png",
+      "provenance": "provenance/bottom_left.json",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_middle",
+      "texture": "asset://world/rooms_2k/L58/bottom_middle.png",
+      "source_rect": [
+        513,
+        468,
+        538,
+        538
+      ],
+      "reference_native_size": [
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "423911a4e1d3e0b2ce58ccce1b06fef4b60e747c651a8030ca05b6ea37aa8fc7",
+      "encoding": "Original native generated PNG bytes; no re-encoding, resize, stretching or upscale.",
+      "prompt": "Use case: stylized-concept.\nAsset type: native high-resolution square detail texture for the L58 fantasy game room, bottom_middle tile.\nInput image 1 is the exact 538×538 full-frame composition and geometry reference. Redraw this whole square frame at native 1536×1536 resolution (actual output must be at least 1254×1254), adding only fine hand-painted material detail and crisp edges. Keep every visible object, full frame, all four edges and every normalized position exactly aligned with the reference. No zoom, crop, padding, reframing, stretching, rotation, changed perspective, or moved geometry.\nScene: bright pearl-white marble floor with thin warm-gold flat inlaid concentric ring arcs, blue star-crystal floor motifs along the vertical centerline, and a curved front terrace edge with blue diamond crystalline facade and soft white clouds exactly as shown. The ground pattern is flat floor inlay, not raised objects. Preserve the partial central star and ring edges cut off by the top edge, the partially visible decorative column at the lower left, the star-shaped facade ornaments and the lower cloud crop. Each feature must stay at exactly the same normalized reference position so this tile joins surrounding room tiles.\nStyle: bright hand-painted cartoon fantasy, high-camera three-quarter oblique overhead view, near-isometric 2.5D substance; pearl white, warm gold, clear blue star crystal and sunlit cloud sea. Purple only as a tiny shadow accent. Increase subtle marble grain, brush strokes, gold edge clarity and crystalline highlights without changing shape or location.\nConstraints: preserve the complete original square field and exact normalized ground/object geometry; retain only objects already present, including existing perimeter decorative structures. No new objects, text, watermark, UI, characters, creature, dragon, portal, star core, dramatic shadows or fog hiding the floor. Output one opaque native square PNG.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e5-5725-7133-971c-345abf905415/exec-b9439d8d-05db-4235-bbdc-1bc3de40456a.png",
+      "reference_crop_sha256": "0ccdc918a800df96583106ecff210bbfc783748e942197733a68d6e0216d0348",
+      "reference_crop_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/bottom_middle.png",
+      "provenance": "provenance/bottom_middle.json",
+      "license": "Project-generated original artwork."
+    },
+    {
+      "id": "bottom_right",
+      "texture": "asset://world/rooms_2k/L58/bottom_right.png",
+      "source_rect": [
+        1026,
+        468,
+        538,
+        538
+      ],
+      "reference_native_size": [
+        538,
+        538
+      ],
+      "native_size": [
+        1254,
+        1254
+      ],
+      "generated_png_sha256": "a1549da31cac984c82566b8e741465859b803e594151022dfb9548cdb52f66f4",
+      "encoding": "Original native generated PNG bytes; no re-encoding, resize, stretching or upscale.",
+      "prompt": "Use case: style-transfer.\nAsset type: production game room detail texture, L58 bottom_right; a square high-resolution redraw registered to the supplied square reference.\nInput image 1 is the sole composition and geometry reference. Render a native 1536 × 1536 PNG (square, at least 1254 × 1254 actual pixels). Redraw the complete 538 × 538 reference frame at higher native detail; do not crop, extend, rotate, mirror, add borders or padding, recenter, or change any normalized coordinates.\nPrimary request: faithfully refine the existing pearl-white and warm-gold fantasy courtyard edge, sapphire-blue stained star crystal parapet, green foliage and tiny white flowers in the upper-right planter, floating fantasy castle and waterfall islands, bright clouds and clear sky. Keep every existing object, every cream tile edge, every gold floor arc, every parapet contour and every island landmark at precisely the same normalized position, shape and perspective as the reference. Preserve all four full image edges and all objects that meet them.\nStyle/medium: bright hand-painted cartoon fantasy, high-camera three-quarter oblique overhead view, near-isometric 2.5D depth. Crisp delicate painted outlines, softly modeled gold metal, pearl marble, blue faceted stained crystal, white clouds, fresh green foliage, luminous warm daylight. Pearl white / warm gold / blue star crystal dominate; purple is allowed only as tiny shadow tint.\nOnly increase fine painted material detail and edge clarity within the unchanged geometry. The partial concentric gold floor arcs at upper left, curved parapet crossing diagonally from lower left to upper right, vertical ornate gold crest pillar at about 58 percent width / 54 percent height, and floating blue castle at right must be identical in placement and size. Keep the original open cloud region and the complete edge framing. Do not add or remove objects.\nAvoid: any character, human, creature, dragon, portal, star core, text, letters, numbers, UI, watermarks, new ornaments, camera change, perspective distortion, dark mood, purple field, blank bands. This image is a texture aligned to a shared map coordinate transform, so exact framing is more important than creative reinterpretation.",
+      "generated_source_path": "C:/Users/13326/.codex/generated_images/01a102e5-d20b-7523-966f-bbeb4f5ff166/exec-ff4421f3-4178-4221-a038-4a65bc9aa5fe.png",
+      "reference_crop_sha256": "1781e2e24b67e53755f2c70c606bf352bf8b7032ba229896371c921a97b9d262",
+      "reference_crop_path": "C:/Users/13326/.codex/generated_images/01a10278-133f-7f93-bbc4-5964f300b65b/l58_square_references/bottom_right.png",
+      "provenance": "provenance/bottom_right.json",
+      "license": "Project-generated original artwork."
+    }
+  ],
+  "approval_scope": "Native source bytes, shared coordinate mapping and uniform non-enlarging detail rendering verified at 2560x1440; controlled integration acceptance, not natural combat balance",
+  "acceptance": {
+    "geometry_changed_by_tiles": false,
+    "scale_or_upscale_applied": false,
+    "source_pixel_edits": "none",
+    "natural_playthrough_claimed": false
+  },
+  "superseded_source_record": "provenance/superseded_non_square_manifest.json",
+  "source_partition": "True square source crops: x=0/513/1026, y=0/468, each 538x538; no non-square normalization.",
+  "qa": {
+    "status": "native_source_and_gpu_mapping_verified",
+    "validation_record": "res://docs/levels/b10/validation.md",
+    "verified_framebuffer": [
+      2560,
+      1440
+    ],
+    "verified_professions": [
+      "CH01",
+      "CH02",
+      "CH03"
+    ]
+  },
+  "acceptance_claimed": true
+}

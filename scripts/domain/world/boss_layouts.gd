@@ -8,6 +8,7 @@ const Catalog = preload("res://scripts/domain/world/world_catalog.gd")
 const FixedLayouts = preload("res://scripts/domain/world/fixed_room_layouts.gd")
 
 static func build(boss_id: String, seed_value: int, candidate: bool = false) -> Dictionary:
+	if boss_id == "BO10": return preload("res://scripts/levels/b10/world/room_layouts.gd").build(boss_id, seed_value)
 	if (candidate or Catalog.b06_enabled()) and boss_id == "BO06": return preload("res://scripts/levels/b06/world/room_layouts.gd").build(boss_id,seed_value)
 	if Catalog.b05_enabled() and boss_id=="BO05": return preload("res://scripts/levels/b05/world/room_layouts.gd").build(boss_id,seed_value)
 	if boss_id not in ["BO01", "BO02", "BO03", "BO04"]:
