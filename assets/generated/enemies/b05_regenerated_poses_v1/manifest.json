@@ -1,0 +1,4078 @@
+{
+  "schema_version": 1,
+  "pack_id": "B05_regenerated_ordinary_20261002",
+  "generation_tool": "built-in image_gen.imagegen",
+  "model_version": "unknown",
+  "new_generations_not_recovered_bytes": true,
+  "upscaled": false,
+  "original_reference_sha256": "e19feb1a77f78a7ec17403b300dc2680af6ac1bde651bce3964001ad7b73bf93",
+  "registration_status": "Fresh per-generation manual source pixel registration, with independent source checks; scoped runtime QA recorded per identity.",
+  "runtime_quality_gate_passed": true,
+  "scale_rule": "Use one fixed native pixel/world ratio per identity from idle reference_body_height_px; never normalize each frame alpha bbox.",
+  "identities": {
+    "B05-M03": {
+      "reference_body_height_px": 875.5,
+      "frames": {
+        "idle": {
+          "texture": "B05-M03_idle-v2-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "8752ff1825dcde2e20e6e073760dea9639e659a3151e081c77e8336a92b64c83",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            226,
+            236,
+            1143,
+            1182
+          ],
+          "foot": [
+            665.0,
+            1113.5
+          ],
+          "foot_contacts": [
+            [
+              390,
+              1083
+            ],
+            [
+              940,
+              1144
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            755,
+            238
+          ],
+          "visual_outlet": [
+            754,
+            599
+          ],
+          "outlet_kind": "body_impact_front",
+          "native_pose_height_to_ground_px": 875.5,
+          "prompt": "B05-M03_idle-v2.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [],
+          "ground_trail_outlet": [
+            665.0,
+            1113.5
+          ],
+          "reference_body_height_px": 875.5,
+          "core_anchor": [
+            695,
+            653
+          ],
+          "raw_nonzero_alpha_bbox": [
+            41,
+            21,
+            1216,
+            1254
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            226,
+            236,
+            111,
+            72
+          ],
+          "prompt_sha256": "b0204b3a899484c80802dd9ea00c16a9a8225e4b32b9cf352ada5a55a464dd73",
+          "source_generated_file": "exec-4f3e38c0-0f18-45c3-9d2c-124d1d35e5b8.png",
+          "generation_id": "M03_idle-v2"
+        },
+        "telegraph": {
+          "texture": "B05-M03_telegraph-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "c6aa1e18838c763f1e3ee92dab8381c8423f99da3c6bbc75e3eac43b4118e567",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            103,
+            350,
+            1232,
+            1160
+          ],
+          "foot": [
+            662.0,
+            1106.5
+          ],
+          "foot_contacts": [
+            [
+              313,
+              1117
+            ],
+            [
+              1011,
+              1096
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            804,
+            351
+          ],
+          "visual_outlet": [
+            1017,
+            693
+          ],
+          "outlet_kind": "body_impact_front",
+          "native_pose_height_to_ground_px": 755.5,
+          "prompt": "B05-M03_telegraph.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [],
+          "ground_trail_outlet": [
+            662.0,
+            1106.5
+          ],
+          "reference_body_height_px": 875.5,
+          "core_anchor": [
+            744,
+            687
+          ],
+          "raw_nonzero_alpha_bbox": [
+            43,
+            21,
+            1238,
+            1254
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            103,
+            350,
+            22,
+            94
+          ],
+          "prompt_sha256": "f12d2b439d9cee3cea8f27a031f5591c67fc36a960cba5b47406316427a52504",
+          "source_generated_file": "exec-42de13ee-8acf-4acf-b2f2-dd1fe9272879.png",
+          "generation_id": "M03_telegraph"
+        },
+        "execute": {
+          "texture": "B05-M03_execute-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "5df115b5e559dbf969afd7f88c331e08ce785af6723f9daec8f350efe36ba92f",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            71,
+            321,
+            1225,
+            1159
+          ],
+          "foot": [
+            641.0,
+            1078.0
+          ],
+          "foot_contacts": [
+            [
+              247,
+              1116
+            ],
+            [
+              1035,
+              1040
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            912,
+            319
+          ],
+          "visual_outlet": [
+            1030,
+            629
+          ],
+          "outlet_kind": "body_impact_front",
+          "native_pose_height_to_ground_px": 759.0,
+          "prompt": "B05-M03_execute.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [],
+          "ground_trail_outlet": [
+            641.0,
+            1078.0
+          ],
+          "reference_body_height_px": 875.5,
+          "core_anchor": [
+            829,
+            665
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            19,
+            1232,
+            1254
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            71,
+            321,
+            29,
+            95
+          ],
+          "prompt_sha256": "b15e43dd335ed64f5db495df5f09f8bcb5d799a3d42951ae8e10e46daa57aa65",
+          "source_generated_file": "exec-8793fcef-5033-4841-b61a-1e60e78e64c4.png",
+          "generation_id": "M03_execute"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M05": {
+      "reference_body_height_px": 1125.5,
+      "frames": {
+        "idle": {
+          "texture": "B05-M05_idle-v2-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "35d1406eac4c37675f3cdb7a405b5775e11f85aea16fab21b52ca27e1fdbbe0b",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            265,
+            17,
+            1083,
+            1237
+          ],
+          "foot": [
+            733.5,
+            1143.5
+          ],
+          "foot_contacts": [
+            [
+              548,
+              1185
+            ],
+            [
+              919,
+              1102
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            756,
+            18
+          ],
+          "visual_outlet": [
+            978,
+            807
+          ],
+          "outlet_kind": "hedge_placement_hand",
+          "native_pose_height_to_ground_px": 1125.5,
+          "prompt": "B05-M05_idle-v2.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "reference_body_height_px": 1125.5,
+          "core_anchor": [
+            740,
+            696
+          ],
+          "raw_nonzero_alpha_bbox": [
+            47,
+            15,
+            1148,
+            1240
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            265,
+            17,
+            171,
+            17
+          ],
+          "prompt_sha256": "be6e94fca7764e68ae784398024e2bfab5ade0daf65ea4062f857b04ad3b0578",
+          "source_generated_file": "exec-b086af7c-0884-4ba9-8a12-a2dd3070e60a.png",
+          "generation_id": "M05_idle-v2"
+        },
+        "telegraph": {
+          "texture": "B05-M05_telegraph-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "a60e46e2f80bbcb6237c0f28aa0a022453c9474fa6be87b7da1b7800b48bacec",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            241,
+            15,
+            1117,
+            1240
+          ],
+          "foot": [
+            691.5,
+            1140.5
+          ],
+          "foot_contacts": [
+            [
+              448,
+              1182
+            ],
+            [
+              935,
+              1099
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            768,
+            17
+          ],
+          "visual_outlet": [
+            696,
+            676
+          ],
+          "outlet_kind": "hedge_placement_hand",
+          "native_pose_height_to_ground_px": 1123.5,
+          "prompt": "B05-M05_telegraph.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "reference_body_height_px": 1125.5,
+          "core_anchor": [
+            725,
+            708
+          ],
+          "raw_nonzero_alpha_bbox": [
+            39,
+            13,
+            1226,
+            1242
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            241,
+            15,
+            137,
+            14
+          ],
+          "prompt_sha256": "2c8a563c2b35df2ae22b556b54d927bd204358f6491bdf603dd82a319987053d",
+          "source_generated_file": "exec-476ff8f2-6249-4855-8e03-57c423637dec.png",
+          "generation_id": "M05_telegraph"
+        },
+        "execute": {
+          "texture": "B05-M05_execute-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "33940ffdbb3b86b9138e9a906a98a1e3ec64b68467cfe3d85f88a3678943f835",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            153,
+            32,
+            1225,
+            1228
+          ],
+          "foot": [
+            546.5,
+            1164.0
+          ],
+          "foot_contacts": [
+            [
+              338,
+              1178
+            ],
+            [
+              755,
+              1150
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            788,
+            29
+          ],
+          "visual_outlet": [
+            988,
+            990
+          ],
+          "outlet_kind": "hedge_placement_hand",
+          "native_pose_height_to_ground_px": 1135.0,
+          "prompt": "B05-M05_execute.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [],
+          "reference_body_height_px": 1125.5,
+          "core_anchor": [
+            736,
+            722
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            21,
+            1227,
+            1230
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            153,
+            32,
+            29,
+            26
+          ],
+          "prompt_sha256": "cf0ae1e9818e2589f928a49c1f9ef70b255bccf4c340f368bc7a56796f03f78e",
+          "source_generated_file": "exec-6507c442-bf99-4026-a703-55172eff9e50.png",
+          "generation_id": "M05_execute"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M06": {
+      "reference_body_height_px": 1139.5,
+      "frames": {
+        "idle": {
+          "texture": "B05-M06_idle-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "19163f5c0b15ab0b7bbb4d2066f1dd31a2599c102115e517441be1a51899333c",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            175,
+            20,
+            1217,
+            1234
+          ],
+          "foot": [
+            685.5,
+            1159.5
+          ],
+          "foot_contacts": [
+            [
+              451,
+              1190
+            ],
+            [
+              920,
+              1129
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            591,
+            20
+          ],
+          "visual_outlet": [
+            1215,
+            33
+          ],
+          "outlet_kind": "leaf_spear_tip",
+          "native_pose_height_to_ground_px": 1139.5,
+          "prompt": "B05-M06_idle.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [],
+          "weapon_hand_anchor": [
+            932,
+            520
+          ],
+          "reference_body_height_px": 1139.5,
+          "core_anchor": [
+            661,
+            632
+          ],
+          "raw_nonzero_alpha_bbox": [
+            19,
+            17,
+            1222,
+            1238
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            175,
+            20,
+            37,
+            20
+          ],
+          "prompt_sha256": "9cbd069c4cb0232bca1b0a724a7dd46a797f805b991573ed0934c4b542ff8bfc",
+          "source_generated_file": "exec-0225d453-c066-468d-b588-283f290245ee.png",
+          "generation_id": "M06_idle"
+        },
+        "telegraph": {
+          "texture": "B05-M06_telegraph-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "b7292c9fbfd46d80958ca6a70c5a95edfa94599329d8a89359123478d99f93fd",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            30,
+            66,
+            1235,
+            1213
+          ],
+          "foot": [
+            635.5,
+            1114.0
+          ],
+          "foot_contacts": [
+            [
+              267,
+              1167
+            ],
+            [
+              1004,
+              1061
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            534,
+            65
+          ],
+          "visual_outlet": [
+            1231,
+            399
+          ],
+          "outlet_kind": "leaf_spear_tip",
+          "native_pose_height_to_ground_px": 1049.0,
+          "prompt": "B05-M06_telegraph.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "weapon_hand_anchor": [
+            604,
+            531
+          ],
+          "reference_body_height_px": 1139.5,
+          "core_anchor": [
+            623,
+            619
+          ],
+          "raw_nonzero_alpha_bbox": [
+            19,
+            57,
+            1237,
+            1254
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            30,
+            66,
+            19,
+            41
+          ],
+          "prompt_sha256": "1fd8cc57efc9ab85939c414eedd63fea31d5034997b71398f67ebd60bb13601b",
+          "source_generated_file": "exec-ea9eb6f1-abaf-4fda-986b-2e30664f48fe.png",
+          "generation_id": "M06_telegraph"
+        },
+        "execute": {
+          "texture": "B05-M06_execute-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "6e0450122b7d41926cc1104bd4171becd3d1f39eaf4c6d68047a3304cc3e605e",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            11,
+            54,
+            1241,
+            1212
+          ],
+          "foot": [
+            492.0,
+            1138.0
+          ],
+          "foot_contacts": [
+            [
+              181,
+              1169
+            ],
+            [
+              803,
+              1107
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            350,
+            54
+          ],
+          "visual_outlet": [
+            1238,
+            303
+          ],
+          "outlet_kind": "leaf_spear_tip",
+          "native_pose_height_to_ground_px": 1084.0,
+          "prompt": "B05-M06_execute.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "library_status": "not_saved; earlier prepared transfer failed; no subsequent attempt",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "weapon_hand_anchor": [
+            720,
+            471
+          ],
+          "reference_body_height_px": 1139.5,
+          "core_anchor": [
+            618,
+            640
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            21,
+            1243,
+            1218
+          ],
+          "source_review": "New native pixels visually inspected 2026-10-02; complete anatomy and weapon, no alpha>=16 edge clipping. Under20px clearance retained as a disclosed QA advisory; scoped runtime/codex checks passed.",
+          "source_margin_alpha16_px": [
+            11,
+            54,
+            13,
+            42
+          ],
+          "prompt_sha256": "8b3d0744f73b06202d2821509a9192682ccfb7b1700a9e75a80ab1f1f9bd05ac",
+          "source_generated_file": "exec-b19a61eb-581f-43d3-86d1-8f7cdb4a0830.png",
+          "generation_id": "M06_execute"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M07": {
+      "reference_body_height_px": 1164.0,
+      "frames": {
+        "idle": {
+          "texture": "B05-M07_idle-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "1a41c24e10fe31d51d41c8c5795ba71a508496d4ec377cc6e151e6ec5de48734",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            276,
+            14,
+            1147,
+            1243
+          ],
+          "foot": [
+            630.0,
+            1178.0
+          ],
+          "body_base": [
+            630.0,
+            1178.0
+          ],
+          "foot_contacts": [
+            [
+              458,
+              1195
+            ],
+            [
+              802,
+              1161
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            639,
+            14
+          ],
+          "core_anchor": [
+            696,
+            610
+          ],
+          "visual_outlet": [
+            1038,
+            621
+          ],
+          "outlet_kind": "casting_palm",
+          "native_pose_height_to_ground_px": 1164.0,
+          "prompt": "B05-M07_idle.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "reference_body_height_px": 1164.0,
+          "source_margin_alpha16_px": [
+            276,
+            14,
+            107,
+            11
+          ],
+          "raw_nonzero_alpha_bbox": [
+            23,
+            11,
+            1240,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "9713d3e11d95419a2c9b150cc770213932bc98a977b2612b7a873b9eb28c6a68",
+          "source_generated_file": "exec-9518828f-16cc-4818-a035-e52dfcd5146b.png",
+          "generation_id": "M07_idle"
+        },
+        "telegraph": {
+          "texture": "B05-M07_telegraph-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "0d685c1a134e967fd577b0a7db4823825dd273907df735d6ba5c7036472467ad",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            270,
+            11,
+            1103,
+            1245
+          ],
+          "foot": [
+            630.0,
+            1178.0
+          ],
+          "body_base": [
+            630.0,
+            1178.0
+          ],
+          "foot_contacts": [
+            [
+              458,
+              1195
+            ],
+            [
+              802,
+              1161
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            611,
+            11
+          ],
+          "core_anchor": [
+            696,
+            610
+          ],
+          "visual_outlet": [
+            1006,
+            380
+          ],
+          "outlet_kind": "casting_palm",
+          "native_pose_height_to_ground_px": 1167.0,
+          "prompt": "B05-M07_telegraph.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "reference_body_height_px": 1164.0,
+          "source_margin_alpha16_px": [
+            270,
+            11,
+            151,
+            9
+          ],
+          "raw_nonzero_alpha_bbox": [
+            69,
+            9,
+            1214,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "184cb65d8292e8e340e18cc5294a6aded8c1e7d0c4e3814d3405d8aa32d4e080",
+          "source_generated_file": "exec-46aa2878-5309-4efa-9373-af470ce21214.png",
+          "generation_id": "M07_telegraph"
+        },
+        "execute": {
+          "texture": "B05-M07_execute-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "c5b46b50fa69334a039344dfe18eb7ee56e469cc516b12bc4c207c0ef58b015f",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            293,
+            17,
+            1173,
+            1241
+          ],
+          "foot": [
+            618.5,
+            1181.0
+          ],
+          "body_base": [
+            618.5,
+            1181.0
+          ],
+          "foot_contacts": [
+            [
+              443,
+              1199
+            ],
+            [
+              794,
+              1163
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            780,
+            17
+          ],
+          "core_anchor": [
+            699,
+            630
+          ],
+          "visual_outlet": [
+            1096,
+            904
+          ],
+          "outlet_kind": "casting_palm",
+          "native_pose_height_to_ground_px": 1164.0,
+          "prompt": "B05-M07_execute.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "reference_body_height_px": 1164.0,
+          "source_margin_alpha16_px": [
+            293,
+            17,
+            81,
+            13
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            15,
+            1230,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "ac3ba6a9be1ca6285f4fc5283ccc3dedde04526aaf8a9116242d0b5dbf2a0d04",
+          "source_generated_file": "exec-d9cfb534-784a-4a88-91d0-a63dc19a23b0.png",
+          "generation_id": "M07_execute"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M08": {
+      "reference_body_height_px": 1154.0,
+      "frames": {
+        "idle": {
+          "texture": "B05-M08_idle-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "f51222410daae812a254e6dc3436e877b594256d4255d29dd8ebc8f20c527c2d",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            129,
+            20,
+            1168,
+            1241
+          ],
+          "foot": [
+            626.5,
+            1174.0
+          ],
+          "body_base": [
+            626.5,
+            1174.0
+          ],
+          "foot_contacts": [
+            [
+              343,
+              1190
+            ],
+            [
+              910,
+              1158
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            420,
+            20
+          ],
+          "core_anchor": [
+            702,
+            672
+          ],
+          "visual_outlet": [
+            1016,
+            220
+          ],
+          "outlet_kind": "two_root_loom_knots",
+          "native_pose_height_to_ground_px": 1154.0,
+          "prompt": "B05-M08_idle.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "visual_outlets": [
+            [
+              429,
+              102
+            ],
+            [
+              1016,
+              220
+            ]
+          ],
+          "reference_body_height_px": 1154.0,
+          "source_margin_alpha16_px": [
+            129,
+            20,
+            86,
+            13
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            18,
+            1240,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "ec28cefa95408a993cb8eb35b3fc77fcc7ec709497902d69a14877dbe68c9ebf",
+          "source_generated_file": "exec-43ecc43f-9bc7-4f5a-84e9-d2b4b59e9eca.png",
+          "generation_id": "M08_idle"
+        },
+        "telegraph": {
+          "texture": "B05-M08_telegraph-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "4ec1cd45452f9cabbee88ec9999914d8313832053f70bd1cda8da31d68c17333",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            127,
+            15,
+            1205,
+            1243
+          ],
+          "foot": [
+            628.5,
+            1174.5
+          ],
+          "body_base": [
+            628.5,
+            1174.5
+          ],
+          "foot_contacts": [
+            [
+              348,
+              1190
+            ],
+            [
+              909,
+              1159
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            421,
+            15
+          ],
+          "core_anchor": [
+            702,
+            672
+          ],
+          "visual_outlet": [
+            1037,
+            234
+          ],
+          "outlet_kind": "two_root_loom_knots",
+          "native_pose_height_to_ground_px": 1159.5,
+          "prompt": "B05-M08_telegraph.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "visual_outlets": [
+            [
+              436,
+              101
+            ],
+            [
+              1037,
+              234
+            ]
+          ],
+          "reference_body_height_px": 1154.0,
+          "source_margin_alpha16_px": [
+            127,
+            15,
+            49,
+            11
+          ],
+          "raw_nonzero_alpha_bbox": [
+            41,
+            13,
+            1207,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "96437319d72a44bc067c7879b4cbe8952cf44f0c261b96ef4eefcb2e9e9292ae",
+          "source_generated_file": "exec-22ab1e83-a0b4-43b2-b391-ae2ce2e14b36.png",
+          "generation_id": "M08_telegraph"
+        },
+        "execute": {
+          "texture": "B05-M08_execute-v2-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "94346c46be5d449c95f89c7874473fa44f2b069ee43163caa3233022165c4628",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            90,
+            17,
+            1180,
+            1241
+          ],
+          "foot": [
+            588.5,
+            1175.5
+          ],
+          "body_base": [
+            588.5,
+            1175.5
+          ],
+          "foot_contacts": [
+            [
+              313,
+              1188
+            ],
+            [
+              864,
+              1163
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            389,
+            17
+          ],
+          "core_anchor": [
+            669,
+            672
+          ],
+          "visual_outlet": [
+            965,
+            233
+          ],
+          "outlet_kind": "two_root_loom_knots",
+          "native_pose_height_to_ground_px": 1158.5,
+          "prompt": "B05-M08_execute-v2.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "visual_outlets": [
+            [
+              390,
+              100
+            ],
+            [
+              965,
+              233
+            ]
+          ],
+          "reference_body_height_px": 1154.0,
+          "source_margin_alpha16_px": [
+            90,
+            17,
+            74,
+            13
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            15,
+            1250,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "f1bd1739e3520c4165f030163542b7d74fd67ccdc48ca6183bd10a080e99d39d",
+          "source_generated_file": "exec-567eac00-e1ba-41e3-8459-5cb88d733bb4.png",
+          "generation_id": "M08_execute-v2"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M09": {
+      "reference_body_height_px": 1067.0,
+      "frames": {
+        "idle": {
+          "texture": "B05-M09_idle-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "5aa713f7a0e6ed193f282926cf06ac707478bbe3dc1746696d9b1f36dced45d4",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            97,
+            92,
+            1222,
+            1164
+          ],
+          "foot": [
+            730.0,
+            1159.0
+          ],
+          "body_base": [
+            730.0,
+            1159.0
+          ],
+          "foot_contacts": [
+            [
+              730,
+              1159
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            617,
+            92
+          ],
+          "core_anchor": [
+            680,
+            710
+          ],
+          "visual_outlet": [
+            1141,
+            761
+          ],
+          "outlet_kind": "leading_shell_contact",
+          "native_pose_height_to_ground_px": 1067.0,
+          "prompt": "B05-M09_idle.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [],
+          "roll_axis": [
+            680,
+            710
+          ],
+          "shell_pose_rotation_degrees_approx": 0,
+          "shell_body_bbox": [
+            277,
+            270,
+            1139,
+            1114
+          ],
+          "registration_note": "Single physical lower thorn-ring support, no humanoid feet. Preserve rigid rolling-body source scale.",
+          "reference_body_height_px": 1067.0,
+          "source_margin_alpha16_px": [
+            97,
+            92,
+            32,
+            90
+          ],
+          "raw_nonzero_alpha_bbox": [
+            37,
+            21,
+            1225,
+            1167
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "3fb5e5fc3f4b1c84604f6cfd262ca3e8b6acc483219fe2a46dbf513d7d0d9153",
+          "source_generated_file": "exec-2d411673-36f2-4ee9-9d69-d27bb246b6b7.png",
+          "generation_id": "M09_idle"
+        },
+        "telegraph": {
+          "texture": "B05-M09_telegraph-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "f7edc9848430607e119fa7d83189e6352b58a52ff1dba1a65ac7c7bc32f095f1",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            43,
+            79,
+            1235,
+            1135
+          ],
+          "foot": [
+            826.0,
+            1130.0
+          ],
+          "body_base": [
+            826.0,
+            1130.0
+          ],
+          "foot_contacts": [
+            [
+              826,
+              1130
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            380,
+            79
+          ],
+          "core_anchor": [
+            665,
+            697
+          ],
+          "visual_outlet": [
+            1146,
+            690
+          ],
+          "outlet_kind": "leading_shell_contact",
+          "native_pose_height_to_ground_px": 1051.0,
+          "prompt": "B05-M09_telegraph.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "roll_axis": [
+            665,
+            697
+          ],
+          "shell_pose_rotation_degrees_approx": -12,
+          "shell_body_bbox": [
+            240,
+            251,
+            1140,
+            1100
+          ],
+          "registration_note": "Single physical lower thorn-ring support, no humanoid feet. Preserve rigid rolling-body source scale.",
+          "reference_body_height_px": 1067.0,
+          "source_margin_alpha16_px": [
+            43,
+            79,
+            19,
+            119
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            47,
+            1238,
+            1190
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "5cd045d7b34d4895f2a386504575c1a6597c109d0612669ec30c8b4550364fb0",
+          "source_generated_file": "exec-1ea3a88b-6c89-4b34-a1b3-1366858a73a1.png",
+          "generation_id": "M09_telegraph"
+        },
+        "execute": {
+          "texture": "B05-M09_execute-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "59a6ac9411a96754a90837af6613756dee1e1cd48545bd0bca7a8591667852eb",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            96,
+            85,
+            1222,
+            1183
+          ],
+          "foot": [
+            731.0,
+            1177.0
+          ],
+          "body_base": [
+            731.0,
+            1177.0
+          ],
+          "foot_contacts": [
+            [
+              731,
+              1177
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            749,
+            85
+          ],
+          "core_anchor": [
+            687,
+            731
+          ],
+          "visual_outlet": [
+            1148,
+            847
+          ],
+          "outlet_kind": "leading_shell_contact",
+          "native_pose_height_to_ground_px": 1092.0,
+          "prompt": "B05-M09_execute.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [],
+          "roll_axis": [
+            687,
+            731
+          ],
+          "shell_pose_rotation_degrees_approx": 55,
+          "shell_body_bbox": [
+            257,
+            262,
+            1178,
+            1150
+          ],
+          "registration_note": "Single physical lower thorn-ring support, no humanoid feet. Preserve rigid rolling-body source scale.",
+          "reference_body_height_px": 1067.0,
+          "source_margin_alpha16_px": [
+            96,
+            85,
+            32,
+            71
+          ],
+          "raw_nonzero_alpha_bbox": [
+            93,
+            21,
+            1224,
+            1186
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "2135d729c8d0a191a25d05aa1389ebab83f651b1dea80882afd90ffaf3369302",
+          "source_generated_file": "exec-e7c7ac58-fc36-4914-98dc-d822b4ea074f.png",
+          "generation_id": "M09_execute"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M10": {
+      "reference_body_height_px": 1117.0,
+      "frames": {
+        "idle": {
+          "texture": "B05-M10_idle-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "c2ca687489863e9d6f1e1dfc1c3dba9fa57863bb94b8cc732abfa43f89459620",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            186,
+            37,
+            1205,
+            1240
+          ],
+          "foot": [
+            635.0,
+            1154.0
+          ],
+          "body_base": [
+            635.0,
+            1154.0
+          ],
+          "foot_contacts": [
+            [
+              480,
+              1188
+            ],
+            [
+              790,
+              1120
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            641,
+            37
+          ],
+          "core_anchor": [
+            609,
+            677
+          ],
+          "visual_outlet": [
+            994,
+            520
+          ],
+          "outlet_kind": "bell_mouth",
+          "native_pose_height_to_ground_px": 1117.0,
+          "prompt": "B05-M10_idle.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "nectar_origin": [
+            966,
+            454
+          ],
+          "reference_body_height_px": 1117.0,
+          "source_margin_alpha16_px": [
+            186,
+            37,
+            49,
+            14
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            31,
+            1209,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "ea21b4bd801a154f9b26de4decb997cad2ccbe1645b5aa29d1b0cbf8b03708c2",
+          "source_generated_file": "exec-2cc2c487-7cf1-4f9b-aae1-8dd848de15d6.png",
+          "generation_id": "M10_idle"
+        },
+        "telegraph": {
+          "texture": "B05-M10_telegraph-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "0036ae4f25626073515798d87cd902c1b2792983209ffc67aa680241ec4dbae2",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            189,
+            30,
+            1198,
+            1240
+          ],
+          "foot": [
+            645.5,
+            1164.5
+          ],
+          "body_base": [
+            645.5,
+            1164.5
+          ],
+          "foot_contacts": [
+            [
+              490,
+              1194
+            ],
+            [
+              801,
+              1135
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            667,
+            30
+          ],
+          "core_anchor": [
+            643,
+            691
+          ],
+          "visual_outlet": [
+            1073,
+            529
+          ],
+          "outlet_kind": "bell_mouth",
+          "native_pose_height_to_ground_px": 1134.5,
+          "prompt": "B05-M10_telegraph.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [
+            "tight_source_margin_under20px_no_alpha_clipping"
+          ],
+          "nectar_origin": [
+            1035,
+            459
+          ],
+          "reference_body_height_px": 1117.0,
+          "source_margin_alpha16_px": [
+            189,
+            30,
+            56,
+            14
+          ],
+          "raw_nonzero_alpha_bbox": [
+            89,
+            28,
+            1210,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "89666574d654d8649294e155889d3923909f509179b5935b73ce13cb152333ba",
+          "source_generated_file": "exec-a1f08313-821b-4e20-a9b2-c33522014a4d.png",
+          "generation_id": "M10_telegraph"
+        },
+        "execute": {
+          "texture": "B05-M10_execute-v2-native.png",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "sha256": "fe0636100c0513538b4de34cd5b93b54ee338e732c771e59d6a3c6fd406c319d",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            76,
+            59,
+            1144,
+            1230
+          ],
+          "foot": [
+            561.0,
+            1157.0
+          ],
+          "body_base": [
+            561.0,
+            1157.0
+          ],
+          "foot_contacts": [
+            [
+              398,
+              1183
+            ],
+            [
+              724,
+              1131
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            575,
+            59
+          ],
+          "core_anchor": [
+            542,
+            692
+          ],
+          "visual_outlet": [
+            978,
+            548
+          ],
+          "outlet_kind": "bell_mouth",
+          "native_pose_height_to_ground_px": 1098.0,
+          "prompt": "B05-M10_execute-v2.prompt.txt",
+          "alpha_extrema": [
+            0,
+            255
+          ],
+          "source_copy_byte_verified_now": true,
+          "library_status": "not_saved; prepared batch transfer failed; uploads paused by parent",
+          "quality_flags": [],
+          "nectar_origin": [
+            929,
+            487
+          ],
+          "reference_body_height_px": 1117.0,
+          "source_margin_alpha16_px": [
+            76,
+            59,
+            110,
+            24
+          ],
+          "raw_nonzero_alpha_bbox": [
+            73,
+            29,
+            1214,
+            1232
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "prompt_sha256": "b27f049290e4bd33d2392a7136a690943b6b918aed8529b6f95c4d23b17e37b7",
+          "source_generated_file": "exec-83c7200a-00ed-4118-a733-9fb0549a0b09.png",
+          "generation_id": "M10_execute-v2"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M11": {
+      "name": "树脂盾卫",
+      "name_en": "Resin Shield Warden",
+      "reference_body_height_px": 1085.5,
+      "frames": {
+        "idle": {
+          "foot_contacts": [
+            [
+              365,
+              1165
+            ],
+            [
+              815,
+              1118
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            645,
+            56
+          ],
+          "core_anchor": [
+            625,
+            640
+          ],
+          "visual_outlet": [
+            1100,
+            605
+          ],
+          "shield_grip_anchor": [
+            947,
+            620
+          ],
+          "texture": "B05-M11_idle-native.png",
+          "generation_id": "B05-M11_idle",
+          "prompt": "B05-M11_idle.prompt.txt",
+          "raw_sha256": "4423aa853f75dd97e1efddefb7b8809753cbb86a45855b2f7f97245200801347",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            38,
+            55,
+            1237,
+            1188
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            38,
+            55,
+            17,
+            66
+          ],
+          "foot": [
+            590.0,
+            1141.5
+          ],
+          "reference_body_height_px": 1085.5,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.03056,
+          "outlet_kind": "shield_face_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Advisory: meaningful alpha16 subject margin below20px; full anatomy visibly contained, no numeric-only correction required.",
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset."
+          ],
+          "library_file_id": "libfile_f72fd46012e4819193ab14a6722bbf6a",
+          "library_status": "saved",
+          "sha256": "4423aa853f75dd97e1efddefb7b8809753cbb86a45855b2f7f97245200801347",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            38,
+            55,
+            17,
+            66
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            52,
+            1240,
+            1190
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "5e6cc861682b428c72cc980c22d2298b48e790601ad437632fc8b4bf0b358adf"
+        },
+        "telegraph": {
+          "foot_contacts": [
+            [
+              342,
+              1155
+            ],
+            [
+              894,
+              1100
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            765,
+            120
+          ],
+          "core_anchor": [
+            699,
+            644
+          ],
+          "visual_outlet": [
+            1108,
+            560
+          ],
+          "shield_grip_anchor": [
+            968,
+            600
+          ],
+          "texture": "B05-M11_telegraph-native.png",
+          "generation_id": "B05-M11_telegraph",
+          "prompt": "B05-M11_telegraph.prompt.txt",
+          "raw_sha256": "3de828f520fc85646c0c280ac875a17c329f73a4f4cebce146ef37c287d34afe",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            41,
+            119,
+            1238,
+            1177
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            41,
+            119,
+            16,
+            77
+          ],
+          "foot": [
+            618.0,
+            1127.5
+          ],
+          "reference_body_height_px": 1085.5,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.03056,
+          "outlet_kind": "shield_face_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Advisory: meaningful alpha16 subject margin below20px; full anatomy visibly contained, no numeric-only correction required."
+          ],
+          "library_file_id": "libfile_0e7ba616eb708191b6430c47e36d0f9d",
+          "library_status": "saved",
+          "sha256": "3de828f520fc85646c0c280ac875a17c329f73a4f4cebce146ef37c287d34afe",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            41,
+            119,
+            16,
+            77
+          ],
+          "raw_nonzero_alpha_bbox": [
+            33,
+            49,
+            1242,
+            1230
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "5dd0b13a080911ac87088659b9c2352de8302bcdd22ca4431d44c5467a5fc79c"
+        },
+        "execute": {
+          "foot_contacts": [
+            [
+              202,
+              1120
+            ],
+            [
+              837,
+              1072
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            724,
+            140
+          ],
+          "core_anchor": [
+            607,
+            633
+          ],
+          "visual_outlet": [
+            1031,
+            550
+          ],
+          "shield_grip_anchor": [
+            915,
+            575
+          ],
+          "texture": "B05-M11_execute-v3-native.png",
+          "generation_id": "B05-M11_execute-v3",
+          "prompt": "B05-M11_execute-v3.prompt.txt",
+          "raw_sha256": "a11166076d488e3a5e03b9bda98590a3150ed61e86e6473a560c8c9553251545",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            24,
+            134,
+            1130,
+            1143
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            24,
+            134,
+            124,
+            111
+          ],
+          "foot": [
+            519.5,
+            1096.0
+          ],
+          "reference_body_height_px": 1085.5,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.03056,
+          "outlet_kind": "shield_face_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset.",
+            "Historical execute-v2 repair replayed against execute prerequisite, then explicit targeted further arm/tool retraction; newly generated pixels and hashes."
+          ],
+          "library_file_id": null,
+          "library_status": "pending_known_prepared_transfer_failure",
+          "sha256": "a11166076d488e3a5e03b9bda98590a3150ed61e86e6473a560c8c9553251545",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            24,
+            134,
+            124,
+            111
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            23,
+            1206,
+            1155
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "986a0307b27092db639f2624e7d0fbe6c90c66f546e4e3caae3b2005f2b282d9",
+          "source_generated_file": "exec-77e3bc10-92b5-421e-a55b-6d976ac057d4.png"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M12": {
+      "name": "捕虫花匠",
+      "name_en": "Flytrap Gardener",
+      "reference_body_height_px": 1120.0,
+      "frames": {
+        "idle": {
+          "foot_contacts": [
+            [
+              116,
+              1140
+            ],
+            [
+              520,
+              1190
+            ],
+            [
+              915,
+              1120
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            485,
+            30
+          ],
+          "core_anchor": [
+            530,
+            655
+          ],
+          "visual_outlet": [
+            1180,
+            445
+          ],
+          "tool_lower_grip": [
+            437,
+            658
+          ],
+          "tool_upper_grip": [
+            753,
+            579
+          ],
+          "clamp_hinge_anchor": [
+            1004,
+            503
+          ],
+          "texture": "B05-M12_idle-native.png",
+          "generation_id": "B05-M12_idle",
+          "prompt": "B05-M12_idle.prompt.txt",
+          "raw_sha256": "58d4666971092b7109b6e698d2944f247d9446e172712115014a991aa651ebde",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            67,
+            30,
+            1237,
+            1230
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            67,
+            30,
+            17,
+            24
+          ],
+          "foot": [
+            517.0,
+            1150.0
+          ],
+          "reference_body_height_px": 1120.0,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.22222,
+          "outlet_kind": "real_flower_jaw_release_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Advisory: meaningful alpha16 subject margin below20px; full anatomy visibly contained, no numeric-only correction required.",
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset."
+          ],
+          "library_file_id": "libfile_65e5145cf938819187e048f67c6a64e5",
+          "library_status": "saved",
+          "sha256": "58d4666971092b7109b6e698d2944f247d9446e172712115014a991aa651ebde",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            67,
+            30,
+            17,
+            24
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            15,
+            1240,
+            1236
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "6792cfbaaf88412fe2ebecbc40e514aa3bde1c9ec251cdf1cd06de63fb1709b4"
+        },
+        "telegraph": {
+          "foot_contacts": [
+            [
+              175,
+              1155
+            ],
+            [
+              600,
+              1190
+            ],
+            [
+              1010,
+              1115
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            330,
+            65
+          ],
+          "core_anchor": [
+            551,
+            620
+          ],
+          "visual_outlet": [
+            1150,
+            185
+          ],
+          "tool_lower_grip": [
+            475,
+            631
+          ],
+          "tool_upper_grip": [
+            759,
+            411
+          ],
+          "clamp_hinge_anchor": [
+            972,
+            240
+          ],
+          "texture": "B05-M12_telegraph-native.png",
+          "generation_id": "B05-M12_telegraph",
+          "prompt": "B05-M12_telegraph.prompt.txt",
+          "raw_sha256": "78f0882bbeba712692c1c6a8d1b4b15d3f72ea0bedd799ce315d0d01f68a902f",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            137,
+            15,
+            1214,
+            1231
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            137,
+            15,
+            40,
+            23
+          ],
+          "foot": [
+            595.0,
+            1153.333
+          ],
+          "reference_body_height_px": 1120.0,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.22222,
+          "outlet_kind": "real_flower_jaw_release_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Advisory: meaningful alpha16 subject margin below20px; full anatomy visibly contained, no numeric-only correction required."
+          ],
+          "library_file_id": null,
+          "library_status": "pending_known_prepared_transfer_failure",
+          "sha256": "78f0882bbeba712692c1c6a8d1b4b15d3f72ea0bedd799ce315d0d01f68a902f",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            137,
+            15,
+            40,
+            23
+          ],
+          "raw_nonzero_alpha_bbox": [
+            57,
+            11,
+            1222,
+            1236
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "9aaa85c0d0ae733fdad230562542be8a93bb7e6a4b887cc764da2c2607fc155c",
+          "source_generated_file": "exec-82b9c589-3e60-4ff9-bb29-d2abe2e6dd74.png"
+        },
+        "execute": {
+          "foot_contacts": [
+            [
+              93,
+              1145
+            ],
+            [
+              520,
+              1190
+            ],
+            [
+              945,
+              1120
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            474,
+            37
+          ],
+          "core_anchor": [
+            571,
+            665
+          ],
+          "visual_outlet": [
+            1021,
+            463
+          ],
+          "tool_lower_grip": [
+            538,
+            650
+          ],
+          "tool_upper_grip": [
+            702,
+            548
+          ],
+          "clamp_hinge_anchor": [
+            857,
+            513
+          ],
+          "texture": "B05-M12_execute-v3-native.png",
+          "generation_id": "B05-M12_execute-v3",
+          "prompt": "B05-M12_execute-v3.prompt.txt",
+          "raw_sha256": "1ee13287e55c92900fa210774102efcf0b079094e35b7e02ddf0bb7138d6bb63",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            53,
+            36,
+            1041,
+            1230
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            53,
+            36,
+            213,
+            24
+          ],
+          "foot": [
+            519.333,
+            1151.667
+          ],
+          "reference_body_height_px": 1120.0,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.22222,
+          "outlet_kind": "real_flower_jaw_release_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset.",
+            "Historical execute-v2 repair replayed against execute prerequisite, then explicit targeted further arm/tool retraction; newly generated pixels and hashes."
+          ],
+          "library_file_id": null,
+          "library_status": "pending_known_prepared_transfer_failure",
+          "sha256": "1ee13287e55c92900fa210774102efcf0b079094e35b7e02ddf0bb7138d6bb63",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            53,
+            36,
+            213,
+            24
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            21,
+            1218,
+            1235
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "45a8405e011322fdfa3e7b2a3289e05a54e32075c020b5a97a9b1cd5b7fbce09",
+          "source_generated_file": "exec-22edfa5a-b712-45aa-ad75-6e89e51fb64b.png"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M13": {
+      "name": "寄枝槲卫",
+      "name_en": "Grafted Oak Warden",
+      "reference_body_height_px": 1119.0,
+      "frames": {
+        "idle": {
+          "foot_contacts": [
+            [
+              319,
+              1190
+            ],
+            [
+              769,
+              1080
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            520,
+            16
+          ],
+          "core_anchor": [
+            628,
+            604
+          ],
+          "visual_outlet": [
+            1198,
+            1177
+          ],
+          "graft_shoulder_anchor": [
+            407,
+            297
+          ],
+          "graft_bud_anchor": [
+            1012,
+            193
+          ],
+          "graft_bud_tip": [
+            1108,
+            207
+          ],
+          "weapon_tip_anchor": [
+            1231,
+            1195
+          ],
+          "texture": "B05-M13_idle-native.png",
+          "generation_id": "B05-M13_idle",
+          "prompt": "B05-M13_idle.prompt.txt",
+          "raw_sha256": "9dfd1c731cebfe505e41d26a8e4203cbeb1f688bed1a8ef5d21ecaf1621ff4a6",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            40,
+            16,
+            1237,
+            1234
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 1,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            40,
+            16,
+            17,
+            20
+          ],
+          "foot": [
+            544.0,
+            1135.0
+          ],
+          "reference_body_height_px": 1119.0,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.21667,
+          "outlet_kind": "chopping_edge",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Advisory: meaningful alpha16 subject margin below20px; full anatomy visibly contained, no numeric-only correction required.",
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset."
+          ],
+          "library_file_id": "libfile_da4a2b4479b48191b1815ea49054be61",
+          "library_status": "saved",
+          "sha256": "9dfd1c731cebfe505e41d26a8e4203cbeb1f688bed1a8ef5d21ecaf1621ff4a6",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            40,
+            16,
+            17,
+            20
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            13,
+            1240,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "14f85b6cb0ee7ea66bab59b144dbd3d95cb1d891a1ea99bb35bd3a58b1047671"
+        },
+        "telegraph": {
+          "foot_contacts": [
+            [
+              377,
+              1175
+            ],
+            [
+              789,
+              1125
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            616,
+            125
+          ],
+          "core_anchor": [
+            646,
+            677
+          ],
+          "visual_outlet": [
+            1140,
+            177
+          ],
+          "graft_shoulder_anchor": [
+            346,
+            350
+          ],
+          "graft_bud_anchor": [
+            676,
+            222
+          ],
+          "graft_bud_tip": [
+            768,
+            175
+          ],
+          "weapon_tip_anchor": [
+            1172,
+            149
+          ],
+          "texture": "B05-M13_telegraph-v2-native.png",
+          "generation_id": "B05-M13_telegraph-v2",
+          "prompt": "B05-M13_telegraph-v2.prompt.txt",
+          "raw_sha256": "e7320d89c18faf8e9e887f03b67e7b6e746d9703304f51a538fdd5c125a02549",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            85,
+            125,
+            1176,
+            1199
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            85,
+            125,
+            78,
+            55
+          ],
+          "foot": [
+            583.0,
+            1150.0
+          ],
+          "reference_body_height_px": 1119.0,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.21667,
+          "outlet_kind": "chopping_edge",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset."
+          ],
+          "library_file_id": null,
+          "library_status": "pending_known_prepared_transfer_failure",
+          "sha256": "e7320d89c18faf8e9e887f03b67e7b6e746d9703304f51a538fdd5c125a02549",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            85,
+            125,
+            78,
+            55
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            31,
+            1179,
+            1214
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "66d26df233f053f03813ab66815616613aaa885654472e4ccc7f3540a7582ec4",
+          "source_generated_file": "exec-1946d707-d1eb-44be-b176-b0f960ac033f.png"
+        },
+        "execute": {
+          "foot_contacts": [
+            [
+              270,
+              1190
+            ],
+            [
+              784,
+              1090
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            620,
+            38
+          ],
+          "core_anchor": [
+            663,
+            648
+          ],
+          "visual_outlet": [
+            1127,
+            1207
+          ],
+          "graft_shoulder_anchor": [
+            480,
+            301
+          ],
+          "graft_bud_anchor": [
+            1111,
+            330
+          ],
+          "graft_bud_tip": [
+            1200,
+            355
+          ],
+          "weapon_tip_anchor": [
+            1146,
+            1233
+          ],
+          "texture": "B05-M13_execute-v2-native.png",
+          "generation_id": "B05-M13_execute-v2",
+          "prompt": "B05-M13_execute-v2.prompt.txt",
+          "raw_sha256": "2aa8441284278ec0a16b22cd1fd71f065c8f8d342b1b4b046ad7ac62a5ee794f",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            24,
+            38,
+            1203,
+            1241
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            24,
+            38,
+            51,
+            13
+          ],
+          "foot": [
+            527.0,
+            1140.0
+          ],
+          "reference_body_height_px": 1119.0,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.21667,
+          "outlet_kind": "chopping_edge",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Advisory: meaningful alpha16 subject margin below20px; full anatomy visibly contained, no numeric-only correction required."
+          ],
+          "library_file_id": null,
+          "library_status": "pending_known_prepared_transfer_failure",
+          "sha256": "2aa8441284278ec0a16b22cd1fd71f065c8f8d342b1b4b046ad7ac62a5ee794f",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            24,
+            38,
+            51,
+            13
+          ],
+          "raw_nonzero_alpha_bbox": [
+            21,
+            33,
+            1212,
+            1243
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "4b680ee2d59f632d8a3dc5c279b95be3f19ea0930f6d4b7ae420ff94a00cb891",
+          "source_generated_file": "exec-9f8c7d82-8d22-4234-b0bd-b4dc67c1572d.png"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M14": {
+      "name": "聚光花",
+      "name_en": "Sun-Mirror Flower",
+      "reference_body_height_px": 1123.667,
+      "frames": {
+        "idle": {
+          "foot_contacts": [
+            [
+              289,
+              1120
+            ],
+            [
+              727,
+              1190
+            ],
+            [
+              1014,
+              1115
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            636,
+            18
+          ],
+          "core_anchor": [
+            713,
+            731
+          ],
+          "visual_outlet": [
+            892,
+            318
+          ],
+          "sun_disk_center": [
+            892,
+            318
+          ],
+          "texture": "B05-M14_idle-native.png",
+          "generation_id": "B05-M14_idle",
+          "prompt": "B05-M14_idle.prompt.txt",
+          "raw_sha256": "05ea660717674dfdd43a1fb5c680c5d7812397b376c4467820f81dbfb2d9b134",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            113,
+            18,
+            1172,
+            1232
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 1,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            113,
+            18,
+            82,
+            22
+          ],
+          "foot": [
+            676.667,
+            1141.667
+          ],
+          "reference_body_height_px": 1123.667,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.24259,
+          "outlet_kind": "sun_disk_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Advisory: meaningful alpha16 subject margin below20px; full anatomy visibly contained, no numeric-only correction required.",
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset."
+          ],
+          "library_file_id": "libfile_93adec5772f88191a711f64e45138840",
+          "library_status": "saved",
+          "sha256": "05ea660717674dfdd43a1fb5c680c5d7812397b376c4467820f81dbfb2d9b134",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            113,
+            18,
+            82,
+            22
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            16,
+            1250,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "5995cbddce0cc57e69d098daf3e71d3958b35411951b552c974e0e78aa4eb1ba"
+        },
+        "telegraph": {
+          "foot_contacts": [
+            [
+              113,
+              997
+            ],
+            [
+              568,
+              1074
+            ],
+            [
+              872,
+              1000
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            531,
+            34
+          ],
+          "core_anchor": [
+            550,
+            670
+          ],
+          "visual_outlet": [
+            778,
+            335
+          ],
+          "sun_disk_center": [
+            778,
+            335
+          ],
+          "texture": "B05-M14_telegraph-v3-native.png",
+          "generation_id": "B05-M14_telegraph-v3",
+          "prompt": "B05-M14_telegraph-v3.prompt.txt",
+          "raw_sha256": "c167cc3f5fe1477fd27c7e9c37f18b7339148803f8de17ea9802e7cbb807886a",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            15,
+            34,
+            1058,
+            1111
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            15,
+            34,
+            196,
+            143
+          ],
+          "foot": [
+            517.667,
+            1023.667
+          ],
+          "reference_body_height_px": 1123.667,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.24259,
+          "outlet_kind": "sun_disk_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Advisory: meaningful alpha16 subject margin below20px; full anatomy visibly contained, no numeric-only correction required.",
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset.",
+            "Final positional repair translated pose; per-frame foot pivot must be used, never reuse idle anchor. Fixed identity scale still required."
+          ],
+          "library_file_id": null,
+          "library_status": "pending_known_prepared_transfer_failure",
+          "sha256": "c167cc3f5fe1477fd27c7e9c37f18b7339148803f8de17ea9802e7cbb807886a",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            15,
+            34,
+            196,
+            143
+          ],
+          "raw_nonzero_alpha_bbox": [
+            11,
+            21,
+            1251,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "b1b5b7b28f91d27af2e490ac842459a0218e15e9d8bd872e500889fef037b397",
+          "source_generated_file": "exec-15856d8d-bd14-4d76-b244-461e59ac06d5.png"
+        },
+        "execute": {
+          "foot_contacts": [
+            [
+              284,
+              1105
+            ],
+            [
+              740,
+              1165
+            ],
+            [
+              1027,
+              1098
+            ]
+          ],
+          "anatomy_crown_anchor": [
+            658,
+            75
+          ],
+          "core_anchor": [
+            725,
+            708
+          ],
+          "visual_outlet": [
+            1034,
+            380
+          ],
+          "sun_disk_center": [
+            1034,
+            380
+          ],
+          "texture": "B05-M14_execute-native.png",
+          "generation_id": "B05-M14_execute",
+          "prompt": "B05-M14_execute.prompt.txt",
+          "raw_sha256": "73f21c36a4ded5bb40e96663dfccffdbb7828a38c306574f80b2fceb563ceb0d",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            174,
+            74,
+            1212,
+            1208
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 0,
+            "right": 0
+          },
+          "visible_margins_ltrb_alpha16": [
+            174,
+            74,
+            42,
+            46
+          ],
+          "foot": [
+            683.667,
+            1122.667
+          ],
+          "reference_body_height_px": 1123.667,
+          "native_pixels_per_physical_pixel_at_180px_reference_height": 6.24259,
+          "outlet_kind": "sun_disk_center",
+          "registration_origin": "Fresh manual visual inspection of this regenerated native image, approximate semantic pixel points; independently validate in runtime. No historical coordinates reused.",
+          "status": "SCOPED_SOURCE_AND_RUNTIME_RENDER_QA_PASSED",
+          "qa_notes": [
+            "Diffuse alpha1 generator residue may reach native edge; native pixels intentionally unchanged. Significant alpha16 geometry is inset."
+          ],
+          "library_file_id": null,
+          "library_status": "pending_known_prepared_transfer_failure",
+          "sha256": "73f21c36a4ded5bb40e96663dfccffdbb7828a38c306574f80b2fceb563ceb0d",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            174,
+            74,
+            42,
+            46
+          ],
+          "raw_nonzero_alpha_bbox": [
+            25,
+            72,
+            1223,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: full shield, jaw staff, graft bud and leaf fan are contained. Native pixels unchanged. Under20px advisory retained; scoped runtime/codex checks passed.",
+          "prompt_sha256": "2a724cb1e4b5cf5261e4211e8ee001871e84b6e3221abf4a310069339ae2731e",
+          "source_generated_file": "exec-2ff65277-3af0-42df-8735-02ef582745d3.png"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M15": {
+      "name": "藤桥看守",
+      "name_en": "Vinebridge Keeper",
+      "reference_body_height_px": 777.5,
+      "frames": {
+        "idle": {
+          "texture": "B05-M15_idle-native.png",
+          "prompt": "B05-M15_idle.selected.prompt.txt",
+          "raw_sha256": "304ab297dfb87063a5b4c930ba1627dc371d620191e159f462bb4fbe0a34eab3",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            50,
+            145,
+            1227,
+            1139
+          ],
+          "visible_margins_ltrb_alpha16": [
+            50,
+            145,
+            27,
+            115
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              427,
+              987
+            ],
+            [
+              861,
+              858
+            ]
+          ],
+          "foot": [
+            644.0,
+            922.5
+          ],
+          "core_anchor": [
+            718,
+            658
+          ],
+          "visual_outlet": [
+            244,
+            697
+          ],
+          "outlets": [
+            [
+              244,
+              697
+            ],
+            [
+              1004,
+              1020
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "304ab297dfb87063a5b4c930ba1627dc371d620191e159f462bb4fbe0a34eab3",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            50,
+            145,
+            27,
+            115
+          ],
+          "raw_nonzero_alpha_bbox": [
+            45,
+            17,
+            1236,
+            1228
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-f65abb83-3fd3-4563-a2fb-02cad0a676ac.png",
+          "prompt_sha256": "d12f8884a4f4616492b81ae7819573ed2d9011fc87b729fd693195b9fe6e5aae",
+          "source_generated_file": "exec-f65abb83-3fd3-4563-a2fb-02cad0a676ac.png",
+          "generation_id": "B05-M15_idle"
+        },
+        "telegraph": {
+          "texture": "B05-M15_telegraph-v2-native.png",
+          "prompt": "B05-M15_telegraph.selected.prompt.txt",
+          "raw_sha256": "537b0e76102ec81cea3e07fd5ba7ec8ec6ff5350ab69ba48812cf8cd176fa751",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            44,
+            71,
+            1132,
+            1177
+          ],
+          "visible_margins_ltrb_alpha16": [
+            44,
+            71,
+            122,
+            77
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              422,
+              1136
+            ],
+            [
+              860,
+              1012
+            ]
+          ],
+          "foot": [
+            641.0,
+            1074.0
+          ],
+          "core_anchor": [
+            719,
+            788
+          ],
+          "visual_outlet": [
+            185,
+            404
+          ],
+          "outlets": [
+            [
+              185,
+              404
+            ],
+            [
+              962,
+              860
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "537b0e76102ec81cea3e07fd5ba7ec8ec6ff5350ab69ba48812cf8cd176fa751",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            44,
+            71,
+            122,
+            77
+          ],
+          "raw_nonzero_alpha_bbox": [
+            33,
+            19,
+            1200,
+            1222
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-fd02b06c-a6e8-4fc8-9a48-6a8a76c20371.png",
+          "prompt_sha256": "7cf0feba15fba01de84bbb72479c1a583c066f8e5ace83186482d50b9f188101",
+          "source_generated_file": "exec-fd02b06c-a6e8-4fc8-9a48-6a8a76c20371.png"
+        },
+        "execute": {
+          "texture": "B05-M15_execute-native.png",
+          "prompt": "B05-M15_execute.selected.prompt.txt",
+          "raw_sha256": "357c8321c55485fc11e1668b4f1314265650c9b1d5b50f4c2d1df68c16f20bcb",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            66,
+            98,
+            1204,
+            1102
+          ],
+          "visible_margins_ltrb_alpha16": [
+            66,
+            98,
+            50,
+            152
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              393,
+              1053
+            ],
+            [
+              890,
+              973
+            ]
+          ],
+          "foot": [
+            641.5,
+            1013.0
+          ],
+          "core_anchor": [
+            706,
+            688
+          ],
+          "visual_outlet": [
+            318,
+            544
+          ],
+          "outlets": [
+            [
+              318,
+              544
+            ],
+            [
+              918,
+              781
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "357c8321c55485fc11e1668b4f1314265650c9b1d5b50f4c2d1df68c16f20bcb",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            66,
+            98,
+            50,
+            152
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            41,
+            1207,
+            1221
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-21543b98-dc94-44b2-8f9b-ff648ee6edb8.png",
+          "prompt_sha256": "a78b586d36b367c2a0ff1bea053702b32f073af918ead392275e7d825dd222a9",
+          "source_generated_file": "exec-21543b98-dc94-44b2-8f9b-ff648ee6edb8.png",
+          "generation_id": "B05-M15_execute"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M16": {
+      "name": "蒴果散射手",
+      "name_en": "Capsule Scatterer",
+      "reference_body_height_px": 884.6666666666666,
+      "frames": {
+        "idle": {
+          "texture": "B05-M16_idle-native.png",
+          "prompt": "B05-M16_idle.selected.prompt.txt",
+          "raw_sha256": "6dfa1ea4df3399fa2684825d90e6b88c833b713cb98eb59f1b9698341da0bc0d",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            161,
+            113,
+            1167,
+            1150
+          ],
+          "visible_margins_ltrb_alpha16": [
+            161,
+            113,
+            87,
+            104
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              303,
+              950
+            ],
+            [
+              718,
+              1115
+            ],
+            [
+              1080,
+              928
+            ]
+          ],
+          "foot": [
+            700.3333333333334,
+            997.6666666666666
+          ],
+          "core_anchor": [
+            717,
+            693
+          ],
+          "visual_outlet": [
+            876,
+            412
+          ],
+          "outlets": [
+            [
+              876,
+              412
+            ],
+            [
+              1016,
+              421
+            ],
+            [
+              955,
+              590
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "6dfa1ea4df3399fa2684825d90e6b88c833b713cb98eb59f1b9698341da0bc0d",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            161,
+            113,
+            87,
+            104
+          ],
+          "raw_nonzero_alpha_bbox": [
+            97,
+            111,
+            1170,
+            1182
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-db8860e6-fa03-4cf1-93c5-6956b60e6952.png",
+          "prompt_sha256": "c1cb74223d35fe5904c8d5e8c826c3d469aa4081218ad65ab38cf78b6acf688b",
+          "source_generated_file": "exec-db8860e6-fa03-4cf1-93c5-6956b60e6952.png",
+          "generation_id": "B05-M16_idle"
+        },
+        "telegraph": {
+          "texture": "B05-M16_telegraph-native.png",
+          "prompt": "B05-M16_telegraph.selected.prompt.txt",
+          "raw_sha256": "f8fdd5ff850ab2cd1922f8b275fe22381f777266d75dd526e529c3e795a342c4",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            132,
+            112,
+            1205,
+            1170
+          ],
+          "visible_margins_ltrb_alpha16": [
+            132,
+            112,
+            49,
+            84
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              305,
+              975
+            ],
+            [
+              717,
+              1140
+            ],
+            [
+              1110,
+              950
+            ]
+          ],
+          "foot": [
+            710.6666666666666,
+            1021.6666666666666
+          ],
+          "core_anchor": [
+            719,
+            699
+          ],
+          "visual_outlet": [
+            903,
+            402
+          ],
+          "outlets": [
+            [
+              903,
+              402
+            ],
+            [
+              1055,
+              402
+            ],
+            [
+              986,
+              584
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "f8fdd5ff850ab2cd1922f8b275fe22381f777266d75dd526e529c3e795a342c4",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            132,
+            112,
+            49,
+            84
+          ],
+          "raw_nonzero_alpha_bbox": [
+            69,
+            57,
+            1208,
+            1214
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-529288ba-b6e0-4c34-8ff7-f3c47e94a2da.png",
+          "prompt_sha256": "ff41382b60e09c4d9b2a30c3eb59d6335b38980f09b69affc04d89bf6f961800",
+          "source_generated_file": "exec-529288ba-b6e0-4c34-8ff7-f3c47e94a2da.png",
+          "generation_id": "B05-M16_telegraph"
+        },
+        "execute": {
+          "texture": "B05-M16_execute-native.png",
+          "prompt": "B05-M16_execute.selected.prompt.txt",
+          "raw_sha256": "4f2e4f7a8b07e6a43311f00f57dca686dc80eedbde444a389d88a77586d81caa",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            152,
+            107,
+            1182,
+            1171
+          ],
+          "visible_margins_ltrb_alpha16": [
+            152,
+            107,
+            72,
+            83
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 1,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              320,
+              1010
+            ],
+            [
+              735,
+              1140
+            ],
+            [
+              1090,
+              970
+            ]
+          ],
+          "foot": [
+            715.0,
+            1040.0
+          ],
+          "core_anchor": [
+            720,
+            696
+          ],
+          "visual_outlet": [
+            896,
+            357
+          ],
+          "outlets": [
+            [
+              896,
+              357
+            ],
+            [
+              1025,
+              322
+            ],
+            [
+              1009,
+              515
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "4f2e4f7a8b07e6a43311f00f57dca686dc80eedbde444a389d88a77586d81caa",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            152,
+            107,
+            72,
+            83
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            51,
+            1189,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-c9f00511-651c-40ad-aaaa-3434823fbeaf.png",
+          "prompt_sha256": "4d783443e5783c73f0b473341024680c26b3073014f3e7eb2fd93bb8f0c3cde9",
+          "source_generated_file": "exec-c9f00511-651c-40ad-aaaa-3434823fbeaf.png",
+          "generation_id": "B05-M16_execute"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M17": {
+      "name": "古年树精",
+      "name_en": "Oldgrowth Treant",
+      "reference_body_height_px": 1010.5,
+      "frames": {
+        "idle": {
+          "texture": "B05-M17_idle-native.png",
+          "prompt": "B05-M17_idle.selected.prompt.txt",
+          "raw_sha256": "dd5ff715ec434312a7937b74d3adc2b259573200ef74703c2b027fa20c4e611c",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            84,
+            82,
+            1223,
+            1199
+          ],
+          "visible_margins_ltrb_alpha16": [
+            84,
+            82,
+            31,
+            55
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              571,
+              1150
+            ],
+            [
+              882,
+              1035
+            ]
+          ],
+          "foot": [
+            726.5,
+            1092.5
+          ],
+          "core_anchor": [
+            801,
+            708
+          ],
+          "visual_outlet": [
+            341,
+            1001
+          ],
+          "outlets": [
+            [
+              341,
+              1001
+            ],
+            [
+              1087,
+              839
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "dd5ff715ec434312a7937b74d3adc2b259573200ef74703c2b027fa20c4e611c",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            84,
+            82,
+            31,
+            55
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            21,
+            1225,
+            1228
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-65124b5c-70b6-4879-b19f-64a6640baf43.png",
+          "prompt_sha256": "006788e4eb3b71ec6d243c297fb260ff69e0b0a011c273635fed6f69f7132c51",
+          "source_generated_file": "exec-65124b5c-70b6-4879-b19f-64a6640baf43.png",
+          "generation_id": "B05-M17_idle"
+        },
+        "telegraph": {
+          "texture": "B05-M17_telegraph-v2-native.png",
+          "prompt": "B05-M17_telegraph.selected.prompt.txt",
+          "raw_sha256": "fafbe750e264284c399d38f38def17b851ace6d5acf1c146166ec51295013504",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            40,
+            78,
+            1190,
+            1201
+          ],
+          "visible_margins_ltrb_alpha16": [
+            40,
+            78,
+            64,
+            53
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 1,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              571,
+              1150
+            ],
+            [
+              882,
+              1035
+            ]
+          ],
+          "foot": [
+            726.5,
+            1092.5
+          ],
+          "core_anchor": [
+            801,
+            708
+          ],
+          "visual_outlet": [
+            382,
+            217
+          ],
+          "outlets": [
+            [
+              382,
+              217
+            ],
+            [
+              1048,
+              555
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "fafbe750e264284c399d38f38def17b851ace6d5acf1c146166ec51295013504",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            40,
+            78,
+            64,
+            53
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            21,
+            1230,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-b34ad376-13b9-46ee-b081-b47cee6e867e.png",
+          "prompt_sha256": "7c2f147f52549f00a56b8ae38cf3e5692669cbbe0a64b1a1fddb9bc198e07d07",
+          "source_generated_file": "exec-b34ad376-13b9-46ee-b081-b47cee6e867e.png"
+        },
+        "execute": {
+          "texture": "B05-M17_execute-v2-native.png",
+          "prompt": "B05-M17_execute.selected.prompt.txt",
+          "raw_sha256": "c3304a729ae36cbcd00901d23f6c82d1771a82987e848ef00cc5e393381b0beb",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            107,
+            102,
+            1204,
+            1152
+          ],
+          "visible_margins_ltrb_alpha16": [
+            107,
+            102,
+            50,
+            102
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 1,
+            "left": 1,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              402,
+              1110
+            ],
+            [
+              840,
+              1026
+            ]
+          ],
+          "foot": [
+            621.0,
+            1068.0
+          ],
+          "core_anchor": [
+            780,
+            744
+          ],
+          "visual_outlet": [
+            426,
+            1060
+          ],
+          "outlets": [
+            [
+              426,
+              1060
+            ],
+            [
+              1075,
+              1010
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "sha256": "c3304a729ae36cbcd00901d23f6c82d1771a82987e848ef00cc5e393381b0beb",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            107,
+            102,
+            50,
+            102
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            39,
+            1220,
+            1254
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-80045d86-a5df-4c14-b5f6-7896757ec397.png",
+          "prompt_sha256": "34a5cdd8afeb68ab78d2644fe2cb5eaa68b4e7954b65d2fffff313fe429b18c2",
+          "source_generated_file": "exec-80045d86-a5df-4c14-b5f6-7896757ec397.png"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    },
+    "B05-M18": {
+      "name": "四季园监",
+      "name_en": "Four-Season Garden Warden",
+      "reference_body_height_px": 1082.0,
+      "frames": {
+        "idle": {
+          "texture": "B05-M18_idle-v2-native.png",
+          "prompt": "B05-M18_idle.selected.prompt.txt",
+          "raw_sha256": "4f0bcb49b509ee2d8f7f403ddc010b7174066dbe5304a0c158bd7406f64ad51f",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            315,
+            74,
+            1141,
+            1209
+          ],
+          "visible_margins_ltrb_alpha16": [
+            315,
+            74,
+            113,
+            45
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 1,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              522,
+              1180
+            ],
+            [
+              817,
+              1132
+            ]
+          ],
+          "foot": [
+            669.5,
+            1156.0
+          ],
+          "core_anchor": [
+            714,
+            626
+          ],
+          "visual_outlet": [
+            1072,
+            713
+          ],
+          "outlets": [
+            [
+              1072,
+              713
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "weakpoint_anchor": [
+            714,
+            492
+          ],
+          "sha256": "4f0bcb49b509ee2d8f7f403ddc010b7174066dbe5304a0c158bd7406f64ad51f",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            315,
+            74,
+            113,
+            45
+          ],
+          "raw_nonzero_alpha_bbox": [
+            0,
+            23,
+            1234,
+            1214
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-30ba11c3-3463-4167-8081-3b0d4e65e6b2.png",
+          "prompt_sha256": "b0864b37325d58437c2d13e37f5e506d5f5cf7378932f2f36c5b2314847f4b87",
+          "source_generated_file": "exec-30ba11c3-3463-4167-8081-3b0d4e65e6b2.png"
+        },
+        "telegraph": {
+          "texture": "B05-M18_telegraph-v2-native.png",
+          "prompt": "B05-M18_telegraph.selected.prompt.txt",
+          "raw_sha256": "40d41787530a5af01d678f438131bd19625cdd4563415a2642833a05ed55d393",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            331,
+            63,
+            1163,
+            1198
+          ],
+          "visible_margins_ltrb_alpha16": [
+            331,
+            63,
+            91,
+            56
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              521,
+              1170
+            ],
+            [
+              818,
+              1121
+            ]
+          ],
+          "foot": [
+            669.5,
+            1145.5
+          ],
+          "core_anchor": [
+            707,
+            633
+          ],
+          "visual_outlet": [
+            1098,
+            477
+          ],
+          "outlets": [
+            [
+              1098,
+              477
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "weakpoint_anchor": [
+            701,
+            490
+          ],
+          "sha256": "40d41787530a5af01d678f438131bd19625cdd4563415a2642833a05ed55d393",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            331,
+            63,
+            91,
+            56
+          ],
+          "raw_nonzero_alpha_bbox": [
+            91,
+            21,
+            1232,
+            1214
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-4318b825-6b11-488c-a483-61ffc387a0e2.png",
+          "prompt_sha256": "eb8f1822f3fc5bb16b6b9d8f453fb9be0a2beda63d713a292786a950105369d9",
+          "source_generated_file": "exec-4318b825-6b11-488c-a483-61ffc387a0e2.png"
+        },
+        "execute": {
+          "texture": "B05-M18_execute-v2-native.png",
+          "prompt": "B05-M18_execute.selected.prompt.txt",
+          "raw_sha256": "9095340d6706d71f5b0a73e516bc4361c1a9df3a52afd969e6dfa4f146537a2f",
+          "native_width": 1254,
+          "native_height": 1254,
+          "native_mode": "RGBA",
+          "region": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "visible_bbox_alpha16": [
+            292,
+            67,
+            1214,
+            1194
+          ],
+          "visible_margins_ltrb_alpha16": [
+            292,
+            67,
+            40,
+            60
+          ],
+          "edge_alpha_max": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "foot_contacts": [
+            [
+              478,
+              1167
+            ],
+            [
+              785,
+              1110
+            ]
+          ],
+          "foot": [
+            631.5,
+            1138.5
+          ],
+          "core_anchor": [
+            672,
+            632
+          ],
+          "visual_outlet": [
+            1134,
+            440
+          ],
+          "outlets": [
+            [
+              1134,
+              440
+            ]
+          ],
+          "manual_anchor_status": "Approximate; inspected against native pixels; runtime verification pending",
+          "weakpoint_anchor": [
+            671,
+            505
+          ],
+          "sha256": "9095340d6706d71f5b0a73e516bc4361c1a9df3a52afd969e6dfa4f146537a2f",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "source_margin_alpha16_px": [
+            292,
+            67,
+            40,
+            60
+          ],
+          "raw_nonzero_alpha_bbox": [
+            39,
+            19,
+            1223,
+            1214
+          ],
+          "source_review": "Independent selected-pose contact review 2026-10-02: complete anatomy, native bytes unchanged. Alpha16 subject contained. Scoped runtime/codex checks passed; narrow margins remain QA advisories.",
+          "generation_source_file": "exec-40af0c5d-3e7e-41f1-a4a2-b63601128a98.png",
+          "prompt_sha256": "017e08601bc330e970a17bde3a1be7d5c43daa4cc145743e01835391bbf85e4f",
+          "source_generated_file": "exec-40af0c5d-3e7e-41f1-a4a2-b63601128a98.png"
+        }
+      },
+      "runtime_quality_gate_passed": true,
+      "runtime_review": "Controlled production idle/telegraph/execute selection in both horizontal directions; exact source/pivot/outlet transforms, repeat/pause, fixed anatomy scale, detail-card clearance and D0/D4 codex inset verified. See pack runtime_qa for limits."
+    }
+  },
+  "asset_family": "storybook_2_5d_v1",
+  "raster_processing": "Unmodified native generated PNG bytes; no resizing, trimming, alpha cleanup or padding.",
+  "quality_gate_scope": "Scoped native-source and controlled production renderer/codex acceptance only. Not natural balance, hardware GPU performance, eight-direction animation, or complete authored walking/recovery.",
+  "runtime_qa": {
+    "date": "2026-10-02",
+    "engine": "Godot 4.6.3",
+    "renderer": "OpenGL compatibility, Mesa llvmpipe software rasterizer",
+    "viewport": [
+      2560,
+      1440
+    ],
+    "source_pngs": 45,
+    "identities": 15,
+    "unique_pose_direction_records": 90,
+    "pose_transform_checks": 1796,
+    "codex_checks": 300,
+    "real_dispatch_run_ids": [
+      "20261002T144255067276Z-6ae3998d",
+      "20261002T145314222122Z-3bb74982",
+      "20261002T145419950276Z-ea4d85ae",
+      "20261002T145632162841Z-526c3e53",
+      "20261002T145924988604Z-06c741c1",
+      "20261002T150123501647Z-aa9f1eab"
+    ],
+    "codex_run_id": "20261002T150138935498Z-871b8b66",
+    "transform_run_id": "20261002T150300513205Z-fc9724b9",
+    "limitations": [
+      "Three authored single-key poses per identity; walk/recovery reuse idle with runtime movement.",
+      "One canonical right-facing source, horizontal mirror supplies left; vertical aim remains side-on with authoritative gameplay paths.",
+      "Actual pixel captures are limited to execute and four representative codex portraits; idle/telegraph and all D0/D4 portraits additionally checked by production node/source/transform assertions.",
+      "Narrow source margins and diffuse alpha1 residue preserved; meaningful alpha16 subject does not touch source edges.",
+      "M13 signature tested off the protected main route; main-route preflight legitimately falls back to basic.",
+      "M10 main-route sample selected its admitted basic melee; this validates native pose dispatch but not its active skill admission or balance."
+    ]
+  }
+}
