@@ -1,6 +1,7 @@
 extends "res://scripts/presentation/monsters/enemy_visual.gd"
 ## BO05-only native full-canvas pose renderer. No per-pose auto-fit or cropping.
 ## Anchors are source-pixel registrations, not collision or damage origins.
+const TextureSampler = preload("res://scripts/infrastructure/assets/texture_sampler.gd")
 const ROOT := "asset://bosses/b05_poses_v1/"
 const REFERENCE_HEIGHT := 1226.0
 const WORLD_HEIGHT := 220.0
