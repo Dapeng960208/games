@@ -1,0 +1,4426 @@
+{
+  "schema": "b05-policy13-setup-failures-v1",
+  "accepted_as_balance_evidence": false,
+  "runs": [
+    {
+      "run_id": "20261002T231312132148Z-9841457b",
+      "console_sha256": "eb977987003af6224b58d80f01bbed4372a5ca90febcdb14e01b3a446f4938d6",
+      "script_errors": 0,
+      "report": null
+    },
+    {
+      "run_id": "20261002T231354598183Z-0189b6d1",
+      "console_sha256": "093d2052b5edc35860416f48d3c38ecd429ef10396a597a63447238c7bfc1148",
+      "script_errors": 215251,
+      "report": {
+        "active_limit_seconds": 120.0,
+        "active_seconds": 120.016666666661,
+        "checks": 34,
+        "controller": "b05-zero-basic-controller-v1",
+        "difficulty": 0,
+        "display": "headless",
+        "effective_received_hits": 0,
+        "entry_calibration": {
+          "chapters": {
+            "B01": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B02": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B03": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B04": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B05": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B06": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            }
+          },
+          "version": 13.0
+        },
+        "failures": [],
+        "final_hp": 3450,
+        "final_max_hp": 3450,
+        "fixture": {
+          "branches": {
+            "q": "B",
+            "ultimate": "A"
+          },
+          "case_id": "B05/CH01/naked",
+          "choice_authority": "Lawful frozen test choice derived from Lv25 fixture, not user-selected optimization",
+          "entry_stats": {
+            "ability_power": 0,
+            "armor": 440,
+            "armor_damage_reduction": 0.305555555555556,
+            "armor_penetration": 0,
+            "attack": 556,
+            "attack_interval": 0.480769230769231,
+            "attack_speed_bonus": 0.04,
+            "branches": {
+              "q": "B",
+              "ultimate": "A"
+            },
+            "burn_damage": 0.0,
+            "cooldown_reduction": 0.06,
+            "corrosion_damage_bonus": 0.0,
+            "crit_chance": 0.11,
+            "crit_multiplier": 1.5,
+            "damage_bonus": 0.0,
+            "damage_reduction": 0.0,
+            "equipment_contribution": {
+              "ability_power": 0,
+              "armor": 0,
+              "armor_penetration": 0,
+              "attack": 0,
+              "attack_speed": 0.0,
+              "burn_damage": 0.0,
+              "cooldown_reduction": 0.0,
+              "corrosion_damage_bonus": 0.0,
+              "crit_chance": 0.0,
+              "crit_multiplier": 0.0,
+              "damage_bonus": 0.0,
+              "damage_reduction": 0.0,
+              "hp_ratio": 0.0,
+              "magic_penetration": 0,
+              "magic_resist": 0,
+              "max_hp": 0,
+              "max_mana": 0,
+              "move_speed": 0.0,
+              "resource_gain_bonus": 0.0,
+              "status_duration": 0.0,
+              "true_damage_bonus": 0
+            },
+            "equipment_damage_reduction": 0.0,
+            "equipment_templates": {},
+            "hero_base": {
+              "ability_power": 0,
+              "armor": 440,
+              "attack": 556,
+              "attack_arc_degrees": 100.0,
+              "attack_interval": 0.5,
+              "attack_timing": {
+                "active": 0.08,
+                "recovery": 0.3,
+                "windup": 0.12
+              },
+              "attack_type": "melee",
+              "branches": {
+                "18": {
+                  "A": {
+                    "description": "Q 距离 160 → 240，但伤害降至 1.2H；适合追击与侧切",
+                    "description_en": "Q distance increases from 160 to 240, but damage decreases to 1.2H. Better pursuit and flanking.",
+                    "name": "长轨",
+                    "name_en": "Long Rail"
+                  },
+                  "B": {
+                    "description": "Q 取消位移，改为自身半径 135 的 1.7H 冲击并获得 8% 最大生命护盾；失去接敌位移，适合守点",
+                    "description_en": "Q loses its movement and becomes a 135-radius impact around the player for 1.7H damage, granting an 8% maximum-health shield. Trades approach mobility for holding ground.",
+                    "name": "地锚",
+                    "name_en": "Ground Anchor"
+                  }
+                },
+                "20": {
+                  "A": {
+                    "description": "R 伤害改为 5.4H，范围缩为 140，预备延长到 0.65 秒；需要精确制造窗口",
+                    "description_en": "R deals 5.4H damage, but its radius shrinks to 140 and preparation increases to 0.65 s. Requires a precise opening.",
+                    "name": "定桩",
+                    "name_en": "Fixed Pile"
+                  },
+                  "B": {
+                    "description": "R 改为间隔 0.20 秒的两次 1.9H 波，每波范围 220，收势缩至 0.25 秒；同敌每波最多一次，只有第一波击退，总伤害低于标准 R",
+                    "description_en": "R becomes two 1.9H waves 0.20 s apart, each with 220 radius, and recovery decreases to 0.25 s. Each target can be hit once per wave; only the first wave knocks back. Lower total damage than standard R.",
+                    "name": "清道",
+                    "name_en": "Clearway"
+                  }
+                }
+              },
+              "class_id": "C01",
+              "class_name": "战士",
+              "class_name_en": "Warrior",
+              "color": "#C87535",
+              "crit_chance": 0.05,
+              "crit_multiplier": 1.5,
+              "dash": {
+                "cooldown": 2.2,
+                "cost": 0.0,
+                "distance": 110.0,
+                "duration": 0.18,
+                "invincible_end": 0.1,
+                "invincible_start": 0.0,
+                "name": "钢步",
+                "name_en": "Steel Step",
+                "recovery": 0.0,
+                "windup": 0.0
+              },
+              "description": "近战普攻积攒三击护盾与破势；Q冲锋接敌，E战吼推开包围并获得护盾、短时减伤，再以W重斩或R落斧消耗破势爆发。",
+              "description_en": "Basic swings build a three-hit shield and Momentum. Charge in with Q, use E for a shield, brief damage reduction and space, then spend Momentum with the W cleave or R axe slam.",
+              "growth": {
+                "armor_at_cap": 6.0,
+                "attack_ratio_at_cap": 0.1,
+                "max_hp_ratio_at_cap": 0.2
+              },
+              "id": "CH01",
+              "level": 21,
+              "level_cap": 20.0,
+              "magic_resist": 280,
+              "max_hp": 3450,
+              "move_speed": 220.0,
+              "name": "罗砧",
+              "name_en": "Luo Zhen",
+              "original_visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+              "passive": {
+                "description": "每3次有效原始普攻获得最大生命8%的护盾，持续3秒，内置冷却6秒。一次挥击命中多敌只记1次，冷却期间不积攒。原始普攻与Q命中、E释放积累破势，最多3层；W或R成功启动时消耗破势强化伤害，满3层的W免怒气。被动自动触发，无需C/V操作。派生伤害、持续场和装备附伤不会触发；计数随房间或死亡清空。",
+                "description_en": "Every 3 confirmed original basic attacks grant an 8% maximum-health shield for 3 seconds. Internal cooldown: 6 seconds; no accumulation during cooldown. A multi-target swing counts once. Basics, Q contact and E release build Momentum, up to 3; W or R spends it to empower the cast, and W costs no Rage at full Momentum. Automatic; no C/V input. Derived hits never trigger it. Progress resets on room change or death.",
+                "duration": 3.0,
+                "hit_count": 3.0,
+                "icd": 6.0,
+                "name": "三铆支护",
+                "name_en": "Three-Rivet Support",
+                "shield_hp_ratio": 0.08
+              },
+              "projectile_speed": 0.0,
+              "range": 105.0,
+              "resource_max": 1000,
+              "resource_name": "怒气",
+              "resource_name_en": "Rage",
+              "resource_regen": 0,
+              "resource_regen_delay": 0.0,
+              "resource_rules": {
+                "basic_hit_gain": 8.0,
+                "health_damage_gain": 5.0,
+                "health_damage_icd": 1.0,
+                "out_of_combat_decay": 6.0,
+                "out_of_combat_delay": 5.0
+              },
+              "resource_type": "rage",
+              "role": "近战战士 · 破势重斩 · 护盾战吼",
+              "role_en": "Melee warrior · Momentum cleave · Guarding warcry",
+              "skills": {
+                "f": {
+                  "cooldown": 11.0,
+                  "cost": 25.0,
+                  "description": "动作：战吼预备0.12秒 → 冲击窗0.08秒 → 收势0.18秒。自身半径100造成0.6H物理伤害，小型敌人向外击退70；立即获得最大生命12%的护盾，持续4秒，并获得25%减伤，持续1.5秒。\n代价：25怒气，冷却11秒。不治疗、不无敌、不清空远程弹体，护盾仍遵守共享容量规则。战吼与其他减伤取较强值，各自独立计时；不叠加、不延长彼此。\n循环与反馈：被包围时战吼开路，再冲锋或闪避；无敌人时仍合法获得防护和1层破势。铜色盾架与向外扩散的冲击环区分防御释放，Boss不被推开。",
+                  "description_en": "Prepare for 0.12 s, strike for 0.08 s, then recover for 0.18 s. Deal 0.6H physical damage within 100 units, push small enemies back 70 units, gain a 12% maximum-health shield for 4 s and 25% damage reduction for 1.5 s. Costs 25 Rage; cooldown 11 s. It does not heal, grant invulnerability or clear projectiles. Shared shield caps still apply. Warcry and other damage reductions use the stronger value with independent timers; they do not add together or extend each other. A legal empty cast still grants protection and one Momentum. Copper guard shapes and an outward shock ring mark the defensive release; bosses resist the displacement.",
+                  "input": "E",
+                  "mechanics": {
+                    "active": 0.08,
+                    "damage_multiplier": 0.6,
+                    "damage_reduction": 0.25,
+                    "damage_reduction_duration": 1.5,
+                    "damage_reduction_status_id": "brace_guard",
+                    "damage_type": "physical",
+                    "knockback": 70.0,
+                    "radius": 100.0,
+                    "recovery": 0.18,
+                    "shield_duration": 4.0,
+                    "shield_hp_ratio": 0.12,
+                    "windup": 0.12
+                  },
+                  "name": "铁壁战吼",
+                  "name_en": "Ironwall Warcry",
+                  "unlock": 3.0
+                },
+                "q": {
+                  "cooldown": 6.0,
+                  "cost": 20.0,
+                  "description": "动作：预备0.10秒 → 冲锋0.18秒 → 收势0.14秒。沿准星最多前进160，终点半径75造成1.5H物理伤害，小型敌人击退45；每敌每次施放只命中一次。\n代价：20怒气，冷却6秒。没有额外无敌；可越过普通敌人碰撞但不能越过地形。撞墙停在最后合法地面，冲击不能隔墙命中。完全没有合法移动路线时不扣费，合法空放正常扣费。\n循环与反馈：普攻积怒，Q接敌后用W重斩；命中任意数量敌人仅获得1层破势。铜色冲锋轨迹、地裂冲击与战士短乐句标明释放，命中再叠加重击反馈，保留脚点与敌人预警。",
+                  "description_en": "Prepare for 0.10 s, charge up to 160 units over 0.18 s, then recover for 0.14 s. A 75-radius endpoint impact deals 1.5H physical damage and knocks small enemies back 45 units, once per target. Costs 20 Rage; cooldown 6 s. No invulnerability; terrain blocks movement and damage. An entirely invalid route costs nothing, while a legal empty cast still costs resources. Hitting any number of enemies grants one Momentum. Copper trails, an earth impact and a brief warrior motif identify the release; confirmed hits add impact feedback.",
+                  "input": "Q",
+                  "mechanics": {
+                    "active": 0.18,
+                    "damage_multiplier": 1.5,
+                    "damage_type": "physical",
+                    "distance": 160.0,
+                    "knockback": 45.0,
+                    "radius": 75.0,
+                    "recovery": 0.14,
+                    "windup": 0.1
+                  },
+                  "name": "破阵冲锋",
+                  "name_en": "Formation Charge",
+                  "unlock": 1.0
+                },
+                "secondary": {
+                  "cooldown": 4.0,
+                  "cost": 30.0,
+                  "description": "动作：蓄斧0.18秒 → 重斩窗0.10秒 → 收势0.26秒。前方120°、距离115造成2.2H物理伤害，小型敌人击退65；同敌一次，墙壁阻挡。预备最多修正瞄准30°，有效窗锁定方向。\n代价：通常30怒气，冷却4秒；满3层破势免怒气。空格可取消收势，已经启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层额外0.45H；满3层时距离140、扇形160°、击退90。Q接敌或普攻积层后出手，以宽铜色斧刃弧线、土石碎片和重金属撞击表现正面重斩，背后不显示虚假攻击圆圈。",
+                  "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Cleave a 120-degree forward arc at 115 range for 2.2H physical damage and 65 knockback against small enemies, once per target. Walls block hits. Aim can adjust up to 30 degrees during preparation, then locks. Costs 30 Rage; cooldown 4 s. Consume all Momentum on cast for +0.45H per stack. At three stacks: no Rage cost, 140 range, a 160-degree arc and 90 knockback. Dashing can cancel recovery without refunding costs or Momentum. A broad copper axe arc, earth fragments and a heavy metallic impact communicate the forward cleave.",
+                  "input": "W",
+                  "mechanics": {
+                    "active": 0.1,
+                    "arc_degrees": 120.0,
+                    "damage_multiplier": 2.2,
+                    "damage_type": "physical",
+                    "hit_stop_ms": 55.0,
+                    "knockback": 65.0,
+                    "range": 115.0,
+                    "recovery": 0.26,
+                    "windup": 0.18,
+                    "windup_aim_adjustment_degrees": 30.0
+                  },
+                  "name": "裂地重斩",
+                  "name_en": "Earthsplit Cleave",
+                  "summary_v2": "正面重斩；满破势更强且免费。",
+                  "summary_v2_en": "Cleave ahead; full Momentum makes it stronger and free.",
+                  "unlock": 2.0
+                },
+                "ultimate": {
+                  "cooldown": 42.0,
+                  "cost": 70.0,
+                  "description": "动作：举斧0.45秒 → 落斧窗0.12秒 → 收势0.45秒。准星方向前方最多130的合法地面，半径180造成4.0H物理伤害，小型敌人击退90；墙壁遮挡伤害。\n代价：70怒气，冷却42秒。施放中移动速度35%，没有无敌；空格可中断，但已启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层每波额外0.60H；满3层半径+30、击退+25。用E战吼创造出手窗口，再以巨斧轮廓、放射地裂与低频落斧冲击表现终结技；伤害与命中反馈依照实际落点结算。",
+                  "description_en": "Raise the axe for 0.45 s, strike for 0.12 s, then recover for 0.45 s. Slam legal ground up to 130 units ahead for 4.0H physical damage within 180 units and 90 knockback against small enemies. Walls block damage. Costs 70 Rage; cooldown 42 s. Move at 35% speed during the cast, without invulnerability. A dash cancels without refunding costs or Momentum. Consume all Momentum on cast for +0.60H per stack per wave; three stacks add 30 radius and 25 knockback. A large axe silhouette, radial earth cracks and a low impact identify the finisher; hit feedback follows the actual landing area.",
+                  "input": "R",
+                  "mechanics": {
+                    "active": 0.12,
+                    "damage_multiplier": 4.0,
+                    "damage_type": "physical",
+                    "hit_stop_ms": 65.0,
+                    "knockback": 90.0,
+                    "movement_ratio": 0.35,
+                    "radius": 180.0,
+                    "range": 130.0,
+                    "recovery": 0.45,
+                    "windup": 0.45
+                  },
+                  "name": "天崩斧落",
+                  "name_en": "Skyfall Axe",
+                  "summary_v2": "砸向前方怪群，消耗破势造成重击。",
+                  "summary_v2_en": "Slam the pack ahead, spending Momentum for a heavy finish.",
+                  "unlock": 4.0
+                }
+              },
+              "starting_resource": 200,
+              "talent_attack_speed": 0.04,
+              "talent_cooldown_reduction": 0.06,
+              "talent_crit_chance": 0.06,
+              "talent_points_available": 0,
+              "talents": {
+                "agility": 2,
+                "dexterity": 6,
+                "mastery": 6,
+                "precision": 6
+              },
+              "title": "开路工",
+              "title_en": "The Trailbreaker",
+              "upgrades": [
+                {
+                  "description": "Q 怒气消耗 20 → 15；其他参数不自动增加",
+                  "description_en": "Q Rage cost decreases from 20 to 15.",
+                  "level": 10.0,
+                  "skill": "q"
+                },
+                {
+                  "description": "W收势 0.26 → 0.18 秒；命中窗口不变",
+                  "description_en": "Secondary recovery decreases from 0.26 s to 0.18 s; its hit window is unchanged.",
+                  "level": 12.0,
+                  "skill": "secondary"
+                },
+                {
+                  "description": "E 护盾授予 12% → 18% 最大生命；仍受共享上限",
+                  "description_en": "E shield increases from 12% to 18% of maximum health, subject to shared shield caps.",
+                  "level": 14.0,
+                  "skill": "f"
+                },
+                {
+                  "description": "R 伤害 4.0H → 4.6H；不额外加大范围",
+                  "description_en": "R damage increases from 4.0H to 4.6H; radius is unchanged.",
+                  "level": 16.0,
+                  "skill": "ultimate"
+                }
+              ],
+              "visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+              "visual_en": "An asymmetric, low-centred mine-support worker: square rockfall guard on the left shoulder, exposed hydraulic brace on the right arm and a short low-mounted air tank. A broad silver-edged mining axe has an orange-black head, flat poll and sturdy two-handed haft. Coal black, oxidised orange and bone white."
+            },
+            "hero_id": "CH01",
+            "hp_ratio": 0.0,
+            "level": 21,
+            "loadout": {},
+            "magic_damage_reduction": 0.21875,
+            "magic_penetration": 0,
+            "magic_resist": 280,
+            "max_hp": 3450,
+            "max_mana": 0,
+            "move_speed": 220.0,
+            "move_speed_bonus": 0.0,
+            "range": 105.0,
+            "resource_gain_bonus": 0.0,
+            "resource_max": 1000,
+            "resource_name": "怒气",
+            "resource_regen": 0,
+            "resource_regen_delay": 0.0,
+            "resource_type": "rage",
+            "ruleset_version": 2,
+            "sets": {},
+            "starting_resource": 200,
+            "status_duration": 0.0,
+            "talent_points_available": 0,
+            "talents": {
+              "agility": 2,
+              "dexterity": 6,
+              "mastery": 6,
+              "precision": 6
+            },
+            "true_damage_bonus": 0,
+            "uncapped_equipment_contribution": {}
+          },
+          "equipment": [],
+          "external_relics": [],
+          "fixture_version": "b05-naked-entry21-v1",
+          "hero_id": "CH01",
+          "level": 21,
+          "loadout": {
+            "charm": "",
+            "chest": "",
+            "feet": "",
+            "hands": "",
+            "head": "",
+            "legs": "",
+            "ring": "",
+            "weapon": ""
+          },
+          "talent_points_spent": 20,
+          "talents": {
+            "agility": 2,
+            "dexterity": 6,
+            "mastery": 6,
+            "precision": 6
+          }
+        },
+        "host_seconds": 20.036363,
+        "incoming_packets": [],
+        "method": "Controlled stationary pressure at the authored entry: no movement, dash, offense or defensive casts; native enemies/waves only. Inactivity is inconclusive if actors never reach the entry.",
+        "mode": "group",
+        "outcome": "observation_bound_inconclusive",
+        "physics_hz": 60,
+        "relic_skips": [],
+        "resolved_entry_stats": {
+          "ability_power": 0,
+          "armor": 440,
+          "armor_damage_reduction": 0.305555555555556,
+          "armor_penetration": 0,
+          "attack": 556,
+          "attack_interval": 0.480769230769231,
+          "attack_speed_bonus": 0.04,
+          "branches": {
+            "q": "B",
+            "ultimate": "A"
+          },
+          "burn_damage": 0.0,
+          "cooldown_reduction": 0.06,
+          "corrosion_damage_bonus": 0.0,
+          "crit_chance": 0.11,
+          "crit_multiplier": 1.5,
+          "damage_bonus": 0.0,
+          "damage_reduction": 0.0,
+          "equipment_contribution": {
+            "ability_power": 0,
+            "armor": 0,
+            "armor_penetration": 0,
+            "attack": 0,
+            "attack_speed": 0.0,
+            "burn_damage": 0.0,
+            "cooldown_reduction": 0.0,
+            "corrosion_damage_bonus": 0.0,
+            "crit_chance": 0.0,
+            "crit_multiplier": 0.0,
+            "damage_bonus": 0.0,
+            "damage_reduction": 0.0,
+            "hp_ratio": 0.0,
+            "magic_penetration": 0,
+            "magic_resist": 0,
+            "max_hp": 0,
+            "max_mana": 0,
+            "move_speed": 0.0,
+            "resource_gain_bonus": 0.0,
+            "status_duration": 0.0,
+            "true_damage_bonus": 0
+          },
+          "equipment_damage_reduction": 0.0,
+          "equipment_templates": {},
+          "hero_base": {
+            "ability_power": 0,
+            "armor": 440,
+            "attack": 556,
+            "attack_arc_degrees": 100.0,
+            "attack_interval": 0.5,
+            "attack_timing": {
+              "active": 0.08,
+              "recovery": 0.3,
+              "windup": 0.12
+            },
+            "attack_type": "melee",
+            "branches": {
+              "18": {
+                "A": {
+                  "description": "Q 距离 160 → 240，但伤害降至 1.2H；适合追击与侧切",
+                  "description_en": "Q distance increases from 160 to 240, but damage decreases to 1.2H. Better pursuit and flanking.",
+                  "name": "长轨",
+                  "name_en": "Long Rail"
+                },
+                "B": {
+                  "description": "Q 取消位移，改为自身半径 135 的 1.7H 冲击并获得 8% 最大生命护盾；失去接敌位移，适合守点",
+                  "description_en": "Q loses its movement and becomes a 135-radius impact around the player for 1.7H damage, granting an 8% maximum-health shield. Trades approach mobility for holding ground.",
+                  "name": "地锚",
+                  "name_en": "Ground Anchor"
+                }
+              },
+              "20": {
+                "A": {
+                  "description": "R 伤害改为 5.4H，范围缩为 140，预备延长到 0.65 秒；需要精确制造窗口",
+                  "description_en": "R deals 5.4H damage, but its radius shrinks to 140 and preparation increases to 0.65 s. Requires a precise opening.",
+                  "name": "定桩",
+                  "name_en": "Fixed Pile"
+                },
+                "B": {
+                  "description": "R 改为间隔 0.20 秒的两次 1.9H 波，每波范围 220，收势缩至 0.25 秒；同敌每波最多一次，只有第一波击退，总伤害低于标准 R",
+                  "description_en": "R becomes two 1.9H waves 0.20 s apart, each with 220 radius, and recovery decreases to 0.25 s. Each target can be hit once per wave; only the first wave knocks back. Lower total damage than standard R.",
+                  "name": "清道",
+                  "name_en": "Clearway"
+                }
+              }
+            },
+            "class_id": "C01",
+            "class_name": "战士",
+            "class_name_en": "Warrior",
+            "color": "#C87535",
+            "crit_chance": 0.05,
+            "crit_multiplier": 1.5,
+            "dash": {
+              "cooldown": 2.2,
+              "cost": 0.0,
+              "distance": 110.0,
+              "duration": 0.18,
+              "invincible_end": 0.1,
+              "invincible_start": 0.0,
+              "name": "钢步",
+              "name_en": "Steel Step",
+              "recovery": 0.0,
+              "windup": 0.0
+            },
+            "description": "近战普攻积攒三击护盾与破势；Q冲锋接敌，E战吼推开包围并获得护盾、短时减伤，再以W重斩或R落斧消耗破势爆发。",
+            "description_en": "Basic swings build a three-hit shield and Momentum. Charge in with Q, use E for a shield, brief damage reduction and space, then spend Momentum with the W cleave or R axe slam.",
+            "growth": {
+              "armor_at_cap": 6.0,
+              "attack_ratio_at_cap": 0.1,
+              "max_hp_ratio_at_cap": 0.2
+            },
+            "id": "CH01",
+            "level": 21,
+            "level_cap": 20.0,
+            "magic_resist": 280,
+            "max_hp": 3450,
+            "move_speed": 220.0,
+            "name": "罗砧",
+            "name_en": "Luo Zhen",
+            "original_visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+            "passive": {
+              "description": "每3次有效原始普攻获得最大生命8%的护盾，持续3秒，内置冷却6秒。一次挥击命中多敌只记1次，冷却期间不积攒。原始普攻与Q命中、E释放积累破势，最多3层；W或R成功启动时消耗破势强化伤害，满3层的W免怒气。被动自动触发，无需C/V操作。派生伤害、持续场和装备附伤不会触发；计数随房间或死亡清空。",
+              "description_en": "Every 3 confirmed original basic attacks grant an 8% maximum-health shield for 3 seconds. Internal cooldown: 6 seconds; no accumulation during cooldown. A multi-target swing counts once. Basics, Q contact and E release build Momentum, up to 3; W or R spends it to empower the cast, and W costs no Rage at full Momentum. Automatic; no C/V input. Derived hits never trigger it. Progress resets on room change or death.",
+              "duration": 3.0,
+              "hit_count": 3.0,
+              "icd": 6.0,
+              "name": "三铆支护",
+              "name_en": "Three-Rivet Support",
+              "shield_hp_ratio": 0.08
+            },
+            "projectile_speed": 0.0,
+            "range": 105.0,
+            "resource_max": 1000,
+            "resource_name": "怒气",
+            "resource_name_en": "Rage",
+            "resource_regen": 0,
+            "resource_regen_delay": 0.0,
+            "resource_rules": {
+              "basic_hit_gain": 8.0,
+              "health_damage_gain": 5.0,
+              "health_damage_icd": 1.0,
+              "out_of_combat_decay": 6.0,
+              "out_of_combat_delay": 5.0
+            },
+            "resource_type": "rage",
+            "role": "近战战士 · 破势重斩 · 护盾战吼",
+            "role_en": "Melee warrior · Momentum cleave · Guarding warcry",
+            "skills": {
+              "f": {
+                "cooldown": 11.0,
+                "cost": 25.0,
+                "description": "动作：战吼预备0.12秒 → 冲击窗0.08秒 → 收势0.18秒。自身半径100造成0.6H物理伤害，小型敌人向外击退70；立即获得最大生命12%的护盾，持续4秒，并获得25%减伤，持续1.5秒。\n代价：25怒气，冷却11秒。不治疗、不无敌、不清空远程弹体，护盾仍遵守共享容量规则。战吼与其他减伤取较强值，各自独立计时；不叠加、不延长彼此。\n循环与反馈：被包围时战吼开路，再冲锋或闪避；无敌人时仍合法获得防护和1层破势。铜色盾架与向外扩散的冲击环区分防御释放，Boss不被推开。",
+                "description_en": "Prepare for 0.12 s, strike for 0.08 s, then recover for 0.18 s. Deal 0.6H physical damage within 100 units, push small enemies back 70 units, gain a 12% maximum-health shield for 4 s and 25% damage reduction for 1.5 s. Costs 25 Rage; cooldown 11 s. It does not heal, grant invulnerability or clear projectiles. Shared shield caps still apply. Warcry and other damage reductions use the stronger value with independent timers; they do not add together or extend each other. A legal empty cast still grants protection and one Momentum. Copper guard shapes and an outward shock ring mark the defensive release; bosses resist the displacement.",
+                "input": "E",
+                "mechanics": {
+                  "active": 0.08,
+                  "damage_multiplier": 0.6,
+                  "damage_reduction": 0.25,
+                  "damage_reduction_duration": 1.5,
+                  "damage_reduction_status_id": "brace_guard",
+                  "damage_type": "physical",
+                  "knockback": 70.0,
+                  "radius": 100.0,
+                  "recovery": 0.18,
+                  "shield_duration": 4.0,
+                  "shield_hp_ratio": 0.12,
+                  "windup": 0.12
+                },
+                "name": "铁壁战吼",
+                "name_en": "Ironwall Warcry",
+                "unlock": 3.0
+              },
+              "q": {
+                "cooldown": 6.0,
+                "cost": 20.0,
+                "description": "动作：预备0.10秒 → 冲锋0.18秒 → 收势0.14秒。沿准星最多前进160，终点半径75造成1.5H物理伤害，小型敌人击退45；每敌每次施放只命中一次。\n代价：20怒气，冷却6秒。没有额外无敌；可越过普通敌人碰撞但不能越过地形。撞墙停在最后合法地面，冲击不能隔墙命中。完全没有合法移动路线时不扣费，合法空放正常扣费。\n循环与反馈：普攻积怒，Q接敌后用W重斩；命中任意数量敌人仅获得1层破势。铜色冲锋轨迹、地裂冲击与战士短乐句标明释放，命中再叠加重击反馈，保留脚点与敌人预警。",
+                "description_en": "Prepare for 0.10 s, charge up to 160 units over 0.18 s, then recover for 0.14 s. A 75-radius endpoint impact deals 1.5H physical damage and knocks small enemies back 45 units, once per target. Costs 20 Rage; cooldown 6 s. No invulnerability; terrain blocks movement and damage. An entirely invalid route costs nothing, while a legal empty cast still costs resources. Hitting any number of enemies grants one Momentum. Copper trails, an earth impact and a brief warrior motif identify the release; confirmed hits add impact feedback.",
+                "input": "Q",
+                "mechanics": {
+                  "active": 0.18,
+                  "damage_multiplier": 1.5,
+                  "damage_type": "physical",
+                  "distance": 160.0,
+                  "knockback": 45.0,
+                  "radius": 75.0,
+                  "recovery": 0.14,
+                  "windup": 0.1
+                },
+                "name": "破阵冲锋",
+                "name_en": "Formation Charge",
+                "unlock": 1.0
+              },
+              "secondary": {
+                "cooldown": 4.0,
+                "cost": 30.0,
+                "description": "动作：蓄斧0.18秒 → 重斩窗0.10秒 → 收势0.26秒。前方120°、距离115造成2.2H物理伤害，小型敌人击退65；同敌一次，墙壁阻挡。预备最多修正瞄准30°，有效窗锁定方向。\n代价：通常30怒气，冷却4秒；满3层破势免怒气。空格可取消收势，已经启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层额外0.45H；满3层时距离140、扇形160°、击退90。Q接敌或普攻积层后出手，以宽铜色斧刃弧线、土石碎片和重金属撞击表现正面重斩，背后不显示虚假攻击圆圈。",
+                "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Cleave a 120-degree forward arc at 115 range for 2.2H physical damage and 65 knockback against small enemies, once per target. Walls block hits. Aim can adjust up to 30 degrees during preparation, then locks. Costs 30 Rage; cooldown 4 s. Consume all Momentum on cast for +0.45H per stack. At three stacks: no Rage cost, 140 range, a 160-degree arc and 90 knockback. Dashing can cancel recovery without refunding costs or Momentum. A broad copper axe arc, earth fragments and a heavy metallic impact communicate the forward cleave.",
+                "input": "W",
+                "mechanics": {
+                  "active": 0.1,
+                  "arc_degrees": 120.0,
+                  "damage_multiplier": 2.2,
+                  "damage_type": "physical",
+                  "hit_stop_ms": 55.0,
+                  "knockback": 65.0,
+                  "range": 115.0,
+                  "recovery": 0.26,
+                  "windup": 0.18,
+                  "windup_aim_adjustment_degrees": 30.0
+                },
+                "name": "裂地重斩",
+                "name_en": "Earthsplit Cleave",
+                "summary_v2": "正面重斩；满破势更强且免费。",
+                "summary_v2_en": "Cleave ahead; full Momentum makes it stronger and free.",
+                "unlock": 2.0
+              },
+              "ultimate": {
+                "cooldown": 42.0,
+                "cost": 70.0,
+                "description": "动作：举斧0.45秒 → 落斧窗0.12秒 → 收势0.45秒。准星方向前方最多130的合法地面，半径180造成4.0H物理伤害，小型敌人击退90；墙壁遮挡伤害。\n代价：70怒气，冷却42秒。施放中移动速度35%，没有无敌；空格可中断，但已启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层每波额外0.60H；满3层半径+30、击退+25。用E战吼创造出手窗口，再以巨斧轮廓、放射地裂与低频落斧冲击表现终结技；伤害与命中反馈依照实际落点结算。",
+                "description_en": "Raise the axe for 0.45 s, strike for 0.12 s, then recover for 0.45 s. Slam legal ground up to 130 units ahead for 4.0H physical damage within 180 units and 90 knockback against small enemies. Walls block damage. Costs 70 Rage; cooldown 42 s. Move at 35% speed during the cast, without invulnerability. A dash cancels without refunding costs or Momentum. Consume all Momentum on cast for +0.60H per stack per wave; three stacks add 30 radius and 25 knockback. A large axe silhouette, radial earth cracks and a low impact identify the finisher; hit feedback follows the actual landing area.",
+                "input": "R",
+                "mechanics": {
+                  "active": 0.12,
+                  "damage_multiplier": 4.0,
+                  "damage_type": "physical",
+                  "hit_stop_ms": 65.0,
+                  "knockback": 90.0,
+                  "movement_ratio": 0.35,
+                  "radius": 180.0,
+                  "range": 130.0,
+                  "recovery": 0.45,
+                  "windup": 0.45
+                },
+                "name": "天崩斧落",
+                "name_en": "Skyfall Axe",
+                "summary_v2": "砸向前方怪群，消耗破势造成重击。",
+                "summary_v2_en": "Slam the pack ahead, spending Momentum for a heavy finish.",
+                "unlock": 4.0
+              }
+            },
+            "starting_resource": 200,
+            "talent_attack_speed": 0.04,
+            "talent_cooldown_reduction": 0.06,
+            "talent_crit_chance": 0.06,
+            "talent_points_available": 0,
+            "talents": {
+              "agility": 2,
+              "dexterity": 6,
+              "mastery": 6,
+              "precision": 6
+            },
+            "title": "开路工",
+            "title_en": "The Trailbreaker",
+            "upgrades": [
+              {
+                "description": "Q 怒气消耗 20 → 15；其他参数不自动增加",
+                "description_en": "Q Rage cost decreases from 20 to 15.",
+                "level": 10.0,
+                "skill": "q"
+              },
+              {
+                "description": "W收势 0.26 → 0.18 秒；命中窗口不变",
+                "description_en": "Secondary recovery decreases from 0.26 s to 0.18 s; its hit window is unchanged.",
+                "level": 12.0,
+                "skill": "secondary"
+              },
+              {
+                "description": "E 护盾授予 12% → 18% 最大生命；仍受共享上限",
+                "description_en": "E shield increases from 12% to 18% of maximum health, subject to shared shield caps.",
+                "level": 14.0,
+                "skill": "f"
+              },
+              {
+                "description": "R 伤害 4.0H → 4.6H；不额外加大范围",
+                "description_en": "R damage increases from 4.0H to 4.6H; radius is unchanged.",
+                "level": 16.0,
+                "skill": "ultimate"
+              }
+            ],
+            "visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+            "visual_en": "An asymmetric, low-centred mine-support worker: square rockfall guard on the left shoulder, exposed hydraulic brace on the right arm and a short low-mounted air tank. A broad silver-edged mining axe has an orange-black head, flat poll and sturdy two-handed haft. Coal black, oxidised orange and bone white."
+          },
+          "hero_id": "CH01",
+          "hp_ratio": 0.0,
+          "level": 21,
+          "loadout": {},
+          "magic_damage_reduction": 0.21875,
+          "magic_penetration": 0,
+          "magic_resist": 280,
+          "max_hp": 3450,
+          "max_mana": 0,
+          "move_speed": 220.0,
+          "move_speed_bonus": 0.0,
+          "range": 105.0,
+          "relic_levels": {},
+          "resource_gain_bonus": 0.0,
+          "resource_max": 1000,
+          "resource_name": "怒气",
+          "resource_regen": 0,
+          "resource_regen_delay": 0.0,
+          "resource_type": "rage",
+          "ruleset_version": 2,
+          "sets": {},
+          "starting_resource": 200,
+          "status_duration": 0.0,
+          "talent_points_available": 0,
+          "talents": {
+            "agility": 2,
+            "dexterity": 6,
+            "mastery": 6,
+            "precision": 6
+          },
+          "temporary_buffs": {},
+          "true_damage_bonus": 0,
+          "uncapped_equipment_contribution": {}
+        },
+        "rooms": [
+          {
+            "activated_groups": {},
+            "active_seconds": 120.016666666661,
+            "actor_roster": [
+              {
+                "actor_damage": 14.0,
+                "actor_kind": "objective",
+                "initial_hp": 1964,
+                "last_hp": 1964,
+                "level": 21,
+                "rank": "normal",
+                "template": "B05-ROOT"
+              }
+            ],
+            "all_authored_waves_exhausted": false,
+            "basic_shots_total": 0,
+            "context": {
+              "biome_id": "B05",
+              "difficulty": 0,
+              "expedition": true,
+              "node_count": 7,
+              "node_index": 1,
+              "phase": "combat",
+              "role": "normal",
+              "room_id": "L25",
+              "seed": 1001
+            },
+            "controller_rejections": {},
+            "dashes_total": 0,
+            "effective_received_hits": 0,
+            "end_hp": 3450,
+            "end_level": 21,
+            "end_max_hp": 3450,
+            "end_resource": 0,
+            "entry_level": 21,
+            "equipment_runtime": {
+              "buffs": {},
+              "equipped": {},
+              "refund_history": [],
+              "resource_history": [],
+              "set_counts": {}
+            },
+            "finite_groups": {},
+            "hp_loss": 0.0,
+            "kills": 0,
+            "outcome": "observation_bound_inconclusive",
+            "room_id": "L25",
+            "samples": [
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 0.0166666666666667
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 1.0
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 2.01666666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 3.01666666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 4.01666666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 199,
+                "t": 5.01666666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 139,
+                "t": 6.01666666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 79,
+                "t": 7.01666666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 19,
+                "t": 8.01666666666664
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 9.00000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 10.0000000000001
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 11.0000000000001
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 12.0000000000002
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 13.0000000000002
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 14.0000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 15.0000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 16.0000000000004
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 17.0000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 18.0000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 19.0000000000002
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 20.0000000000001
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 21.0000000000001
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 22.0
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 23.0166666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 24.0166666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 25.0166666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 26.0166666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 27.0166666666664
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 28.0166666666664
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 29.0166666666663
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 30.0166666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 31.0166666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 32.0166666666661
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 33.0166666666661
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 34.016666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 35.016666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 36.0166666666659
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 37.0166666666658
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 38.0166666666658
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 39.0166666666657
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 40.0166666666657
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 41.0166666666656
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 42.0166666666656
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 43.0166666666655
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 44.0166666666655
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 45.0166666666654
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 46.0166666666653
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 47.0166666666653
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 48.0166666666652
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 49.0166666666652
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 50.0166666666651
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 51.0166666666651
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 52.016666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 53.0166666666649
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 54.0166666666649
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 55.0166666666648
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 56.0166666666648
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 57.0166666666647
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 58.0166666666647
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 59.0166666666646
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 60.0166666666645
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 61.0166666666645
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 62.0166666666644
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 63.0166666666644
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 64.0166666666643
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 65.0166666666643
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 66.0166666666642
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 67.0166666666642
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 68.0166666666641
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 69.016666666664
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 70.016666666664
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 71.0166666666639
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 72.0166666666639
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 73.0166666666638
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 74.0166666666638
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 75.0166666666637
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 76.0166666666636
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 77.0166666666636
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 78.0166666666635
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 79.0166666666635
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 80.0166666666634
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 81.0166666666634
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 82.0166666666633
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 83.0166666666632
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 84.0166666666632
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 85.0166666666631
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 86.0166666666631
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 87.016666666663
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 88.016666666663
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 89.0166666666629
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 90.0166666666628
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 91.0166666666628
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 92.0166666666627
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 93.0166666666627
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 94.0166666666626
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 95.0166666666626
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 96.0166666666625
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 97.0166666666624
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 98.0166666666624
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 99.0166666666623
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 100.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 101.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 102.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 103.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 104.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 105.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 106.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 107.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 108.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 109.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 110.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 111.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 112.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 113.016666666662
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 114.016666666661
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 115.016666666661
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 116.016666666661
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 117.016666666661
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 118.016666666661
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 119.016666666661
+              }
+            ],
+            "start_active_seconds": 0.0,
+            "start_hp": 3450,
+            "start_max_hp": 3450,
+            "start_resource": 200
+          }
+        ],
+        "route": {
+          "biome_id": "B05",
+          "choices": [],
+          "content_version": 1,
+          "departure_level": 21,
+          "dynamic_version": 2,
+          "navigation_validated": false,
+          "node_count": 12,
+          "nodes": [
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "入口整备站",
+              "next_node": 1,
+              "node_index": 0,
+              "options": [],
+              "role": "entrance",
+              "room_id": "service_entrance",
+              "safe": true,
+              "threat_budget": 0
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "花径入口",
+              "next_node": 2,
+              "node_index": 1,
+              "options": [
+                "L25"
+              ],
+              "previews": {
+                "L25": {
+                  "biome_id": "B05",
+                  "name": "花径入口",
+                  "objective": "M01/02/04先后两波；第一根井单独展示",
+                  "objective_id": "b05_root_network_l25",
+                  "reward": "头/胸偏向，旧装备可清",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L25",
+              "threat_budget": 12
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "藤门苗圃",
+              "next_node": 3,
+              "node_index": 2,
+              "options": [
+                "L26"
+              ],
+              "previews": {
+                "L26": {
+                  "biome_id": "B05",
+                  "name": "藤门苗圃",
+                  "objective": "M03/05/06；先看盾卫再用水闸断网",
+                  "objective_id": "b05_root_network_l26",
+                  "reward": "裤/鞋偏向，U01偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L26",
+              "threat_budget": 14
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": true,
+              "name": "露台花桥",
+              "next_node": 4,
+              "node_index": 3,
+              "options": [
+                "L27"
+              ],
+              "previews": {
+                "L27": {
+                  "biome_id": "B05",
+                  "name": "露台花桥",
+                  "objective": "M07/08/09；一次只激活一桥根须",
+                  "objective_id": "b05_root_network_l27",
+                  "reward": "手/戒偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "objective",
+              "room_id": "L27",
+              "threat_budget": 16
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "树脂工坊",
+              "next_node": 5,
+              "node_index": 4,
+              "options": [
+                "L28"
+              ],
+              "previews": {
+                "L28": {
+                  "biome_id": "B05",
+                  "name": "树脂工坊",
+                  "objective": "M10/11/12；盾面、花粉圈与拆井组合",
+                  "objective_id": "b05_root_network_l28",
+                  "reward": "手/戒，U02偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L28",
+              "threat_budget": 18
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "补给商店",
+              "next_node": 6,
+              "node_index": 5,
+              "options": [],
+              "role": "supply",
+              "room_id": "service_supply",
+              "safe": true,
+              "threat_budget": 0
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": true,
+              "name": "日照高台",
+              "next_node": 7,
+              "node_index": 6,
+              "options": [
+                "L29"
+              ],
+              "previews": {
+                "L29": {
+                  "biome_id": "B05",
+                  "name": "日照高台",
+                  "objective": "M13/14/15；拆掉蓄能花解除高台封锁",
+                  "objective_id": "b05_root_network_l29",
+                  "reward": "武器/饰品偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "objective",
+              "room_id": "L29",
+              "threat_budget": 22
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "四季温室",
+              "next_node": 8,
+              "node_index": 7,
+              "options": [
+                "L30"
+              ],
+              "previews": {
+                "L30": {
+                  "biome_id": "B05",
+                  "name": "四季温室",
+                  "objective": "M16/17/18配低阶怪；有限三波，练习关网后集火",
+                  "objective_id": "b05_root_network_l30",
+                  "reward": "武器/饰品，U03偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L30",
+              "threat_budget": 24
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "日照高台",
+              "next_node": 9,
+              "node_index": 8,
+              "options": [
+                "L29",
+                "L30"
+              ],
+              "previews": {
+                "L29": {
+                  "biome_id": "B05",
+                  "name": "日照高台",
+                  "objective": "M13/14/15；拆掉蓄能花解除高台封锁",
+                  "objective_id": "b05_root_network_l29",
+                  "reward": "武器/饰品偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                },
+                "L30": {
+                  "biome_id": "B05",
+                  "name": "四季温室",
+                  "objective": "M16/17/18配低阶怪；有限三波，练习关网后集火",
+                  "objective_id": "b05_root_network_l30",
+                  "reward": "武器/饰品，U03偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L29",
+              "threat_budget": 26
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": true,
+              "name": "四季温室",
+              "next_node": 10,
+              "node_index": 9,
+              "options": [
+                "L30",
+                "L29"
+              ],
+              "previews": {
+                "L29": {
+                  "biome_id": "B05",
+                  "name": "日照高台",
+                  "objective": "M13/14/15；拆掉蓄能花解除高台封锁",
+                  "objective_id": "b05_root_network_l29",
+                  "reward": "武器/饰品偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                },
+                "L30": {
+                  "biome_id": "B05",
+                  "name": "四季温室",
+                  "objective": "M16/17/18配低阶怪；有限三波，练习关网后集火",
+                  "objective_id": "b05_root_network_l30",
+                  "reward": "武器/饰品，U03偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "objective",
+              "room_id": "L30",
+              "threat_budget": 28
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": true,
+              "name": "日照高台",
+              "next_node": 11,
+              "node_index": 10,
+              "options": [
+                "L30",
+                "L29"
+              ],
+              "previews": {
+                "L29": {
+                  "biome_id": "B05",
+                  "name": "日照高台",
+                  "objective": "M13/14/15；拆掉蓄能花解除高台封锁",
+                  "objective_id": "b05_root_network_l29",
+                  "reward": "武器/饰品偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                },
+                "L30": {
+                  "biome_id": "B05",
+                  "name": "四季温室",
+                  "objective": "M16/17/18配低阶怪；有限三波，练习关网后集火",
+                  "objective_id": "b05_root_network_l30",
+                  "reward": "武器/饰品，U03偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "elite_objective",
+              "room_id": "L29",
+              "threat_budget": 32
+            },
+            {
+              "arena_id": "BO05_arena",
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "千枝花冠树王",
+              "next_node": -1,
+              "node_index": 11,
+              "options": [],
+              "role": "boss",
+              "room_id": "BO05",
+              "threat_budget": 0
+            }
+          ],
+          "seed": 1001,
+          "template_ids": [
+            "L25",
+            "L26",
+            "L27",
+            "L28",
+            "L29",
+            "L30",
+            "L29",
+            "L30",
+            "L29"
+          ],
+          "valid": true
+        },
+        "schema": "b05-naked-chapter-v1",
+        "seed": 1001,
+        "skip_policy": "Skip every mandatory relic offer through production API; native skip may heal up to6% max HP, recorded separately. No supply purchases.",
+        "source_sha256": {
+          "data/numerical_v2.json": "fc794a17bd959ec57cb376eb31b86b28562eb2238613966998b1aedf84401b2c",
+          "scripts/combat/enemy_calibration.gd": "d5f21e64ce161ff4bb96c3670f94fda7682f7aaf6ea8b8f31d37d3b8d78412f5",
+          "scripts/combat/enemy_profiles.gd": "f3ff1f426b8983e964dce8c1b6b9153a17a70b7475362c8543eb4d570762977f",
+          "scripts/combat/hero_abilities.gd": "8cdb23b60e7155205a83ef443888f2f884d2c86b21f9005e82ce28ac443b1bdd",
+          "scripts/combat/player.gd": "f40841ba0b041787e8b8dfa3261fb4dadd89f43b504548f935dfb687ee03e7c7",
+          "scripts/combat/room.gd": "1ea0033da996c518a282f1903544980ad56480cc0621fac86c09d19559af9b66",
+          "scripts/combat/stat_resolver.gd": "c945544f71d4a2ad26c6b0a50459ab58659336901c8d8ed8638975bb85d2e3d9",
+          "scripts/core/run_controller.gd": "e35ff6d9f1d3d0bfa9a008a0727c4abdb86b53fa63627615c072cfdfe0202e0d",
+          "scripts/world/route_generator.gd": "b6013d05e0ffdb6132fb6482e92d8152d03d709a31984acc4690cb5c843713a0",
+          "tests/support/b05_balance_controller.gd": "d9e758f3876913c2b1564db9049d7142eee6398118c51aad6e670c275e9e9069",
+          "tests/support/b05_balance_fixtures.gd": "dcbb02fbdce0336701e96581b891d3adb144907a5f9941a3039df94868408bb4",
+          "tests/test_b05_naked_chapter.gd": "a895087416cea65561f863906ad3eec9ea22cc5a716689b4038458d1af4ac11c"
+        },
+        "source_sha256_after": {
+          "data/numerical_v2.json": "fc794a17bd959ec57cb376eb31b86b28562eb2238613966998b1aedf84401b2c",
+          "scripts/combat/enemy_calibration.gd": "d5f21e64ce161ff4bb96c3670f94fda7682f7aaf6ea8b8f31d37d3b8d78412f5",
+          "scripts/combat/enemy_profiles.gd": "f3ff1f426b8983e964dce8c1b6b9153a17a70b7475362c8543eb4d570762977f",
+          "scripts/combat/hero_abilities.gd": "8cdb23b60e7155205a83ef443888f2f884d2c86b21f9005e82ce28ac443b1bdd",
+          "scripts/combat/player.gd": "f40841ba0b041787e8b8dfa3261fb4dadd89f43b504548f935dfb687ee03e7c7",
+          "scripts/combat/room.gd": "1ea0033da996c518a282f1903544980ad56480cc0621fac86c09d19559af9b66",
+          "scripts/combat/stat_resolver.gd": "c945544f71d4a2ad26c6b0a50459ab58659336901c8d8ed8638975bb85d2e3d9",
+          "scripts/core/run_controller.gd": "e35ff6d9f1d3d0bfa9a008a0727c4abdb86b53fa63627615c072cfdfe0202e0d",
+          "scripts/world/route_generator.gd": "b6013d05e0ffdb6132fb6482e92d8152d03d709a31984acc4690cb5c843713a0",
+          "tests/support/b05_balance_controller.gd": "d9e758f3876913c2b1564db9049d7142eee6398118c51aad6e670c275e9e9069",
+          "tests/support/b05_balance_fixtures.gd": "dcbb02fbdce0336701e96581b891d3adb144907a5f9941a3039df94868408bb4",
+          "tests/test_b05_naked_chapter.gd": "a895087416cea65561f863906ad3eec9ea22cc5a716689b4038458d1af4ac11c"
+        },
+        "stationary_pressure": true,
+        "time_scale": 1,
+        "transitions": [],
+        "whole_chapter_clear_proven": false
+      }
+    },
+    {
+      "run_id": "20261002T231420270565Z-8593f69b",
+      "console_sha256": "0ad0b1406903003e4a522244c923cdeb2354d3a878a4c9f678fc612830b65e4d",
+      "script_errors": 63373,
+      "report": {
+        "active_limit_seconds": 360.0,
+        "active_seconds": 21.0000000000001,
+        "blocker": {
+          "navigation_target": {
+            "kind": "objective",
+            "name_en": "Explore the next sector",
+            "position": [
+              475.599975585938,
+              464.0
+            ],
+            "title": "探索下一矿区"
+          },
+          "no_progress_seconds": 20.9833333333334,
+          "position": [
+            185.599990844727,
+            522.0
+          ],
+          "qualification": "Controller could not submit a reachable path; not proof that a human has no route.",
+          "rejections": {
+            "movement_goal_rejected": 396,
+            "no_reachable_approach": 396
+          },
+          "room": "L25"
+        },
+        "checks": 41,
+        "controller": "b05-zero-basic-controller-v1",
+        "difficulty": 0,
+        "display": "headless",
+        "effective_received_hits": 0,
+        "entry_calibration": {
+          "chapters": {
+            "B01": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B02": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B03": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B04": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B05": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            },
+            "B06": {
+              "boss": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "elite": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              },
+              "normal": {
+                "attack": 1.0,
+                "hp": 1.0,
+                "skill": 1.0
+              }
+            }
+          },
+          "version": 13.0
+        },
+        "failures": [],
+        "final_hp": 3450,
+        "final_max_hp": 3450,
+        "fixture": {
+          "branches": {
+            "q": "B",
+            "ultimate": "A"
+          },
+          "case_id": "B05/CH01/naked",
+          "choice_authority": "Lawful frozen test choice derived from Lv25 fixture, not user-selected optimization",
+          "entry_stats": {
+            "ability_power": 0,
+            "armor": 440,
+            "armor_damage_reduction": 0.305555555555556,
+            "armor_penetration": 0,
+            "attack": 556,
+            "attack_interval": 0.480769230769231,
+            "attack_speed_bonus": 0.04,
+            "branches": {
+              "q": "B",
+              "ultimate": "A"
+            },
+            "burn_damage": 0.0,
+            "cooldown_reduction": 0.06,
+            "corrosion_damage_bonus": 0.0,
+            "crit_chance": 0.11,
+            "crit_multiplier": 1.5,
+            "damage_bonus": 0.0,
+            "damage_reduction": 0.0,
+            "equipment_contribution": {
+              "ability_power": 0,
+              "armor": 0,
+              "armor_penetration": 0,
+              "attack": 0,
+              "attack_speed": 0.0,
+              "burn_damage": 0.0,
+              "cooldown_reduction": 0.0,
+              "corrosion_damage_bonus": 0.0,
+              "crit_chance": 0.0,
+              "crit_multiplier": 0.0,
+              "damage_bonus": 0.0,
+              "damage_reduction": 0.0,
+              "hp_ratio": 0.0,
+              "magic_penetration": 0,
+              "magic_resist": 0,
+              "max_hp": 0,
+              "max_mana": 0,
+              "move_speed": 0.0,
+              "resource_gain_bonus": 0.0,
+              "status_duration": 0.0,
+              "true_damage_bonus": 0
+            },
+            "equipment_damage_reduction": 0.0,
+            "equipment_templates": {},
+            "hero_base": {
+              "ability_power": 0,
+              "armor": 440,
+              "attack": 556,
+              "attack_arc_degrees": 100.0,
+              "attack_interval": 0.5,
+              "attack_timing": {
+                "active": 0.08,
+                "recovery": 0.3,
+                "windup": 0.12
+              },
+              "attack_type": "melee",
+              "branches": {
+                "18": {
+                  "A": {
+                    "description": "Q 距离 160 → 240，但伤害降至 1.2H；适合追击与侧切",
+                    "description_en": "Q distance increases from 160 to 240, but damage decreases to 1.2H. Better pursuit and flanking.",
+                    "name": "长轨",
+                    "name_en": "Long Rail"
+                  },
+                  "B": {
+                    "description": "Q 取消位移，改为自身半径 135 的 1.7H 冲击并获得 8% 最大生命护盾；失去接敌位移，适合守点",
+                    "description_en": "Q loses its movement and becomes a 135-radius impact around the player for 1.7H damage, granting an 8% maximum-health shield. Trades approach mobility for holding ground.",
+                    "name": "地锚",
+                    "name_en": "Ground Anchor"
+                  }
+                },
+                "20": {
+                  "A": {
+                    "description": "R 伤害改为 5.4H，范围缩为 140，预备延长到 0.65 秒；需要精确制造窗口",
+                    "description_en": "R deals 5.4H damage, but its radius shrinks to 140 and preparation increases to 0.65 s. Requires a precise opening.",
+                    "name": "定桩",
+                    "name_en": "Fixed Pile"
+                  },
+                  "B": {
+                    "description": "R 改为间隔 0.20 秒的两次 1.9H 波，每波范围 220，收势缩至 0.25 秒；同敌每波最多一次，只有第一波击退，总伤害低于标准 R",
+                    "description_en": "R becomes two 1.9H waves 0.20 s apart, each with 220 radius, and recovery decreases to 0.25 s. Each target can be hit once per wave; only the first wave knocks back. Lower total damage than standard R.",
+                    "name": "清道",
+                    "name_en": "Clearway"
+                  }
+                }
+              },
+              "class_id": "C01",
+              "class_name": "战士",
+              "class_name_en": "Warrior",
+              "color": "#C87535",
+              "crit_chance": 0.05,
+              "crit_multiplier": 1.5,
+              "dash": {
+                "cooldown": 2.2,
+                "cost": 0.0,
+                "distance": 110.0,
+                "duration": 0.18,
+                "invincible_end": 0.1,
+                "invincible_start": 0.0,
+                "name": "钢步",
+                "name_en": "Steel Step",
+                "recovery": 0.0,
+                "windup": 0.0
+              },
+              "description": "近战普攻积攒三击护盾与破势；Q冲锋接敌，E战吼推开包围并获得护盾、短时减伤，再以W重斩或R落斧消耗破势爆发。",
+              "description_en": "Basic swings build a three-hit shield and Momentum. Charge in with Q, use E for a shield, brief damage reduction and space, then spend Momentum with the W cleave or R axe slam.",
+              "growth": {
+                "armor_at_cap": 6.0,
+                "attack_ratio_at_cap": 0.1,
+                "max_hp_ratio_at_cap": 0.2
+              },
+              "id": "CH01",
+              "level": 21,
+              "level_cap": 20.0,
+              "magic_resist": 280,
+              "max_hp": 3450,
+              "move_speed": 220.0,
+              "name": "罗砧",
+              "name_en": "Luo Zhen",
+              "original_visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+              "passive": {
+                "description": "每3次有效原始普攻获得最大生命8%的护盾，持续3秒，内置冷却6秒。一次挥击命中多敌只记1次，冷却期间不积攒。原始普攻与Q命中、E释放积累破势，最多3层；W或R成功启动时消耗破势强化伤害，满3层的W免怒气。被动自动触发，无需C/V操作。派生伤害、持续场和装备附伤不会触发；计数随房间或死亡清空。",
+                "description_en": "Every 3 confirmed original basic attacks grant an 8% maximum-health shield for 3 seconds. Internal cooldown: 6 seconds; no accumulation during cooldown. A multi-target swing counts once. Basics, Q contact and E release build Momentum, up to 3; W or R spends it to empower the cast, and W costs no Rage at full Momentum. Automatic; no C/V input. Derived hits never trigger it. Progress resets on room change or death.",
+                "duration": 3.0,
+                "hit_count": 3.0,
+                "icd": 6.0,
+                "name": "三铆支护",
+                "name_en": "Three-Rivet Support",
+                "shield_hp_ratio": 0.08
+              },
+              "projectile_speed": 0.0,
+              "range": 105.0,
+              "resource_max": 1000,
+              "resource_name": "怒气",
+              "resource_name_en": "Rage",
+              "resource_regen": 0,
+              "resource_regen_delay": 0.0,
+              "resource_rules": {
+                "basic_hit_gain": 8.0,
+                "health_damage_gain": 5.0,
+                "health_damage_icd": 1.0,
+                "out_of_combat_decay": 6.0,
+                "out_of_combat_delay": 5.0
+              },
+              "resource_type": "rage",
+              "role": "近战战士 · 破势重斩 · 护盾战吼",
+              "role_en": "Melee warrior · Momentum cleave · Guarding warcry",
+              "skills": {
+                "f": {
+                  "cooldown": 11.0,
+                  "cost": 25.0,
+                  "description": "动作：战吼预备0.12秒 → 冲击窗0.08秒 → 收势0.18秒。自身半径100造成0.6H物理伤害，小型敌人向外击退70；立即获得最大生命12%的护盾，持续4秒，并获得25%减伤，持续1.5秒。\n代价：25怒气，冷却11秒。不治疗、不无敌、不清空远程弹体，护盾仍遵守共享容量规则。战吼与其他减伤取较强值，各自独立计时；不叠加、不延长彼此。\n循环与反馈：被包围时战吼开路，再冲锋或闪避；无敌人时仍合法获得防护和1层破势。铜色盾架与向外扩散的冲击环区分防御释放，Boss不被推开。",
+                  "description_en": "Prepare for 0.12 s, strike for 0.08 s, then recover for 0.18 s. Deal 0.6H physical damage within 100 units, push small enemies back 70 units, gain a 12% maximum-health shield for 4 s and 25% damage reduction for 1.5 s. Costs 25 Rage; cooldown 11 s. It does not heal, grant invulnerability or clear projectiles. Shared shield caps still apply. Warcry and other damage reductions use the stronger value with independent timers; they do not add together or extend each other. A legal empty cast still grants protection and one Momentum. Copper guard shapes and an outward shock ring mark the defensive release; bosses resist the displacement.",
+                  "input": "E",
+                  "mechanics": {
+                    "active": 0.08,
+                    "damage_multiplier": 0.6,
+                    "damage_reduction": 0.25,
+                    "damage_reduction_duration": 1.5,
+                    "damage_reduction_status_id": "brace_guard",
+                    "damage_type": "physical",
+                    "knockback": 70.0,
+                    "radius": 100.0,
+                    "recovery": 0.18,
+                    "shield_duration": 4.0,
+                    "shield_hp_ratio": 0.12,
+                    "windup": 0.12
+                  },
+                  "name": "铁壁战吼",
+                  "name_en": "Ironwall Warcry",
+                  "unlock": 3.0
+                },
+                "q": {
+                  "cooldown": 6.0,
+                  "cost": 20.0,
+                  "description": "动作：预备0.10秒 → 冲锋0.18秒 → 收势0.14秒。沿准星最多前进160，终点半径75造成1.5H物理伤害，小型敌人击退45；每敌每次施放只命中一次。\n代价：20怒气，冷却6秒。没有额外无敌；可越过普通敌人碰撞但不能越过地形。撞墙停在最后合法地面，冲击不能隔墙命中。完全没有合法移动路线时不扣费，合法空放正常扣费。\n循环与反馈：普攻积怒，Q接敌后用W重斩；命中任意数量敌人仅获得1层破势。铜色冲锋轨迹、地裂冲击与战士短乐句标明释放，命中再叠加重击反馈，保留脚点与敌人预警。",
+                  "description_en": "Prepare for 0.10 s, charge up to 160 units over 0.18 s, then recover for 0.14 s. A 75-radius endpoint impact deals 1.5H physical damage and knocks small enemies back 45 units, once per target. Costs 20 Rage; cooldown 6 s. No invulnerability; terrain blocks movement and damage. An entirely invalid route costs nothing, while a legal empty cast still costs resources. Hitting any number of enemies grants one Momentum. Copper trails, an earth impact and a brief warrior motif identify the release; confirmed hits add impact feedback.",
+                  "input": "Q",
+                  "mechanics": {
+                    "active": 0.18,
+                    "damage_multiplier": 1.5,
+                    "damage_type": "physical",
+                    "distance": 160.0,
+                    "knockback": 45.0,
+                    "radius": 75.0,
+                    "recovery": 0.14,
+                    "windup": 0.1
+                  },
+                  "name": "破阵冲锋",
+                  "name_en": "Formation Charge",
+                  "unlock": 1.0
+                },
+                "secondary": {
+                  "cooldown": 4.0,
+                  "cost": 30.0,
+                  "description": "动作：蓄斧0.18秒 → 重斩窗0.10秒 → 收势0.26秒。前方120°、距离115造成2.2H物理伤害，小型敌人击退65；同敌一次，墙壁阻挡。预备最多修正瞄准30°，有效窗锁定方向。\n代价：通常30怒气，冷却4秒；满3层破势免怒气。空格可取消收势，已经启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层额外0.45H；满3层时距离140、扇形160°、击退90。Q接敌或普攻积层后出手，以宽铜色斧刃弧线、土石碎片和重金属撞击表现正面重斩，背后不显示虚假攻击圆圈。",
+                  "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Cleave a 120-degree forward arc at 115 range for 2.2H physical damage and 65 knockback against small enemies, once per target. Walls block hits. Aim can adjust up to 30 degrees during preparation, then locks. Costs 30 Rage; cooldown 4 s. Consume all Momentum on cast for +0.45H per stack. At three stacks: no Rage cost, 140 range, a 160-degree arc and 90 knockback. Dashing can cancel recovery without refunding costs or Momentum. A broad copper axe arc, earth fragments and a heavy metallic impact communicate the forward cleave.",
+                  "input": "W",
+                  "mechanics": {
+                    "active": 0.1,
+                    "arc_degrees": 120.0,
+                    "damage_multiplier": 2.2,
+                    "damage_type": "physical",
+                    "hit_stop_ms": 55.0,
+                    "knockback": 65.0,
+                    "range": 115.0,
+                    "recovery": 0.26,
+                    "windup": 0.18,
+                    "windup_aim_adjustment_degrees": 30.0
+                  },
+                  "name": "裂地重斩",
+                  "name_en": "Earthsplit Cleave",
+                  "summary_v2": "正面重斩；满破势更强且免费。",
+                  "summary_v2_en": "Cleave ahead; full Momentum makes it stronger and free.",
+                  "unlock": 2.0
+                },
+                "ultimate": {
+                  "cooldown": 42.0,
+                  "cost": 70.0,
+                  "description": "动作：举斧0.45秒 → 落斧窗0.12秒 → 收势0.45秒。准星方向前方最多130的合法地面，半径180造成4.0H物理伤害，小型敌人击退90；墙壁遮挡伤害。\n代价：70怒气，冷却42秒。施放中移动速度35%，没有无敌；空格可中断，但已启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层每波额外0.60H；满3层半径+30、击退+25。用E战吼创造出手窗口，再以巨斧轮廓、放射地裂与低频落斧冲击表现终结技；伤害与命中反馈依照实际落点结算。",
+                  "description_en": "Raise the axe for 0.45 s, strike for 0.12 s, then recover for 0.45 s. Slam legal ground up to 130 units ahead for 4.0H physical damage within 180 units and 90 knockback against small enemies. Walls block damage. Costs 70 Rage; cooldown 42 s. Move at 35% speed during the cast, without invulnerability. A dash cancels without refunding costs or Momentum. Consume all Momentum on cast for +0.60H per stack per wave; three stacks add 30 radius and 25 knockback. A large axe silhouette, radial earth cracks and a low impact identify the finisher; hit feedback follows the actual landing area.",
+                  "input": "R",
+                  "mechanics": {
+                    "active": 0.12,
+                    "damage_multiplier": 4.0,
+                    "damage_type": "physical",
+                    "hit_stop_ms": 65.0,
+                    "knockback": 90.0,
+                    "movement_ratio": 0.35,
+                    "radius": 180.0,
+                    "range": 130.0,
+                    "recovery": 0.45,
+                    "windup": 0.45
+                  },
+                  "name": "天崩斧落",
+                  "name_en": "Skyfall Axe",
+                  "summary_v2": "砸向前方怪群，消耗破势造成重击。",
+                  "summary_v2_en": "Slam the pack ahead, spending Momentum for a heavy finish.",
+                  "unlock": 4.0
+                }
+              },
+              "starting_resource": 200,
+              "talent_attack_speed": 0.04,
+              "talent_cooldown_reduction": 0.06,
+              "talent_crit_chance": 0.06,
+              "talent_points_available": 0,
+              "talents": {
+                "agility": 2,
+                "dexterity": 6,
+                "mastery": 6,
+                "precision": 6
+              },
+              "title": "开路工",
+              "title_en": "The Trailbreaker",
+              "upgrades": [
+                {
+                  "description": "Q 怒气消耗 20 → 15；其他参数不自动增加",
+                  "description_en": "Q Rage cost decreases from 20 to 15.",
+                  "level": 10.0,
+                  "skill": "q"
+                },
+                {
+                  "description": "W收势 0.26 → 0.18 秒；命中窗口不变",
+                  "description_en": "Secondary recovery decreases from 0.26 s to 0.18 s; its hit window is unchanged.",
+                  "level": 12.0,
+                  "skill": "secondary"
+                },
+                {
+                  "description": "E 护盾授予 12% → 18% 最大生命；仍受共享上限",
+                  "description_en": "E shield increases from 12% to 18% of maximum health, subject to shared shield caps.",
+                  "level": 14.0,
+                  "skill": "f"
+                },
+                {
+                  "description": "R 伤害 4.0H → 4.6H；不额外加大范围",
+                  "description_en": "R damage increases from 4.0H to 4.6H; radius is unchanged.",
+                  "level": 16.0,
+                  "skill": "ultimate"
+                }
+              ],
+              "visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+              "visual_en": "An asymmetric, low-centred mine-support worker: square rockfall guard on the left shoulder, exposed hydraulic brace on the right arm and a short low-mounted air tank. A broad silver-edged mining axe has an orange-black head, flat poll and sturdy two-handed haft. Coal black, oxidised orange and bone white."
+            },
+            "hero_id": "CH01",
+            "hp_ratio": 0.0,
+            "level": 21,
+            "loadout": {},
+            "magic_damage_reduction": 0.21875,
+            "magic_penetration": 0,
+            "magic_resist": 280,
+            "max_hp": 3450,
+            "max_mana": 0,
+            "move_speed": 220.0,
+            "move_speed_bonus": 0.0,
+            "range": 105.0,
+            "resource_gain_bonus": 0.0,
+            "resource_max": 1000,
+            "resource_name": "怒气",
+            "resource_regen": 0,
+            "resource_regen_delay": 0.0,
+            "resource_type": "rage",
+            "ruleset_version": 2,
+            "sets": {},
+            "starting_resource": 200,
+            "status_duration": 0.0,
+            "talent_points_available": 0,
+            "talents": {
+              "agility": 2,
+              "dexterity": 6,
+              "mastery": 6,
+              "precision": 6
+            },
+            "true_damage_bonus": 0,
+            "uncapped_equipment_contribution": {}
+          },
+          "equipment": [],
+          "external_relics": [],
+          "fixture_version": "b05-naked-entry21-v1",
+          "hero_id": "CH01",
+          "level": 21,
+          "loadout": {
+            "charm": "",
+            "chest": "",
+            "feet": "",
+            "hands": "",
+            "head": "",
+            "legs": "",
+            "ring": "",
+            "weapon": ""
+          },
+          "talent_points_spent": 20,
+          "talents": {
+            "agility": 2,
+            "dexterity": 6,
+            "mastery": 6,
+            "precision": 6
+          }
+        },
+        "host_seconds": 4.36138,
+        "incoming_packets": [],
+        "method": "Native production room/route/AI/damage, automated 0.1s visible-danger decisions and lawful dash, mage zero basics; not human play or standing tanking",
+        "mode": "chapter",
+        "outcome": "controller_navigation_blocked",
+        "physics_hz": 60,
+        "relic_skips": [
+          {
+            "hp_after": 3450,
+            "hp_before": 3450.0,
+            "native_skip_healing": 0.0,
+            "node_index": 0,
+            "resource_after": 200,
+            "resource_before": 200.0,
+            "room_id": "service_entrance",
+            "t": 0.0
+          }
+        ],
+        "resolved_entry_stats": {
+          "ability_power": 0,
+          "armor": 440,
+          "armor_damage_reduction": 0.305555555555556,
+          "armor_penetration": 0,
+          "attack": 556,
+          "attack_interval": 0.480769230769231,
+          "attack_speed_bonus": 0.04,
+          "branches": {
+            "q": "B",
+            "ultimate": "A"
+          },
+          "burn_damage": 0.0,
+          "cooldown_reduction": 0.06,
+          "corrosion_damage_bonus": 0.0,
+          "crit_chance": 0.11,
+          "crit_multiplier": 1.5,
+          "damage_bonus": 0.0,
+          "damage_reduction": 0.0,
+          "equipment_contribution": {
+            "ability_power": 0,
+            "armor": 0,
+            "armor_penetration": 0,
+            "attack": 0,
+            "attack_speed": 0.0,
+            "burn_damage": 0.0,
+            "cooldown_reduction": 0.0,
+            "corrosion_damage_bonus": 0.0,
+            "crit_chance": 0.0,
+            "crit_multiplier": 0.0,
+            "damage_bonus": 0.0,
+            "damage_reduction": 0.0,
+            "hp_ratio": 0.0,
+            "magic_penetration": 0,
+            "magic_resist": 0,
+            "max_hp": 0,
+            "max_mana": 0,
+            "move_speed": 0.0,
+            "resource_gain_bonus": 0.0,
+            "status_duration": 0.0,
+            "true_damage_bonus": 0
+          },
+          "equipment_damage_reduction": 0.0,
+          "equipment_templates": {},
+          "hero_base": {
+            "ability_power": 0,
+            "armor": 440,
+            "attack": 556,
+            "attack_arc_degrees": 100.0,
+            "attack_interval": 0.5,
+            "attack_timing": {
+              "active": 0.08,
+              "recovery": 0.3,
+              "windup": 0.12
+            },
+            "attack_type": "melee",
+            "branches": {
+              "18": {
+                "A": {
+                  "description": "Q 距离 160 → 240，但伤害降至 1.2H；适合追击与侧切",
+                  "description_en": "Q distance increases from 160 to 240, but damage decreases to 1.2H. Better pursuit and flanking.",
+                  "name": "长轨",
+                  "name_en": "Long Rail"
+                },
+                "B": {
+                  "description": "Q 取消位移，改为自身半径 135 的 1.7H 冲击并获得 8% 最大生命护盾；失去接敌位移，适合守点",
+                  "description_en": "Q loses its movement and becomes a 135-radius impact around the player for 1.7H damage, granting an 8% maximum-health shield. Trades approach mobility for holding ground.",
+                  "name": "地锚",
+                  "name_en": "Ground Anchor"
+                }
+              },
+              "20": {
+                "A": {
+                  "description": "R 伤害改为 5.4H，范围缩为 140，预备延长到 0.65 秒；需要精确制造窗口",
+                  "description_en": "R deals 5.4H damage, but its radius shrinks to 140 and preparation increases to 0.65 s. Requires a precise opening.",
+                  "name": "定桩",
+                  "name_en": "Fixed Pile"
+                },
+                "B": {
+                  "description": "R 改为间隔 0.20 秒的两次 1.9H 波，每波范围 220，收势缩至 0.25 秒；同敌每波最多一次，只有第一波击退，总伤害低于标准 R",
+                  "description_en": "R becomes two 1.9H waves 0.20 s apart, each with 220 radius, and recovery decreases to 0.25 s. Each target can be hit once per wave; only the first wave knocks back. Lower total damage than standard R.",
+                  "name": "清道",
+                  "name_en": "Clearway"
+                }
+              }
+            },
+            "class_id": "C01",
+            "class_name": "战士",
+            "class_name_en": "Warrior",
+            "color": "#C87535",
+            "crit_chance": 0.05,
+            "crit_multiplier": 1.5,
+            "dash": {
+              "cooldown": 2.2,
+              "cost": 0.0,
+              "distance": 110.0,
+              "duration": 0.18,
+              "invincible_end": 0.1,
+              "invincible_start": 0.0,
+              "name": "钢步",
+              "name_en": "Steel Step",
+              "recovery": 0.0,
+              "windup": 0.0
+            },
+            "description": "近战普攻积攒三击护盾与破势；Q冲锋接敌，E战吼推开包围并获得护盾、短时减伤，再以W重斩或R落斧消耗破势爆发。",
+            "description_en": "Basic swings build a three-hit shield and Momentum. Charge in with Q, use E for a shield, brief damage reduction and space, then spend Momentum with the W cleave or R axe slam.",
+            "growth": {
+              "armor_at_cap": 6.0,
+              "attack_ratio_at_cap": 0.1,
+              "max_hp_ratio_at_cap": 0.2
+            },
+            "id": "CH01",
+            "level": 21,
+            "level_cap": 20.0,
+            "magic_resist": 280,
+            "max_hp": 3450,
+            "move_speed": 220.0,
+            "name": "罗砧",
+            "name_en": "Luo Zhen",
+            "original_visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+            "passive": {
+              "description": "每3次有效原始普攻获得最大生命8%的护盾，持续3秒，内置冷却6秒。一次挥击命中多敌只记1次，冷却期间不积攒。原始普攻与Q命中、E释放积累破势，最多3层；W或R成功启动时消耗破势强化伤害，满3层的W免怒气。被动自动触发，无需C/V操作。派生伤害、持续场和装备附伤不会触发；计数随房间或死亡清空。",
+              "description_en": "Every 3 confirmed original basic attacks grant an 8% maximum-health shield for 3 seconds. Internal cooldown: 6 seconds; no accumulation during cooldown. A multi-target swing counts once. Basics, Q contact and E release build Momentum, up to 3; W or R spends it to empower the cast, and W costs no Rage at full Momentum. Automatic; no C/V input. Derived hits never trigger it. Progress resets on room change or death.",
+              "duration": 3.0,
+              "hit_count": 3.0,
+              "icd": 6.0,
+              "name": "三铆支护",
+              "name_en": "Three-Rivet Support",
+              "shield_hp_ratio": 0.08
+            },
+            "projectile_speed": 0.0,
+            "range": 105.0,
+            "resource_max": 1000,
+            "resource_name": "怒气",
+            "resource_name_en": "Rage",
+            "resource_regen": 0,
+            "resource_regen_delay": 0.0,
+            "resource_rules": {
+              "basic_hit_gain": 8.0,
+              "health_damage_gain": 5.0,
+              "health_damage_icd": 1.0,
+              "out_of_combat_decay": 6.0,
+              "out_of_combat_delay": 5.0
+            },
+            "resource_type": "rage",
+            "role": "近战战士 · 破势重斩 · 护盾战吼",
+            "role_en": "Melee warrior · Momentum cleave · Guarding warcry",
+            "skills": {
+              "f": {
+                "cooldown": 11.0,
+                "cost": 25.0,
+                "description": "动作：战吼预备0.12秒 → 冲击窗0.08秒 → 收势0.18秒。自身半径100造成0.6H物理伤害，小型敌人向外击退70；立即获得最大生命12%的护盾，持续4秒，并获得25%减伤，持续1.5秒。\n代价：25怒气，冷却11秒。不治疗、不无敌、不清空远程弹体，护盾仍遵守共享容量规则。战吼与其他减伤取较强值，各自独立计时；不叠加、不延长彼此。\n循环与反馈：被包围时战吼开路，再冲锋或闪避；无敌人时仍合法获得防护和1层破势。铜色盾架与向外扩散的冲击环区分防御释放，Boss不被推开。",
+                "description_en": "Prepare for 0.12 s, strike for 0.08 s, then recover for 0.18 s. Deal 0.6H physical damage within 100 units, push small enemies back 70 units, gain a 12% maximum-health shield for 4 s and 25% damage reduction for 1.5 s. Costs 25 Rage; cooldown 11 s. It does not heal, grant invulnerability or clear projectiles. Shared shield caps still apply. Warcry and other damage reductions use the stronger value with independent timers; they do not add together or extend each other. A legal empty cast still grants protection and one Momentum. Copper guard shapes and an outward shock ring mark the defensive release; bosses resist the displacement.",
+                "input": "E",
+                "mechanics": {
+                  "active": 0.08,
+                  "damage_multiplier": 0.6,
+                  "damage_reduction": 0.25,
+                  "damage_reduction_duration": 1.5,
+                  "damage_reduction_status_id": "brace_guard",
+                  "damage_type": "physical",
+                  "knockback": 70.0,
+                  "radius": 100.0,
+                  "recovery": 0.18,
+                  "shield_duration": 4.0,
+                  "shield_hp_ratio": 0.12,
+                  "windup": 0.12
+                },
+                "name": "铁壁战吼",
+                "name_en": "Ironwall Warcry",
+                "unlock": 3.0
+              },
+              "q": {
+                "cooldown": 6.0,
+                "cost": 20.0,
+                "description": "动作：预备0.10秒 → 冲锋0.18秒 → 收势0.14秒。沿准星最多前进160，终点半径75造成1.5H物理伤害，小型敌人击退45；每敌每次施放只命中一次。\n代价：20怒气，冷却6秒。没有额外无敌；可越过普通敌人碰撞但不能越过地形。撞墙停在最后合法地面，冲击不能隔墙命中。完全没有合法移动路线时不扣费，合法空放正常扣费。\n循环与反馈：普攻积怒，Q接敌后用W重斩；命中任意数量敌人仅获得1层破势。铜色冲锋轨迹、地裂冲击与战士短乐句标明释放，命中再叠加重击反馈，保留脚点与敌人预警。",
+                "description_en": "Prepare for 0.10 s, charge up to 160 units over 0.18 s, then recover for 0.14 s. A 75-radius endpoint impact deals 1.5H physical damage and knocks small enemies back 45 units, once per target. Costs 20 Rage; cooldown 6 s. No invulnerability; terrain blocks movement and damage. An entirely invalid route costs nothing, while a legal empty cast still costs resources. Hitting any number of enemies grants one Momentum. Copper trails, an earth impact and a brief warrior motif identify the release; confirmed hits add impact feedback.",
+                "input": "Q",
+                "mechanics": {
+                  "active": 0.18,
+                  "damage_multiplier": 1.5,
+                  "damage_type": "physical",
+                  "distance": 160.0,
+                  "knockback": 45.0,
+                  "radius": 75.0,
+                  "recovery": 0.14,
+                  "windup": 0.1
+                },
+                "name": "破阵冲锋",
+                "name_en": "Formation Charge",
+                "unlock": 1.0
+              },
+              "secondary": {
+                "cooldown": 4.0,
+                "cost": 30.0,
+                "description": "动作：蓄斧0.18秒 → 重斩窗0.10秒 → 收势0.26秒。前方120°、距离115造成2.2H物理伤害，小型敌人击退65；同敌一次，墙壁阻挡。预备最多修正瞄准30°，有效窗锁定方向。\n代价：通常30怒气，冷却4秒；满3层破势免怒气。空格可取消收势，已经启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层额外0.45H；满3层时距离140、扇形160°、击退90。Q接敌或普攻积层后出手，以宽铜色斧刃弧线、土石碎片和重金属撞击表现正面重斩，背后不显示虚假攻击圆圈。",
+                "description_en": "Prepare for 0.18 s, strike for 0.10 s, then recover for 0.26 s. Cleave a 120-degree forward arc at 115 range for 2.2H physical damage and 65 knockback against small enemies, once per target. Walls block hits. Aim can adjust up to 30 degrees during preparation, then locks. Costs 30 Rage; cooldown 4 s. Consume all Momentum on cast for +0.45H per stack. At three stacks: no Rage cost, 140 range, a 160-degree arc and 90 knockback. Dashing can cancel recovery without refunding costs or Momentum. A broad copper axe arc, earth fragments and a heavy metallic impact communicate the forward cleave.",
+                "input": "W",
+                "mechanics": {
+                  "active": 0.1,
+                  "arc_degrees": 120.0,
+                  "damage_multiplier": 2.2,
+                  "damage_type": "physical",
+                  "hit_stop_ms": 55.0,
+                  "knockback": 65.0,
+                  "range": 115.0,
+                  "recovery": 0.26,
+                  "windup": 0.18,
+                  "windup_aim_adjustment_degrees": 30.0
+                },
+                "name": "裂地重斩",
+                "name_en": "Earthsplit Cleave",
+                "summary_v2": "正面重斩；满破势更强且免费。",
+                "summary_v2_en": "Cleave ahead; full Momentum makes it stronger and free.",
+                "unlock": 2.0
+              },
+              "ultimate": {
+                "cooldown": 42.0,
+                "cost": 70.0,
+                "description": "动作：举斧0.45秒 → 落斧窗0.12秒 → 收势0.45秒。准星方向前方最多130的合法地面，半径180造成4.0H物理伤害，小型敌人击退90；墙壁遮挡伤害。\n代价：70怒气，冷却42秒。施放中移动速度35%，没有无敌；空格可中断，但已启动的资源、冷却与破势不返还。\n破势联动：启动时消耗全部破势，每层每波额外0.60H；满3层半径+30、击退+25。用E战吼创造出手窗口，再以巨斧轮廓、放射地裂与低频落斧冲击表现终结技；伤害与命中反馈依照实际落点结算。",
+                "description_en": "Raise the axe for 0.45 s, strike for 0.12 s, then recover for 0.45 s. Slam legal ground up to 130 units ahead for 4.0H physical damage within 180 units and 90 knockback against small enemies. Walls block damage. Costs 70 Rage; cooldown 42 s. Move at 35% speed during the cast, without invulnerability. A dash cancels without refunding costs or Momentum. Consume all Momentum on cast for +0.60H per stack per wave; three stacks add 30 radius and 25 knockback. A large axe silhouette, radial earth cracks and a low impact identify the finisher; hit feedback follows the actual landing area.",
+                "input": "R",
+                "mechanics": {
+                  "active": 0.12,
+                  "damage_multiplier": 4.0,
+                  "damage_type": "physical",
+                  "hit_stop_ms": 65.0,
+                  "knockback": 90.0,
+                  "movement_ratio": 0.35,
+                  "radius": 180.0,
+                  "range": 130.0,
+                  "recovery": 0.45,
+                  "windup": 0.45
+                },
+                "name": "天崩斧落",
+                "name_en": "Skyfall Axe",
+                "summary_v2": "砸向前方怪群，消耗破势造成重击。",
+                "summary_v2_en": "Slam the pack ahead, spending Momentum for a heavy finish.",
+                "unlock": 4.0
+              }
+            },
+            "starting_resource": 200,
+            "talent_attack_speed": 0.04,
+            "talent_cooldown_reduction": 0.06,
+            "talent_crit_chance": 0.06,
+            "talent_points_available": 0,
+            "talents": {
+              "agility": 2,
+              "dexterity": 6,
+              "mastery": 6,
+              "precision": 6
+            },
+            "title": "开路工",
+            "title_en": "The Trailbreaker",
+            "upgrades": [
+              {
+                "description": "Q 怒气消耗 20 → 15；其他参数不自动增加",
+                "description_en": "Q Rage cost decreases from 20 to 15.",
+                "level": 10.0,
+                "skill": "q"
+              },
+              {
+                "description": "W收势 0.26 → 0.18 秒；命中窗口不变",
+                "description_en": "Secondary recovery decreases from 0.26 s to 0.18 s; its hit window is unchanged.",
+                "level": 12.0,
+                "skill": "secondary"
+              },
+              {
+                "description": "E 护盾授予 12% → 18% 最大生命；仍受共享上限",
+                "description_en": "E shield increases from 12% to 18% of maximum health, subject to shared shield caps.",
+                "level": 14.0,
+                "skill": "f"
+              },
+              {
+                "description": "R 伤害 4.0H → 4.6H；不额外加大范围",
+                "description_en": "R damage increases from 4.0H to 4.6H; radius is unchanged.",
+                "level": 16.0,
+                "skill": "ultimate"
+              }
+            ],
+            "visual": "罗砧是把撤离路线刻在护腕上的矿道支护工，讲话简短，遇到危险先确认退路。左肩方形防落石板、右臂外露液压支架、低背短气罐组成低重心不对称轮廓；破岩战斧采用银色宽刃、橙黑钢制斧头、平锤背与粗短双手柄，轮廓清楚，劈砍有重量。煤黑 #252B2D、氧化橙 #C87535、骨白 #E4D7BB；不是披风重甲骑士，也不使用现有英雄的标志性武器。",
+            "visual_en": "An asymmetric, low-centred mine-support worker: square rockfall guard on the left shoulder, exposed hydraulic brace on the right arm and a short low-mounted air tank. A broad silver-edged mining axe has an orange-black head, flat poll and sturdy two-handed haft. Coal black, oxidised orange and bone white."
+          },
+          "hero_id": "CH01",
+          "hp_ratio": 0.0,
+          "level": 21,
+          "loadout": {},
+          "magic_damage_reduction": 0.21875,
+          "magic_penetration": 0,
+          "magic_resist": 280,
+          "max_hp": 3450,
+          "max_mana": 0,
+          "move_speed": 220.0,
+          "move_speed_bonus": 0.0,
+          "range": 105.0,
+          "relic_levels": {},
+          "resource_gain_bonus": 0.0,
+          "resource_max": 1000,
+          "resource_name": "怒气",
+          "resource_regen": 0,
+          "resource_regen_delay": 0.0,
+          "resource_type": "rage",
+          "ruleset_version": 2,
+          "sets": {},
+          "starting_resource": 200,
+          "status_duration": 0.0,
+          "talent_points_available": 0,
+          "talents": {
+            "agility": 2,
+            "dexterity": 6,
+            "mastery": 6,
+            "precision": 6
+          },
+          "temporary_buffs": {},
+          "true_damage_bonus": 0,
+          "uncapped_equipment_contribution": {}
+        },
+        "rooms": [
+          {
+            "activated_groups": {},
+            "active_seconds": 21.0000000000001,
+            "actor_roster": [
+              {
+                "actor_damage": 14.0,
+                "actor_kind": "objective",
+                "initial_hp": 1964,
+                "last_hp": 1964,
+                "level": 21,
+                "rank": "normal",
+                "template": "B05-ROOT"
+              }
+            ],
+            "all_authored_waves_exhausted": false,
+            "basic_shots_total": 0,
+            "context": {
+              "biome_id": "B05",
+              "departure_level": 21,
+              "difficulty": 0,
+              "early_extraction": false,
+              "expedition": true,
+              "name": "花径入口",
+              "next_node": 2,
+              "node_count": 12,
+              "node_index": 1,
+              "options": [
+                "L25"
+              ],
+              "previews": {
+                "L25": {
+                  "biome_id": "B05",
+                  "name": "花径入口",
+                  "objective": "M01/02/04先后两波；第一根井单独展示",
+                  "objective_id": "b05_root_network_l25",
+                  "reward": "头/胸偏向，旧装备可清",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L25",
+              "seed": 105730,
+              "threat_budget": 12
+            },
+            "controller_rejections": {
+              "movement_goal_rejected": 396,
+              "no_reachable_approach": 396
+            },
+            "dashes_total": 0,
+            "effective_received_hits": 0,
+            "end_hp": 3450,
+            "end_level": 21,
+            "end_max_hp": 3450,
+            "end_resource": 0,
+            "entry_level": 21,
+            "equipment_runtime": {
+              "buffs": {},
+              "equipped": {},
+              "refund_history": [],
+              "resource_history": [],
+              "set_counts": {}
+            },
+            "finite_groups": {},
+            "hp_loss": 0.0,
+            "kills": 0,
+            "outcome": "controller_navigation_blocked",
+            "room_id": "L25",
+            "samples": [
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 0,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 0.0166666666666667
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 20,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 1.0
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 38,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 2.01666666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 54,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 3.01666666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 72,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 200,
+                "t": 4.01666666666666
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 92,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 199,
+                "t": 5.01666666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 112,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 139,
+                "t": 6.01666666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 132,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 79,
+                "t": 7.01666666666665
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 152,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 19,
+                "t": 8.01666666666664
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 172,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 9.00000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 192,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 10.0000000000001
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 212,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 11.0000000000001
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 232,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 12.0000000000002
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 252,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 13.0000000000002
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 272,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 14.0000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 292,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 15.0000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 312,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 16.0000000000004
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 328,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 17.0000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 346,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 18.0000000000003
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 362,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 19.0000000000002
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 380,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 20.0000000000001
+              },
+              {
+                "groups": {},
+                "hp": 3450,
+                "kills": 0,
+                "level": 21,
+                "live_enemies": 0,
+                "no_reachable_approach": 396,
+                "position": [
+                  185.599990844727,
+                  522.0
+                ],
+                "resource": 0,
+                "t": 21.0000000000001
+              }
+            ],
+            "start_active_seconds": 0.0,
+            "start_hp": 3450,
+            "start_max_hp": 3450,
+            "start_resource": 200
+          }
+        ],
+        "route": {
+          "biome_id": "B05",
+          "choices": [],
+          "content_version": 1,
+          "departure_level": 21,
+          "dynamic_version": 2,
+          "navigation_validated": false,
+          "node_count": 12,
+          "nodes": [
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "入口整备站",
+              "next_node": 1,
+              "node_index": 0,
+              "options": [],
+              "role": "entrance",
+              "room_id": "service_entrance",
+              "safe": true,
+              "threat_budget": 0
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "花径入口",
+              "next_node": 2,
+              "node_index": 1,
+              "options": [
+                "L25"
+              ],
+              "previews": {
+                "L25": {
+                  "biome_id": "B05",
+                  "name": "花径入口",
+                  "objective": "M01/02/04先后两波；第一根井单独展示",
+                  "objective_id": "b05_root_network_l25",
+                  "reward": "头/胸偏向，旧装备可清",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L25",
+              "threat_budget": 12
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "藤门苗圃",
+              "next_node": 3,
+              "node_index": 2,
+              "options": [
+                "L26"
+              ],
+              "previews": {
+                "L26": {
+                  "biome_id": "B05",
+                  "name": "藤门苗圃",
+                  "objective": "M03/05/06；先看盾卫再用水闸断网",
+                  "objective_id": "b05_root_network_l26",
+                  "reward": "裤/鞋偏向，U01偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L26",
+              "threat_budget": 14
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": true,
+              "name": "露台花桥",
+              "next_node": 4,
+              "node_index": 3,
+              "options": [
+                "L27"
+              ],
+              "previews": {
+                "L27": {
+                  "biome_id": "B05",
+                  "name": "露台花桥",
+                  "objective": "M07/08/09；一次只激活一桥根须",
+                  "objective_id": "b05_root_network_l27",
+                  "reward": "手/戒偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "objective",
+              "room_id": "L27",
+              "threat_budget": 16
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "树脂工坊",
+              "next_node": 5,
+              "node_index": 4,
+              "options": [
+                "L28"
+              ],
+              "previews": {
+                "L28": {
+                  "biome_id": "B05",
+                  "name": "树脂工坊",
+                  "objective": "M10/11/12；盾面、花粉圈与拆井组合",
+                  "objective_id": "b05_root_network_l28",
+                  "reward": "手/戒，U02偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L28",
+              "threat_budget": 18
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "补给商店",
+              "next_node": 6,
+              "node_index": 5,
+              "options": [],
+              "role": "supply",
+              "room_id": "service_supply",
+              "safe": true,
+              "threat_budget": 0
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": true,
+              "name": "日照高台",
+              "next_node": 7,
+              "node_index": 6,
+              "options": [
+                "L29"
+              ],
+              "previews": {
+                "L29": {
+                  "biome_id": "B05",
+                  "name": "日照高台",
+                  "objective": "M13/14/15；拆掉蓄能花解除高台封锁",
+                  "objective_id": "b05_root_network_l29",
+                  "reward": "武器/饰品偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "objective",
+              "room_id": "L29",
+              "threat_budget": 22
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "四季温室",
+              "next_node": 8,
+              "node_index": 7,
+              "options": [
+                "L30"
+              ],
+              "previews": {
+                "L30": {
+                  "biome_id": "B05",
+                  "name": "四季温室",
+                  "objective": "M16/17/18配低阶怪；有限三波，练习关网后集火",
+                  "objective_id": "b05_root_network_l30",
+                  "reward": "武器/饰品，U03偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L30",
+              "threat_budget": 24
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "日照高台",
+              "next_node": 9,
+              "node_index": 8,
+              "options": [
+                "L29",
+                "L30"
+              ],
+              "previews": {
+                "L29": {
+                  "biome_id": "B05",
+                  "name": "日照高台",
+                  "objective": "M13/14/15；拆掉蓄能花解除高台封锁",
+                  "objective_id": "b05_root_network_l29",
+                  "reward": "武器/饰品偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                },
+                "L30": {
+                  "biome_id": "B05",
+                  "name": "四季温室",
+                  "objective": "M16/17/18配低阶怪；有限三波，练习关网后集火",
+                  "objective_id": "b05_root_network_l30",
+                  "reward": "武器/饰品，U03偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "branch",
+              "room_id": "L29",
+              "threat_budget": 26
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": true,
+              "name": "四季温室",
+              "next_node": 10,
+              "node_index": 9,
+              "options": [
+                "L30",
+                "L29"
+              ],
+              "previews": {
+                "L29": {
+                  "biome_id": "B05",
+                  "name": "日照高台",
+                  "objective": "M13/14/15；拆掉蓄能花解除高台封锁",
+                  "objective_id": "b05_root_network_l29",
+                  "reward": "武器/饰品偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                },
+                "L30": {
+                  "biome_id": "B05",
+                  "name": "四季温室",
+                  "objective": "M16/17/18配低阶怪；有限三波，练习关网后集火",
+                  "objective_id": "b05_root_network_l30",
+                  "reward": "武器/饰品，U03偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "objective",
+              "room_id": "L30",
+              "threat_budget": 28
+            },
+            {
+              "biome_id": "B05",
+              "early_extraction": true,
+              "name": "日照高台",
+              "next_node": 11,
+              "node_index": 10,
+              "options": [
+                "L30",
+                "L29"
+              ],
+              "previews": {
+                "L29": {
+                  "biome_id": "B05",
+                  "name": "日照高台",
+                  "objective": "M13/14/15；拆掉蓄能花解除高台封锁",
+                  "objective_id": "b05_root_network_l29",
+                  "reward": "武器/饰品偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                },
+                "L30": {
+                  "biome_id": "B05",
+                  "name": "四季温室",
+                  "objective": "M16/17/18配低阶怪；有限三波，练习关网后集火",
+                  "objective_id": "b05_root_network_l30",
+                  "reward": "武器/饰品，U03偏向",
+                  "risk": "根网与有限波次；保留安全侧路"
+                }
+              },
+              "role": "elite_objective",
+              "room_id": "L29",
+              "threat_budget": 32
+            },
+            {
+              "arena_id": "BO05_arena",
+              "biome_id": "B05",
+              "early_extraction": false,
+              "name": "千枝花冠树王",
+              "next_node": -1,
+              "node_index": 11,
+              "options": [],
+              "role": "boss",
+              "room_id": "BO05",
+              "threat_budget": 0
+            }
+          ],
+          "seed": 1001,
+          "template_ids": [
+            "L25",
+            "L26",
+            "L27",
+            "L28",
+            "L29",
+            "L30",
+            "L29",
+            "L30",
+            "L29"
+          ],
+          "valid": true
+        },
+        "schema": "b05-naked-chapter-v1",
+        "seed": 1001,
+        "skip_policy": "Skip every mandatory relic offer through production API; native skip may heal up to6% max HP, recorded separately. No supply purchases.",
+        "source_sha256": {
+          "data/numerical_v2.json": "fc794a17bd959ec57cb376eb31b86b28562eb2238613966998b1aedf84401b2c",
+          "scripts/combat/enemy_calibration.gd": "d5f21e64ce161ff4bb96c3670f94fda7682f7aaf6ea8b8f31d37d3b8d78412f5",
+          "scripts/combat/enemy_profiles.gd": "f3ff1f426b8983e964dce8c1b6b9153a17a70b7475362c8543eb4d570762977f",
+          "scripts/combat/hero_abilities.gd": "8cdb23b60e7155205a83ef443888f2f884d2c86b21f9005e82ce28ac443b1bdd",
+          "scripts/combat/player.gd": "f40841ba0b041787e8b8dfa3261fb4dadd89f43b504548f935dfb687ee03e7c7",
+          "scripts/combat/room.gd": "1ea0033da996c518a282f1903544980ad56480cc0621fac86c09d19559af9b66",
+          "scripts/combat/stat_resolver.gd": "c945544f71d4a2ad26c6b0a50459ab58659336901c8d8ed8638975bb85d2e3d9",
+          "scripts/core/run_controller.gd": "e35ff6d9f1d3d0bfa9a008a0727c4abdb86b53fa63627615c072cfdfe0202e0d",
+          "scripts/world/route_generator.gd": "b6013d05e0ffdb6132fb6482e92d8152d03d709a31984acc4690cb5c843713a0",
+          "tests/support/b05_balance_controller.gd": "d9e758f3876913c2b1564db9049d7142eee6398118c51aad6e670c275e9e9069",
+          "tests/support/b05_balance_fixtures.gd": "dcbb02fbdce0336701e96581b891d3adb144907a5f9941a3039df94868408bb4",
+          "tests/test_b05_naked_chapter.gd": "a895087416cea65561f863906ad3eec9ea22cc5a716689b4038458d1af4ac11c"
+        },
+        "source_sha256_after": {
+          "data/numerical_v2.json": "fc794a17bd959ec57cb376eb31b86b28562eb2238613966998b1aedf84401b2c",
+          "scripts/combat/enemy_calibration.gd": "d5f21e64ce161ff4bb96c3670f94fda7682f7aaf6ea8b8f31d37d3b8d78412f5",
+          "scripts/combat/enemy_profiles.gd": "f3ff1f426b8983e964dce8c1b6b9153a17a70b7475362c8543eb4d570762977f",
+          "scripts/combat/hero_abilities.gd": "8cdb23b60e7155205a83ef443888f2f884d2c86b21f9005e82ce28ac443b1bdd",
+          "scripts/combat/player.gd": "f40841ba0b041787e8b8dfa3261fb4dadd89f43b504548f935dfb687ee03e7c7",
+          "scripts/combat/room.gd": "1ea0033da996c518a282f1903544980ad56480cc0621fac86c09d19559af9b66",
+          "scripts/combat/stat_resolver.gd": "c945544f71d4a2ad26c6b0a50459ab58659336901c8d8ed8638975bb85d2e3d9",
+          "scripts/core/run_controller.gd": "e35ff6d9f1d3d0bfa9a008a0727c4abdb86b53fa63627615c072cfdfe0202e0d",
+          "scripts/world/route_generator.gd": "b6013d05e0ffdb6132fb6482e92d8152d03d709a31984acc4690cb5c843713a0",
+          "tests/support/b05_balance_controller.gd": "d9e758f3876913c2b1564db9049d7142eee6398118c51aad6e670c275e9e9069",
+          "tests/support/b05_balance_fixtures.gd": "dcbb02fbdce0336701e96581b891d3adb144907a5f9941a3039df94868408bb4",
+          "tests/test_b05_naked_chapter.gd": "a895087416cea65561f863906ad3eec9ea22cc5a716689b4038458d1af4ac11c"
+        },
+        "stationary_pressure": false,
+        "time_scale": 1,
+        "transitions": [
+          {
+            "hp_after": 3450,
+            "hp_before": 3450.0,
+            "node_index": 1,
+            "player_instance_preserved": true,
+            "resource_after": 200,
+            "resource_before": 200.0,
+            "room_id": "L25",
+            "t": 0.0
+          }
+        ],
+        "whole_chapter_clear_proven": false
+      }
+    },
+    {
+      "run_id": "20261002T231629344600Z-3a8a8095",
+      "console_sha256": "a9912b85473f126d3f4f63ec824170c828df3473a292f866dde86cafda5b66da",
+      "script_errors": 0,
+      "report": null
+    }
+  ]
+}
