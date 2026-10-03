@@ -1180,5 +1180,17 @@
   "b08_l43_joints_capture": {
     "script": "tests/levels/b08/test_l43_joints_capture.gd",
     "scene": "tests/levels/b08/test_l43_joints_capture.tscn"
+  },
+  "b08_l43_natural_capture": {
+    "script": "tests/levels/b08/test_l43_natural_capture.gd",
+    "scene": "tests/levels/b08/test_l43_natural_capture.tscn"
+  },
+  "b08_l43_natural_safety": {
+    "script": "tests/levels/b08/test_l43_natural_safety.gd",
+    "scene": "tests/levels/b08/test_l43_natural_safety.tscn"
+  },
+  "b08_displacement_contract": {
+    "script": "tests/levels/b08/test_displacement_contract.gd",
+    "scene": "tests/levels/b08/test_displacement_contract.tscn"
   }
 }

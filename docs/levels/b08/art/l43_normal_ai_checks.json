@@ -1,0 +1,91 @@
+{
+  "status": "bounded_normal_ai_candidate_not_room_art_acceptance",
+  "failed_first_run": {
+    "run": "20261003T112806237953Z-cdbe5e8a",
+    "reason": "13 missing on_displacement_committed callback script errors despite engine exit0",
+    "preserved": true
+  },
+  "direct_checks": {
+    "run": "20261003T113227647103Z-7a7c987b",
+    "displacement_checks": 26,
+    "capture_safety_checks": 19,
+    "failures": 0,
+    "exit_code": 0
+  },
+  "renderer_run": "20261003T113435650737Z-e345a979",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "report_sha256": "d0225c9a718c826d019fa773f71b5350d0b543aff8e491b9d4c37d710dc84e4b",
+  "ending": "encounter_cleared",
+  "wall_seconds": 20.242,
+  "simulation_seconds": 10.8333333333335,
+  "hp": 4978,
+  "max_hp": 4978,
+  "audio_cleanup": true,
+  "persisted_profile_unchanged": true,
+  "script_errors": 0,
+  "observed_post_draw_phase_pose_counts": {
+    "B08-M01:chase:idle": 90,
+    "B08-M01:emerging:idle": 7,
+    "B08-M01:recovery:recovery": 15,
+    "B08-M01:recovery:release": 2,
+    "B08-M01:warning:warning": 12,
+    "B08-M02:chase:idle": 120,
+    "B08-M02:emerging:idle": 7,
+    "B08-M02:recovery:idle": 19,
+    "B08-M02:transit:release": 7,
+    "B08-M02:warning:warning": 16,
+    "B08-M03:chase:idle": 92,
+    "B08-M03:emerging:idle": 7,
+    "B08-M03:recovery:recovery": 16,
+    "B08-M03:recovery:release": 3,
+    "B08-M03:transit:idle": 15,
+    "B08-M03:warning:warning": 13
+  },
+  "captures": {
+    "enemy_release": {
+      "file": "enemy_release.png",
+      "sha256": "7cc42ac3aa97d3833aa18b1f6ebb77e040ff197af2652c550d932f0c74ef5222",
+      "wall_seconds": 6.122,
+      "simulation_seconds": 1.73333333333333
+    },
+    "enemy_warning": {
+      "file": "enemy_warning.png",
+      "sha256": "038006b28c951fa0e7ee8c6099399b2f42ee123200aaed89379f19b4785595cc",
+      "wall_seconds": 3.441,
+      "simulation_seconds": 0.816666666666668
+    },
+    "entry": {
+      "file": "entry.png",
+      "sha256": "0e37db8845791c7cda7d544cade21a390ee18a5a27f90d8a6ef69509696476b9",
+      "wall_seconds": 1.048,
+      "simulation_seconds": 0.116666666666667
+    },
+    "flag_broken": {
+      "file": "flag_broken.png",
+      "sha256": "8edfd1acd83e898b462128a74b948fec183cc34a4177aad1fea2198464afef66",
+      "wall_seconds": 10.944,
+      "simulation_seconds": 3.26666666666666
+    },
+    "terminal_cleared": {
+      "file": "terminal_cleared.png",
+      "sha256": "f7777dfd8072b2beb6cd75df316844b6a71de7673ae64915c8aebc93e73fe7f0",
+      "wall_seconds": 20.242,
+      "simulation_seconds": 10.8333333333335
+    },
+    "wind_warning": {
+      "file": "wind_warning.png",
+      "sha256": "7c64a8305850202d892e5e3dd0d10536a060829ff644102e17182327b087e671",
+      "wall_seconds": 7.923,
+      "simulation_seconds": 1.86666666666666
+    }
+  },
+  "limits": [
+    "Scripted public player requests; not human play or balance evidence",
+    "Lv20 diagnostic CH01, starter loadout, D0, one room, software renderer",
+    "M02 cancelled travel correctly selected idle in recovery; natural landing recovery not observed",
+    "Flag occlusion never faded in this route; wind vane fade observed",
+    "No death, damage-driven interrupted vane channel, all-direction animation or real exit traversal coverage",
+    "Six PNGs contain M01 warning/release; M02/M03 phases are post_draw journal coverage, not six more screenshots",
+    "Wide rectangular painting/independent room art mismatch and diagnostic-only HUD remain"
+  ]
+}

@@ -24,6 +24,16 @@ func on_damaged(actor: Node2D, context: Dictionary) -> void:
 		cooldown = maxf(cooldown,5.5)
 		interrupt(actor)
 func current_telegraph() -> Dictionary: return {} # B08 renderer reads exact frozen action below.
+func on_displacement_committed(actor: Node2D, projected: Vector2) -> void:
+	if not actor.is_alive() or not projected.is_finite() or action.is_empty(): return
+	# Actor calls this before integrating the accepted push. Keep the existing
+	# 30-unit standing tolerance, but stop active travel before its old landing
+	# can resolve. Fully wall-blocked pushes never reach this callback.
+	var broken_stance: bool=phase=="warning" and projected.distance_to(action.origin)>30
+	var broken_travel: bool=phase=="transit" and projected.distance_squared_to(actor.position)>.0001
+	if broken_stance or broken_travel:
+		interrupt(actor)
+		actor.state=StringName(phase)
 func interrupt(actor: Node2D) -> void:
 	if action.get("kind")=="chime": actor.room.harbor.cancel_chime(actor)
 	actor.room.release_warning(str(actor.get_instance_id()))
