@@ -1,0 +1,246 @@
+[
+  {
+    "asset_id": "BO05",
+    "state": "cast-windup",
+    "variant": "native-margin-v2",
+    "status": "candidate_pending_integration_acceptance",
+    "file": "BO05_cast-windup-native-margin-v2.png",
+    "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-ba784acf-d951-4b0e-b418-7284aa7fa16d.png",
+    "source_sha256": "8625ee96ccea286cbc4598370b9be378083921b24d14513d9aaa645f6eee61ba",
+    "tool": "built-in image_gen.imagegen",
+    "model": "unknown",
+    "model_version": "unknown",
+    "prompt": "Use case: identity-preserve. Production sprite repair of BO05 Thousand Branch Flowercrown King, cast-windup pose.\nImage 1 is the EXACT current sprite edit target. Preserve this exact tree king, precise arm/hand gesture and pose, body proportions, face, five-petal chest flower, three dominant crown boughs and pink blossom masses, jade leaves, warm golden wood, fine individually painted flowers and grain. This is a framing/margin correction ONLY, not a new design or pose.\nRepair: the current subject nearly fills the square and parts of its right silhouette touch the image boundary. Repaint this identical complete sprite at full native fine-detail quality with a slightly wider transparent camera framing so ALL visible anatomy, every leaf, blossom and fingertip fits wholly inside with a continuous clear transparent safety margin of 8 percent on ALL four sides (at least 80 pixels on a 1254-pixel output). Entire subject should fit approximately inside coordinates x100..1154,y100..1154 on a 1254 square. Never merely clip, erase or fade the boundary foliage; retain complete intact organic silhouettes.\nKeep all original limb positions RELATIVE to torso, same three-quarter camera angle and depth, exact asymmetrical pose, body centered and feet grounded as in the reference. Both open branch palms remain lifted outward at chest height, the preparatory cast gesture; do not raise overhead or close into fists. Preserve complete right palm/fingertips and foliage.\nFull native high-fidelity hand-painted illustration; do not blur, simplify, lose leaf/flower/bark detail or upscale a low-resolution image. Same square RGBA canvas with ACTUAL fully transparent background including branch gaps. No opaque background, floor, shadow, particles, spell effects, extra figures, text, border or grid. The only permitted composition change is the wider framing needed to make safe transparent margins. Preserve the original scene-free body sprite and colors.",
+    "prompt_sha256": "9a82a88fd6d04b29d89f540fa5abf18d64812cece9eca19c735fb4d913f638da",
+    "reference_images": [
+      {
+        "path": "b05-art/regenerated/boss/BO05/BO05_cast-windup-native.png",
+        "sha256": "2f7926ceb08a6f69add4ab06d7070f1dd5ccc19fb013229353f862b376bac83e",
+        "role": "Exact current pose target"
+      }
+    ],
+    "actual_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "native_pixels_preserved": true,
+    "upscaled": false,
+    "deterministic_raster_edits": false,
+    "alpha_bboxes": {
+      "1": [
+        0,
+        49,
+        1206,
+        1214
+      ],
+      "32": [
+        66,
+        57,
+        1201,
+        1191
+      ],
+      "128": [
+        67,
+        57,
+        1201,
+        1190
+      ],
+      "250": [
+        68,
+        62,
+        1199,
+        1189
+      ]
+    },
+    "clear_margin_px_LTRB": {
+      "1": [
+        0,
+        49,
+        48,
+        40
+      ],
+      "32": [
+        66,
+        57,
+        53,
+        63
+      ],
+      "128": [
+        67,
+        57,
+        53,
+        64
+      ],
+      "250": [
+        68,
+        62,
+        55,
+        65
+      ]
+    },
+    "solid_alpha_threshold": 32,
+    "solid_margin_required_px": 35,
+    "solid_margin_gate_passed": true,
+    "edge_pixels_alpha_ge128": 0,
+    "absolute_foot_px": [
+      684,
+      1132
+    ],
+    "absolute_core_px": [
+      718,
+      682
+    ],
+    "absolute_head_px": [
+      716,
+      500
+    ],
+    "head_anchor_definition": "Visual center of stern bark face, not crown top; suggested only, integration has no known prior head-anchor contract",
+    "absolute_outlets_px": [
+      [
+        226,
+        648
+      ],
+      [
+        1082,
+        707
+      ]
+    ],
+    "reference_anatomy_height_px": 1112.343,
+    "registration_similarity_old_to_new": {
+      "scale": 0.9072947772144588,
+      "translation": [
+        49.90630725801807,
+        57.96987726512188
+      ],
+      "robust_rgb_mae": 22.20178105369858,
+      "method": "Independent image-analysis-only similarity fit on old face/core/root-foot texture samples, scipy interpolation; no raster changes saved."
+    },
+    "anchor_basis": "New source viewed at native size. Core/face/palms manually picked on new pixels; foot derived by best-fit old-to-new face/core/feet texture registration. Fit uses image analysis only, no rewritten raster. Approximate landmarks need runtime validation, not historical verified anchors.",
+    "visual_review": "Identity and original pose retained, intact right silhouette and all solid anatomy enclosed; margins pass at alpha>=32. Very faint alpha<32 speckles remain beyond subject margins, including x0 for cast-windup. No background/shadow/VFX. Crisp detail remains. Composition scale differs from other poses, so source pixel-per-world scale must use new anatomy height.",
+    "runtime_quality_gate_passed": false,
+    "backup_status": "Local formal source only; no Git blob requested, no new Library attempt per parent instruction."
+  },
+  {
+    "asset_id": "BO05",
+    "state": "root-execute",
+    "variant": "native-margin-v2",
+    "status": "candidate_pending_integration_acceptance",
+    "file": "BO05_root-execute-native-margin-v2.png",
+    "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-85892a85-65b8-412a-b708-157a7b63c54b.png",
+    "source_sha256": "c5b3e81f3f957e1ad2e34e8cf9e33e141894c957dd278b40dd351c7ad03d6d7c",
+    "tool": "built-in image_gen.imagegen",
+    "model": "unknown",
+    "model_version": "unknown",
+    "prompt": "Use case: identity-preserve. Production sprite repair of BO05 Thousand Branch Flowercrown King, root-execute pose.\nImage 1 is the EXACT current sprite edit target. Preserve this exact tree king, precise arm/hand gesture and pose, body proportions, face, five-petal chest flower, three dominant crown boughs and pink blossom masses, jade leaves, warm golden wood, fine individually painted flowers and grain. This is a framing/margin correction ONLY, not a new design or pose.\nRepair: the current subject nearly fills the square and parts of its right silhouette touch the image boundary. Repaint this identical complete sprite at full native fine-detail quality with a slightly wider transparent camera framing so ALL visible anatomy, every leaf, blossom and fingertip fits wholly inside with a continuous clear transparent safety margin of 8 percent on ALL four sides (at least 80 pixels on a 1254-pixel output). Entire subject should fit approximately inside coordinates x100..1154,y100..1154 on a 1254 square. Never merely clip, erase or fade the boundary foliage; retain complete intact organic silhouettes.\nKeep all original limb positions RELATIVE to torso, same three-quarter camera angle and depth, exact asymmetrical pose, body centered and feet grounded as in the reference. Both arms remain extended down with broad open branch hands pressing invisible ground beside the unchanged broad root feet; preserve crown fringe and complete fingers.\nFull native high-fidelity hand-painted illustration; do not blur, simplify, lose leaf/flower/bark detail or upscale a low-resolution image. Same square RGBA canvas with ACTUAL fully transparent background including branch gaps. No opaque background, floor, shadow, particles, spell effects, extra figures, text, border or grid. The only permitted composition change is the wider framing needed to make safe transparent margins. Preserve the original scene-free body sprite and colors.",
+    "prompt_sha256": "f112c5a6c65d6d9053ce6c3ff5b8584282b17dc033a267c16f7c3ce08f7eb1da",
+    "reference_images": [
+      {
+        "path": "b05-art/regenerated/boss/BO05/BO05_root-execute-native.png",
+        "sha256": "f8878e81e613ee64a10579ef2db31042babfefb0fc1dba093e1024e72863116b",
+        "role": "Exact current pose target"
+      }
+    ],
+    "actual_dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "native_pixels_preserved": true,
+    "upscaled": false,
+    "deterministic_raster_edits": false,
+    "alpha_bboxes": {
+      "1": [
+        17,
+        33,
+        1230,
+        1208
+      ],
+      "32": [
+        71,
+        77,
+        1200,
+        1180
+      ],
+      "128": [
+        71,
+        78,
+        1200,
+        1179
+      ],
+      "250": [
+        73,
+        82,
+        1191,
+        1178
+      ]
+    },
+    "clear_margin_px_LTRB": {
+      "1": [
+        17,
+        33,
+        24,
+        46
+      ],
+      "32": [
+        71,
+        77,
+        54,
+        74
+      ],
+      "128": [
+        71,
+        78,
+        54,
+        75
+      ],
+      "250": [
+        73,
+        82,
+        63,
+        76
+      ]
+    },
+    "solid_alpha_threshold": 32,
+    "solid_margin_required_px": 35,
+    "solid_margin_gate_passed": true,
+    "edge_pixels_alpha_ge128": 0,
+    "absolute_foot_px": [
+      695,
+      1120
+    ],
+    "absolute_core_px": [
+      727,
+      681
+    ],
+    "absolute_head_px": [
+      726,
+      500
+    ],
+    "head_anchor_definition": "Visual center of stern bark face, not crown top; suggested only, integration has no known prior head-anchor contract",
+    "absolute_outlets_px": [
+      [
+        275,
+        1116
+      ],
+      [
+        1083,
+        1092
+      ]
+    ],
+    "reference_anatomy_height_px": 1087.895,
+    "registration_similarity_old_to_new": {
+      "scale": 0.8873531110194446,
+      "translation": [
+        73.24135008905223,
+        70.13611015385732
+      ],
+      "robust_rgb_mae": 21.1296883607361,
+      "method": "Independent image-analysis-only similarity fit on old face/core/root-foot texture samples, scipy interpolation; no raster changes saved."
+    },
+    "anchor_basis": "New source viewed at native size. Core/face/palms manually picked on new pixels; foot derived by best-fit old-to-new face/core/feet texture registration. Fit uses image analysis only, no rewritten raster. Approximate landmarks need runtime validation, not historical verified anchors.",
+    "visual_review": "Identity and original pose retained, intact right silhouette and all solid anatomy enclosed; margins pass at alpha>=32. Very faint alpha<32 speckles remain beyond subject margins, including x0 for cast-windup. No background/shadow/VFX. Crisp detail remains. Composition scale differs from other poses, so source pixel-per-world scale must use new anatomy height.",
+    "runtime_quality_gate_passed": false,
+    "backup_status": "Local formal source only; no Git blob requested, no new Library attempt per parent instruction."
+  }
+]

@@ -1,0 +1,369 @@
+{
+  "date": "2026-10-02",
+  "poses": [
+    {
+      "state": "cast-execute",
+      "file": "BO05_cast-execute-native.png",
+      "source_sha256": "cfabefbdff549c6ff63c4edac957bff79b244641d173582f71f51d99766036d7",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_ge32": [
+        12,
+        14,
+        1248,
+        1241
+      ],
+      "absolute_foot_px": [
+        699,
+        1184
+      ],
+      "absolute_core_px": [
+        735,
+        691
+      ],
+      "absolute_outlets_px": [
+        [
+          185,
+          200
+        ],
+        [
+          1116,
+          210
+        ]
+      ],
+      "registration_left_foot_patch": {
+        "offset_px": [
+          0,
+          0
+        ],
+        "rgb_mean_absolute_error": 13.318692185007974,
+        "source_rect": [
+          420,
+          1080,
+          610,
+          1190
+        ]
+      },
+      "reference_anatomy_height_px": 1226,
+      "absolute_head_px": [
+        735,
+        490
+      ],
+      "solid_margin_gate_passed": false
+    },
+    {
+      "state": "cast-windup",
+      "file": "margin-corrections/BO05_cast-windup-native-margin-v2.png",
+      "source_sha256": "8625ee96ccea286cbc4598370b9be378083921b24d14513d9aaa645f6eee61ba",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_ge32": [
+        66,
+        57,
+        1201,
+        1191
+      ],
+      "absolute_foot_px": [
+        684,
+        1132
+      ],
+      "absolute_core_px": [
+        718,
+        682
+      ],
+      "absolute_outlets_px": [
+        [
+          226,
+          648
+        ],
+        [
+          1082,
+          707
+        ]
+      ],
+      "registration_left_foot_patch": {
+        "offset_px": [
+          0,
+          0
+        ],
+        "rgb_mean_absolute_error": 11.88433811802233,
+        "source_rect": [
+          420,
+          1080,
+          610,
+          1190
+        ]
+      },
+      "reference_anatomy_height_px": 1112.343,
+      "absolute_head_px": [
+        716,
+        500
+      ],
+      "solid_margin_gate_passed": true
+    },
+    {
+      "state": "idle",
+      "file": "BO05_idle-native.png",
+      "source_sha256": "13058793b9ec56de85323d7dfb37ec1c0d41a7591dc8e618fc2b5e54f362197e",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_ge32": [
+        17,
+        17,
+        1246,
+        1240
+      ],
+      "absolute_foot_px": [
+        699,
+        1184
+      ],
+      "absolute_core_px": [
+        735,
+        691
+      ],
+      "absolute_outlets_px": null,
+      "registration_left_foot_patch": {
+        "offset_px": [
+          0,
+          0
+        ],
+        "rgb_mean_absolute_error": 0.0,
+        "source_rect": [
+          420,
+          1080,
+          610,
+          1190
+        ]
+      },
+      "reference_anatomy_height_px": 1226,
+      "absolute_head_px": [
+        735,
+        490
+      ],
+      "solid_margin_gate_passed": false
+    },
+    {
+      "state": "root-execute",
+      "file": "margin-corrections/BO05_root-execute-native-margin-v2.png",
+      "source_sha256": "c5b3e81f3f957e1ad2e34e8cf9e33e141894c957dd278b40dd351c7ad03d6d7c",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_ge32": [
+        71,
+        77,
+        1200,
+        1180
+      ],
+      "absolute_foot_px": [
+        695,
+        1120
+      ],
+      "absolute_core_px": [
+        727,
+        681
+      ],
+      "absolute_outlets_px": [
+        [
+          275,
+          1116
+        ],
+        [
+          1083,
+          1092
+        ]
+      ],
+      "registration_left_foot_patch": {
+        "offset_px": [
+          2,
+          -1
+        ],
+        "rgb_mean_absolute_error": 19.254960127591705,
+        "source_rect": [
+          420,
+          1080,
+          610,
+          1190
+        ]
+      },
+      "reference_anatomy_height_px": 1087.895,
+      "absolute_head_px": [
+        726,
+        500
+      ],
+      "solid_margin_gate_passed": true
+    },
+    {
+      "state": "root-windup",
+      "file": "BO05_root-windup-native.png",
+      "source_sha256": "cdfb54fea9dc11c0967449e9278e5abb16d0e6f9f59b55d7c1859bedca0ebc1a",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_ge32": [
+        16,
+        15,
+        1254,
+        1242
+      ],
+      "absolute_foot_px": [
+        699,
+        1184
+      ],
+      "absolute_core_px": [
+        735,
+        691
+      ],
+      "absolute_outlets_px": [
+        [
+          378,
+          655
+        ],
+        [
+          1070,
+          705
+        ]
+      ],
+      "registration_left_foot_patch": {
+        "offset_px": [
+          0,
+          0
+        ],
+        "rgb_mean_absolute_error": 12.949377990430621,
+        "source_rect": [
+          420,
+          1080,
+          610,
+          1190
+        ]
+      },
+      "reference_anatomy_height_px": 1226,
+      "absolute_head_px": [
+        735,
+        490
+      ],
+      "solid_margin_gate_passed": false
+    },
+    {
+      "state": "sweep-execute",
+      "file": "BO05_sweep-execute-native.png",
+      "source_sha256": "76fe951a115459b9583bbe69b34dcdf0f07dcebfccd37b880abb37ab95bdfa9b",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_ge32": [
+        10,
+        17,
+        1251,
+        1242
+      ],
+      "absolute_foot_px": [
+        701,
+        1184
+      ],
+      "absolute_core_px": [
+        737,
+        691
+      ],
+      "absolute_outlets_px": [
+        [
+          205,
+          657
+        ],
+        [
+          902,
+          869
+        ]
+      ],
+      "registration_left_foot_patch": {
+        "offset_px": [
+          2,
+          0
+        ],
+        "rgb_mean_absolute_error": 13.843556618819777,
+        "source_rect": [
+          420,
+          1080,
+          610,
+          1190
+        ]
+      },
+      "reference_anatomy_height_px": 1226,
+      "absolute_head_px": [
+        737,
+        490
+      ],
+      "solid_margin_gate_passed": false
+    },
+    {
+      "state": "sweep-windup",
+      "file": "BO05_sweep-windup-native.png",
+      "source_sha256": "0a5ae2ffff217408cd6b2651b621882a91e47a2aa41eb3ce3eac286f4ce988d3",
+      "actual_dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_bbox_ge32": [
+        15,
+        13,
+        1253,
+        1242
+      ],
+      "absolute_foot_px": [
+        701,
+        1184
+      ],
+      "absolute_core_px": [
+        737,
+        691
+      ],
+      "absolute_outlets_px": [
+        [
+          884,
+          865
+        ],
+        [
+          1038,
+          730
+        ]
+      ],
+      "registration_left_foot_patch": {
+        "offset_px": [
+          2,
+          0
+        ],
+        "rgb_mean_absolute_error": 11.772711323763955,
+        "source_rect": [
+          420,
+          1080,
+          610,
+          1190
+        ]
+      },
+      "reference_anatomy_height_px": 1226,
+      "absolute_head_px": [
+        737,
+        490
+      ],
+      "solid_margin_gate_passed": false
+    }
+  ],
+  "runtime_quality_gate_passed": false,
+  "registration_note": "Runtime selection; original generation manifest and all native sources retained unchanged. Head means approximate bark-face center, not crown top."
+}

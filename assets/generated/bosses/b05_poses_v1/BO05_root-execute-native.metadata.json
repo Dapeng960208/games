@@ -1,0 +1,81 @@
+{
+  "asset_id": "BO05",
+  "state": "root-execute",
+  "date": "2026-10-02",
+  "file": "BO05_root-execute-native.png",
+  "source_sha256": "f8878e81e613ee64a10579ef2db31042babfefb0fc1dba093e1024e72863116b",
+  "tool": "built-in image_gen.imagegen",
+  "model": "unknown",
+  "model_version": "unknown",
+  "prompt": "Use case: identity-preserve.\nAsset type: ONE formal production key-pose sprite for approved BO05 千枝花冠树王.\nImage 1 is the exact edit target and identity master, NOT general inspiration. Preserve this exact individual tree creature and all its defining bark, pink flowers, green foliage, three-tier crown, central face, five-petal chest flower, broad root feet, colors and hand-painted quality. Change ONLY the two lower articulated branch arms into the requested pose. Preserve the crown, face, central torso and entire two-root-foot lower body as closely to original source pixels as possible. No new body, costume, species or altered proportions.\nFixed framing: same square 1254x1254 source coordinate grid, same original camera angle and 3/4 front view, same body scale. Preserve the exact current source root feet, crown top and root-toe positions. The new source is a regenerated identity master; do not use historical anchor coordinates to move its body. Do not crop or normalize per pose. Do not zoom, reframe, translate, rotate or rescale the whole creature. Keep the original entire body inside the canvas. Transparent background must remain TRUE RGBA alpha, including gaps. No floor, shadow, glow field, text, grid, labels, sheet or additional figures.\nNative high-fidelity detail: preserve the original crisp thin painterly contours, warm wood ridges, tiny individually resolved flowers and jade leaves; not a low-resolution upscale. Retain exact pink/cream/aqua chest flower, but no added effect. Body only; all projectiles, root lines, ground warning areas, spell rings, particles and summoned creatures are rendered separately at runtime.\nRequested pose: root-lines / growth-rings / seasonal-tide grounded-root EXECUTE. Extend both massive branch arms downward, pushing both open root-finger palms into the invisible ground beside the creature's root feet, around source (205,1110) and (1140,1100), without changing the feet or body location. Flatten the woody fingers into broad root-like hand contact fans. Elbows straighten, palms clearly pressing the ground, chest flower fully visible. Keep the arms inside canvas, do not draw roots spreading along the floor, cracks, rings, waves, glow or dirt. Only change the two arms and hands; exact main trunk, crown and feet remain fixed.",
+  "prompt_file": "BO05_root-execute-native.prompt.txt",
+  "prompt_sha256": "ad97590534b71bbad08bbd71ca3bcffab8d72ca01a32197d621b78a17adc3fcf",
+  "actual_dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "native_pixels_preserved": true,
+  "upscaled": false,
+  "canvas_trimmed": false,
+  "alpha_bbox_any": [
+    0,
+    1,
+    1254,
+    1254
+  ],
+  "alpha_bbox_ge32": [
+    14,
+    15,
+    1254,
+    1250
+  ],
+  "transparent_background": true,
+  "absolute_foot_px": [
+    701,
+    1183
+  ],
+  "absolute_core_px": [
+    737,
+    690
+  ],
+  "absolute_outlets_px": [
+    [
+      239,
+      1179
+    ],
+    [
+      1114,
+      1155
+    ]
+  ],
+  "reference_anatomy_height_px": 1226,
+  "anchor_status": "New source visual landmarks with local left-foot patch translation check; approximate art registration, runtime test required",
+  "registration_left_foot_patch": {
+    "offset_px": [
+      2,
+      -1
+    ],
+    "rgb_mean_absolute_error": 19.254960127591705,
+    "source_rect": [
+      420,
+      1080,
+      610,
+      1190
+    ]
+  },
+  "anchor_basis": "Manual visual inspection of actual 1254px regenerated source. Idle root-foot contact centers approximately (447,1204),(951,1164); midpoint (699,1184). Core center (735,691). Outlets picked on each new visible palm/fist. Historical coordinates not used as verified measurements.",
+  "runtime_quality_gate_passed": false,
+  "visual_review": "Viewed actual native output: shared identity, three main flower boughs, readable core, two root feet; distinct requested arm pose, no baked attack effects. Tight source margins remain. Feet/crown stationary by visual review; runtime alignment QA pending.",
+  "library_status": "Prepared helper definitive transfer_failed before finalization for this source; no Library ID",
+  "source_file": "/workspace/scratch/2244020fc8d6/generated_images/exec-e7c7f9df-6d08-4155-a4ca-7cbdbc347035.png",
+  "source_lineage": "Single edit of new regenerated BO05 idle master",
+  "reference_images": [
+    {
+      "path": "b05-art/regenerated/boss/BO05/BO05_idle-native.png",
+      "sha256": "13058793b9ec56de85323d7dfb37ec1c0d41a7591dc8e618fc2b5e54f362197e",
+      "role": "Exact new identity master/edit target"
+    }
+  ],
+  "prompt_changes_from_recovered": "Replaced obsolete historic fixed foot/crown coordinate sentence with preservation of current master pixels; action targets retained as pose design guidance, not verified measurements."
+}
