@@ -4,6 +4,8 @@ extends Node
 
 const RoomScene = preload("res://scenes/gameplay/world/room.tscn")
 const Snapshot = preload("res://scripts/domain/combat/combat_snapshot.gd")
+const Numbers = preload("res://scripts/infrastructure/content/runtime_rules.gd")
+const Growth = preload("res://scripts/domain/progression/skill_progression.gd")
 var room: RoomController
 var abilities: HeroAbilities
 var checks: int = 0
@@ -23,12 +25,18 @@ func fixture(hero: String, level: int = 8) -> void:
 		room.free()
 	Game.run.hero_id = hero
 	Game.run.level = level
-	Game.run.stats = StatResolver.resolve(hero, level, {}, {})
+	Game.run.frozen_versions = Numbers.frozen_versions(Numbers.V2)
+	Game.run.stats = StatResolver.resolve(hero, level, {}, {}, Numbers.V2)
 	Game.run.stats.merge({"crit_chance":0.0, "armor":0.0, "magic_resist":0.0, "equipment_damage_reduction":0.0, "damage_reduction":0.0}, true)
+	Game.profile.skill_state[hero] = Growth.fresh_state(hero)
+	Game.run.skill_loadout_snapshot = Growth.starter_ids(hero)
+	Game.run.skill_branches_snapshot = {hero + "_SK01":"", hero + "_SK04":""}
 	Game.run.loadout_snapshot = {}
 	Game.run.max_hp = float(Game.run.stats.max_hp)
 	Game.run.hp = Game.run.max_hp
-	Game.run.resource = 100.0
+	Game.run.resource = units(100.0)
+	Game.run.resource_regen_remainder = 0.0
+	Game.run.resource_decay_remainder = 0.0
 	Game.run.shield = 0.0
 	Game.run.relics.clear()
 	Game.profile.settings["muted"] = true
@@ -47,7 +55,7 @@ func fixture(hero: String, level: int = 8) -> void:
 
 func dummy(at: Vector2) -> EnemyActor:
 	var target: EnemyActor = room.spawn_enemy(at)
-	target.health.reset(10000.0)
+	target.health.reset(10000.0, Numbers.V2)
 	target.status.states.clear()
 	target.status.guards.clear()
 	target.armor = 0.0
@@ -56,17 +64,20 @@ func dummy(at: Vector2) -> EnemyActor:
 	target.state = &"chase"
 	return target
 
-func deployment(kind: String) -> HeroDeployment:
+func deployment(kind: String) -> Node2D:
 	for child: Node in room.get_children():
-		if child is HeroDeployment and child.kind == kind and child.is_alive():
-			return child as HeroDeployment
+		if child is Node2D and child.is_in_group("hero_deployments") and str(child.get("kind")) == kind and child.has_method("is_alive") and child.is_alive():
+			return child as Node2D
 	return null
+
+func units(amount: float) -> float:
+	return float(Numbers.scale(amount, Numbers.V2))
 
 func incoming(amount: float) -> float:
 	var before: float = Game.run.hp + Game.run.shield
 	room.player.invulnerable = 0.0
-	check(room.player.receive_damage(amount, room.player.position + Vector2.LEFT * 80.0, {"damage_type":"physical"}), "real enemy contact is accepted")
-	return before - Game.run.hp - Game.run.shield
+	check(room.player.receive_damage(units(amount), room.player.position + Vector2.LEFT * 80.0, {"damage_type":"physical"}), "real enemy contact is accepted")
+	return (before - Game.run.hp - Game.run.shield) / units(1.0)
 
 func tick_projectiles(duration: float) -> void:
 	var time: float = 0.0
@@ -108,13 +119,14 @@ func _test_warrior_guard() -> void:
 	var target: EnemyActor = dummy(Vector2(485, 350))
 	var power: float = room.player.skill_power()
 	check(abilities.try_cast("f", target.position), "warrior guard commits")
-	check(Game.run.resource == 75.0 and room.player.cooldowns.f == 11.0, "warrior guard retains one 25-rage / 11-second commitment")
+	check(Game.run.resource == units(75.0) and room.player.skill_cooldown("f") == 11.0, "warrior guard retains one 25-rage / 11-second identity commitment")
 	abilities.tick(0.119)
 	check(Game.run.shield == 0.0 and not room.player.status.has("brace_guard") and target.health.current == 10000.0, "warrior windup grants no premature defense or damage")
 	abilities.tick(0.001)
-	check(is_equal_approx(10000.0 - target.health.current, power * 0.6), "warrior war cry retains its close physical strike")
+	check(10000.0 - target.health.current == Numbers.amount(power * 0.6, Numbers.V2), "warrior war cry retains its close physical strike")
 	check(is_equal_approx(target.pending_displacement().length(), 70.0), "warrior war cry pushes a nearby ordinary enemy away")
-	check(is_equal_approx(Game.run.shield, Game.run.max_hp * 0.12), "warrior release grants its ordinary guard")
+	check(Game.run.shield == Numbers.amount(Game.run.max_hp * 0.12, Numbers.V2), "warrior release grants its ordinary guard")
+	check(Game.run.resource == units(83.0) and room.player.break_stacks == 0, "confirmed war cry earns eight rage once without rebuilding retired break stacks")
 	check(is_equal_approx(incoming(40.0), 30.0), "released warrior guard prevents one quarter of actual incoming damage before shield absorption")
 	abilities.cancel()
 	room.player.status.tick(1.499)
@@ -127,7 +139,7 @@ func _test_warrior_guard() -> void:
 	check(room.player.start_dash(Vector2.UP), "real defensive dash cancels warrior preparation")
 	abilities.tick(2.0)
 	check(Game.run.shield == 0.0 and not room.player.status.has("brace_guard"), "cancelled guard cannot award a free shield or damage prevention")
-	check(Game.run.resource == 75.0 and room.player.cooldowns.f == 11.0, "cancelled guard keeps committed rage and cooldown")
+	check(Game.run.resource == units(75.0) and room.player.skill_cooldown("f") == 11.0, "cancelled guard keeps committed rage and identity cooldown")
 
 func _test_warrior_stronger_guard() -> void:
 	fixture("CH01")
@@ -163,7 +175,7 @@ func _test_warrior_guard_snapshot() -> void:
 	var replay: Dictionary = JSON.parse_string(JSON.stringify(saved))
 	fixture("CH01")
 	check(Snapshot.restore(room, replay), "JSON-only snapshot restores warrior guard into another initialized real room")
-	check(Game.run.resource == 75.0 and room.player.cooldowns.f == 11.0, "guard restore preserves committed rage and cooldown")
+	check(Game.run.resource == units(75.0) and room.player.skill_cooldown("f") == 11.0, "guard restore preserves committed rage and identity cooldown")
 	check(is_equal_approx(incoming(40.0), 30.0), "restored guard still reduces actual incoming damage by one quarter")
 	room.player.status.tick(1.1)
 	check(is_equal_approx(incoming(40.0), 40.0), "restored guard preserves its remaining 1.1 seconds instead of restarting its duration")
@@ -172,25 +184,26 @@ func _test_gunner_grenade_and_combo() -> void:
 	fixture("CH02")
 	var landing := Vector2(480, 350)
 	var target: EnemyActor = dummy(Vector2(500, 350))
-	target.armor = 100.0
+	target.armor = float(Numbers.value("resistance_denominator"))
 	var power: float = room.player.skill_power()
 	check(abilities.try_cast("f", landing), "gunner throws at valid ground")
-	check(Game.run.resource == 70.0 and room.player.cooldowns.f == 12.0, "grenade retains one 30-energy / 12-second commitment")
+	check(Game.run.resource == units(70.0) and room.player.skill_cooldown("f") == 9.0, "grenade retains one 30-energy / 9-second identity commitment")
 	abilities.tick(0.149)
-	check(deployment("grenade") == null and target.health.current == 10000.0, "grenade does not exist or hit before release")
+	check(deployment("gunner_grenade") == null and target.health.current == 10000.0, "grenade does not exist or hit before release")
 	abilities.tick(0.001)
-	var grenade: HeroDeployment = deployment("grenade")
-	check(is_instance_valid(grenade) and deployment("trap") == null, "release places one grenade at the selected landing zone")
+	var grenade: Node2D = deployment("gunner_grenade")
+	check(is_instance_valid(grenade) and deployment("gunner_root_mine") == null, "release places one grenade at the selected landing zone")
 	if not is_instance_valid(grenade):
 		return
 	check(grenade.position == landing, "grenade lands at the validated cursor position")
-	grenade.advance(0.649)
+	grenade.advance(0.499)
 	check(target.health.current == 10000.0 and room.player.class_marks.is_empty(), "fuse delay cannot deal damage or mark the target early")
 	check(room.player.start_dash(Vector2.UP), "gunner can cancel recovery with a real dash after throwing")
 	grenade.advance(0.001)
-	check(is_equal_approx(10000.0 - target.health.current, power * 1.1 * 0.5), "grenade blast deals 1.1 attack power as armor-mitigated physical damage")
+	check(10000.0 - target.health.current == Numbers.amount(float(Numbers.amount(power * 1.1, Numbers.V2)) * 0.5, Numbers.V2), "grenade blast deals 1.1 attack power as armor-mitigated physical damage")
 	check(not target.status.has("chill") and is_equal_approx(target.pending_displacement().length(), 30.0), "gunner grenade pushes 30 pixels without borrowing mage chill")
-	check(room.player.class_marks.has(target.get_instance_id()), "confirmed original grenade blast marks its target for follow-up fire")
+	check(room.player.class_marks.is_empty() and not room.player.has_hunter_mark(target), "confirmed grenade blast cannot recreate retired hunter marks")
+	check(int(room.player.class_state_view().ammo) == 8 and int(room.player.class_state_view().enhanced_shots) == 0, "energy grenade does not consume or strengthen ordinary magazine rounds")
 	check(not grenade.is_alive(), "grenade retires immediately after its single blast")
 	var before_followup: float = target.health.current
 	var chain_multiplier: float = 1.0 + float(room.player.hit_chain.snapshot().bonus)
@@ -199,8 +212,8 @@ func _test_gunner_grenade_and_combo() -> void:
 	check(abilities.try_cast("secondary", target.position), "gunner follows the grenade with a rail shot")
 	abilities.tick(0.66)
 	tick_projectiles(0.3)
-	check(is_equal_approx(before_followup - target.health.current, power * 3.25 * 0.5 * chain_multiplier), "rail shot consumes the grenade mark with its real 1.25 attack-power bonus and current chain multiplier")
-	check(not room.player.class_marks.has(target.get_instance_id()), "rail shot consumes the mark once")
+	check(before_followup - target.health.current == Numbers.amount(float(Numbers.amount(power * 2.0 * chain_multiplier, Numbers.V2)) * 0.5, Numbers.V2), "rail shot uses its own 2.0H budget and chain multiplier without a retired mark bonus")
+	check(room.player.class_marks.is_empty() and int(room.player.class_state_view().ammo) == 8, "rail energy shot leaves retired marks empty and ordinary magazine intact")
 	var after: float = target.health.current
 	grenade.advance(10.0)
 	check(target.health.current == after, "retired grenade cannot damage or re-mark its victim later")
@@ -212,11 +225,11 @@ func _test_gunner_center_contact() -> void:
 	var target: EnemyActor = dummy(landing)
 	check(abilities.try_cast("f", landing), "gunner throws diagonally at an enemy exactly on the landing center")
 	abilities.tick(0.15)
-	var grenade: HeroDeployment = deployment("grenade")
+	var grenade: Node2D = deployment("gunner_grenade")
 	check(is_instance_valid(grenade), "center-contact grenade releases normally")
 	if not is_instance_valid(grenade):
 		return
-	grenade.advance(0.65)
+	grenade.advance(0.5)
 	check(target.health.current < 10000.0 and target.pending_displacement().distance_to(thrown_direction * 30.0) < 0.001, "exact-center grenade contact deals damage and pushes 30 pixels along the actual throw direction")
 
 func _test_gunner_empty_and_cancelled() -> void:
@@ -224,11 +237,11 @@ func _test_gunner_empty_and_cancelled() -> void:
 	var landing := Vector2(480, 350)
 	check(abilities.try_cast("f", landing), "empty-zone grenade commits")
 	abilities.tick(0.15)
-	var grenade: HeroDeployment = deployment("grenade")
+	var grenade: Node2D = deployment("gunner_grenade")
 	check(is_instance_valid(grenade), "empty-zone grenade exists after release")
 	if is_instance_valid(grenade):
-		grenade.advance(0.65)
-		check(not grenade.is_alive() and Game.run.resource == 70.0, "empty zone still spends and retires its grenade at the timed blast")
+		grenade.advance(0.5)
+		check(not grenade.is_alive() and Game.run.resource == units(70.0), "empty zone still spends and retires its grenade at the timed blast")
 		var late_target: EnemyActor = dummy(landing + Vector2(20, 0))
 		grenade.advance(5.0)
 		check(late_target.health.current == 10000.0 and room.player.class_marks.is_empty(), "empty blast leaves no mine for a later arrival")
@@ -237,34 +250,35 @@ func _test_gunner_empty_and_cancelled() -> void:
 	abilities.tick(0.149)
 	check(room.player.start_dash(Vector2.UP), "real gunner dash interrupts the throw")
 	abilities.tick(3.0)
-	check(deployment("grenade") == null and Game.run.resource == 70.0 and room.player.cooldowns.f == 12.0, "cancelled throw creates no delayed grenade and refunds neither cost nor cooldown")
+	check(deployment("gunner_grenade") == null and Game.run.resource == units(70.0) and room.player.skill_cooldown("f") == 9.0, "cancelled throw creates no delayed grenade and refunds neither cost nor identity cooldown")
 
 func _test_gunner_ground_and_radius() -> void:
 	fixture("CH02")
 	room.geometry_enabled = true
 	room.obstructions.assign([Rect2(470, 270, 30, 150)])
-	for landing: Vector2 in [Vector2(720,350), Vector2(485,350), Vector2(520,350), Vector2(INF,350)]:
+	for landing: Vector2 in [Vector2(830,350), Vector2(485,350), Vector2(520,350), Vector2(INF,350)]:
 		check(not abilities.try_cast("f", landing), "grenade rejects out-of-range, solid, occluded or nonfinite landing")
-		check(Game.run.resource == 100.0 and room.player.cooldowns.f == 0.0, "invalid grenade landing leaves energy and cooldown intact")
+		check(Game.run.resource == units(100.0) and room.player.skill_cooldown("f") == 0.0, "invalid grenade landing leaves energy and identity cooldown intact")
 	fixture("CH02")
 	room.geometry_enabled = true
 	room.obstructions.assign([Rect2(525, 270, 20, 150)])
 	var hidden: EnemyActor = dummy(Vector2(560, 350))
 	check(abilities.try_cast("f", Vector2(480,350)), "grenade can land on the visible side of a wall")
 	abilities.tick(0.15)
-	var grenade: HeroDeployment = deployment("grenade")
+	var grenade: Node2D = deployment("gunner_grenade")
 	if is_instance_valid(grenade):
-		grenade.advance(0.65)
-	check(hidden.health.current == 10000.0 and not room.player.class_marks.has(hidden.get_instance_id()), "grenade blast respects wall occlusion for both damage and its mark")
-	for level: int in [8,14]:
-		fixture("CH02", level)
+		grenade.advance(0.5)
+	check(hidden.health.current == 10000.0 and room.player.class_marks.is_empty(), "grenade blast respects wall occlusion and never adds a retired mark")
+	for rank: int in [1,2]:
+		fixture("CH02", 14)
+		if rank == 2: Game.profile.skill_state.CH02.mastery["CH02_SK03"] = 20
 		var edge: EnemyActor = dummy(Vector2(600, 350))
-		check(abilities.try_cast("f", Vector2(480,350)), "grenade radius fixture casts at level " + str(level))
+		check(abilities.try_cast("f", Vector2(480,350)), "grenade radius fixture casts at mastery rank " + str(rank))
 		abilities.tick(0.15)
-		grenade = deployment("grenade")
+		grenade = deployment("gunner_grenade")
 		if is_instance_valid(grenade):
-			grenade.advance(0.65)
-		check((edge.health.current < 10000.0) == (level == 14), "level-14 grenade reaches a target 120 pixels away while the base grenade cannot")
+			grenade.advance(0.5)
+		check((edge.health.current < 10000.0) == (rank == 2), "mastery Lv.2 reaches 120 pixels; character Lv.14 alone cannot upgrade the base grenade")
 
 func _test_mage_field_control() -> void:
 	fixture("CH03")
@@ -279,13 +293,14 @@ func _test_mage_field_control() -> void:
 	var power: float = room.player.skill_power()
 	check(abilities.try_cast("ultimate", landing), "mage commits a visible field")
 	abilities.tick(0.40)
-	var field: HeroDeployment = deployment("field")
+	var field: Node2D = deployment("field")
 	check(is_instance_valid(field), "mage release creates a persistent field")
 	if not is_instance_valid(field):
 		return
 	check(target.status.has("shock") and not target.status.has("chill"), "initial impact applies shock before periodic frost control")
+	check(int(room.player.class_state_view().starlight) == 1 and room.player.resonance_nodes().is_empty(), "first actual field release earns one star without recreating old crystals")
 	var initial_hp: float = target.health.current
-	shielded.status.grant_guard(100.0, 10.0, "fixture", shielded.health.maximum)
+	shielded.status.grant_guard(units(100.0), 10.0, "fixture", shielded.health.maximum)
 	var shielded_hp: float = shielded.health.current
 	var initial_shield: float = shielded.status.shield()
 	var passive_before: Dictionary = room.player.class_status()
@@ -298,9 +313,9 @@ func _test_mage_field_control() -> void:
 	field.advance(0.999)
 	check(target.health.current == initial_hp and not target.status.has("chill"), "field cannot add an early fractional tick or premature slow")
 	field.advance(0.001)
-	check(is_equal_approx(initial_hp - target.health.current, power * 0.8), "first field tick deals its captured 0.8 skill power without original equipment bonus")
+	check(initial_hp - target.health.current == Numbers.amount(power * 0.8, Numbers.V2), "first field tick deals its captured 0.8 skill power without original equipment bonus")
 	check(target.status.has("chill") and target.status.has("shock"), "field tick chills its victim while preserving unconsumed original shock")
-	check(shielded.health.current == shielded_hp and is_equal_approx(initial_shield - shielded.status.shield(), power * 0.8) and shielded.status.has("chill"), "real shield absorption also confirms field control")
+	check(shielded.health.current == shielded_hp and initial_shield - shielded.status.shield() == Numbers.amount(power * 0.8, Numbers.V2) and shielded.status.has("chill"), "real shield absorption also confirms field control")
 	check(immune.health.current == 10000.0 and not immune.status.has("chill"), "immune target receives neither field damage nor field chill")
 	check(hidden.health.current == 10000.0 and not hidden.status.has("chill"), "wall-occluded target receives neither field damage nor field chill")
 	check(Game.run.resource == resource_before and room.player.class_status().current == passive_before.current and room.player.class_status().icd == passive_before.icd, "recurring field damage and chill cannot advance or refund the mage passive")
@@ -308,7 +323,7 @@ func _test_mage_field_control() -> void:
 	field.advance(1.0)
 	check(is_equal_approx(float(target.status.states.chill.remaining), 3.0), "next confirmed field tick refreshes frost control to its normal duration")
 	field.advance(3.0)
-	check(is_equal_approx(initial_hp - target.health.current, power * 0.8 * 5.0) and not field.is_alive(), "field delivers exactly five authored ticks including expiry then retires")
+	check(initial_hp - target.health.current == float(Numbers.amount(power * 0.8, Numbers.V2)) * 5.0 and not field.is_alive(), "field delivers exactly five authored ticks including expiry then retires")
 	var finished_hp: float = target.health.current
 	field.advance(10.0)
 	check(target.health.current == finished_hp, "retired field produces no additional damage or control")
@@ -316,7 +331,8 @@ func _test_mage_field_control() -> void:
 func _test_mage_field_cancellation() -> void:
 	fixture("CH03")
 	check(abilities.try_cast("ultimate", Vector2(480,350)), "cancelled mage field commits")
-	abilities.tick(0.399)
+	abilities.tick(0.299)
 	check(room.player.start_dash(Vector2.UP), "real mage dodge cancels field preparation")
 	abilities.tick(3.0)
-	check(deployment("field") == null and Game.run.resource == 40.0 and room.player.cooldowns.ultimate == 48.0, "cancel before impact creates no field and retains committed mana/cooldown")
+	check(deployment("field") == null and Game.run.resource == units(50.0) and room.player.skill_cooldown("ultimate") == 32.0, "cancel before impact creates no field and retains committed 50-mana/32-second identity cooldown")
+	check(int(room.player.class_state_view().starlight) == 0, "cancelled field preparation earns no star or chorus refund")

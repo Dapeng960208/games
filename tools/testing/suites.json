@@ -708,6 +708,9 @@
     "script": "tests/app/test_inventory_performance.gd",
     "scene": "tests/app/test_inventory_performance.tscn"
   },
+  "legacy_profile_reset": {
+    "script": "tests/persistence/test_legacy_profile_reset.gd"
+  },
   "loot_status_ui": {
     "script": "tests/equipment/test_loot_status_ui.gd"
   },
@@ -942,9 +945,25 @@
     "script": "tests/world/test_reward_route_preview.gd",
     "scene": "tests/world/test_reward_route_preview.tscn"
   },
+  "role_kits": {
+    "script": "tests/characters/test_role_kits.gd",
+    "scene": "tests/characters/test_role_kits.tscn"
+  },
   "role_motion_capture": {
     "script": "tests/captures/test_role_motion_capture.gd",
     "scene": "tests/captures/test_role_motion_capture.tscn"
+  },
+  "role_natural_ui": {
+    "script": "tests/ui/test_role_natural_ui.gd",
+    "scene": "tests/ui/test_role_natural_ui.tscn"
+  },
+  "role_natural_ui_chapter": {
+    "script": "tests/ui/test_role_natural_ui.gd",
+    "scene": "tests/ui/test_role_natural_ui.tscn"
+  },
+  "role_natural_ui_effects": {
+    "script": "tests/ui/test_role_natural_ui.gd",
+    "scene": "tests/ui/test_role_natural_ui.tscn"
   },
   "role_skill_audio": {
     "script": "tests/audio/test_role_skill_audio.gd"
@@ -1051,6 +1070,10 @@
   "skill_audio_timing": {
     "script": "tests/audio/test_skill_audio_timing.gd"
   },
+  "skill_config_migration": {
+    "script": "tests/persistence/test_skill_config_migration.gd",
+    "scene": "tests/persistence/test_skill_config_migration.tscn"
+  },
   "skill_feedback_capture": {
     "script": "tests/captures/test_skill_feedback_capture.gd",
     "scene": "tests/captures/test_skill_feedback_capture.tscn"
@@ -1062,6 +1085,14 @@
   "skill_input_ui": {
     "script": "tests/ui/test_skill_input_ui.gd",
     "scene": "tests/ui/test_skill_input_ui.tscn"
+  },
+  "skill_system_ui_flow": {
+    "script": "tests/ui/test_skill_system_ui_flow.gd",
+    "scene": "tests/ui/test_skill_system_ui_flow.tscn"
+  },
+  "skill_system_ui_module": {
+    "script": "tests/ui/test_skill_system_ui_flow.gd",
+    "scene": "tests/ui/test_skill_system_ui_flow.tscn"
   },
   "storybook_rebuild": {
     "script": "tests/ui/test_storybook_rebuild.gd",
@@ -1137,8 +1168,5 @@
   "world_visual": {
     "script": "tests/world/test_world_visual.gd",
     "scene": "tests/world/test_world_visual.tscn"
-  },
-  "legacy_profile_reset": {
-    "script": "tests/persistence/test_legacy_profile_reset.gd"
   }
 }

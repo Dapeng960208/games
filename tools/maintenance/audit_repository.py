@@ -31,7 +31,8 @@ def audit() -> list[str]:
             body = path.read_text(encoding="utf-8")
             for target in re.findall(r'["\'](asset://[^"\'\n]+)["\']', body):
                 logical = target.removeprefix("asset://").lower()
-                if any(x in logical for x in ("%", "__index__")) or logical.endswith("/") or "." not in logical.rsplit("/", 1)[-1]: continue
+                # Skill IDs are appended to this registered namespace at runtime.
+                if logical == "skill." or any(x in logical for x in ("%", "__index__")) or logical.endswith("/") or "." not in logical.rsplit("/", 1)[-1]: continue
                 if logical not in registry:
                     errors.append(f"Logical resource {path.relative_to(ROOT)}: unregistered {target}")
             for target in re.findall(r'["\'](res://[^"\'\n]+)["\']', body):
